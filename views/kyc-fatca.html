@@ -1,0 +1,185 @@
+<div  ng-controller="kycFatca" data-ng-init="init()">
+<form class="form-horizontal" role="form" name="kycFatcaForm" id="kycFatcaForm" novalidate ng-submit="submitkycFatcaForm()">
+    <h2 class="text-center"> KYC </h2>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row" >
+      <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-content" >
+            <div class="form-group required" ng-class="{ 'has-error' : kycFatcaForm.income.$invalid && kycFatcaForm.income.$dirty }">
+              <label class="control-label col-sm-4" for="applicableIncomeValue">
+                  Gross Annual Income Details
+                </label>
+              <div class="col-sm-7">
+                  <select id="income" class="form-control center-adjustment" name="income" required ng-model="kycFatcaFormData.income" placeholder="Income Value">
+                    <option value=''>----Gross Annual Income Details----</option>
+                      <option ng-repeat="(key, value) in incomeList" value="{{key}}" >{{value}}</option>
+                  </select>
+                  <div ng-show="kycFatcaForm.income.$invalid && kycFatcaForm.income.$dirty">
+                      <p ng-show="kycFatcaForm.income.$error.required" class="help-block">
+                          Income information is required
+                      </p>
+                  </div>
+              </div>
+            </div>
+            <div class="form-group required" ng-class="{ 'has-error' : kycFatcaForm.pep.$invalid && kycFatcaForm.pep.$dirty }">
+              <label class="control-label col-sm-4" for="pep">
+                    PEP
+               </label>
+                  <div class="col-sm-7">
+                      <div class="input-group">
+                          <span class="btn btn-default input-group-addon" tooltip-placement="bottom" uib-tooltip="Politically Exposed Persons (PEP) are defined as individuals who are or have been entrusted with prominent public functions in a foreign country, e.g., Heads of States or of Governments,senior politicians, senior Government/judicial/ military officers, senior executives of stateowned corporations, important political party officials, etc.">
+                              <i class="fa fa-info"></i>
+                          </span>
+                        <select id="pep" class="form-control" name="pep" required ng-model="kycFatcaFormData.pep" placeholder="Political Expose Person">
+                            <option value=''>--Select Political Exposition--</option>
+                            <option ng-repeat="(key, value) in pepList" value="{{key}}" >{{value}}</option>
+                        </select>
+                      </div>
+                      <div ng-show="kycFatcaForm.pep.$invalid && kycFatcaForm.pep.$dirty">
+                          <p ng-show="kycFatcaForm.pep.$error.required" class="help-block">
+                              Pep information is required
+                          </p>
+                      </div>
+                  </div>
+            </div>
+                  <div class="form-group required" ng-class="{ 'has-error' : kycFatcaForm.sourceWealth.$invalid && kycFatcaForm.sourceWealth.$dirty }">
+                      <label class="control-label col-sm-4" for="wealth_src">Source Of Wealth</label>
+                      <div class="col-sm-7">
+                          <select id="sourceWealth" class="form-control" name="sourceWealth" ng-model="kycFatcaFormData.wealth_src" required>
+                              <option value=''>--Select Source Of Investment--</option>
+                              <option ng-repeat="(key, value) in sourceOfWealthList" value="{{key}}" >{{value}}</option>
+                          </select>
+                          <div ng-show="kycFatcaForm.sourceWealth.$invalid && kycFatcaForm.sourceWealth.$dirty">
+                              <p ng-show="kycFatcaForm.sourceWealth.$error.required" class="help-block">
+                                  Source of wealth is required
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                <div class="form-group" ng-class="{ 'has-error' : kycFatcaForm.aadhar.$invalid && kycFatcaForm.aadhar.$dirty }">
+                    <label class="control-label col-sm-4" for="aadhar">AADHAAR</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="aadhar" class="form-control" name="aadhar"  ng-pattern="/^[0-9]{1,12}$/" ng-model="kycFatcaFormData.aadhaar"  placeholder="Aadhar card Number" />
+                        <div ng-show="kycFatcaForm.aadhar.$invalid && kycFatcaForm.aadhar.$dirty">
+                            <p ng-show="kycFatcaForm.aadhar.$error.pattern" class="help-block">
+                                Enter a valid 12 digits Aadhar number
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+              </div>
+        </div>
+      </div>
+    <p>Know Your Customer (KYC) is a customer identification process. Investors who wish to make investment in Mutual Funds have to mandatorily complete the KYC process.</p>
+    </div>
+
+
+<!-- ************************Fatca Form********************************************* -->
+<div class="center-adjustment">
+  <h2 >FATCA</h2>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-content">
+          <div class="form-group required" ng-class="{ 'has-error' : kycFatcaForm.location.$invalid && kycFatcaForm.location.$dirty }">
+            <label class="control-label col-sm-5" for="birthlocation">Place of Birth</label>
+              <div class="col-sm-6">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-map-marker"></i>
+                    </span>
+                      <input type="text" class="form-control" name="location" id="birthlocation" placeholder="Select City" required ng-model="kycFatcaFormData.birth_place"/>
+                  </div>
+                 <p ng-show="kycFatcaForm.location.$invalid && kycFatcaForm.location.$dirty" class="help-block">
+                                    Location is required
+                  </p>
+              </div>
+          </div>
+            <div class="form-group required">
+                <label class="control-label col-sm-5">Tax Residency other than India</label>
+                <div class="col-sm-7">
+                    <label class="checkbox-inline" for="tax_residency_other_yes">
+                        <input icheck id="tax_residency_other_yes" type="radio" name="KYC" ng-model="kycFatcaFormData.tax_residency_other"
+                               value="1">
+                        Yes
+                    </label>
+                    <label class="checkbox-inline" for="tax_residency_other_no">
+                        <input icheck id="tax_residency_other_no" ng-checked="true" type="radio" name="KYC"
+                               ng-model="kycFatcaFormData.tax_residency_other" value="0">
+                        No
+                    </label>
+                </div>
+            </div>
+          <div class="form-group required" ng-show="otherTaxResidency"  ng-class="{ 'has-error' : kycFatcaForm.country_tax_residency1.$invalid && kycFatcaForm.country_tax_residency1.$dirty }">
+            <label class="control-label col-sm-5" for="country_tax_residency1">Country Of Tax Residency</label>
+              <div class="col-sm-6">
+                  <select id="country_tax_residency1" class="form-control" name="country_tax_residency1"
+                          ng-model="kycFatcaFormData.country_tax_residency1"
+                          ng-required="kycFatcaFormData.tax_residency_other == '1'">
+                    <option value=''>--Select Country--</option>
+                      <option ng-repeat="(key, value) in countriesList" value="{{value}}" >{{value}}
+                      </option>
+                  </select>
+                  <div ng-show="kycFatcaForm.country_tax_residency1.$invalid && kycFatcaForm.country_tax_residency1.$dirty">
+                      <p ng-show="kycFatcaForm.country_tax_residency1.$error.required" class="help-block">
+                          Country of tax residency is required
+                      </p>
+                  </div>
+              </div>
+          </div>
+           <!-- -->
+          <div class="form-group required" ng-show="otherTaxResidency" ng-class="{ 'has-error' : kycFatcaForm.identiyType1.$invalid && kycFatcaForm.identiyType1.$dirty }">
+            <label class="control-label col-sm-5" for="identiyType1">Identification Type 1</label>
+              <div class="col-sm-6">
+                  <select id="identiyType1" class="form-control" name="identiyType1"
+                          ng-model="kycFatcaFormData.id1_type"
+                          ng-required="kycFatcaFormData.tax_residency_other == '1'" >
+                    <option value=''>--Select Identification Type--</option>
+                      <option ng-repeat="(key, value) in identificationTypeList" value="{{key}}" >{{value}}
+                      </option>
+                  </select>
+                  <div ng-show="kycFatcaForm.identiyType1.$invalid && kycFatcaForm.identiyType1.$dirty">
+                      <p ng-show="kycFatcaForm.identiyType1.$error.required" class="help-block">
+                          Identification type is required
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group required" ng-show="otherTaxResidency" ng-class="{ 'has-error' : kycFatcaForm.taxPayerIdentification.$invalid && kycFatcaForm.taxPayerIdentification.$dirty }">
+              <label class="control-label col-sm-5" for="identiyType1">Tax payer Identification Number 1</label>
+                <div class="col-sm-6">
+                    <input type="text" id="taxPayerIdentification" class="form-control"
+                           name="taxPayerIdentification" ng-model="kycFatcaFormData.tax_payer_identityno1"
+                           ng-required="kycFatcaFormData.tax_residency_other == '1'"  placeholder=""/>
+                      <div ng-show="kycFatcaForm.taxPayerIdentification.$invalid && kycFatcaForm.taxPayerIdentification.$dirty">
+                        <p ng-show="kycFatcaForm.taxPayerIdentification.$error.required" class="help-block">
+                                Identification is required
+                        </p>
+                         
+                      </div>
+                  </div>
+          </div>
+          <div class="form-group required" style="text-align: center;">
+            <button class="btn btn-sm btn-primary" ng-disabled="kycFatcaForm.$invalid" type="submit" ><strong>{{submitText}}</strong></button>
+          </div>
+         
+      </div>
+    </div>
+  </div>
+</div>
+   <p class="text-adjustment"> The Foreign Account Tax Compliance Act (FATCA) is a United States Federal Law that requires the US tax residents including those living abroad to report their financial accounts held offshore, and requires foreign financial
+    institutions to report to the Internal Revenue Services (IRS) about their U.S. clients. Indian Govt has signed the treaty with US and consequently all Indian Mutual Fund Investors are required to provide this information.</p>
+</div>
+</form>
+</div>
+
+
+<style>
+    .form-group{
+        margin-top:20px  !important;
+    }
+</style>

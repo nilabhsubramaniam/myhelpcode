@@ -1,0 +1,142 @@
+<!--<div class="wrapper wrapper-content animated fadeInRight">-->
+    <!--<div class="row">-->
+       <!--<p>Provide details of all the bank accounts in your name.</p>-->
+        <!--<div class="col-lg-12">-->
+            <!--<div class="ibox">-->
+                <!--<div class="ibox-content" ng-controller="filingBankInfoCtrl" data-ng-init="init()">-->
+                    <!--<h4></h4>-->
+                    <!--<div ng-show="AddProp">-->
+                        <!--<form class="form-horizontal" role="form" name="filingBankInfoForm" id="filingBankInfoForm"-->
+                              <!--novalidate>-->
+                            <!--<div class="form-group required"-->
+                                 <!--ng-class="{ 'has-error' : filingBankInfoForm.ifscCode.$invalid && filingBankInfoForm.ifscCode.$dirty }">-->
+                                <!--<label class="control-label col-sm-4" for="ifscCode">IFSC Code </label>-->
+                                <!--<div class="col-sm-7">-->
+                                    <!--<input type="text" id="ifscCode" class="form-control" name="ifscCode"-->
+                                           <!--required-->
+                                           <!--ng-model="bankInfoFormData.ifscCode"-->
+                                           <!--ng-minlength="1"-->
+                                           <!--ng-maxlength="15"-->
+                                           <!--placeholder="Enter IFSC code of your bank "-->
+                                    <!--/>-->
+                                    <!--<div ng-show="filingBankInfoForm.ifscCode.$invalid && filingBankInfoForm.ifscCode.$dirty">-->
+                                        <!--<p ng-show="filingBankInfoForm.ifscCode.$error.required"-->
+                                           <!--class="help-block">-->
+                                            <!--IFSC code is required-->
+                                        <!--</p>-->
+                                        <!--<p ng-show="filingBankInfoForm.ifscCode.$error.minlength"-->
+                                           <!--class="help-block">-->
+                                            <!--IFSC code Atleast 1 Character-->
+                                        <!--</p>-->
+                                        <!--<p ng-show="filingBankInfoForm.ifscCode.$error.maxlength"-->
+                                           <!--class="help-block">-->
+                                            <!--IFSC code cannot exceed 15 Characters-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash; End of residence addrress&ndash;&gt;-->
+                            <!--<div class="form-group "-->
+                                 <!--ng-class="{ 'has-error' : filingBankInfoForm.bankAccNo.$invalid && filingBankInfoForm.bankAccNo.$dirty }">-->
+                                <!--<label class="control-label col-sm-4" for="bankAccNo">Bank Account Number</label>-->
+                                <!--<div class="col-sm-7">-->
+                                    <!--<input type="text" id="bankAccNo" class="form-control" name="bankAccNo"-->
+                                           <!--ng-model="bankInfoFormData.bankAccNo"-->
+                                           <!--required-->
+                                           <!--placeholder="Enter bank account number "-->
+                                           <!--ng-minlength="1"-->
+                                           <!--ng-maxlength="50"-->
+                                           <!--ng-pattern="/^[0-9]*$/"-->
+                                    <!--/>-->
+                                    <!--<div ng-show="filingBankInfoForm.bankAccNo.$invalid && filingBankInfoForm.bankAccNo.$dirty">-->
+                                        <!--<p ng-show="filingBankInfoForm.bankAccNo.$error.pattern" class="help-block">-->
+                                            <!--Bank account number should be numerical, without any space-->
+                                        <!--</p>-->
+                                        <!--<p ng-show="filingBankInfoForm.bankAccNo.$error.required"-->
+                                           <!--class="help-block">-->
+                                            <!--Bank account number is required-->
+                                        <!--</p>-->
+                                        <!--<p ng-show="filingBankInfoForm.bankAccNo.$error.minlength"-->
+                                           <!--class="help-block">-->
+                                            <!--Bank account number contain Atleast 1 Character-->
+                                        <!--</p>-->
+                                        <!--<p ng-show="filingBankInfoForm.bankAccNo.$error.maxlength"-->
+                                           <!--class="help-block">-->
+                                            <!--Bank account number cannot exceed 50 Characters-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash; End of bank account number &ndash;&gt;-->
+                            <!--<div class="form-group required"-->
+                                 <!--ng-class="{ 'has-error' : filingBankInfoForm.accountType.$invalid && filingBankInfoForm.accountType.$dirty }">-->
+                                <!--<label class="control-label col-sm-4" for="accountType">-->
+                                    <!--Type of Account-->
+                                <!--</label>-->
+                                <!--<div class="col-sm-7">-->
+                                    <!--<select id="accountType" class="form-control center-adjustment"-->
+                                            <!--name="accountType" required-->
+                                            <!--ng-model="bankInfoFormData.accountType"-->
+                                    <!--&gt;-->
+                                        <!--<option value=''>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Type of Account-&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
+                                        <!--<option value="RI">Savings</option>-->
+                                        <!--<option value="NRI">Current</option>-->
+                                    <!--</select>-->
+                                    <!--<div ng-show="filingBankInfoForm.accountType.$invalid && filingBankInfoForm.accountType.$dirty">-->
+                                        <!--<p ng-show="filingBankInfoForm.accountType.$error.required"-->
+                                           <!--class="help-block">-->
+                                            <!--Account type is required-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash; End of Accunt type status&ndash;&gt;-->
+                            <!--<input type="hidden" id="_id" name="_id" ng-model="bankInfoFormData._id"/>-->
+                            <!--<div class="form-group required" style="text-align: center;">-->
+                                <!--<button class="btn btn-sm btn-primary" ng-disabled="filingBankInfoForm.$invalid"-->
+                                        <!--ng-click="submitBankInfo()"><strong>Save</strong></button>-->
+                                <!--<button ng-hide="bankList.length <= 0" class="btn btn-sm btn-primary"-->
+                                        <!--ng-click="cancelProperty()"><strong>Cancel</strong></button>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                    <!--<div ng-hide="bankList.length <= 0 || AddProp">-->
+                        <!--<table class="table table-striped table-bordered">-->
+                            <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<th>Iifsc Code</th>-->
+                                <!--<th>Account Type</th>-->
+                                <!--<th>Account Number</th>-->
+                                <!--<th ng-hide="formStatus">Action</th>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
+                            <!--<tr ng-repeat="bankInfo in bankList">-->
+                                <!--<td>{{ bankInfo.ifscCode }}</td>-->
+                                <!--<td>{{ bankInfo.accountType }}</td>-->
+                                <!--<td>{{ bankInfo.bankAccNo }}</td>-->
+                                <!--<td ng-hide="formStatus">-->
+                                    <!--<a ng-disabled="formStatus" ng-click="edit(bankInfo._id)">edit</a> |-->
+                                    <!--<a ng-disabled="formStatus" ng-click="delete(bankProp._id)">delete</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--</tbody>-->
+                        <!--</table>-->
+                        <!--<div class="text-center">-->
+                            <!--<button ng-hide="formStatus || bankList.length >= 5"-->
+                                    <!--class="btn btn-sm btn-primary goal-button-margin" ng-click="addProperty()"><strong>Add-->
+                                <!--property</strong></button>-->
+                            <!--<button class="btn btn-sm btn-primary" ng-click="submitBankInfoFinal()"><strong>Save</strong>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<style>-->
+    <!--.form-group {-->
+        <!--margin-top: 20px !important;-->
+    <!--}-->
+<!--</style>-->

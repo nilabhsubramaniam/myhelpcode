@@ -1,0 +1,30 @@
+<div class="wrapper sidebar-content wrapper-content" ng-controller="userDashboard" data-ng-init="init();">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registration Status</h5>
+                    <span class="label label-primary"></span>
+                    <div ibox-tools></div>
+                </div>
+
+                <div class="ibox-content inspinia-timeline">
+                    <div class="timeline-item" ng-repeat="status in userStatus">
+                        <div class="row">
+                            <div class="col-xs-3 date">
+                                <i class="fa fa-briefcase"></i>
+                                {{status.date}}
+                                <br/>
+                                <small class="text-navy"></small>
+                            </div>
+                            <div class="col-xs-7 content no-top-border" ng-class="status.isactive ? 'userstateactive' : 'userstateinactive'">
+                                <p class="m-b-xs"><strong>{{status.display}}</strong></p>
+                                <!--<p>{{status.status}}</p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

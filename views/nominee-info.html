@@ -1,0 +1,208 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="nomineeInfo" data-ng-init="init();">
+                    <div ng-show="isAddForm">
+                        <form class="form-horizontal" role="form" name="nomineeInfoForm" id="nomineeInfoForm" novalidate ng-submit="submitNomineeInfoForm()">
+                            <div class="form-group required" ng-class="{ 'has-error' : nomineeInfoForm.name.$invalid && nomineeInfoForm.name.$dirty }">
+                                <label class="control-label col-sm-3" for="name">Name of Nominee</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="name" class="form-control" name="name" ng-model="nomineeInfoFormData.name"
+                                           required ng-pattern="/^[a-zA-Z\s]*$/"  placeholder="Name" ng-minlength="1" maxlength=62/>
+                                    <div ng-show="nomineeInfoForm.name.$invalid && nomineeInfoForm.name.$dirty">
+                                        <p ng-show="nomineeInfoForm.name.$error.required" class="help-block">
+                                            Name is required
+                                        </p>
+                                        <p ng-show="nomineeInfoForm.name.$error.pattern" class="help-block">
+                                            Invalid name
+                                        </p>
+                                        <p ng-show="nomineeInfoForm.name.$error.minlength" class="help-block">
+                                            Name Should Contain Atleast 1 Character
+                                        </p>
+                                        <p ng-show="nomineeInfoForm.name.$error.maxlength" class="help-block">
+                                            Name cannot exceed 62 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required" ng-class="{ 'has-error' : nomineeInfoForm.dob.$invalid && nomineeInfoForm.dob.$dirty }">
+                                <label class="control-label col-sm-3" for="dob" >Date of birth of Nominee</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                            <span class="btn btn-default input-group-addon" tooltip-placement="top" uib-tooltip="Enter Date Of Birth ">
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                        <input name="dob" id="dob" type="datetime" class="form-control" ng-model="nomineeInfoFormData.dob" view="date" auto-close="true" min-view="date" format="YYYY-MM-DD" date-time required />
+                                          <span class="input-group-addon">
+                                              <i class="fa fa-calendar"></i>
+                                          </span>
+                                    </div>
+                                    <p ng-show="nomineeInfoForm.dob.$invalid" class="help-block">
+                                        Date of birth is required
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group required" ng-class="{ 'has-error' : nomineeInfoForm.relation.$invalid && nomineeInfoForm.relation.$dirty }">
+                                <label class="control-label col-sm-3" for="relation">Nominee relationship</label>
+                                <div class="col-sm-7">
+                                    <select id="relation" class="form-control" name="relation"
+                                            ng-model="nomineeInfoFormData.relation"
+                                            required
+                                            placeholder="Nominee relationship" >
+                                        <option value=''>--Select Nominee relationship--</option>
+                                        <option ng-repeat="(key, value) in relationshiplist" value="{{value}}" >{{value}}</option>
+                                    </select>
+                                    <div ng-show="nomineeInfoForm.relation.$invalid && nomineeInfoForm.relation.$dirty">
+                                        <p ng-show="nomineeInfoForm.relation.$invalid" class="help-block">
+                                            Nominee relationship is required
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required" ng-show="isnomineeminor"
+                                 ng-class="{ 'has-error' : nomineeInfoForm.guardian_name.$invalid && nomineeInfoForm.guardian_name.$dirty }">
+                                <label class="control-label col-sm-3" >Guardian Name if nominee is minor</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="guardian_name" class="form-control" name="guardian_name"
+                                           ng-model="nomineeInfoFormData.guardian_name"
+                                           ng-required="isnomineeminor"
+                                           placeholder="Guardian Name"
+                                           ng-pattern="/^[a-zA-Z\s]*$/"/>
+                                    <div ng-show="nomineeInfoForm.guardian_name.$invalid && nomineeInfoForm.guardian_name.$dirty">
+                                        <p ng-show="nomineeInfoForm.guardian_name.$error.required" class="help-block">
+                                            Guardian name  is required
+                                        </p>
+                                        <p ng-show="nomineeInfoForm.guardian_name.$error.pattern" class="help-block">
+                                            Invalid Guardian name
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required"  ng-show="isnomineeminor"  ng-class="{ 'has-error' : nomineeInfoForm.guardianPAN.$invalid && nomineeInfoForm.guardianPAN.$dirty }">
+                                <label class="control-label col-sm-3" >Guardian PAN</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="guardianPAN"
+                                           name="guardianPAN" ng-model="nomineeInfoFormData.guardian_pan"  placeholder="Guardian PAN"
+                                           ng-pattern="/^([a-zA-Z]{3})(p|P)([a-zA-Z]{1})(\d{4})([a-zA-Z]{1})$/"
+                                           ng-required="isnomineeminor"/>
+                                    <div ng-show="nomineeInfoForm.guardianPAN.$invalid && nomineeInfoForm.guardianPAN.$dirty">
+                                        <p ng-show="nomineeInfoForm.guardianPAN.$error.required" class="help-block">
+                                            PAN is required
+                                        </p>
+                                        <p ng-show="nomineeInfoForm.guardianPAN.$error.pattern" class="help-block">
+                                            Invalid PAN
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required" ng-class="{ 'has-error' : nomineeInfoForm.percentageofallocation.$invalid && nomineeInfoForm.percentageofallocation.$dirty }">
+                                <label class="control-label col-sm-3" >Percentage of allocation</label>
+                                <div class="col-sm-7">
+                                    <rzslider rz-slider-model="percentageSliderOptions.value"
+                                              rz-slider-options="percentageSliderOptions.options"></rzslider>
+                                </div>
+                            </div>
+                            <div class="form-group required ">
+                                <label class="control-label col-sm-3" for="addressCopy">Contact Address</label>
+                                <div class="col-sm-7">
+                                    <input type="checkbox"  class="address-checkbox" id="addressCopy" ng-model="isSelected" ng-click="copyMyAddress()">&nbsp Same as my address.
+                                </div>
+                            </div>
+                            <div class="form-group " ng-class="{ 'has-error' : nomineeInfoForm.addr1.$invalid && nomineeInfoForm.addr1.$dirty }">
+                                <label class="control-label col-sm-3" for="addr1"></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="addr1" class="form-control" name="addr1" ng-model="nomineeInfoFormData.addr1" required  placeholder="Line 1" ng-minlength="2" maxlength="55"/>
+                                    <div ng-show="nomineeInfoForm.addr1.$invalid && nomineeInfoForm.addr1.$dirty">
+                                        <p ng-show="nomineeInfoForm.addr1.$error.required" class="help-block">
+                                            Address Line 1 is required
+                                        </p>
+                                        <p ng-show="nomineeInfoForm.addr1.$error.minlength" class="help-block">
+                                            Address Line 1 Should Contain Atleast 1 Character
+                                        </p>
+                                        <p ng-show="nomineeInfoForm.addr1.$error.maxlength" class="help-block">
+                                            Address Line 1 cannot exceed 55 Characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="control-label col-sm-3" for="addr2"></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="addr2" class="form-control" name="addr2" ng-model="nomineeInfoFormData.addr2" placeholder="Line 2" maxlength="55"/>
+                                </div>
+                            </div>
+                            <div class="form-group required" ng-class="{ 'has-error' : nomineeInfoForm.city.$invalid && nomineeInfoForm.city.$dirty }">
+                                <label class="control-label col-sm-3" for="geo-location">City</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                          <span class="input-group-addon">
+                                              <i class="fa fa-map-marker"></i>
+                                          </span>
+                                        <input type="text" class="form-control" name="city" id="geo-location" placeholder="Select City" ng-model="nomineeInfoFormData.city" required/>
+                                    </div>
+                                    <p ng-show="nomineeInfoForm.city.$invalid && nomineeInfoForm.city.$dirty" class="help-block">
+                                        Location is required
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group required" ng-class="{ 'has-error' : nomineeInfoForm.pincode.$invalid && nomineeInfoForm.pincode.$dirty }">
+                                <label class="control-label col-sm-3" for="pincode">Pin code</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="pincode" class="form-control" name="pincode" ng-model="nomineeInfoFormData.pincode" required  ng-pattern="/^[1-9][0-9]{5}$/"  placeholder="Pin code"/>
+                                    <div ng-show="nomineeInfoForm.pincode.$invalid && nomineeInfoForm.pincode.$dirty">
+                                        <p ng-show="nomineeInfoForm.pincode.$error.required" class="help-block">
+                                            Pin code is required
+                                        </p>
+                                        <p ng-show="nomineeInfoForm.pincode.$error.pattern" class="help-block">
+                                            Enter a valid 6 digits pin code
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="_id" name="_id" ng-model="nomineeInfoFormData._id" />
+                            <div class="form-group required" style="text-align: center;">
+                                <button class="btn btn-sm btn-primary goal-button-margin" ng-disabled="nomineeInfoForm.$invalid" type="submit"><strong>Save</strong></button>
+                                <button ng-hide="nomineeList.length <= 0" class="btn btn-sm btn-primary" ng-click="cancelNominee()"><strong>Cancel</strong></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div ng-hide="nomineeList.length <= 0 || isAddForm">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>DOB</th>
+                                <th>Relationship</th>
+                                <th>% Allocation</th>
+                                <th ng-hide="formStatus">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="nominee in nomineeList">
+                                <td>{{ nominee.name }}</td>
+                                <td>{{ nominee.dob }}</td>
+                                <td>{{ nominee.relation }}</td>
+                                <td>{{ nominee.percent }}</td>
+                                <td ng-hide="formStatus">
+                                    <a ng-disabled="formStatus" ng-click="edit(nominee._id)">edit</a> |
+                                    <a ng-disabled="formStatus" ng-click="delete(nominee._id)">delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <button ng-hide="formStatus || nomineeList.length >= 3 || !chk_allocation() "   class="btn btn-sm btn-primary goal-button-margin" ng-click="addNominee()"><strong>Add Nominee</strong></button>
+                            <button class="btn btn-sm btn-primary" ng-click="submitNominee()" ><strong>{{submitText}}</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group{
+        margin-top:20px  !important;
+    }
+</style>

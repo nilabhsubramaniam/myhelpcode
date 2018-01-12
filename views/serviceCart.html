@@ -1,0 +1,164 @@
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="serviceCartController" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="table-responsive" ng-repeat="fincart in fincarts">
+                        <table class="table shoping-cart-table">
+                            <tbody>
+                            <tr>
+                                <td width="90">
+                                    <input type="checkbox" class="fincart-checkbox cart-product-imitation"
+                                           ng-disabled="isSelectable(fincart)"
+                                           ng-model="fincart.selected">
+                                </td>
+                                <td class="desc">
+                                    <h3>
+                                        <a href="#" class="text-finatwork">
+                                            {{fincart.name}}
+                                        </a>
+                                    </h3>
+                                    <p class="small text-adjustment">
+                                        {{fincart.desc}}
+                                    </p>
+                                </td>
+                                <td ng-hide="prefClient">
+                                    {{fincart.offerPrice}}
+                                    <s class="small text-muted">₹{{fincart.price}}</s>
+                                </td>
+                                <td ng-show="prefClient">
+                                    <s class="small text-muted"> {{fincart.offerPrice}}</s>
+                                    <s class="small text-muted">₹{{fincart.price}}</s>
+                                </td>
+                                <td ng-hide="prefClient">
+                                    <h4>
+                                        ₹ {{fincart.offerPrice}}
+                                    </h4>
+                                </td>
+                                <td ng-show="prefClient">
+                                    <h4>
+                                        ₹ {{fincart.prefPrice}}
+                                    </h4>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <input type="checkbox"  name="target" value="target" ng-model="prefClient" ng-click="prefClientModal()" ng-change="onPrefClientChange()">&nbsp<i>Click here to avail Discounted Pricing for employees of Corporates with special tie-up with Fin@Work.</i><br>
+                    <br><br>
+                    <!--Email for preffered client-->
+                    <div ng-show="prefClient">
+                        <form class="form-horizontal" role="form"  name="specialClient" novalidate >
+                            <div ng-show="showEmail" class="form-group required"
+                                 ng-class="{ 'has-error' : specialClient.emailId.$invalid && specialClient.emailId.$dirty }">
+                                <label class="control-label col-sm-4">Email Id</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" name="emailId"
+                                           placeholder="Email" ng-required="!showOTP"
+                                           ng-model="email"
+                                           ng-minlength="1"
+                                           ng-maxlength="37">
+                                    <div ng-show="specialClient.emailId.$invalid && specialClient.emailId.$dirty">
+                                        <p ng-show="specialClient.emailId.$error.required"
+                                           class="help-block">
+                                            Email is required
+                                        </p>
+                                        <p ng-show="specialClient.emailId.$error.pattern"
+                                           class="help-block">
+                                            Email is invalid
+                                        </p>
+                                        <p ng-show="specialClient.emailId.$error.minlength"
+                                           class="help-block">
+                                            Email shoud contain at least 1 character
+                                        </p>
+                                        <p ng-show="specialClient.emailId.$error.maxlength"
+                                           class="help-block">
+                                            Email cannot exceed 37 Characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="showOTP">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : specialClient.validOtp.$invalid && specialClient.validOtp.$dirty }">
+                                    <label class="control-label col-sm-4">Verify OTP</label>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control"
+                                               name="validOtp"
+                                               ng-pattern="/^[0-9]{1,7}$/"
+                                               ng-model="otp"
+                                               ng-minlength="5">
+                                        <div ng-show="specialClient.validOtp.$invalid && specialClient.validOtp.$dirty">
+                                            <p ng-show="specialClient.validOtp.$error.required"
+                                               class="help-block">
+                                                OTP is required
+                                            </p>
+                                            <p ng-show="specialClient.validOtp.$error.pattern"
+                                               class="help-block">
+                                                OTP will be in digits
+                                            </p>
+                                            <p ng-show="specialClient.validOtp.$error.minlength"
+                                               class="help-block">
+                                                OTP should be atleast 5 digits
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-hide="prefClientVerified"  style="text-align: center;">
+                                <button class="btn btn-sm btn-primary" ng-click="submitEmailInfo()"
+                                        ng-disabled="specialClient.$invalid">
+                                    <strong>Submit</strong></button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-- End of Preffered client-->
+                </div>
+                <div class="ibox-content">
+                    <div class="ibox-content center-adjustment">
+                        <button class="btn btn-primary " ng-click="checkout()" ng-disabled="!totalAmount"><i class="fa fa fa-shopping-cart"></i> Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Cart Summary</h5>
+                </div>
+                <div class="ibox-content">
+                            <span>
+                                Total
+                            </span>
+                    <h2 class="font-bold">
+                        {{computedTotal()}}
+                    </h2>
+
+                    <hr/>
+                    <span class="text-muted small">
+                             <p class="text-adjustment">*Inclusive of all taxes and  other charges</p>
+                            </span>
+                    <div class="m-t-sm">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-sm " ng-click="checkout()" ng-disabled="!totalAmount"><i class="fa fa-shopping-cart"></i> Checkout</button>
+                            <a href="#" class="btn btn-white btn-sm active"> Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Support</h5>
+                </div>
+                <div class="ibox-content text-center">
+                    <h4><i class="fa fa-phone"></i>+91 (80) 4122 7738 </h4>
+                    <span class=" text-adjustment small ">
+                              <p class=" text-adjustment ">Please feel free if you have any questions or seek clarifications.</p>
+                            </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

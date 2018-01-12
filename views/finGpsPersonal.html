@@ -1,0 +1,311 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="finGpsPersonalInfoCtrl" data-ng-init="init()">
+                    <form class="form-horizontal" role="form" name="finGpsPersonal" id="finGpsPersonal" novalidate>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-5">Marital Status</label>
+                            <div class="col-sm-7">
+                                <label class="checkbox-inline" for="maritalStatus_single">
+                                    <input icheck type="radio" id="maritalStatus_single" name="maritalStatus"
+                                           ng-model="is_married" value="single">
+                                    Single
+                                </label>
+                                <label class="checkbox-inline" for="maritalStatus_married">
+                                    <input icheck type="radio" id="maritalStatus_married" name="maritalStatus"
+                                           ng-model="is_married" value="married">
+                                    Married
+                                </label>
+                                <label class="checkbox-inline" for="maritalStatus_other">
+                                    <input icheck type="radio" id="maritalStatus_other" name="maritalStatus"
+                                           ng-model="is_married" value="other">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="is_married == 'married'">
+                            <!-- Spouse Name-->
+                            <div class="form-group required"
+                                 ng-class="{ 'has-error' : finGpsPersonal.spouseName.$invalid && finGpsPersonal.spouseName.$dirty }">
+                                <label class="control-label col-sm-5" for="spouseName">Spouse Name</label>
+                                <div class="col-sm-5">
+                                    <input type="text" id="spouseName" class="form-control" name="spouseName"
+                                           ng-pattern="/^[a-zA-Z\s]*$/"
+                                           placeholder="Enter name "
+                                           ng-model="spouse_name"
+                                           ng-minlength="1"
+                                           ng-maxlength="30"
+                                           ng-required="maritalStatus == 'is_married'"/>
+                                    <div ng-show="finGpsPersonal.spouseName.$invalid && finGpsPersonal.spouseName.$dirty">
+                                        <p ng-show="finGpsPersonal.spouseName.$error.required" class="help-block">
+                                            Name is required
+                                        </p>
+                                        <p ng-show="finGpsPersonal.spouseName.$error.pattern" class="help-block">
+                                            Invalid name
+                                        </p>
+                                        <p ng-show="finGpsPersonal.spouseName.$error.min" class="help-block">
+                                            Name Should Contain Atleast 1 Character
+                                        </p>
+                                        <p ng-show="finGpsPersonal.spouseName.$error.max" class="help-block">
+                                            Name cannot exceed 30 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Spouse age-->
+                            <div class="form-group required"
+                                 ng-class="{ 'has-error' : finGpsPersonal.spouseAge.$invalid && finGpsPersonal.spouseAge.$dirty }">
+                                <label class="control-label col-sm-5" for="spouseAge">Spouse Age</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="spouseAge" class="form-control"
+                                           name="spouseAge"
+                                           ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter spouse age "
+                                           ng-model="spouse_age"
+                                           min="1"
+                                           max="100"
+                                           ng-required="maritalStatus == 'is_married'"/>
+                                    <div ng-show="finGpsPersonal.spouseAge.$invalid && finGpsPersonal.spouseAge.$dirty">
+                                        <p ng-show="finGpsPersonal.spouseAge.$error.required" class="help-block">
+                                            Spouse age is required
+                                        </p>
+                                        <p ng-show="finGpsPersonal.spouseAge.$error.pattern" class="help-block">
+                                            Enter age in digits only
+                                        </p>
+                                        <p ng-show="finGpsPersonal.spouseAge.$error.min" class="help-block">
+                                            Age cannot be less than 1
+                                        </p>
+                                        <p ng-show="finGpsPersonal.spouseAge.$error.max" class="help-block">
+                                            Age cannot be greater than 100
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsPersonal.noOfChildren.$invalid && finGpsPersonal.noOfChildren.$dirty }">
+                            <label class="control-label col-sm-5" for="noOfChildren">Number of children</label>
+                            <div class="col-sm-5">
+                                <input type="text" id="noOfChildren" class="form-control touchSpin" touch-spin
+                                       spin-options="spinOption1"
+                                       name="noOfChildren"
+                                       ng-pattern="/^[0-9]*$/"
+                                       placeholder="Enter no of children "
+                                       ng-model="noOfChildren"
+                                       data-bts-min="0"
+                                       data-bts-max="4"
+                                       ng-change="offSpringIncrement(noOfChildren)"
+                                />
+                                <div ng-show="finGpsPersonal.noOfChildren.$invalid && finGpsPersonal.noOfChildren.$dirty">
+                                    <p ng-show="finGpsPersonal.noOfChildren.$error.pattern" class="help-block">
+                                        Enter no of children in digits only
+                                    </p>
+                                    <p ng-show="finGpsPersonal.noOfChildren.$error.min" class="help-block">
+                                        No of children cannot be less than 0
+                                    </p>
+                                    <p ng-show="finGpsPersonal.noOfChildren.$error.max" class="help-block">
+                                        No of children cannot be greater  than 4
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Number of children-->
+                        <div ng-if="noOfChildren > 0">
+                            <div class="form-group personalLabel">
+                                <label class="control-label col-sm-2 personalEmptyDiv"></label>
+                                <label class="control-label col-sm-2 personalFontSize text-center" for="offSpringName">Name</label>
+                                <label class="control-label col-sm-2 personalFontSize text-center"
+                                       for="offSpringGender">Gender</label>
+                                <label class="control-label col-sm-2 personalFontSize text-center" for="offSpringDOB">Date
+                                    of birth</label>
+                                <label class="control-label col-sm-3  personalFontSize text-center"
+                                       for="offSpringDependency"> Financially dependant</label>
+                            </div>
+                            <div class="form-group" ng-repeat="child  in children track by $index">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-2"
+                                     ng-class="{'has-error':finGpsPersonal.offSpringName.$invalid &&  finGpsPersonal.offSpringName.$dirty}">
+                                    <input type="text" id="offSpringName" class="form-control" name="offSpringName"
+                                           ng-model="child.name"
+                                           ng-pattern="/^[a-zA-Z\s]*$/"
+                                           placeholder=" Enter name"
+                                           ng-minlength="1"
+                                           ng-maxlength="30"
+                                    />
+                                    <div ng-show="finGpsPersonal.offSpringName.$invalid && finGpsPersonal.offSpringName.$dirty">
+                                        <p ng-show="finGpsPersonal.offSpringName.$error.pattern" class="help-block">
+                                            Invalid name
+                                        </p>
+                                        <p ng-show="finGpsPersonal.offSpringName.$error.minlength" class="help-block">
+                                            Name Should Contain Atleast 1 Character
+                                        </p>
+                                        <p ng-show="finGpsPersonal.offSpringName.$error.maxlength" class="help-block">
+                                            Name cannot exceed 30 characters
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--OffSpring gender-->
+                                <div class="col-sm-2">
+                                    <select id="offSpringGender" class="form-control center-adjustment"
+                                            name="offSpringGender"
+                                            ng-model="child.gender"
+                                    >
+                                        <option value=''>--Select--</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <!-- Offspring DOB-->
+                                <div class="col-sm-2">
+                                    <input name="dob" id="offSpringDOB"
+                                           type="datetime"
+                                           class="form-control"
+                                           placeholder="Enter date of birth"
+                                           ng-model="child.dob"
+                                           view="date" auto-close="true"
+                                           min-view="date"
+                                           format="YYYY-MM-DD"
+                                           date-time/>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select id="offSpringDependency" class="form-control center-adjustment"
+                                            name="offSpringDependency"
+                                            ng-model="child.dependents"
+                                    >
+                                        <option value=''>--Select--</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Financially Dependents -->
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsPersonal.financiallyDependents.$invalid && finGpsPersonal.financiallyDependents.$dirty }">
+                            <label class="control-label col-sm-5" for="financiallyDependents">Number of Financially
+                                dependants</label>
+                            <div class="col-sm-5">
+                                <input type="text" id="financiallyDependents" class="form-control touchSpin" touch-spin
+                                       spin-options="spinOption1"
+                                       name="financiallyDependents"
+                                       ng-pattern="/^[0-9]*$/"
+                                       placeholder="Enter Financially dependants member "
+                                       ng-model="financiallyDependents"
+                                       data-bts-min="0"
+                                       data-bts-max="8"
+                                       ng-change="dependentPerson()"
+                                />
+                                <div ng-show="finGpsPersonal.financiallyDependents.$invalid && finGpsPersonal.financiallyDependents.$dirty">
+                                    <p ng-show="finGpsPersonal.financiallyDependents.$error.pattern" class="help-block">
+                                        Enter no of financially dependents in digits only
+                                    </p>
+                                    <p ng-show="finGpsPersonal.financiallyDependents.$error.min" class="help-block">
+                                        No of financially dependents cannot be less than 0
+                                    </p>
+                                    <p ng-show="finGpsPersonal.financiallyDependents.$error.max" class="help-block">
+                                        No of financially dependents cannot be greater than 8
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Financially dependents person-->
+                        <div ng-if="financiallyDependents >0">
+                            <div class="form-group personalLabel">
+                                <div class="control-label col-sm-3 personalDependency"></div>
+                                <label class="control-label col-sm-1 personalFontSize" for="dependentsName">Name</label>
+                                <label class="control-label col-sm-2 personalFontSize personalRelation"
+                                       for="dependentsRelation">Relationship</label>
+                                <label class="control-label col-sm-2 personalFontSize personalAge"
+                                       for="dependentsAge">Age</label>
+                            </div>
+                            <div class="form-group"
+                                 ng-repeat="dependency in financiallyDependencyArray  track by $index">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-2"
+                                     ng-class="{'has-error':finGpsPersonal.dependentsName.$invalid &&  finGpsPersonal.dependentsName.$dirty}">
+                                    <input type="text" id="dependentsName" class="form-control" name="dependentsName"
+                                           ng-model="dependency.name"
+                                           ng-pattern="/^[a-zA-Z\s]*$/"
+                                           placeholder=" Enter name"
+                                           ng-minlength="1"
+                                           ng-maxlength="30"
+
+                                    />
+                                    <div ng-show="finGpsPersonal.dependentsName.$invalid && finGpsPersonal.dependentsName.$dirty">
+                                        <p ng-show="finGpsPersonal.dependentsName.$error.pattern" class="help-block">
+                                            Invalid name
+                                        </p>
+                                        <p ng-show="finGpsPersonal.dependentsName.$error.minlength" class="help-block">
+                                            Name Should Contain Atleast 1 Character
+                                        </p>
+                                        <p ng-show="finGpsPersonal.dependentsName.$error.maxlength" class="help-block">
+                                            Name cannot exceed 30 characters
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Financially relationship-->
+                                <div class="col-sm-2">
+                                    <select id="dependentsRelation" class="form-control" name="dependentsRelation"
+                                            ng-model="dependency.relation">
+                                        <option value=''>--Select--</option>
+                                        <option ng-repeat="(key, value) in relationshiplist" value="{{value}}">{{value}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2"
+                                     ng-class="{ 'has-error' : finGpsPersonal.dependentsAge.$invalid && finGpsPersonal.dependentsAge.$dirty }">
+                                    <input type="number" id="dependentsAge" class="form-control"
+                                           name="dependentsAge"
+                                           ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter  age "
+                                           ng-model="dependency.age"
+                                           min="1"
+                                           max="100"
+                                    />
+                                    <div ng-show="finGpsPersonal.dependentsAge.$invalid && finGpsPersonal.dependentsAge.$dirty">
+                                        <p ng-show="finGpsPersonal.dependentsAge.$error.pattern" class="help-block">
+                                            Enter age in digits only
+                                        </p>
+                                        <p ng-show="finGpsPersonal.dependentsAge.$error.min" class="help-block">
+                                            Age cannot be less than 1
+                                        </p>
+                                        <p ng-show="finGpsPersonal.dependentsAge.$error.max" class="help-block">
+                                            Age cannot be greater than 100
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsPersonal.userComment.$invalid && finGpsPersonal.userComment.$dirty }">
+                            <label class="control-label col-sm-5" for="UserComment">Any Additional comments</label>
+                            <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="userComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="userComment"
+                                          placeholder="More to tell? We would like to hear from you!">
+                                </textarea>
+                                <div ng-show="finGpsPersonal.userComment.$invalid && finGpsPersonal.userComment.$dirty">
+                                    <p ng-show="finGpsPersonal.userComment.$error.maxlength" class="help-block">
+                                        Comments cannot exceed 250 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group " style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="finGpsPersonal.$invalid "
+                                    ng-click="submitPersonalInfo()"><strong>Save</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

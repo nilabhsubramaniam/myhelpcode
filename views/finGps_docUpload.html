@@ -1,0 +1,96 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="finGpsDocUploadCtrl" data-ng-init="init()">
+                    <form class="form-horizontal" role="form" name="finGpsDocUpload" id="finGpsDocUploadForm"
+                          novalidate>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <h3 class="text-finatwork" style="text-align:center">Please select category and upload requisite
+                                    documents here </h3>
+                                <div class="col-sm-6" >
+                                    <ul style="margin-top:30px">
+                                        <li>
+                                            <label class="checkbox-inline" for="salaryStatement">
+                                                <input icheck type="radio" id="salaryStatement" name="salaryStatement"
+                                                       ng-model="finGpsDoc" value="salaryStatement">
+                                                Salary / Profit & loss statement
+                                            </label>
+                                            <span ng-if="viewSalaryStatement" class="uploadTickGeneral-1">
+                                            <span> <i class="fa fa-check"></i> </span>
+                                            </span>
+                                        </li>
+                                        <li class="uploadFiling">
+                                            <label class="checkbox-inline" for="mutualFundStatement">
+                                                <input icheck type="radio" id="mutualFundStatement" name="mutualFundStatement"
+                                                       ng-model="finGpsDoc" value="mutualFundStatement">
+                                                Mutual fund statements
+                                            </label>
+                                            <span ng-if="viewMutualFundStatement" class="uploadTickGeneral-2">
+                                            <span> <i class="fa fa-check"></i> </span>
+                                            </span>
+                                        </li>
+                                        <li class="uploadFiling">
+                                            <label class="checkbox-inline" for="insurancePolicies">
+                                                <input icheck type="radio" id="insurancePolicies" name="insurancePolicies"
+                                                       ng-model="finGpsDoc" value="insurancePolicies">
+                                                Insurance policies
+                                            </label>
+                                            <span ng-if="viewInsurancePolicies" class="uploadTickGeneral-3">
+                                            <span> <i class="fa fa-check"></i> </span>
+                                            </span>
+                                        </li>
+                                        <li class="uploadFiling">
+                                            <label class="checkbox-inline" for="miscDoc">
+                                                <input icheck type="radio" id="miscDoc" name="miscDoc"
+                                                       ng-model="finGpsDoc" value="miscDoc">
+                                                Miscellaneous
+                                            </label>
+                                            <span ng-if="viewMiscDoc" class="uploadTickGeneral-3">
+                                            <span> <i class="fa fa-check"></i> </span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="uploadDocFiling" style="margin-top:70px">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <span class="btn btn-default btn-file">
+                                    <span class="fileinput-new">{{docTypeMapping[finGpsDoc]}}</span>
+                                    <span class="fileinput-exists"></span>
+                                    <input class="docs-disabled" type="file" name="..."
+                                           file-model='filingDoc'
+                                           ng-disabled="uploadAllowed == false"/>
+                                </span>
+                                            <span class="fileinput-filename"></span>
+                                            <button class="btn btn-success docs-disabled uploadFilingButton"
+                                                    ng-click="uploadDoc()"
+                                                    ng-disabled="uploadAllowed == false" type="button">
+                                                <i class="fa fa-upload uploadFontFiling"></i>&nbsp;&nbsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required" style="text-align: center">
+                            <button class="btn btn-sm btn-default" ng-click="checkUploadedDocuments()">Check uploaded documents</button>
+                        </div>
+                        <div class="form-group required" style="text-align: center; margin-top:10px">
+                            <button class="btn btn-sm btn-primary" ng-click="initiateExcelReport()" ><strong>Submit</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

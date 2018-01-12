@@ -1,0 +1,330 @@
+<div class="container" ng-controller="fundlistcontroller"  data-ng-init="init()">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <a href="">
+                                <img class="goalimageborder" width="100" height="100"
+                                     src="{{'/img/goal_'+goal.type+'_m.png'}}"/>
+                            </a>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div ng-if="goal.lumpSumAvailable"
+                                         ng-class="goal.sipAvailable ? 'col-sm-5' : 'col-sm-10'">
+                                        <div class="ibox">
+                                            <div class="ibox-title">
+                                                <h4 class="text-center">Asset Allocation for Lumpsum</h4>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <div>
+                                                    <c3chart bindto-id="{{dynamicChartId+$index}}">
+                                                        <chart-column column-id="Gold/International"
+                                                                      column-values="{{goal.assetAllocLumpsum.gold}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Debt - ShortTerm"
+                                                                      column-values="{{goal.assetAllocLumpsum.debtShort}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Debt - LongTerm"
+                                                                      column-values="{{goal.assetAllocLumpsum.debtLong}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Equity - MidCap"
+                                                                      column-values="{{goal.assetAllocLumpsum.equityMid}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Equity - LargeCap"
+                                                                      column-values="{{goal.assetAllocLumpsum.equityLarge}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Liquid"
+                                                                      column-values="{{goal.assetAllocLumpsum.liquid}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="TaxSaving (ELSS)"
+                                                                      column-values="{{goal.assetAllocLumpsum.elss}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Hybrid"
+                                                                      column-values="{{goal.assetAllocLumpsum.hybrid}}"
+                                                                      column-type="pie"/>
+                                                        <chart-pie expand="true"/>
+                                                        <chart-legend show-legend="false"/>
+                                                    </c3chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="goal.sipAvailable"
+                                         ng-class="goal.lumpSumAvailable ? 'col-sm-5' : 'col-sm-10'">
+                                        <div class="ibox">
+                                            <div class="ibox-title">
+                                                <h4 class="text-center">Asset Allocation for SIP</h4>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <div>
+                                                    <c3chart bindto-id="{{dynamicSIPChartId+$index}}">
+                                                        <chart-column column-id="Gold/International"
+                                                                      column-values="{{goal.assetAllocSIP.gold}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Debt - ShortTerm"
+                                                                      column-values="{{goal.assetAllocSIP.debtShort}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Debt - LongTerm"
+                                                                      column-values="{{goal.assetAllocSIP.debtLong}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Equity - MidCap"
+                                                                      column-values="{{goal.assetAllocSIP.equityMid}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Equity - LargeCap"
+                                                                      column-values="{{goal.assetAllocSIP.equityLarge}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Liquid"
+                                                                      column-values="{{goal.assetAllocSIP.liquid}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="TaxSaving (ELSS)"
+                                                                      column-values="{{goal.assetAllocSIP.elss}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Hybrid"
+                                                                      column-values="{{goal.assetAllocSIP.hybrid}}"
+                                                                      column-type="pie"/>
+                                                        <chart-pie expand="true"/>
+                                                        <chart-legend show-legend="false"/>
+                                                    </c3chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="col-lg-5">
+                                        <div class="ibox">
+                                            <div class="ibox-title">
+                                                <h4 class = "text-center">Fund Allocation for Lumpsum</h4>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <div>
+                                                    <c3chart bindto-id="{{dynamicFundChartId+$index}}">
+                                                        <chart-column column-id="{{fund.schemename}}" ng-repeat="fund in funds.lampsumArray"
+                                                                      column-values="{{fund.lumpSumPercentage}}"
+                                                                      column-type="pie"/>
+                                                        <chart-pie expand="true"/>
+                                                        <chart-legend show-legend="false"/>
+                                                    </c3chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  -->
+                                </div>
+                                <div ng-if="goal.lumpSumAvailable" class="row">
+                                    <div class="col-lg-10">
+                                        <div class="ibox">
+                                            <div class="ibox-title">
+                                                <h4 class="text-center">Portfolio for Lumpsum</h4>
+                                            </div>
+                                            <div class="ibox-content">
+
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Asset Category</th>
+                                                        <th>Scheme Name</th>
+                                                        <th>% Scheme Allocation</th>
+                                                        <th>Committed Lumspum</th>
+                                                        <th>Suggested Lumpsum</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="fund in goal.lumpSumArray">
+                                                        <td>{{getCategoryName(fund.category)}}</td>
+                                                        <td>{{getFundName(fund._schemeId)}}</td>
+                                                        <td>{{fund.lumpSumPercentage}}</td>
+                                                        <td>{{fund.lumpsum}}</td>
+                                                        <td>{{fund.lumpsumRounded}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Total</b></td>
+                                                        <td></td>
+                                                        <td><b>{{getTotal(goal.lumpSumArray,'lumpSumPercentage')}}</b>
+                                                        </td>
+                                                        <td>{{getTotal(goal.lumpSumArray,'lumpsum')}}</td>
+                                                        <td>{{getTotal(goal.lumpSumArray,'lumpsumRounded')}}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div ng-if="funds.sipAvailable" class="row">
+                                    <div class="col-lg-5">
+                                        <div class="ibox">
+                                            <div class="ibox-title">
+                                                <h4 class = "text-center">Asset Allocation for SIP</h4>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <div>
+                                                    <c3chart bindto-id="{{dynamicSIPChartId+$index}}">
+                                                        <chart-column column-id="Gold"
+                                                                      column-values="{{funds.assetAllocSIP.gold}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Debt - ShortTerm"
+                                                                      column-values="{{funds.assetAllocSIP.debtShort}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Debt - LongTerm"
+                                                                      column-values="{{funds.assetAllocSIP.debtLong}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Equity - MidCap"
+                                                                      column-values="{{funds.assetAllocSIP.equityMid}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Equity - LargeCap"
+                                                                      column-values="{{funds.assetAllocSIP.equityLarge}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Liquid"
+                                                                      column-values="{{funds.assetAllocSIP.liquid}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="TaxSaving (ELSS)"
+                                                                      column-values="{{funds.assetAllocSIP.elss}}"
+                                                                      column-type="pie"/>
+                                                        <chart-column column-id="Hybrid"
+                                                                      column-values="{{funds.assetAllocSIP.hybrid}}"
+                                                                      column-type="pie"/>
+                                                        <chart-pie expand="true"/>
+                                                        <chart-legend show-legend="false"/>
+                                                    </c3chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="ibox">
+                                            <div class="ibox-title">
+                                                <h4 class = "text-center">Fund Allocation for SIP</h4>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <div>
+                                                    <c3chart bindto-id="{{dynamicSIP1ChartId+$index}}">
+                                                        <chart-column column-id="{{fund.schemename}}" ng-repeat="fund in funds.sipArray"
+                                                                      column-values="{{fund.SIPPercentage}}"
+                                                                      column-type="pie"/>
+                                                        <chart-pie expand="true"/>
+                                                        <chart-legend show-legend="false"/>
+                                                    </c3chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  -->
+                                <div ng-if="goal.sipAvailable" class="row">
+                                    <div class="col-lg-10">
+                                        <div class="ibox">
+                                            <div class="ibox-title">
+                                                <h4 class="text-center">Portfolio for SIP</h4>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Asset Category</th>
+                                                        <th>Scheme Name</th>
+                                                        <th>% Scheme Allocation</th>
+                                                        <th>Committed SIP</th>
+                                                        <th>Suggested SIP</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="fund in goal.sipArray">
+                                                        <td>{{getCategoryName(fund.category)}}</td>
+                                                        <td>{{getFundName(fund._schemeId)}}</td>
+                                                        <td>{{fund.SIPPercentage}}</td>
+                                                        <td>{{fund.sip}}</td>
+                                                        <td>{{fund.sipRounded}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Total</b></td>
+                                                        <td></td>
+                                                        <td><b>{{getTotal(goal.sipArray,'SIPPercentage')}}</b></td>
+                                                        <td><b>{{getTotal(goal.sipArray,'sip')}}</b></td>
+                                                        <td><b>{{getTotal(goal.sipArray,'sipRounded')}}</b></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <form class="container" name="fundSIPLumsumList">
+                    <div class="ibox float-e-margins">
+                        <div class="row">
+                            <div class="ibox">
+                                <div class="ibox-content">
+                                    <div ng-if="showSIPOptions" class="row">
+                                        <div class="form-group required" style="text-align: center;margin-top:5px"
+                                             ng-class="{ 'has-error' : fundSIPLumsumList.sipCycle.$invalid && fundSIPLumsumList.sipCycle.$dirty }">
+                                            <span class="control-label col-sm-4" tooltip-placement="top" uib-tooltip="Different Mutual Funds allow SIPs to be set on different dates. Please choose the date range within which you want all your SIPs to go.">
+                                            <label>
+                                                SIP Cycle &nbsp(Date range for every month)
+                                            </label>
+                                                <i class="fa fa-info-circle"></i>
+                                                </span>
+                                            <div class="col-sm-3">
+                                                <select id="sipCycle" class="form-control center-adjustment"
+                                                        name="sipCycle"
+                                                        ng-required = "showSIPOptions"
+                                                        ng-model="sipOptions.sipCycle"
+                                                        ng-change="sipCycleChange(sipOptions.sipCycle)">
+                                                    <option value=''>---Select the date range for SIP ---</option>
+                                                    <option value="1-10">1-10</option>
+                                                    <option value="11-20">11-20</option>
+                                                    <option value="21-30">21-30</option>
+                                                </select>
+                                                <div ng-show="fundSIPLumsumList.sipCycle.$invalid && fundSIPLumsumList.sipCycle.$dirty">
+                                                    <p ng-show="fundSIPLumsumList.sipCycle.$error.required"
+                                                       class="help-block">
+                                                        SIP cycle is required
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:50px">
+                                            <div class="form-group" ng-show="sipOptions.sipCycle"
+                                                 style="text-align: center">
+                                                 <span class="control-label col-sm-3" tooltip-placement="bottom" uib-tooltip="Please choose the date on which you wish your first SIP (near or far month) to go. You will get a mail to approve the SIP for first time, subsequent SIPs will get autodebited." style="margin-left:80px">
+                                                    <label style="margin-left:102px">
+                                                        SIP start date
+                                                    </label>
+                                                     <i class="fa fa-info-circle" style="margin-left:9px;"></i>
+                                                </span>
+                                                <div class="col-sm-3" style="margin-left:-7px">
+                                                    <label class="checkbox-inline">
+                                                        <input icheck  checked type="radio"
+                                                               name="startDate"
+                                                               ng-model="sipOptions.firstSipDate" value="firstPref">
+                                                        {{firstPref}}
+                                                    </label>
+                                                    <label class="checkbox-inline">
+                                                        <input icheck  type="radio" name="startDate"
+                                                               ng-model="sipOptions.firstSipDate" value="secondPref">
+                                                        {{secondPref}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group commitButton" style="text-align: center;">
+                                <button class="btn btn-sm btn-primary" ng-click="executeGoals(goal._goalid)" ng-disabled="fundSIPLumsumList.$invalid">
+                                    <strong>Commit</strong>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+                    
+

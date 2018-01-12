@@ -1,0 +1,73 @@
+<!-- Created by Nilabh on 13-09-2017. -->
+<div class="modal fade" data-ng-init="init()">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Check your documents </h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-ms-6">
+                    <ul>
+                        <li>
+                            <div ng-show="viewPAN" style="margin-top: 25px">
+                                <a ng-href="{{viewPAN}}" target="_blank">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink">Uploaded PAN  </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-show="viewForm26AS" style="margin-top: 25px">
+                                <a ng-href="{{viewForm26AS}}" target="_blank">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink"> Uploaded  Form26 </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-show="viewPrevYearReturn" style="margin-top: 25px">
+                                <a ng-href="{{viewPrevYearReturn}}" target="_blank">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink"> Uploaded previous year return </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-show="viewForm16" style="margin-top: 25px">
+                                <a ng-href="{{viewForm16}}" target="_blank">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink"> Uploaded Form 16 </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="close(true)" class="btn btn-primary" data-dismiss="modal">
+                        close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

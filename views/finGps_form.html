@@ -1,0 +1,59 @@
+<div ng-controller="formWizardCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Data collection for FinGps</h2>
+        </div>
+        <div class="col-sm-2">
+            <p class="form-wizard-box text-center" style="margin-top:15px">
+                CONFIDENTIAL &nbsp
+                <span tooltip-placement="left"
+                      uib-tooltip="We have laid down multiple levels of security measures to ensure the confidentiality of your account information. You can be assured your information is safe with us.">
+                                 <i class="fa fa-info-circle "></i>
+                        </span>
+            </p>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-sm-2  ">
+
+                </div>
+                <div class="ibox">
+                    <div class="ibox-content wizard">
+                        <div class="steps clearfix">
+                            <ul>
+                                <li ui-sref-active="current" style="width:17%">
+                                    <a ui-sref=".personal&Work.personal" class="btn-default">Personal & Work</a>
+                                </li>
+                                <li ui-sref-active="current" style="width:17%">
+                                    <a ui-sref=".goal.existingGoal" class="btn-default ">Goals</a>
+                                </li>
+                                <li ui-sref-active="current" style="width:17%">
+                                    <a ui-sref=".finGpsCashFlow.incomeCashFlow" class="btn-default">Cashflow </a>
+                                </li>
+                                <li ui-sref-active="current" style="width:17%">
+                                    <a ui-sref=".assets&Liabilities.assets" class="btn-default">Assets & Liabilities</a>
+                                </li>
+                                <li ui-sref-active="current" style="width:16%">
+                                    <a ui-sref=".insurance.lifeInsurance" class="btn-default">Insurances</a>
+                                </li>
+                                <li ui-sref-active="current" style="width:16%">
+                                    <a ui-sref=".finGpsDoc_upload" class="btn-default">Docs</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="content">
+                            <form name="finGpsForm">
+                                <!-- our nested state views will be injected here -->
+                                <div id="form-views" ui-view></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

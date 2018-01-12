@@ -1,0 +1,70 @@
+<div class="row" ng-controller="kycFatcaStatusCtrl">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>User Id</th>
+                                <th>Gross Annual Income Details </th>
+                                <th>PEP</th>
+                                <th>Source Of Wealth</th>
+                                <th>AADHAAR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="kyc in kycs">
+                                <td>{{kyc._userid}}</td>
+                                <td>{{kyc.KYC.income}}</td>
+                                <td>{{kyc.KYC.pep}}</td>
+                                <td>{{kyc.KYC.wealth_src}}</td>
+                                <td>{{kyc.KYC.aadhaar}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    *****************************************************************************
+                                Fatca
+    ***************************************************************************** -->
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>User Id</th>
+                                <th>Place of Birth</th>
+                                <th>Tax Residency other than India</th>
+                                <th>Country Of Tax Residency</th>
+                                <th>Identification Type 1</th>
+                                <th>Tax payer Identification Number 1</th>
+                                <th>Country Of Tax Residency 2</th>
+                                <th>Identification Type 2</th>
+                                <th>Tax payer Identification Number 2</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="fatca in kycs">
+                                    <td>{{fatca._userid}}</td>
+                                    <td>{{fatca.FATCA.birth_place}}</td>
+                                    <td>{{fatca.FATCA.tax_residency_other}}</td>
+                                    <td>{{fatca.FATCA.country_tax_residency1}}</td>
+                                    <td>{{fatca.FATCA.tax_payer_identityno1}}</td>
+                                    <td>{{fatca.FATCA.id1_type}}</td>
+                                    <td>{{fatca.FATCA.country_tax_residency2}}</td>
+                                    <td>{{fatca.FATCA.tax_payer_identityno2 }}</td>
+                                    <td>{{fatca.FATCA.id2_type }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+         </div>
+</div>

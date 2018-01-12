@@ -1,0 +1,123 @@
+<div class="wrapper wrapper-content animated fadeIn white-bg" ng-controller="docsFinTaxOptCtrl"  novalidate data-ng-init="init(); ">
+    <div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <span class="btn btn-default btn-file">
+                            <span class="fileinput-new">Latest Pay Slip </span>
+                            <span class="fileinput-exists"></span>
+                            <input class="docs-disabled" type="file"  name="..." file-model="payslip"  ng-disabled="uploadAllowed == false"/>
+                        </span>
+                        <span class="fileinput-filename"></span>
+                        <button class="btn btn-success docs-disabled" style="height:52px" ng-click="uploadPayslip()" ng-disabled="uploadAllowed == false" type="button">
+                            <i class="fa fa-upload" style="font-size: 20px"></i>&nbsp;&nbsp;
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="payslipLinkExists" class="col-md-6" style="margin-bottom: 10px">
+                    <a ng-href="{{viewPayslip}}" target="_blank">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <span class="btn btn-default btn-file" style="width: 70%;padding:15px">
+                                <span class="fileinput-new">Uploaded  Pay slip</span>
+                                <span class="fileinput-exists"></span>
+                                <span class="fileinput-filename"></span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <span class="btn btn-default btn-file">
+                            <span class="fileinput-new">CTC or Salary Structure </span>
+                            <span class="fileinput-exists"></span>
+                            <input class="docs-disabled" type="file" name="..." file-model="ctc"  ng-disabled="uploadAllowed == false"/>
+                        </span>
+                        <span class="fileinput-filename"></span>
+                        <button class="btn btn-success docs-disabled" style="height:52px" ng-click="uploadCTC()" ng-disabled="uploadAllowed == false" type="button">
+                            <i class="fa fa-upload" style="font-size: 20px"></i>&nbsp;&nbsp;
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="ctcLinkExists" class="col-md-6" style="margin-bottom: 10px">
+                    <a ng-href="{{viewCTC}}" target="_blank">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <span class="btn btn-default btn-file" style="width: 70%;padding:15px">
+                                <span class="fileinput-new">Uploaded  Salary Structure </span>
+                                <span class="fileinput-exists"></span>
+                                <span class="fileinput-filename"></span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <span class="btn btn-default btn-file">
+                            <span class="fileinput-new">Tax Computation Statement</span>
+                            <span class="fileinput-exists"></span>
+                            <input class="docs-disabled" type="file" name="..." file-model="taxstmt" ng-disabled="uploadAllowed == false"/>
+                        </span>
+                        <span class="fileinput-filename"></span>
+                        <button class="btn btn-success docs-disabled" style="height:52px" ng-click="uploadTaxStmt()" ng-disabled="uploadAllowed == false" type="button">
+                            <i class="fa fa-upload" style="font-size: 20px"></i>&nbsp;&nbsp;
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="taxstmtLinkExists" class="col-md-6" style="margin-bottom: 10px">
+                    <a ng-href="{{viewTaxStmt}}" target="_blank">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <span class="btn btn-default btn-file" style="width: 70%;padding:15px">
+                                <span class="fileinput-new">Uploaded Tax Computation Statement</span>
+                                <span class="fileinput-exists"></span>
+                                <span class="fileinput-filename"></span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div ng-show="outputDocUploadAllowed" class="col-md-6" style="margin-bottom: 10px">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <span class="btn btn-default btn-file">
+                            <span class="fileinput-new">Tax Optimisation Doc</span>
+                            <span class="fileinput-exists"></span>
+                            <input class="docs-disabled" type="file" name="..." file-model="outputdoc" />
+                        </span>
+                        <span class="fileinput-filename"></span>
+                        <button class="btn btn-success docs-disabled" style="height:52px" ng-click="uploadOutputDoc()" type="button">
+                            <i class="fa fa-upload" style="font-size: 20px"></i>&nbsp;&nbsp;
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="outputDocLinkExists" class="col-md-6" style="margin-bottom: 10px">
+                    <a ng-href="{{viewOutputDoc}}" target="_blank">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <span class="btn btn-default btn-file" style="width: 70%;padding:15px">
+                                <span class="fileinput-new">Tax Optimisation Report</span>
+                                <span class="fileinput-exists"></span>
+                                <span class="fileinput-filename"></span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group required" style="text-align: center; margin-top:15px">
+        <button class="btn btn-sm btn-primary" ng-disabled="submitAllowed == false" ng-click="initiatePdfReport()"><strong>I'm through! Submit to my tax advisor</strong>
+        </button>
+    </div>
+
+</div>
+
+

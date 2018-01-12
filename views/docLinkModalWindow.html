@@ -1,0 +1,176 @@
+<div class="modal fade" data-ng-init="init()">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Check your documents </h4>
+            </div>
+            <div class="modal-body">
+               <div class="col-ms-6">
+                   <ul>
+                       <li>
+                           <div ng-show="viewPAN" style="margin-top: 25px">
+                               <a ng-href="{{viewPAN}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink">Uploaded PAN  </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewForm26AS" style="margin-top: 25px">
+                               <a ng-href="{{viewForm26AS}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink"> Uploaded  Form26 </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewPrevYearReturn" style="margin-top: 25px">
+                               <a ng-href="{{viewPrevYearReturn}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink"> Uploaded previous year return </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewForm16" style="margin-top: 25px">
+                               <a ng-href="{{viewForm16}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink"> Uploaded Form 16 </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewInterestCert" style="margin-top: 25px">
+                               <a ng-href="{{viewInterestCert}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink"> Uploaded  interest certificate</span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewCapGainShare" style="margin-top: 25px">
+                               <a ng-href="{{viewCapGainShare}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink">Uploaded capital gain share </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewCapGainMF" style="margin-top: 25px">
+                               <a ng-href="{{viewCapGainMF}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink">Uploaded capital mutual Fund </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewCapGainOther" style="margin-top: 25px">
+                               <a ng-href="{{viewCapGainOther}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink">Uploaded capital other </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewProofSec80C" style="margin-top: 25px">
+                               <a ng-href="{{viewProofSec80C}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink">Uploaded 80C </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewProofSec80D" style="margin-top: 25px">
+                               <a ng-href="{{viewProofSec80D}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink">Uploaded 80D </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewProofSec80G" style="margin-top: 25px">
+                               <a ng-href="{{viewProofSec80G}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink">Uploaded 80G </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                       <li>
+                           <div ng-show="viewProofSec80E" style="margin-top: 25px">
+                               <a ng-href="{{viewProofSec80E}}" target="_blank">
+                                   <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span>
+                                                <span class="fileinput-new docFilingLink">Uploaded 80e </span>
+                                                <span class="fileinput-exists"></span>
+                                                <span class="fileinput-filename"></span>
+                                            </span>
+                                   </div>
+                               </a>
+                           </div>
+                       </li>
+                   </ul>
+               </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="close(true)" class="btn btn-primary" data-dismiss="modal">
+                        close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

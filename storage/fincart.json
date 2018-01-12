@@ -1,0 +1,44 @@
+[
+	{
+		"name":"FinTelligent Portfolio",
+		"code":"fintelligent",
+		"desc":"we help you design the right portfolio for your future goals and employ several advanced portfolio management strategies to ensure this portfolio exhibits the behavior you are comfortable with and aligns with your overall objectives.",
+		"price":2000,
+		"offerPrice":0
+	},
+	{
+		"name":"FinGPS",
+		"code":"fingps",
+		"desc":"FinGPS takes a comprehensive view of your needs including budgeting and saving, investments, taxes, insurance etc., and puts you in driver's seat",
+		"price":10000,
+		"offerPrice":7999
+	},
+	{
+		"name":"FinTax",
+		"code":"fintax",
+		"desc":"We ensure that you avail all the possible benefits under various deductions and exemptions applicable, depending upon your tax slabs, tax status and type of income",
+		"price":3000,
+		"offerPrice":1500
+	},
+	{
+		"name":"FinSure",
+		"code":"finsure",
+		"desc":"Through FinSure, our endeavor is to ensure that you and your family are adequately protected against the different risks that you are exposed to. Here are some things we do as a part of this service",
+		"price":15000,
+		"offerPrice":999
+	},
+	{
+		"name":"FinEstate",
+		"code":"finestate",
+		"desc":"As a part of out FinEstate service, we offer Will writing services",
+		"price":18000,
+		"offerPrice":9999
+	},
+	{
+		"name":"FinComprehensive",
+		"code":"fincomprehensive",
+		"desc":"Text In progress",
+		"price":15000,
+		"offerPrice":9500
+	}
+]

@@ -1,0 +1,755 @@
+<uib-accordion>
+    <uib-accordion-group heading="INVESTMENT ASSETS" is-open="true">
+        <div ng-controller="finGpsInvestmentCtrl" data-ng-init="init()">
+            <div ng-show="addInvestmentList">
+                <form class="form-horizontal" role="form" name="finGpsInvestmentAsset" id="finGpsInvestmentAssetForm"
+                      novalidate ng-submit="submitInvestmentAssetForm()">
+                    <div class="form-group required">
+                        <div ng-class="{ 'has-error' : finGpsInvestmentAsset.instrument.$invalid && finGpsInvestmentAsset.instrument.$dirty }">
+                            <label class="control-label col-sm-4" for="instrument">
+                                Category
+                            </label>
+                            <div class="col-sm-6">
+                                <select id="instrument" class="form-control" name="instrument"
+                                        required
+                                        ng-model="finGpsInvestmentAssetForm.instrument"
+                                        ng-change="assetCategorySelection()">
+                                    <option value=''>-------------------Select Category--------------------------------</option>
+                                    <option ng-repeat="(key, value) in instrumentList " value="{{key}}">
+                                        {{value}}
+                                    </option>
+                                </select>
+                                <div ng-show="finGpsInvestmentAsset.instrument.$invalid && finGpsInvestmentAsset.instrument.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.instrument.$error.required"
+                                       class="help-block">
+                                        Category is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-----------------------------------------------Real Estate --------------------------------------------------------------------------------------->
+                    <div ng-hide="!realEstateInvestment">
+                        <div class="form-group required"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.realEstateType.$invalid && finGpsInvestmentAsset.realEstateType.$dirty }">
+                            <label class="control-label col-sm-4" for="realEstateType">
+                                Type
+                            </label>
+                            <div class="col-sm-5">
+                                <select id="realEstateType" class="form-control" name="realEstateType"
+                                        required
+                                        ng-model="finGpsInvestmentAssetForm.realEstateType">
+                                    <option value=''>------Select Type-----------</option>
+                                    <option value='apartmentHouse'>Apartment/House</option>
+                                    <option value='plotAgriLand'>Plot/Agri land</option>
+                                    <option value='holidayHomeCommercial'>Holiday home/Commercial</option>
+                                    <option value='reits'>Real estate funds/REITs</option>
+                                </select>
+                                <div ng-show="finGpsInvestmentAsset.realEstateType.$invalid && finGpsInvestmentAsset.realEstateType.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.realEstateType.$error.required"
+                                       class="help-block">
+                                        Holder is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!------------------------------------------------------GOld------------------------------------------------------------------------->
+                    <div ng-hide="!goldInvestment">
+                        <!--Type-->
+                        <div class="form-group required"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.goldType.$invalid && finGpsInvestmentAsset.goldType.$dirty }">
+                            <label class="control-label col-sm-4" for="goldType">
+                                Type
+                            </label>
+                            <div class="col-sm-5">
+                                <select id="goldType" class="form-control" name="goldType"
+                                        required
+                                        ng-model="finGpsInvestmentAssetForm.goldType">
+                                    <option value=''>---------Select Gold Type-----------</option>
+                                    <option value='apartmentHouse'>Mutual fund/ETF</option>
+                                    <option value='plotAgriLand'>Coins/Bars</option>
+                                    <option value='holidayHomeCommercial'>Gold Bonds</option>
+                                </select>
+                                <div ng-show="finGpsInvestmentAsset.goldType.$invalid && finGpsInvestmentAsset.goldType.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.goldType.$error.required" class="help-block">
+                                        Gold type is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!----------------------------------Selection for Mutual Funds --------------------------------------------------------------------->
+                    <div ng-hide="!mutualFundInvestment">
+                        <!--Type-->
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="mutualFundType">
+                                Type
+                            </label>
+                            <div class="col-sm-5">
+                                <select id="mutualFundType" class="form-control" name="mutualFundType"
+                                        ng-model="finGpsInvestmentAssetForm.mutualFundType">
+                                    <option value=''>----------------Select type---------------------</option>
+                                    <option value='equity'>Equity</option>
+                                    <option value='debt'>Debt</option>
+                                    <option value='hybrid'>Hybrid</option>
+                                    <option value='liquid'>Liquid</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Scheme Name-->
+                        <div class="form-group required "
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.schemeName.$invalid && finGpsInvestmentAsset.schemeName.$dirty }">
+                            <label class="control-label col-sm-4" for="schemeName">
+                                Scheme Name
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="text" id="schemeName" class="form-control"
+                                       name="schemeName"
+                                       placeholder="Enter name of scheme"
+                                       ng-pattern="/^[a-zA-Z\s]*$/"
+                                       ng-model="finGpsInvestmentAssetForm.schemeName"
+                                       required
+                                       ng-minlength="3"
+                                       ng-maxlength="100">
+                                <div ng-show="finGpsInvestmentAsset.schemeName.$invalid && finGpsInvestmentAsset.schemeName.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.schemeName.$error.required"
+                                       class="help-block">
+                                        Name is required
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.schemeName.$error.pattern" class="help-block">
+                                        Invalid Name
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.schemeName.$error.minlength"
+                                       class="help-block">
+                                        Name Should Contain Atleast 3 Characters
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.schemeName.$error.maxlength"
+                                       class="help-block">
+                                        Name cannot exceed 100 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Option-->
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="option">
+                                Option
+                            </label>
+                            <div class="col-sm-5">
+                                <select id="option" class="form-control" name="option"
+                                        ng-model="finGpsInvestmentAssetForm.option">
+                                    <option value=''>--------Select option----------</option>
+                                    <option value='growth'>Growth</option>
+                                    <option value='dividendPayout'>Dividend Payout</option>
+                                    <option value='dividendReinvestment'>Dividend Re-investment</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Ongoing SIP amount-->
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.ongoingSIPAmount.$invalid && finGpsInvestmentAsset.ongoingSIPAmount.$dirty }">
+                            <label class="control-label col-sm-4" for="ongoingSIPAmount">
+                                Ongoing SIP amount
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="number" id="ongoingSIPAmount" class="form-control"
+                                       name="ongoingSIPAmount"
+                                       placeholder="Enter amount"
+                                       ng-model="finGpsInvestmentAssetForm.ongoingSIP"
+                                       min="500 "
+                                       max="5000000">
+                                <div ng-show="finGpsInvestmentAsset.ongoingSIPAmount.$invalid && finGpsInvestmentAsset.ongoingSIPAmount.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.ongoingSIPAmount.$error.min"
+                                       class="help-block">
+                                        Amount cannot be less than Rs.500
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.ongoingSIPAmount.$error.max"
+                                       class="help-block">
+                                        Amount cannot be greater than 50 Lakhs
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!----------------------------------Selection for Shares---------------------------------------------------------------------->
+                    <div ng-hide="!sharesInvestment">
+                        <!--Stock Name-->
+                        <div class="form-group required"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.stockName.$invalid && finGpsInvestmentAsset.stockName.$dirty }">
+                            <label class="control-label col-sm-4" for="stockName">
+                                Stock Name
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="text" id="stockName" class="form-control"
+                                       name="stockName"
+                                       placeholder="Enter name of the stock"
+                                       ng-pattern="/^[a-zA-Z\s]*$/"
+                                       ng-model="finGpsInvestmentAssetForm.stockName"
+                                       required
+                                       ng-minlength="2"
+                                       ng-maxlength="100">
+                                <div ng-show="finGpsInvestmentAsset.stockName.$invalid && finGpsInvestmentAsset.stockName.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.stockName.$error.required" class="help-block">
+                                        Name is required
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.stockName.$error.pattern" class="help-block">
+                                        Invalid Name
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.stockName.$error.minlength"
+                                       class="help-block">
+                                        Name Should Contain Atleast 2 Characters
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.stockName.$error.maxlength"
+                                       class="help-block">
+                                        Name cannot exceed 100 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Number of Shares-->
+                        <div class="form-group required"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.numberOfShares.$invalid && finGpsInvestmentAsset.numberOfShares.$dirty }">
+                            <label class="control-label col-sm-4" for="numberOfShares">
+                                Number of Shares
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="number" id="numberOfShares" class="form-control"
+                                       name="numberOfShares"
+                                       placeholder="Enter number of shares"
+                                       required
+                                       ng-model="finGpsInvestmentAssetForm.numberOfShares"
+                                       max="5000000  ">
+                                <div ng-show="finGpsInvestmentAsset.numberOfShares.$invalid && finGpsInvestmentAsset.numberOfShares.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.numberOfShares.$error.required"
+                                       class="help-block">
+                                        Number of shares is required
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.numberOfShares.$error.max" class="help-block">
+                                        Number of shares cannot be greater than 50 lakhs
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!------------------------------------------------------Other------------------------------------------------------------------------->
+                    <div ng-hide="!othersInvestment">
+                        <!--Please specify -->
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.othersPleaseSpecify.$invalid && finGpsInvestmentAsset.othersPleaseSpecify.$dirty }">
+                            <label class="control-label col-sm-4" for="othersPleaseSpecify">
+                                Please Specify
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="text" id="othersPleaseSpecify" class="form-control"
+                                       name="othersPleaseSpecify"
+                                       placeholder="Enter type"
+                                       max="100"
+                                       ng-model="finGpsInvestmentAssetForm.otherAssets"
+                                >
+                                <div ng-show="finGpsInvestmentAsset.othersPleaseSpecify.$invalid && finGpsInvestmentAsset.othersPleaseSpecify.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.othersPleaseSpecify.$error.max"
+                                       class="help-block">
+                                        Type cannot exceed 100 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!----------------------------------------------------------------Common Fields--------------------------------------------------------------------------->
+                    <div ng-if="othersInvestment || goldInvestment || realEstateInvestment || sharesInvestment || mutualFundInvestment || fixedIncomeInstrument">
+                        <!--Holder-->
+                        <div class="form-group required"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.otherHolder.$invalid && finGpsInvestmentAsset.otherHolder.$dirty }">
+                            <label class="control-label col-sm-4" for="otherHolder">
+                                Holder
+                            </label>
+                            <div class="col-sm-5">
+                                <select id="otherHolder" class="form-control" name="otherHolder"
+                                        required
+                                        ng-model="finGpsInvestmentAssetForm.holder">
+                                    <option value=''>------Select holder-----------</option>
+                                    <option value='self'>Self</option>
+                                    <option value='spouse'>Spouse</option>
+                                </select>
+                                <div ng-show="finGpsInvestmentAsset.otherHolder.$invalid && finGpsInvestmentAsset.otherHolder.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.otherHolder.$error.required"
+                                       class="help-block">
+                                        Holder is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Investment Date-->
+                        <!-- Restrict user from future date-->
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="otherInvestmentStartDate">
+                                Investment Date
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="datetime" id="otherInvestmentStartDate" class="form-control"
+                                       name="otherInvestmentStartDate"
+                                       ng-model="finGpsInvestmentAssetForm.investmentDate"
+                                       placeholder="YYYY-MM-DD"
+                                       date-time
+                                       max-date='todayDate'
+                                       view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                                />
+                            </div>
+                        </div>
+                        <!--Investment amount-->
+                        <div class="form-group required"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.otherInvestmentAmount.$invalid && finGpsInvestmentAsset.otherInvestmentAmount.$dirty }">
+                            <label class="control-label col-sm-4" for="investmentAmount">
+                                Investment amount
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="number" id="investmentAmount" class="form-control"
+                                       name="otherInvestmentAmount"
+                                       placeholder="Enter amount"
+                                       required
+                                       ng-model="finGpsInvestmentAssetForm.investmentValue"
+                                       min="500"
+                                       max="500000000   ">
+                                <div ng-show="finGpsInvestmentAsset.otherInvestmentAmount.$invalid && finGpsInvestmentAsset.otherInvestmentAmount.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.otherInvestmentAmount.$error.required"
+                                       class="help-block">
+                                        Amount is required
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.otherInvestmentAmount.$error.min"
+                                       class="help-block">
+                                        Amount cannot be less than 500
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.otherInvestmentAmount.$error.max"
+                                       class="help-block">
+                                        Amount cannot be greater than 50 crores
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Current Value-->
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.otherCurrentValue.$invalid && finGpsInvestmentAsset.otherCurrentValue.$dirty }">
+                            <label class="control-label col-sm-4" for="currentValue">
+                                Current Value
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="number" id="currentValue" class="form-control"
+                                       name="otherCurrentValue"
+                                       placeholder="Enter Current value"
+                                       ng-model="finGpsInvestmentAssetForm.currentValue"
+                                       min="500"
+                                       max="500000000   ">
+                                <div ng-show="finGpsInvestmentAsset.otherCurrentValue.$invalid && finGpsInvestmentAsset.otherCurrentValue.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.otherCurrentValue.$error.min"
+                                       class="help-block">
+                                        Amount cannot be less than 500
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.otherCurrentValue.$error.max"
+                                       class="help-block">
+                                        Amount cannot be greater than 50 crores
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!----------------------------------Selection for Fixed income investment--------------------------------------------------------------------->
+                    <!--holder-->
+                    <div ng-hide="!fixedIncomeInstrument">
+                        <!--Interest rate (%)-->
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsInvestmentAsset.interestRate.$invalid && finGpsInvestmentAsset.interestRate.$dirty }">
+                            <label class="control-label col-sm-4" for="interestRate">
+                                Interest rate (%)
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="number" id="interestRate" class="form-control"
+                                       name="interestRate"
+                                       placeholder="Enter interest Percentage"
+                                       ng-model="finGpsInvestmentAssetForm.interest"
+                                       min="1"
+                                       max="100">
+                                <div ng-show="finGpsInvestmentAsset.interestRate.$invalid && finGpsInvestmentAsset.interestRate.$dirty">
+                                    <p ng-show="finGpsInvestmentAsset.interestRate.$error.min" class="help-block">
+                                        Interest percentage cannot be less than 1%
+                                    </p>
+                                    <p ng-show="finGpsInvestmentAsset.interestRate.$error.max" class="help-block">
+                                        Interest percentage cannot exceed 100%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Comment Box-->
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : finGpsInvestmentAsset.userComment.$invalid && finGpsInvestmentAsset.userComment.$dirty }">
+                        <label class="control-label col-sm-5" for="investmentUserComment">Any Additional
+                            comments</label>
+                        <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="investmentUserComment" id="investmentUserComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="finGpsInvestmentAssetForm.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                            <div ng-show="finGpsInvestmentAsset.investmentUserComment.$invalid && finGpsInvestmentAsset.investmentUserComment.$dirty">
+                                <p ng-show="finGpsInvestmentAsset.investmentUserComment.$error.maxlength"
+                                   class="help-block">
+                                    Comments cannot exceed 250 characters
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="_id" name="_id" ng-model="finGpsInvestmentAssetForm._id"/>
+                    <!--Save button-->
+                    <div class="form-group" style="text-align: center;">
+                        <button class="btn btn-sm btn-primary"
+                                ng-disabled="finGpsInvestmentAssetForm.$invalid  || !formEditable"
+                                ng-click="submit()"><strong>Save</strong>
+                        </button>
+                        <button class="btn btn-sm btn-primary"
+                                ng-click="cancelInvestmentAsset()"><strong>Cancel</strong>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div ng-hide="addInvestmentList">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Holder</th>
+                        <th>Investment Date</th>
+                        <th>Investment Amount</th>
+                        <th>Current Value</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="investmentAsset in investmentAssetList">
+                        <td>{{investmentAsset.instrument}}</td>
+                        <td>{{ investmentAsset.holder }}</td>
+                        <td>{{ investmentAsset.investmentDate }}</td>
+                        <td>{{ investmentAsset.investmentValue }}</td>
+                        <td>{{ investmentAsset.currentValue }}</td>
+                        <td>
+                            <a ng-click="edit(investmentAsset._id)">edit</a> |
+                            <a ng-click="delete(investmentAsset._id)">delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button ng-hide="formStatus || investmentAssetList.length == 20"
+                            ng-disabled="!formEditable"
+                            class="btn btn-sm btn-primary goal-button-margin" ng-click="addInvestmentAsset()">
+                        <strong>Add more asset</strong></button>
+                    <button class="btn btn-sm btn-primary"
+                            ng-disabled="!formEditable" ng-click="submitInvestmentAsset()">
+                        <strong>{{submitText}}</strong></button>
+                </div>
+            </div>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="PERSONAL ASSETS" is-open="true">
+        <div ng-controller="finGpsPersonalAssetCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="finGpsPersonalAssets" id="finGpsPersonalAssetsForm"
+                  novalidate>
+                <div class="form-group required">
+                    <label class="touchSpin  col-sm-3 ">Type</label>
+                    <label class="touchSpin  col-sm-2 ">Holder</label>
+                    <label class="touchSpin  col-sm-3 ">Purchase Cost</label>
+                    <label class="touchSpin  col-sm-3 ">Estimated current value </label>
+                </div>
+                <div class="form-group" ng-repeat="personal in personalBenefitList track by $index">
+                    <ng-form class="form-horizontal" role="form" name="personalAsset">
+                        <div class="col-sm-3"
+                             ng-class="{ 'has-error' : personalAsset.type.$invalid && personalAsset.type.$dirty }">
+                            <select id="type" class="form-control" name="type"
+                                    required
+                                    ng-model="personal.personalAssetType">
+                                <option value=''>-----------Select type----------------</option>
+                                <option value="residentialProperty">Residential Property</option>
+                                <option value="jewellery">Jewellery</option>
+                                <option value="vehicle">Vehicle</option>
+                            </select>
+                            <div ng-show="personalAsset.type.$invalid && personalAsset.type.$dirty">
+                                <p ng-show="personalAsset.type.$error.required"
+                                   class="help-block">
+                                    Type is required
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Holder-->
+                        <div class="col-sm-2"
+                             ng-class="{ 'has-error' : personalAsset.holder.$invalid && personalAsset.holder.$dirty }">
+                            <select id="personalHolder" class="form-control" name="holder"
+                                    required
+                                    ng-model="personal.holder">
+                                <option value=''>------Select holder-------------------</option>
+                                <option value='self'>Self</option>
+                                <option value='spouse'>Spouse</option>
+                                <option value='parents'>Parents</option>
+                            </select>
+                            <div ng-show="personalAsset.holder.$invalid && personalAsset.holder.$dirty">
+                                <p ng-show="personalAsset.holder.$error.required" class="help-block">
+                                    Holder is required
+                                </p>
+                            </div>
+                        </div>
+                        <!--Purchase Cost -->
+                        <div class="col-sm-3"
+                             ng-class="{ 'has-error' : personalAsset.purchaseCost.$invalid && personalAsset.purchaseCost.$dirty }">
+                            <input type="number" id="purchaseCost" class="form-control"
+                                   name="purchaseCost"
+                                   placeholder="Enter amount"
+                                   ng-model="personal.purchaseCost"
+                                   min="1000"
+                                   max="100000000">
+                            <div ng-show="personalAsset.purchaseCost.$invalid && personalAsset.purchaseCost.$dirty">
+                                <p ng-show="personalAsset.purchaseCost.$error.min" class="help-block">
+                                    Amount cannot be less than 1 thousand
+                                </p>
+                                <p ng-show="personalAsset.purchaseCost.$error.max" class="help-block">
+                                    Amount cannot be greater than 10 crores
+                                </p>
+                            </div>
+                        </div>
+                        <!---Estimated Current Value-->
+                        <div class="col-sm-3"
+                             ng-class="{ 'has-error' : personalAsset.EstimatedCurrentValue.$invalid && personalAsset.EstimatedCurrentValue.$dirty }">
+                            <input type="number" id="EstimatedCurrentValue" class="form-control"
+                                   name="EstimatedCurrentValue"
+                                   placeholder="Enter amount"
+                                   ng-model="personal.currentValue"
+                                   required
+                                   min="1000"
+                                   max="100000000">
+                            <div ng-show="personalAsset.EstimatedCurrentValue.$invalid && personalAsset.EstimatedCurrentValue.$dirty">
+                                <p ng-show="personalAsset.EstimatedCurrentValue.$error.required"
+                                   class="help-block">
+                                    Amount is required
+                                </p>
+                                <p ng-show="personalAsset.EstimatedCurrentValue.$error.min" class="help-block">
+                                    Amount cannot be less than 1 thousand
+                                </p>
+                                <p ng-show="personalAsset.EstimatedCurrentValue.$error.max" class="help-block">
+                                    Amount cannot be greater than 10 crores
+                                </p>
+                            </div>
+                        </div>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-show="personalBenefitList.length >1"
+                              ng-click="deletePersonalBenefits($index)">
+                            <i class="fa fa-minus"></i></span>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-hide="personalBenefitList.length > 7"
+                              ng-click="addPersonalBenefits(personal)">
+                            <i class="fa fa-plus"></i></span>
+                    </ng-form>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : finGpsPersonalAssets.userComment.$invalid && finGpsPersonalAssets.userComment.$dirty }">
+                    <label class="control-label col-sm-5" for="personalUserComment">Any Additional
+                        comments</label>
+                    <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="personalUserComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="finGpsPersonalAssetsForm.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                        <div ng-show="finGpsPersonalAssets.userComment.$invalid && finGpsPersonalAssets.userComment.$dirty">
+                            <p ng-show="finGpsPersonalAssets.userComment.$error.maxlength" class="help-block">
+                                Comments cannot exceed 250 characters
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--Save button-->
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="finGpsPersonalAssets.$invalid "
+                            ng-click="submitFinGpsPersonalAssets()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="EMPLOYMENT BENEFITS" is-open="true">
+        <div ng-controller="finGpsEmploymentAssetCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="finGpsEmploymentBenefits" id="finGpsEmploymentBenefitsForm"
+                  novalidate>
+                <div class="form-group required">
+                    <label class="touchSpin  col-sm-4 ">Category</label>
+                    <label class="touchSpin  col-sm-4 ">Holder</label>
+                    <label class="touchSpin  col-sm-3 ">Amount</label>
+                </div>
+                <div class="form-group" ng-repeat="employment in employmentBenefitList track by $index">
+                    <ng-form class="form-horizontal" role="form" name="employmentBenefits">
+
+                        <div class="col-sm-4"
+                             ng-class="{ 'has-error' : employmentBenefits.employmentCategory.$invalid && employmentBenefits.employmentCategory.$dirty }">
+                            <select id="employmentCategory" class="form-control" name="employmentCategory"
+                                    required
+                                    ng-model="employment.category">
+                                <option value=''>-----Select category------</option>
+                                <option ng-repeat="(key,value)  in employmentCategoryList " value="{{key}}">
+                                    {{value}}
+                                </option>
+                            </select>
+                            <div ng-show="employmentBenefits.employmentCategory.$invalid && employmentBenefits.employmentCategory.$dirty">
+                                <p ng-show="employmentBenefits.employmentCategory.$error.required"
+                                   class="help-block">
+                                    Category is required
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Holder-->
+                        <div class="col-sm-4"
+                             ng-class="{ 'has-error' : employmentBenefits.holder.$invalid && employmentBenefits.holder.$dirty }">
+                            <select id="employmnetHolder" class="form-control" name="holder"
+                                    required
+                                    ng-model="employment.holder">
+                                <option value=''>---- select holder----</option>
+                                <option value='self'>Self</option>
+                                <option value='spouse'>Spouse</option>
+                            </select>
+                            <div ng-show="employmentBenefits.holder.$invalid && employmentBenefits.holder.$dirty">
+                                <p ng-show="employmentBenefits.holder.$error.required" class="help-block">
+                                    Holder is required
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"
+                             ng-class="{ 'has-error' : employmentBenefits.employmentAmount.$invalid && employmentBenefits.employmentAmount.$dirty }">
+                            <input type="number" id="employmentAmount" class="form-control"
+                                   name="employmentAmount"
+                                   placeholder="Enter amount"
+                                   ng-model="employment.amount"
+                                   required
+                                   min="500"
+                                   max="500000000">
+                            <div ng-show="employmentBenefits.employmentAmount.$invalid && employmentBenefits.employmentAmount.$dirty">
+                                <p ng-show="employmentBenefits.employmentAmount.$error.required"
+                                   class="help-block">
+                                    Amount is required
+                                </p>
+                                <p ng-show="employmentBenefits.employmentAmount.$error.min" class="help-block">
+                                    Amount cannot be less Rs.500
+                                </p>
+                                <p ng-show="employmentBenefits.employmentAmount.$error.max" class="help-block">
+                                    Amount cannot be greater than 50 crores
+                                </p>
+                            </div>
+                        </div>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-show="employmentBenefitList.length >1"
+                              ng-click="deleteEmploymentBenefits($index)">
+                            <i class="fa fa-minus"></i></span>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-hide="employmentBenefitList.length > 7"
+                              ng-click="addEmploymentBenefits(employment)">
+                            <i class="fa fa-plus"></i></span>
+                    </ng-form>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : finGpsEmploymentBenefits.userComment.$invalid && finGpsEmploymentBenefits.userComment.$dirty }">
+                    <label class="control-label col-sm-5" for="employmentUserComment">Any Additional
+                        comments</label>
+                    <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="employmentUserComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="finGpsEmploymentBenefitsForm.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                        <div ng-show="finGpsEmploymentBenefits.userComment.$invalid && finGpsEmploymentBenefits.userComment.$dirty">
+                            <p ng-show="finGpsEmploymentBenefits.userComment.$error.maxlength" class="help-block">
+                                Comments cannot exceed 250 characters
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--Save button-->
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="finGpsEmploymentBenefits.$invalid "
+                            ng-click="submitFinGpsEmploymentAssets()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+</uib-accordion>
+<div class="row">
+    <div class="ibox-content" ng-controller="finGpsAssetCtrl" data-ng-init="init()">
+        <form class="form-horizontal" role="form" name="finGpsAsset" id="finGpsAssetForm"
+              novalidate>
+            <div class="form-group">
+                <label class="control-label col-sm-4"></label>
+                <label class="control-label col-sm-3">Self</label>
+                <label class="control-label col-sm-3">Spouse</label>
+            </div>
+            <div class="form-group required">
+                <label class="control-label col-sm-5" for="selfSavingAcBalance">Savings A/c balance as of
+                    current date</label>
+                <div class="col-sm-3"
+                     ng-class="{ 'has-error' : finGpsAsset.selfSavingAcBalance.$invalid && finGpsAsset.selfSavingAcBalance.$dirty }">
+                    <input type="number" id="selfSavingAcBalance" class="form-control"
+                           name="selfSavingAcBalance"
+                           ng-pattern="/^[0-9]*$/"
+                           placeholder="Enter amount"
+                           ng-model="finGpsAssetForm.savingAmt"
+                           required
+                           min="1"
+                           max="500000000"
+                    >
+                    <div ng-show="finGpsAsset.selfSavingAcBalance.$invalid && finGpsAsset.selfSavingAcBalance.$dirty">
+                        <p ng-show="finGpsAsset.selfSavingAcBalance.$error.required" class="help-block">
+                            Amount is required
+                        </p>
+                        <p ng-show="finGpsAsset.selfSavingAcBalance.$error.min" class="help-block">
+                            Amount cannot be less than Rs.1
+                        </p>
+                        <p ng-show="finGpsAsset.selfSavingAcBalance.$error.max" class="help-block">
+                            Amount cannot be less than 50 crores
+                        </p>
+                    </div>
+                </div>
+                <!-- Spouse-->
+                <div class="col-sm-3"
+                     ng-class="{ 'has-error' : finGpsAsset.spouseSavingAcBalance.$invalid && finGpsAsset.spouseSavingAcBalance.$dirty }">
+                    <input type="number" id="spouseSavingAcBalance" class="form-control"
+                           name="spouseSavingAcBalance"
+                           placeholder="Enter amount"
+                           ng-model="finGpsAssetForm.spouseSavingAmt"
+                           required
+                           min="1"
+                           max="500000000">
+                    <div ng-show="finGpsAsset.spouseSavingAcBalance.$invalid && finGpsAsset.spouseSavingAcBalance.$dirty">
+                        <p ng-show="finGpsAsset.spouseSavingAcBalance.$error.required" class="help-block">
+                            Amount is required
+                        </p>
+                        <p ng-show="finGpsAsset.spouseSavingAcBalance.$error.min" class="help-block">
+                            Amount cannot be less than Rs.1
+                        </p>
+                        <p ng-show="finGpsAsset.spouseSavingAcBalance.$error.max" class="help-block">
+                            Amount cannot be less than 50 crores
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="text-align: center;">
+                <button class="btn btn-sm btn-primary" ng-diabled="finGpsAssetForm.$invalid"
+                        ng-click="submitAsset()"><strong>Save</strong>
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

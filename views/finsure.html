@@ -1,0 +1,38 @@
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <div ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg">
+
+        <!-- Page wrapper -->
+        <div ng-include="'views/common/topnavbar.html'"></div>
+
+        <!-- Main view  -->
+        <div class="row wrapper border-bottom white-bg page-heading text-center">
+            <!--<h1 class ="text-finatwork">Coming Soon !</h1>-->
+        </div>
+        <div class="row" ng-controller="finTax">
+            <div class="col-lg-12">
+
+                <div class="wrapper wrapper-content">
+                    <div class="col-lg-4 coming-soon-margin-left">
+                        <img class="img-responsive "  src="/assets/img/icons/finsure_approach.jpg" alt="" />
+                    </div>
+
+                    <div class="middle-box text-center animated fadeInDown  ">
+                        <a href="/services.php#FINSURANCE" target="_blank" class="btn btn-primary coming-soon-margin-top text-left   ">Know More</a>
+                        <a ng-click="initiateTrxnFinsure()" class="btn btn-primary coming-soon-margin-top text-right ">Get me started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End page wrapper-->
+
+</div>
+<!-- End wrapper-->

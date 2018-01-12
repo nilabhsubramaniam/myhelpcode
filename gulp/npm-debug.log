@@ -1,0 +1,976 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'update' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.1
+4 silly mapToRegistry name gulp-replace
+5 silly mapToRegistry using default registry
+6 silly mapToRegistry registry https://registry.npmjs.org/
+7 silly mapToRegistry data Result {
+7 silly mapToRegistry   raw: 'gulp-replace',
+7 silly mapToRegistry   scope: null,
+7 silly mapToRegistry   escapedName: 'gulp-replace',
+7 silly mapToRegistry   name: 'gulp-replace',
+7 silly mapToRegistry   rawSpec: '',
+7 silly mapToRegistry   spec: 'latest',
+7 silly mapToRegistry   type: 'tag' }
+8 silly mapToRegistry uri https://registry.npmjs.org/gulp-replace
+9 silly mapToRegistry name gulp
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'gulp',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'gulp',
+12 silly mapToRegistry   name: 'gulp',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/gulp
+14 silly mapToRegistry name gulp-chmod
+15 silly mapToRegistry using default registry
+16 silly mapToRegistry registry https://registry.npmjs.org/
+17 silly mapToRegistry data Result {
+17 silly mapToRegistry   raw: 'gulp-chmod',
+17 silly mapToRegistry   scope: null,
+17 silly mapToRegistry   escapedName: 'gulp-chmod',
+17 silly mapToRegistry   name: 'gulp-chmod',
+17 silly mapToRegistry   rawSpec: '',
+17 silly mapToRegistry   spec: 'latest',
+17 silly mapToRegistry   type: 'tag' }
+18 silly mapToRegistry uri https://registry.npmjs.org/gulp-chmod
+19 silly mapToRegistry name gulp-concat
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry data Result {
+22 silly mapToRegistry   raw: 'gulp-concat',
+22 silly mapToRegistry   scope: null,
+22 silly mapToRegistry   escapedName: 'gulp-concat',
+22 silly mapToRegistry   name: 'gulp-concat',
+22 silly mapToRegistry   rawSpec: '',
+22 silly mapToRegistry   spec: 'latest',
+22 silly mapToRegistry   type: 'tag' }
+23 silly mapToRegistry uri https://registry.npmjs.org/gulp-concat
+24 silly mapToRegistry name gulp-concat-css
+25 silly mapToRegistry using default registry
+26 silly mapToRegistry registry https://registry.npmjs.org/
+27 silly mapToRegistry data Result {
+27 silly mapToRegistry   raw: 'gulp-concat-css',
+27 silly mapToRegistry   scope: null,
+27 silly mapToRegistry   escapedName: 'gulp-concat-css',
+27 silly mapToRegistry   name: 'gulp-concat-css',
+27 silly mapToRegistry   rawSpec: '',
+27 silly mapToRegistry   spec: 'latest',
+27 silly mapToRegistry   type: 'tag' }
+28 silly mapToRegistry uri https://registry.npmjs.org/gulp-concat-css
+29 silly mapToRegistry name gulp-cssmin
+30 silly mapToRegistry using default registry
+31 silly mapToRegistry registry https://registry.npmjs.org/
+32 silly mapToRegistry data Result {
+32 silly mapToRegistry   raw: 'gulp-cssmin',
+32 silly mapToRegistry   scope: null,
+32 silly mapToRegistry   escapedName: 'gulp-cssmin',
+32 silly mapToRegistry   name: 'gulp-cssmin',
+32 silly mapToRegistry   rawSpec: '',
+32 silly mapToRegistry   spec: 'latest',
+32 silly mapToRegistry   type: 'tag' }
+33 silly mapToRegistry uri https://registry.npmjs.org/gulp-cssmin
+34 silly mapToRegistry name gulp-if
+35 silly mapToRegistry using default registry
+36 silly mapToRegistry registry https://registry.npmjs.org/
+37 silly mapToRegistry data Result {
+37 silly mapToRegistry   raw: 'gulp-if',
+37 silly mapToRegistry   scope: null,
+37 silly mapToRegistry   escapedName: 'gulp-if',
+37 silly mapToRegistry   name: 'gulp-if',
+37 silly mapToRegistry   rawSpec: '',
+37 silly mapToRegistry   spec: 'latest',
+37 silly mapToRegistry   type: 'tag' }
+38 silly mapToRegistry uri https://registry.npmjs.org/gulp-if
+39 silly mapToRegistry name gulp-remove-empty-lines
+40 silly mapToRegistry using default registry
+41 silly mapToRegistry registry https://registry.npmjs.org/
+42 silly mapToRegistry data Result {
+42 silly mapToRegistry   raw: 'gulp-remove-empty-lines',
+42 silly mapToRegistry   scope: null,
+42 silly mapToRegistry   escapedName: 'gulp-remove-empty-lines',
+42 silly mapToRegistry   name: 'gulp-remove-empty-lines',
+42 silly mapToRegistry   rawSpec: '',
+42 silly mapToRegistry   spec: 'latest',
+42 silly mapToRegistry   type: 'tag' }
+43 silly mapToRegistry uri https://registry.npmjs.org/gulp-remove-empty-lines
+44 silly mapToRegistry name gulp-rename
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npmjs.org/
+47 silly mapToRegistry data Result {
+47 silly mapToRegistry   raw: 'gulp-rename',
+47 silly mapToRegistry   scope: null,
+47 silly mapToRegistry   escapedName: 'gulp-rename',
+47 silly mapToRegistry   name: 'gulp-rename',
+47 silly mapToRegistry   rawSpec: '',
+47 silly mapToRegistry   spec: 'latest',
+47 silly mapToRegistry   type: 'tag' }
+48 silly mapToRegistry uri https://registry.npmjs.org/gulp-rename
+49 silly mapToRegistry name gulp-typescript
+50 silly mapToRegistry using default registry
+51 silly mapToRegistry registry https://registry.npmjs.org/
+52 silly mapToRegistry data Result {
+52 silly mapToRegistry   raw: 'gulp-typescript',
+52 silly mapToRegistry   scope: null,
+52 silly mapToRegistry   escapedName: 'gulp-typescript',
+52 silly mapToRegistry   name: 'gulp-typescript',
+52 silly mapToRegistry   rawSpec: '',
+52 silly mapToRegistry   spec: 'latest',
+52 silly mapToRegistry   type: 'tag' }
+53 silly mapToRegistry uri https://registry.npmjs.org/gulp-typescript
+54 silly mapToRegistry name gulp-uglify
+55 silly mapToRegistry using default registry
+56 silly mapToRegistry registry https://registry.npmjs.org/
+57 silly mapToRegistry data Result {
+57 silly mapToRegistry   raw: 'gulp-uglify',
+57 silly mapToRegistry   scope: null,
+57 silly mapToRegistry   escapedName: 'gulp-uglify',
+57 silly mapToRegistry   name: 'gulp-uglify',
+57 silly mapToRegistry   rawSpec: '',
+57 silly mapToRegistry   spec: 'latest',
+57 silly mapToRegistry   type: 'tag' }
+58 silly mapToRegistry uri https://registry.npmjs.org/gulp-uglify
+59 silly mapToRegistry name typescript
+60 silly mapToRegistry using default registry
+61 silly mapToRegistry registry https://registry.npmjs.org/
+62 silly mapToRegistry data Result {
+62 silly mapToRegistry   raw: 'typescript',
+62 silly mapToRegistry   scope: null,
+62 silly mapToRegistry   escapedName: 'typescript',
+62 silly mapToRegistry   name: 'typescript',
+62 silly mapToRegistry   rawSpec: '',
+62 silly mapToRegistry   spec: 'latest',
+62 silly mapToRegistry   type: 'tag' }
+63 silly mapToRegistry uri https://registry.npmjs.org/typescript
+64 verbose request uri https://registry.npmjs.org/gulp
+65 verbose request no auth needed
+66 info attempt registry request try #1 at 10:24:02 AM
+67 verbose request id 686d389df640dfbd
+68 verbose etag W/"59b2a5b8-1d7f3"
+69 verbose lastModified Fri, 08 Sep 2017 14:14:16 GMT
+70 http request GET https://registry.npmjs.org/gulp
+71 verbose request uri https://registry.npmjs.org/gulp-chmod
+72 verbose request no auth needed
+73 info attempt registry request try #1 at 10:24:02 AM
+74 verbose etag W/"596870cf-3c38"
+75 verbose lastModified Fri, 14 Jul 2017 07:20:47 GMT
+76 http request GET https://registry.npmjs.org/gulp-chmod
+77 verbose request uri https://registry.npmjs.org/gulp-concat
+78 verbose request no auth needed
+79 info attempt registry request try #1 at 10:24:02 AM
+80 verbose etag W/"597ac1f7-a45c"
+81 verbose lastModified Fri, 28 Jul 2017 04:47:51 GMT
+82 http request GET https://registry.npmjs.org/gulp-concat
+83 verbose request uri https://registry.npmjs.org/gulp-if
+84 verbose request no auth needed
+85 info attempt registry request try #1 at 10:24:02 AM
+86 verbose etag W/"597ac363-6b50"
+87 verbose lastModified Fri, 28 Jul 2017 04:53:55 GMT
+88 http request GET https://registry.npmjs.org/gulp-if
+89 verbose request uri https://registry.npmjs.org/gulp-concat-css
+90 verbose request no auth needed
+91 info attempt registry request try #1 at 10:24:02 AM
+92 verbose etag W/"595f4bd3-564f"
+93 verbose lastModified Fri, 07 Jul 2017 08:52:35 GMT
+94 http request GET https://registry.npmjs.org/gulp-concat-css
+95 verbose request uri https://registry.npmjs.org/gulp-remove-empty-lines
+96 verbose request no auth needed
+97 info attempt registry request try #1 at 10:24:02 AM
+98 verbose etag W/"593f68de-396f"
+99 verbose lastModified Tue, 13 Jun 2017 04:23:58 GMT
+100 http request GET https://registry.npmjs.org/gulp-remove-empty-lines
+101 verbose request uri https://registry.npmjs.org/gulp-rename
+102 verbose request no auth needed
+103 info attempt registry request try #1 at 10:24:02 AM
+104 verbose etag W/"597ac334-3e18"
+105 verbose lastModified Fri, 28 Jul 2017 04:53:08 GMT
+106 http request GET https://registry.npmjs.org/gulp-rename
+107 verbose request uri https://registry.npmjs.org/gulp-typescript
+108 verbose request no auth needed
+109 info attempt registry request try #1 at 10:24:02 AM
+110 verbose etag W/"597e9f81-1e206"
+111 verbose lastModified Mon, 31 Jul 2017 03:09:53 GMT
+112 http request GET https://registry.npmjs.org/gulp-typescript
+113 verbose request uri https://registry.npmjs.org/gulp-cssmin
+114 verbose request no auth needed
+115 info attempt registry request try #1 at 10:24:02 AM
+116 verbose etag W/"591afcbc-2b01"
+117 verbose lastModified Tue, 16 May 2017 13:21:00 GMT
+118 http request GET https://registry.npmjs.org/gulp-cssmin
+119 verbose request uri https://registry.npmjs.org/gulp-replace
+120 verbose request no auth needed
+121 info attempt registry request try #1 at 10:24:02 AM
+122 verbose etag W/"5954095a-494a"
+123 verbose lastModified Wed, 28 Jun 2017 19:54:02 GMT
+124 http request GET https://registry.npmjs.org/gulp-replace
+125 verbose request uri https://registry.npmjs.org/gulp-uglify
+126 verbose request no auth needed
+127 info attempt registry request try #1 at 10:24:02 AM
+128 verbose etag W/"597abc49-e26b"
+129 verbose lastModified Fri, 28 Jul 2017 04:23:37 GMT
+130 http request GET https://registry.npmjs.org/gulp-uglify
+131 verbose request uri https://registry.npmjs.org/typescript
+132 verbose request no auth needed
+133 info attempt registry request try #1 at 10:24:02 AM
+134 verbose etag W/"597a2831-1b3953"
+135 verbose lastModified Thu, 27 Jul 2017 17:51:45 GMT
+136 http request GET https://registry.npmjs.org/typescript
+137 http 200 https://registry.npmjs.org/gulp-typescript
+138 verbose headers { server: 'nginx/1.10.1',
+138 verbose headers   'content-type': 'application/json',
+138 verbose headers   'last-modified': 'Sat, 26 Aug 2017 14:58:37 GMT',
+138 verbose headers   etag: 'W/"59a18c9d-1eb94"',
+138 verbose headers   'content-encoding': 'gzip',
+138 verbose headers   'cache-control': 'max-age=300',
+138 verbose headers   'content-length': '12980',
+138 verbose headers   'accept-ranges': 'bytes',
+138 verbose headers   date: 'Sun, 10 Sep 2017 04:54:03 GMT',
+138 verbose headers   via: '1.1 varnish',
+138 verbose headers   age: '0',
+138 verbose headers   connection: 'keep-alive',
+138 verbose headers   'x-served-by': 'cache-lhr6339-LHR',
+138 verbose headers   'x-cache': 'HIT',
+138 verbose headers   'x-cache-hits': '1',
+138 verbose headers   'x-timer': 'S1505019244.841198,VS0,VE29',
+138 verbose headers   vary: 'Accept-Encoding, Accept' }
+139 silly get cb [ 200,
+139 silly get   { server: 'nginx/1.10.1',
+139 silly get     'content-type': 'application/json',
+139 silly get     'last-modified': 'Sat, 26 Aug 2017 14:58:37 GMT',
+139 silly get     etag: 'W/"59a18c9d-1eb94"',
+139 silly get     'content-encoding': 'gzip',
+139 silly get     'cache-control': 'max-age=300',
+139 silly get     'content-length': '12980',
+139 silly get     'accept-ranges': 'bytes',
+139 silly get     date: 'Sun, 10 Sep 2017 04:54:03 GMT',
+139 silly get     via: '1.1 varnish',
+139 silly get     age: '0',
+139 silly get     connection: 'keep-alive',
+139 silly get     'x-served-by': 'cache-lhr6339-LHR',
+139 silly get     'x-cache': 'HIT',
+139 silly get     'x-cache-hits': '1',
+139 silly get     'x-timer': 'S1505019244.841198,VS0,VE29',
+139 silly get     vary: 'Accept-Encoding, Accept' } ]
+140 verbose get saving gulp-typescript to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-typescript\.cache.json
+141 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+142 http 200 https://registry.npmjs.org/gulp-uglify
+143 verbose headers { server: 'nginx/1.10.1',
+143 verbose headers   'content-type': 'application/json',
+143 verbose headers   'last-modified': 'Sat, 26 Aug 2017 14:42:56 GMT',
+143 verbose headers   etag: 'W/"59a188f0-e2a7"',
+143 verbose headers   'content-encoding': 'gzip',
+143 verbose headers   'cache-control': 'max-age=300',
+143 verbose headers   'content-length': '10042',
+143 verbose headers   'accept-ranges': 'bytes',
+143 verbose headers   date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+143 verbose headers   via: '1.1 varnish',
+143 verbose headers   age: '236',
+143 verbose headers   connection: 'keep-alive',
+143 verbose headers   'x-served-by': 'cache-lhr6351-LHR',
+143 verbose headers   'x-cache': 'HIT',
+143 verbose headers   'x-cache-hits': '1',
+143 verbose headers   'x-timer': 'S1505019244.264942,VS0,VE0',
+143 verbose headers   vary: 'Accept-Encoding, Accept' }
+144 silly get cb [ 200,
+144 silly get   { server: 'nginx/1.10.1',
+144 silly get     'content-type': 'application/json',
+144 silly get     'last-modified': 'Sat, 26 Aug 2017 14:42:56 GMT',
+144 silly get     etag: 'W/"59a188f0-e2a7"',
+144 silly get     'content-encoding': 'gzip',
+144 silly get     'cache-control': 'max-age=300',
+144 silly get     'content-length': '10042',
+144 silly get     'accept-ranges': 'bytes',
+144 silly get     date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+144 silly get     via: '1.1 varnish',
+144 silly get     age: '236',
+144 silly get     connection: 'keep-alive',
+144 silly get     'x-served-by': 'cache-lhr6351-LHR',
+144 silly get     'x-cache': 'HIT',
+144 silly get     'x-cache-hits': '1',
+144 silly get     'x-timer': 'S1505019244.264942,VS0,VE0',
+144 silly get     vary: 'Accept-Encoding, Accept' } ]
+145 verbose get saving gulp-uglify to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-uglify\.cache.json
+146 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+147 http 304 https://registry.npmjs.org/gulp
+148 verbose headers { date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+148 verbose headers   via: '1.1 varnish',
+148 verbose headers   'cache-control': 'max-age=300',
+148 verbose headers   etag: 'W/"59b2a5b8-1d7f3"',
+148 verbose headers   age: '275',
+148 verbose headers   connection: 'keep-alive',
+148 verbose headers   'x-served-by': 'cache-lhr6345-LHR',
+148 verbose headers   'x-cache': 'HIT',
+148 verbose headers   'x-cache-hits': '4',
+148 verbose headers   'x-timer': 'S1505019244.324856,VS0,VE0',
+148 verbose headers   vary: 'Accept-Encoding, Accept' }
+149 silly get cb [ 304,
+149 silly get   { date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+149 silly get     via: '1.1 varnish',
+149 silly get     'cache-control': 'max-age=300',
+149 silly get     etag: 'W/"59b2a5b8-1d7f3"',
+149 silly get     age: '275',
+149 silly get     connection: 'keep-alive',
+149 silly get     'x-served-by': 'cache-lhr6345-LHR',
+149 silly get     'x-cache': 'HIT',
+149 silly get     'x-cache-hits': '4',
+149 silly get     'x-timer': 'S1505019244.324856,VS0,VE0',
+149 silly get     vary: 'Accept-Encoding, Accept' } ]
+150 verbose etag https://registry.npmjs.org/gulp from cache
+151 verbose get saving gulp to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp\.cache.json
+152 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+153 http 304 https://registry.npmjs.org/gulp-remove-empty-lines
+154 verbose headers { date: 'Sun, 10 Sep 2017 04:54:03 GMT',
+154 verbose headers   via: '1.1 varnish',
+154 verbose headers   'cache-control': 'max-age=300',
+154 verbose headers   etag: 'W/"593f68de-396f"',
+154 verbose headers   age: '0',
+154 verbose headers   connection: 'keep-alive',
+154 verbose headers   'x-served-by': 'cache-lhr6329-LHR',
+154 verbose headers   'x-cache': 'MISS',
+154 verbose headers   'x-cache-hits': '0',
+154 verbose headers   'x-timer': 'S1505019244.906129,VS0,VE37',
+154 verbose headers   vary: 'Accept-Encoding, Accept' }
+155 silly get cb [ 304,
+155 silly get   { date: 'Sun, 10 Sep 2017 04:54:03 GMT',
+155 silly get     via: '1.1 varnish',
+155 silly get     'cache-control': 'max-age=300',
+155 silly get     etag: 'W/"593f68de-396f"',
+155 silly get     age: '0',
+155 silly get     connection: 'keep-alive',
+155 silly get     'x-served-by': 'cache-lhr6329-LHR',
+155 silly get     'x-cache': 'MISS',
+155 silly get     'x-cache-hits': '0',
+155 silly get     'x-timer': 'S1505019244.906129,VS0,VE37',
+155 silly get     vary: 'Accept-Encoding, Accept' } ]
+156 verbose etag https://registry.npmjs.org/gulp-remove-empty-lines from cache
+157 verbose get saving gulp-remove-empty-lines to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-remove-empty-lines\.cache.json
+158 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+159 http 304 https://registry.npmjs.org/gulp-chmod
+160 verbose headers { date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+160 verbose headers   via: '1.1 varnish',
+160 verbose headers   'cache-control': 'max-age=300',
+160 verbose headers   etag: 'W/"596870cf-3c38"',
+160 verbose headers   age: '0',
+160 verbose headers   connection: 'keep-alive',
+160 verbose headers   'x-served-by': 'cache-lhr6325-LHR',
+160 verbose headers   'x-cache': 'HIT',
+160 verbose headers   'x-cache-hits': '1',
+160 verbose headers   'x-timer': 'S1505019244.357009,VS0,VE49',
+160 verbose headers   vary: 'Accept-Encoding, Accept' }
+161 silly get cb [ 304,
+161 silly get   { date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+161 silly get     via: '1.1 varnish',
+161 silly get     'cache-control': 'max-age=300',
+161 silly get     etag: 'W/"596870cf-3c38"',
+161 silly get     age: '0',
+161 silly get     connection: 'keep-alive',
+161 silly get     'x-served-by': 'cache-lhr6325-LHR',
+161 silly get     'x-cache': 'HIT',
+161 silly get     'x-cache-hits': '1',
+161 silly get     'x-timer': 'S1505019244.357009,VS0,VE49',
+161 silly get     vary: 'Accept-Encoding, Accept' } ]
+162 verbose etag https://registry.npmjs.org/gulp-chmod from cache
+163 verbose get saving gulp-chmod to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-chmod\.cache.json
+164 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+165 http 304 https://registry.npmjs.org/gulp-concat-css
+166 verbose headers { date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+166 verbose headers   via: '1.1 varnish',
+166 verbose headers   'cache-control': 'max-age=300',
+166 verbose headers   etag: 'W/"595f4bd3-564f"',
+166 verbose headers   age: '0',
+166 verbose headers   connection: 'keep-alive',
+166 verbose headers   'x-served-by': 'cache-lhr6350-LHR',
+166 verbose headers   'x-cache': 'MISS',
+166 verbose headers   'x-cache-hits': '0',
+166 verbose headers   'x-timer': 'S1505019244.391878,VS0,VE17',
+166 verbose headers   vary: 'Accept-Encoding, Accept' }
+167 silly get cb [ 304,
+167 silly get   { date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+167 silly get     via: '1.1 varnish',
+167 silly get     'cache-control': 'max-age=300',
+167 silly get     etag: 'W/"595f4bd3-564f"',
+167 silly get     age: '0',
+167 silly get     connection: 'keep-alive',
+167 silly get     'x-served-by': 'cache-lhr6350-LHR',
+167 silly get     'x-cache': 'MISS',
+167 silly get     'x-cache-hits': '0',
+167 silly get     'x-timer': 'S1505019244.391878,VS0,VE17',
+167 silly get     vary: 'Accept-Encoding, Accept' } ]
+168 verbose etag https://registry.npmjs.org/gulp-concat-css from cache
+169 verbose get saving gulp-concat-css to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-concat-css\.cache.json
+170 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+171 http 304 https://registry.npmjs.org/gulp-cssmin
+172 verbose headers { date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+172 verbose headers   via: '1.1 varnish',
+172 verbose headers   'cache-control': 'max-age=300',
+172 verbose headers   etag: 'W/"591afcbc-2b01"',
+172 verbose headers   age: '0',
+172 verbose headers   connection: 'keep-alive',
+172 verbose headers   'x-served-by': 'cache-lhr6347-LHR',
+172 verbose headers   'x-cache': 'HIT',
+172 verbose headers   'x-cache-hits': '1',
+172 verbose headers   'x-timer': 'S1505019244.389315,VS0,VE17',
+172 verbose headers   vary: 'Accept-Encoding, Accept' }
+173 silly get cb [ 304,
+173 silly get   { date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+173 silly get     via: '1.1 varnish',
+173 silly get     'cache-control': 'max-age=300',
+173 silly get     etag: 'W/"591afcbc-2b01"',
+173 silly get     age: '0',
+173 silly get     connection: 'keep-alive',
+173 silly get     'x-served-by': 'cache-lhr6347-LHR',
+173 silly get     'x-cache': 'HIT',
+173 silly get     'x-cache-hits': '1',
+173 silly get     'x-timer': 'S1505019244.389315,VS0,VE17',
+173 silly get     vary: 'Accept-Encoding, Accept' } ]
+174 verbose etag https://registry.npmjs.org/gulp-cssmin from cache
+175 verbose get saving gulp-cssmin to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-cssmin\.cache.json
+176 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+177 http 200 https://registry.npmjs.org/gulp-rename
+178 verbose headers { server: 'nginx/1.10.1',
+178 verbose headers   'content-type': 'application/json',
+178 verbose headers   'last-modified': 'Sat, 26 Aug 2017 14:44:39 GMT',
+178 verbose headers   etag: 'W/"59a18957-3e29"',
+178 verbose headers   'content-encoding': 'gzip',
+178 verbose headers   'cache-control': 'max-age=300',
+178 verbose headers   'content-length': '4353',
+178 verbose headers   'accept-ranges': 'bytes',
+178 verbose headers   date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+178 verbose headers   via: '1.1 varnish',
+178 verbose headers   age: '288',
+178 verbose headers   connection: 'keep-alive',
+178 verbose headers   'x-served-by': 'cache-lhr6348-LHR',
+178 verbose headers   'x-cache': 'HIT',
+178 verbose headers   'x-cache-hits': '1',
+178 verbose headers   'x-timer': 'S1505019244.385982,VS0,VE0',
+178 verbose headers   vary: 'Accept-Encoding, Accept' }
+179 silly get cb [ 200,
+179 silly get   { server: 'nginx/1.10.1',
+179 silly get     'content-type': 'application/json',
+179 silly get     'last-modified': 'Sat, 26 Aug 2017 14:44:39 GMT',
+179 silly get     etag: 'W/"59a18957-3e29"',
+179 silly get     'content-encoding': 'gzip',
+179 silly get     'cache-control': 'max-age=300',
+179 silly get     'content-length': '4353',
+179 silly get     'accept-ranges': 'bytes',
+179 silly get     date: 'Sun, 10 Sep 2017 04:54:04 GMT',
+179 silly get     via: '1.1 varnish',
+179 silly get     age: '288',
+179 silly get     connection: 'keep-alive',
+179 silly get     'x-served-by': 'cache-lhr6348-LHR',
+179 silly get     'x-cache': 'HIT',
+179 silly get     'x-cache-hits': '1',
+179 silly get     'x-timer': 'S1505019244.385982,VS0,VE0',
+179 silly get     vary: 'Accept-Encoding, Accept' } ]
+180 verbose get saving gulp-rename to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-rename\.cache.json
+181 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+182 http 200 https://registry.npmjs.org/gulp-if
+183 verbose headers { server: 'nginx/1.10.1',
+183 verbose headers   'content-type': 'application/json',
+183 verbose headers   'last-modified': 'Sat, 26 Aug 2017 14:58:30 GMT',
+183 verbose headers   etag: 'W/"59a18c96-6b6f"',
+183 verbose headers   'content-encoding': 'gzip',
+183 verbose headers   'cache-control': 'max-age=300',
+183 verbose headers   'content-length': '6023',
+183 verbose headers   'accept-ranges': 'bytes',
+183 verbose headers   date: 'Sun, 10 Sep 2017 04:54:03 GMT',
+183 verbose headers   via: '1.1 varnish',
+183 verbose headers   age: '0',
+183 verbose headers   connection: 'keep-alive',
+183 verbose headers   'x-served-by': 'cache-lhr6334-LHR',
+183 verbose headers   'x-cache': 'HIT',
+183 verbose headers   'x-cache-hits': '1',
+183 verbose headers   'x-timer': 'S1505019244.913526,VS0,VE22',
+183 verbose headers   vary: 'Accept-Encoding, Accept' }
+184 silly get cb [ 200,
+184 silly get   { server: 'nginx/1.10.1',
+184 silly get     'content-type': 'application/json',
+184 silly get     'last-modified': 'Sat, 26 Aug 2017 14:58:30 GMT',
+184 silly get     etag: 'W/"59a18c96-6b6f"',
+184 silly get     'content-encoding': 'gzip',
+184 silly get     'cache-control': 'max-age=300',
+184 silly get     'content-length': '6023',
+184 silly get     'accept-ranges': 'bytes',
+184 silly get     date: 'Sun, 10 Sep 2017 04:54:03 GMT',
+184 silly get     via: '1.1 varnish',
+184 silly get     age: '0',
+184 silly get     connection: 'keep-alive',
+184 silly get     'x-served-by': 'cache-lhr6334-LHR',
+184 silly get     'x-cache': 'HIT',
+184 silly get     'x-cache-hits': '1',
+184 silly get     'x-timer': 'S1505019244.913526,VS0,VE22',
+184 silly get     vary: 'Accept-Encoding, Accept' } ]
+185 verbose get saving gulp-if to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-if\.cache.json
+186 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+187 http 200 https://registry.npmjs.org/gulp-concat
+188 verbose headers { server: 'nginx/1.10.1',
+188 verbose headers   'content-type': 'application/json',
+188 verbose headers   'last-modified': 'Sat, 26 Aug 2017 14:01:24 GMT',
+188 verbose headers   etag: 'W/"59a17f34-a483"',
+188 verbose headers   'content-encoding': 'gzip',
+188 verbose headers   'cache-control': 'max-age=300',
+188 verbose headers   'content-length': '7179',
+188 verbose headers   'accept-ranges': 'bytes',
+188 verbose headers   date: 'Sun, 10 Sep 2017 04:54:05 GMT',
+188 verbose headers   via: '1.1 varnish',
+188 verbose headers   age: '0',
+188 verbose headers   connection: 'keep-alive',
+188 verbose headers   'x-served-by': 'cache-lhr6321-LHR',
+188 verbose headers   'x-cache': 'HIT',
+188 verbose headers   'x-cache-hits': '1',
+188 verbose headers   'x-timer': 'S1505019246.538935,VS0,VE112',
+188 verbose headers   vary: 'Accept-Encoding, Accept' }
+189 silly get cb [ 200,
+189 silly get   { server: 'nginx/1.10.1',
+189 silly get     'content-type': 'application/json',
+189 silly get     'last-modified': 'Sat, 26 Aug 2017 14:01:24 GMT',
+189 silly get     etag: 'W/"59a17f34-a483"',
+189 silly get     'content-encoding': 'gzip',
+189 silly get     'cache-control': 'max-age=300',
+189 silly get     'content-length': '7179',
+189 silly get     'accept-ranges': 'bytes',
+189 silly get     date: 'Sun, 10 Sep 2017 04:54:05 GMT',
+189 silly get     via: '1.1 varnish',
+189 silly get     age: '0',
+189 silly get     connection: 'keep-alive',
+189 silly get     'x-served-by': 'cache-lhr6321-LHR',
+189 silly get     'x-cache': 'HIT',
+189 silly get     'x-cache-hits': '1',
+189 silly get     'x-timer': 'S1505019246.538935,VS0,VE112',
+189 silly get     vary: 'Accept-Encoding, Accept' } ]
+190 verbose get saving gulp-concat to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-concat\.cache.json
+191 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+192 http 200 https://registry.npmjs.org/typescript
+193 verbose headers { server: 'nginx/1.10.1',
+193 verbose headers   'content-type': 'application/json',
+193 verbose headers   'last-modified': 'Sat, 09 Sep 2017 06:10:44 GMT',
+193 verbose headers   etag: 'W/"59b385e4-1ca700"',
+193 verbose headers   'content-encoding': 'gzip',
+193 verbose headers   'cache-control': 'max-age=300',
+193 verbose headers   'content-length': '92623',
+193 verbose headers   'accept-ranges': 'bytes',
+193 verbose headers   date: 'Sun, 10 Sep 2017 04:54:03 GMT',
+193 verbose headers   via: '1.1 varnish',
+193 verbose headers   age: '160',
+193 verbose headers   connection: 'keep-alive',
+193 verbose headers   'x-served-by': 'cache-lhr6336-LHR',
+193 verbose headers   'x-cache': 'HIT',
+193 verbose headers   'x-cache-hits': '1',
+193 verbose headers   'x-timer': 'S1505019244.916320,VS0,VE1',
+193 verbose headers   vary: 'Accept-Encoding, Accept' }
+194 silly get cb [ 200,
+194 silly get   { server: 'nginx/1.10.1',
+194 silly get     'content-type': 'application/json',
+194 silly get     'last-modified': 'Sat, 09 Sep 2017 06:10:44 GMT',
+194 silly get     etag: 'W/"59b385e4-1ca700"',
+194 silly get     'content-encoding': 'gzip',
+194 silly get     'cache-control': 'max-age=300',
+194 silly get     'content-length': '92623',
+194 silly get     'accept-ranges': 'bytes',
+194 silly get     date: 'Sun, 10 Sep 2017 04:54:03 GMT',
+194 silly get     via: '1.1 varnish',
+194 silly get     age: '160',
+194 silly get     connection: 'keep-alive',
+194 silly get     'x-served-by': 'cache-lhr6336-LHR',
+194 silly get     'x-cache': 'HIT',
+194 silly get     'x-cache-hits': '1',
+194 silly get     'x-timer': 'S1505019244.916320,VS0,VE1',
+194 silly get     vary: 'Accept-Encoding, Accept' } ]
+195 verbose get saving typescript to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\typescript\.cache.json
+196 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+197 http 200 https://registry.npmjs.org/gulp-replace
+198 verbose headers { server: 'nginx/1.10.1',
+198 verbose headers   'content-type': 'application/json',
+198 verbose headers   'last-modified': 'Sat, 02 Sep 2017 22:32:19 GMT',
+198 verbose headers   etag: 'W/"59ab3173-4954"',
+198 verbose headers   'content-encoding': 'gzip',
+198 verbose headers   'cache-control': 'max-age=300',
+198 verbose headers   'content-length': '3914',
+198 verbose headers   'accept-ranges': 'bytes',
+198 verbose headers   date: 'Sun, 10 Sep 2017 04:54:06 GMT',
+198 verbose headers   via: '1.1 varnish',
+198 verbose headers   age: '0',
+198 verbose headers   connection: 'keep-alive',
+198 verbose headers   'x-served-by': 'cache-lhr6340-LHR',
+198 verbose headers   'x-cache': 'HIT',
+198 verbose headers   'x-cache-hits': '1',
+198 verbose headers   'x-timer': 'S1505019246.186049,VS0,VE22',
+198 verbose headers   vary: 'Accept-Encoding, Accept' }
+199 silly get cb [ 200,
+199 silly get   { server: 'nginx/1.10.1',
+199 silly get     'content-type': 'application/json',
+199 silly get     'last-modified': 'Sat, 02 Sep 2017 22:32:19 GMT',
+199 silly get     etag: 'W/"59ab3173-4954"',
+199 silly get     'content-encoding': 'gzip',
+199 silly get     'cache-control': 'max-age=300',
+199 silly get     'content-length': '3914',
+199 silly get     'accept-ranges': 'bytes',
+199 silly get     date: 'Sun, 10 Sep 2017 04:54:06 GMT',
+199 silly get     via: '1.1 varnish',
+199 silly get     age: '0',
+199 silly get     connection: 'keep-alive',
+199 silly get     'x-served-by': 'cache-lhr6340-LHR',
+199 silly get     'x-cache': 'HIT',
+199 silly get     'x-cache-hits': '1',
+199 silly get     'x-timer': 'S1505019246.186049,VS0,VE22',
+199 silly get     vary: 'Accept-Encoding, Accept' } ]
+200 verbose get saving gulp-replace to C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-replace\.cache.json
+201 verbose correctMkdir C:\Users\Nilabh Subramaniam\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+202 info outdated updating [ { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '3.9.1',
+202 info outdated     latest: '3.9.1',
+202 info outdated     req: '^3.9.1',
+202 info outdated     what: 'gulp@3.9.1' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-chmod',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '1.3.0',
+202 info outdated     latest: '2.0.0',
+202 info outdated     req: '^1.3.0',
+202 info outdated     what: 'gulp-chmod@1.3.0' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-concat',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '2.6.1',
+202 info outdated     latest: '2.6.1',
+202 info outdated     req: '^2.6.0',
+202 info outdated     what: 'gulp-concat@2.6.1' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-concat-css',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '2.3.0',
+202 info outdated     latest: '2.3.0',
+202 info outdated     req: '^2.3.0',
+202 info outdated     what: 'gulp-concat-css@2.3.0' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-cssmin',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '0.1.7',
+202 info outdated     latest: '0.2.0',
+202 info outdated     req: '^0.1.7',
+202 info outdated     what: 'gulp-cssmin@0.1.7' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-if',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '2.0.2',
+202 info outdated     latest: '2.0.2',
+202 info outdated     req: '^2.0.1',
+202 info outdated     what: 'gulp-if@2.0.2' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-remove-empty-lines',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '0.0.8',
+202 info outdated     latest: '0.1.0',
+202 info outdated     req: '0.0.8',
+202 info outdated     what: 'gulp-remove-empty-lines@0.0.8' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-rename',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '1.2.2',
+202 info outdated     latest: '1.2.2',
+202 info outdated     req: '^1.2.2',
+202 info outdated     what: 'gulp-rename@1.2.2' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-replace',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '0.5.4',
+202 info outdated     latest: '0.6.1',
+202 info outdated     req: '^0.5.4',
+202 info outdated     what: 'gulp-replace@0.5.4' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-typescript',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '3.2.2',
+202 info outdated     latest: '3.2.2',
+202 info outdated     req: '^3.1.2',
+202 info outdated     what: 'gulp-typescript@3.2.2' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'gulp-uglify',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '2.1.2',
+202 info outdated     latest: '3.0.0',
+202 info outdated     req: '^2.0.0',
+202 info outdated     what: 'gulp-uglify@2.1.2' },
+202 info outdated   { dep:
+202 info outdated      { package: [Object],
+202 info outdated        path: 'D:\\Project\\frontend_dev',
+202 info outdated        parent: [Object],
+202 info outdated        isMissing: true },
+202 info outdated     depname: 'typescript',
+202 info outdated     current: undefined,
+202 info outdated     wanted: '2.5.2',
+202 info outdated     latest: '2.5.2',
+202 info outdated     req: '^2.0.6',
+202 info outdated     what: 'typescript@2.5.2' } ]
+203 silly loadCurrentTree Starting
+204 silly install loadCurrentTree
+205 silly install readLocalPackageData
+206 silly fetchPackageMetaData gulp@3.9.1
+207 silly fetchPackageMetaData gulp-chmod@1.3.0
+208 silly fetchPackageMetaData gulp-concat@2.6.1
+209 silly fetchPackageMetaData gulp-concat-css@2.3.0
+210 silly fetchPackageMetaData gulp-cssmin@0.1.7
+211 silly fetchPackageMetaData gulp-if@2.0.2
+212 silly fetchPackageMetaData gulp-remove-empty-lines@0.0.8
+213 silly fetchPackageMetaData gulp-rename@1.2.2
+214 silly fetchPackageMetaData gulp-replace@0.5.4
+215 silly fetchPackageMetaData gulp-typescript@3.2.2
+216 silly fetchPackageMetaData gulp-uglify@2.1.2
+217 silly fetchPackageMetaData typescript@2.5.2
+218 silly fetchNamedPackageData gulp
+219 silly mapToRegistry name gulp
+220 silly mapToRegistry using default registry
+221 silly mapToRegistry registry https://registry.npmjs.org/
+222 silly mapToRegistry data Result {
+222 silly mapToRegistry   raw: 'gulp',
+222 silly mapToRegistry   scope: null,
+222 silly mapToRegistry   escapedName: 'gulp',
+222 silly mapToRegistry   name: 'gulp',
+222 silly mapToRegistry   rawSpec: '',
+222 silly mapToRegistry   spec: 'latest',
+222 silly mapToRegistry   type: 'tag' }
+223 silly mapToRegistry uri https://registry.npmjs.org/gulp
+224 silly fetchNamedPackageData gulp-chmod
+225 silly mapToRegistry name gulp-chmod
+226 silly mapToRegistry using default registry
+227 silly mapToRegistry registry https://registry.npmjs.org/
+228 silly mapToRegistry data Result {
+228 silly mapToRegistry   raw: 'gulp-chmod',
+228 silly mapToRegistry   scope: null,
+228 silly mapToRegistry   escapedName: 'gulp-chmod',
+228 silly mapToRegistry   name: 'gulp-chmod',
+228 silly mapToRegistry   rawSpec: '',
+228 silly mapToRegistry   spec: 'latest',
+228 silly mapToRegistry   type: 'tag' }
+229 silly mapToRegistry uri https://registry.npmjs.org/gulp-chmod
+230 silly fetchNamedPackageData gulp-concat
+231 silly mapToRegistry name gulp-concat
+232 silly mapToRegistry using default registry
+233 silly mapToRegistry registry https://registry.npmjs.org/
+234 silly mapToRegistry data Result {
+234 silly mapToRegistry   raw: 'gulp-concat',
+234 silly mapToRegistry   scope: null,
+234 silly mapToRegistry   escapedName: 'gulp-concat',
+234 silly mapToRegistry   name: 'gulp-concat',
+234 silly mapToRegistry   rawSpec: '',
+234 silly mapToRegistry   spec: 'latest',
+234 silly mapToRegistry   type: 'tag' }
+235 silly mapToRegistry uri https://registry.npmjs.org/gulp-concat
+236 silly fetchNamedPackageData gulp-concat-css
+237 silly mapToRegistry name gulp-concat-css
+238 silly mapToRegistry using default registry
+239 silly mapToRegistry registry https://registry.npmjs.org/
+240 silly mapToRegistry data Result {
+240 silly mapToRegistry   raw: 'gulp-concat-css',
+240 silly mapToRegistry   scope: null,
+240 silly mapToRegistry   escapedName: 'gulp-concat-css',
+240 silly mapToRegistry   name: 'gulp-concat-css',
+240 silly mapToRegistry   rawSpec: '',
+240 silly mapToRegistry   spec: 'latest',
+240 silly mapToRegistry   type: 'tag' }
+241 silly mapToRegistry uri https://registry.npmjs.org/gulp-concat-css
+242 silly fetchNamedPackageData gulp-cssmin
+243 silly mapToRegistry name gulp-cssmin
+244 silly mapToRegistry using default registry
+245 silly mapToRegistry registry https://registry.npmjs.org/
+246 silly mapToRegistry data Result {
+246 silly mapToRegistry   raw: 'gulp-cssmin',
+246 silly mapToRegistry   scope: null,
+246 silly mapToRegistry   escapedName: 'gulp-cssmin',
+246 silly mapToRegistry   name: 'gulp-cssmin',
+246 silly mapToRegistry   rawSpec: '',
+246 silly mapToRegistry   spec: 'latest',
+246 silly mapToRegistry   type: 'tag' }
+247 silly mapToRegistry uri https://registry.npmjs.org/gulp-cssmin
+248 silly fetchNamedPackageData gulp-if
+249 silly mapToRegistry name gulp-if
+250 silly mapToRegistry using default registry
+251 silly mapToRegistry registry https://registry.npmjs.org/
+252 silly mapToRegistry data Result {
+252 silly mapToRegistry   raw: 'gulp-if',
+252 silly mapToRegistry   scope: null,
+252 silly mapToRegistry   escapedName: 'gulp-if',
+252 silly mapToRegistry   name: 'gulp-if',
+252 silly mapToRegistry   rawSpec: '',
+252 silly mapToRegistry   spec: 'latest',
+252 silly mapToRegistry   type: 'tag' }
+253 silly mapToRegistry uri https://registry.npmjs.org/gulp-if
+254 silly fetchNamedPackageData gulp-remove-empty-lines
+255 silly mapToRegistry name gulp-remove-empty-lines
+256 silly mapToRegistry using default registry
+257 silly mapToRegistry registry https://registry.npmjs.org/
+258 silly mapToRegistry data Result {
+258 silly mapToRegistry   raw: 'gulp-remove-empty-lines',
+258 silly mapToRegistry   scope: null,
+258 silly mapToRegistry   escapedName: 'gulp-remove-empty-lines',
+258 silly mapToRegistry   name: 'gulp-remove-empty-lines',
+258 silly mapToRegistry   rawSpec: '',
+258 silly mapToRegistry   spec: 'latest',
+258 silly mapToRegistry   type: 'tag' }
+259 silly mapToRegistry uri https://registry.npmjs.org/gulp-remove-empty-lines
+260 silly fetchNamedPackageData gulp-rename
+261 silly mapToRegistry name gulp-rename
+262 silly mapToRegistry using default registry
+263 silly mapToRegistry registry https://registry.npmjs.org/
+264 silly mapToRegistry data Result {
+264 silly mapToRegistry   raw: 'gulp-rename',
+264 silly mapToRegistry   scope: null,
+264 silly mapToRegistry   escapedName: 'gulp-rename',
+264 silly mapToRegistry   name: 'gulp-rename',
+264 silly mapToRegistry   rawSpec: '',
+264 silly mapToRegistry   spec: 'latest',
+264 silly mapToRegistry   type: 'tag' }
+265 silly mapToRegistry uri https://registry.npmjs.org/gulp-rename
+266 silly fetchNamedPackageData gulp-replace
+267 silly mapToRegistry name gulp-replace
+268 silly mapToRegistry using default registry
+269 silly mapToRegistry registry https://registry.npmjs.org/
+270 silly mapToRegistry data Result {
+270 silly mapToRegistry   raw: 'gulp-replace',
+270 silly mapToRegistry   scope: null,
+270 silly mapToRegistry   escapedName: 'gulp-replace',
+270 silly mapToRegistry   name: 'gulp-replace',
+270 silly mapToRegistry   rawSpec: '',
+270 silly mapToRegistry   spec: 'latest',
+270 silly mapToRegistry   type: 'tag' }
+271 silly mapToRegistry uri https://registry.npmjs.org/gulp-replace
+272 silly fetchNamedPackageData gulp-typescript
+273 silly mapToRegistry name gulp-typescript
+274 silly mapToRegistry using default registry
+275 silly mapToRegistry registry https://registry.npmjs.org/
+276 silly mapToRegistry data Result {
+276 silly mapToRegistry   raw: 'gulp-typescript',
+276 silly mapToRegistry   scope: null,
+276 silly mapToRegistry   escapedName: 'gulp-typescript',
+276 silly mapToRegistry   name: 'gulp-typescript',
+276 silly mapToRegistry   rawSpec: '',
+276 silly mapToRegistry   spec: 'latest',
+276 silly mapToRegistry   type: 'tag' }
+277 silly mapToRegistry uri https://registry.npmjs.org/gulp-typescript
+278 silly fetchNamedPackageData gulp-uglify
+279 silly mapToRegistry name gulp-uglify
+280 silly mapToRegistry using default registry
+281 silly mapToRegistry registry https://registry.npmjs.org/
+282 silly mapToRegistry data Result {
+282 silly mapToRegistry   raw: 'gulp-uglify',
+282 silly mapToRegistry   scope: null,
+282 silly mapToRegistry   escapedName: 'gulp-uglify',
+282 silly mapToRegistry   name: 'gulp-uglify',
+282 silly mapToRegistry   rawSpec: '',
+282 silly mapToRegistry   spec: 'latest',
+282 silly mapToRegistry   type: 'tag' }
+283 silly mapToRegistry uri https://registry.npmjs.org/gulp-uglify
+284 silly fetchNamedPackageData typescript
+285 silly mapToRegistry name typescript
+286 silly mapToRegistry using default registry
+287 silly mapToRegistry registry https://registry.npmjs.org/
+288 silly mapToRegistry data Result {
+288 silly mapToRegistry   raw: 'typescript',
+288 silly mapToRegistry   scope: null,
+288 silly mapToRegistry   escapedName: 'typescript',
+288 silly mapToRegistry   name: 'typescript',
+288 silly mapToRegistry   rawSpec: '',
+288 silly mapToRegistry   spec: 'latest',
+288 silly mapToRegistry   type: 'tag' }
+289 silly mapToRegistry uri https://registry.npmjs.org/typescript
+290 verbose get https://registry.npmjs.org/gulp-chmod not expired, no request
+291 verbose get https://registry.npmjs.org/gulp-concat-css not expired, no request
+292 verbose get https://registry.npmjs.org/gulp-concat not expired, no request
+293 verbose get https://registry.npmjs.org/gulp not expired, no request
+294 verbose get https://registry.npmjs.org/gulp-cssmin not expired, no request
+295 verbose get https://registry.npmjs.org/gulp-remove-empty-lines not expired, no request
+296 verbose get https://registry.npmjs.org/gulp-if not expired, no request
+297 verbose get https://registry.npmjs.org/gulp-rename not expired, no request
+298 verbose get https://registry.npmjs.org/gulp-replace not expired, no request
+299 verbose get https://registry.npmjs.org/gulp-uglify not expired, no request
+300 verbose get https://registry.npmjs.org/gulp-typescript not expired, no request
+301 verbose get https://registry.npmjs.org/typescript not expired, no request
+302 silly install normalizeTree
+303 silly loadCurrentTree Finishing
+304 silly loadIdealTree Starting
+305 silly install loadIdealTree
+306 silly cloneCurrentTree Starting
+307 silly install cloneCurrentTreeToIdealTree
+308 silly cloneCurrentTree Finishing
+309 silly loadShrinkwrap Starting
+310 silly install loadShrinkwrap
+311 silly loadShrinkwrap Finishing
+312 silly loadAllDepsIntoIdealTree Starting
+313 silly install loadAllDepsIntoIdealTree
+314 silly rollbackFailedOptional Starting
+315 silly rollbackFailedOptional Finishing
+316 silly runTopLevelLifecycles Finishing
+317 silly install printInstalled
+318 verbose stack Error: Refusing to install gulp as a dependency of itself
+318 verbose stack     at checkSelf (C:\Program Files\nodejs\node_modules\npm\lib\install\validate-args.js:53:14)
+318 verbose stack     at Array.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\bind-actor.js:15:8)
+318 verbose stack     at LOOP (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\chain.js:15:14)
+318 verbose stack     at chain (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\chain.js:20:5)
+318 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\install\validate-args.js:16:5
+318 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:52:35
+318 verbose stack     at Array.forEach (native)
+318 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:52:11
+318 verbose stack     at Array.forEach (native)
+318 verbose stack     at asyncMap (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:51:8)
+319 verbose cwd D:\Project\frontend_dev\gulp
+320 error Windows_NT 10.0.14393
+321 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "update"
+322 error node v6.10.1
+323 error npm  v3.10.10
+324 error code ENOSELF
+325 error Refusing to install gulp as a dependency of itself
+326 error If you need help, you may report this error at:
+326 error     <https://github.com/npm/npm/issues>
+327 verbose exit [ 1, true ]

@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins" ng-controller="transcationController" >
+            <div class="ibox-content" style="overflow-x: scroll">
+                <table   class="table table-bordered dataTables-example table-hover  goal-dashboard-center">
+                    <thead>
+                    <tr>
+                        <th rowspan="2">Goal Type</th>
+                        <th rowspan="2">Personalized Goal Name</th>
+                        <th colspan="2">Amount Committed</th>
+                        <th rowspan="2">Status</th>
+                        <th rowspan="2" style="width:14%">Date</th>
+                        <th rowspan="2">Action</th>
+                    </tr>
+                    <tr>
+                        <th>Lumpsum (₹)</th>
+                        <th>Monthly (₹)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr ng-repeat="goal in goals">
+                        <td><img src ="{{'/img/goal_'+goal.type+'_m.png'}}" width="42" height="42"/></td>
+                        <td>{{ goal.name}}</td>
+                        <td>{{ goal.lumpsum}}</td>
+                        <td>{{ goal.sip}}</td>
+                        <td>{{goal.state}}</td>
+                        <td>{{goal.updatedAt}}</td>
+                        <td>{{goal.trxnFailureReason}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>

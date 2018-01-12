@@ -1,0 +1,445 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="filingHealthCtrl" data-ng-init="init()">
+                    <div class="goalText"  ng-show="healthInfoOptAvailable">
+                        <button class="btn btn-sm btn-primary " ng-click="copyHealthOptimization()"><strong>Copy from Tax Optimisation</strong>
+                        </button>
+                    </div>
+                    <form class="form-horizontal" role="form" name="filingHealthInsurance" id="filingHealthInsurance"
+                          novalidate>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-9">Do you have a corporate health insurance policy for
+                                self (immediate family and/or parents)? </label>
+                            <div class="col-sm-3">
+                                <label class="checkbox-inline" for="corporateHealth_yes">
+                                    <input icheck id="corporateHealthSelf_yes" type="radio" name="corporateHealthSelf"
+                                           ng-model="healthInsuranceFormData.corporateSelf" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="corporateHealth_no">
+                                    <input icheck id="corporateHealthSelf_no" type="radio"
+                                           name="corporateHealthSelf" ng-model="healthInsuranceFormData.corporateSelf"
+                                           value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Question end & 2 question dependency start-->
+                        <div ng-show="healthInsuranceFormData.corporateSelf == 'yes'">
+                            <div class="form-group required">
+                                <label class="control-label col-sm-9">Is there any additional premium you are paying for
+                                    self? (and spouse/children if applicable)? </label>
+                                <div class="col-sm-3">
+                                    <label class="checkbox-inline" for="corporateHealth_yes">
+                                        <input icheck id="corporateHealth_yes" type="radio" name="corporateHealth"
+                                               ng-model="healthInsuranceFormData.corporate" value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="corporateHealth_no">
+                                        <input icheck id="corporateHealth_no" type="radio"
+                                               name="corporateHealth" ng-model="healthInsuranceFormData.corporate"
+                                               value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-show="healthInsuranceFormData.corporate == 'yes'">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : filingHealthInsurance.corporateHealthAmnt.$invalid && filingHealthInsurance.corporateHealthAmnt.$dirty }">
+                                    <label class="control-label col-sm-6"></label>
+                                    <div class="col-sm-6">
+                                        <input type="number" id="corporateHealthAmnt" class="form-control"
+                                               name="corporateHealthAmnt"
+                                               ng-model="healthInsuranceFormData.corporateAmt" ng-pattern="/^[0-9]*$/"
+                                               placeholder="Enter premium amount here " min="100" max="1000000"
+                                               ng-required="healthInsuranceFormData.corporate == 'yes'"
+                                        />
+                                        <span ng-hide="healthInsurance.corporateHealthAmnt.$invalid && healthInsurance.corporateHealthAmnt.$dirty"
+                                              class="help-block">{{corporateAmtInWords}}</span>
+                                        <div ng-show="filingHealthInsurance.corporateHealthAmnt.$invalid && filingHealthInsurance.corporateHealthAmnt.$dirty">
+                                            <p ng-show="filingHealthInsurance.corporateHealthAmnt.$error.pattern"
+                                               class="help-block">
+                                                Amount is invalid
+                                            </p>
+                                            <p ng-show="filingHealthInsurance.corporateHealthAmnt.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingHealthInsurance.corporateHealthAmnt.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than Rs.100
+                                            </p>
+                                            <p ng-show="filingHealthInsurance.corporateHealthAmnt.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 1 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-sm-9">Is there any additional premium your are paying
+                                    for
+                                    parents? </label>
+                                <div class="col-sm-3">
+                                    <label class="checkbox-inline" for="parentsInsurance_yes">
+                                        <input icheck type="radio" id="parentsInsurance_yes"
+                                               name="parentsInsurance" ng-model="healthInsuranceFormData.parents"
+                                               value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="parentsInsurance_no">
+                                        <input icheck type="radio" id="parentsInsurance_no" name="parentsInsurance"
+                                               ng-model="healthInsuranceFormData.parents" value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-show="healthInsuranceFormData.parents == 'yes'">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : filingHealthInsurance.parentsInsuranceAmnt.$invalid && filingHealthInsurance.parentsInsuranceAmnt.$dirty }">
+                                    <label class="control-label col-sm-6"></label>
+                                    <div class="col-sm-6">
+                                        <input type="number" id="parentsInsuranceAmnt" class="form-control"
+                                               name="parentsInsuranceAmnt"
+                                               ng-model="healthInsuranceFormData.parentsAmt" ng-pattern="/^[0-9]*$/"
+                                               placeholder="Enter premium amount here " min="100" max="1000000"
+                                               ng-required="healthInsuranceFormData.parents == 'yes'"
+                                        />
+                                        <span ng-hide="healthInsurance.parentsInsuranceAmnt.$invalid && healthInsurance.parentsInsuranceAmnt.$dirty" class="help-block">{{parentsInsuranceAmntInWords}}</span>
+                                        <div ng-show="filingHealthInsurance.parentsInsuranceAmnt.$invalid && filingHealthInsurance.parentsInsuranceAmnt.$dirty">
+                                            <p ng-show="filingHealthInsurance.parentsInsuranceAmnt.$error.pattern"
+                                               class="help-block">
+                                                Amount is invalid
+                                            </p>
+                                            <p ng-show="filingHealthInsurance.parentsInsuranceAmnt.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingHealthInsurance.parentsInsuranceAmnt.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than Rs.100
+                                            </p>
+                                            <p ng-show="filingHealthInsurance.parentsInsuranceAmnt.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 1 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-9">Do you have a personal/ private health insurance
+                                policy for self (and immediate family)?</label>
+                            <div class="col-sm-3">
+                                <label class="checkbox-inline" for="selfInsurance_yes">
+                                    <input icheck type="radio" id="selfInsurance_yes"
+                                           name="selfInsurance" ng-model="healthInsuranceFormData.private" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="selfInsurance_no">
+                                    <input icheck type="radio" id="selfInsurance_no" name="selfInsurance"
+                                           ng-model="healthInsuranceFormData.private" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="healthInsuranceFormData.private == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingHealthInsurance.selfInsuranceAmnt.$invalid && filingHealthInsurance.selfInsuranceAmnt.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="selfInsuranceAmnt" class="form-control"
+                                           name="selfInsuranceAmnt"
+                                           ng-model="healthInsuranceFormData.privateAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter premium paid on the policy " min="100" max="1000000"
+                                           ng-required="healthInsuranceFormData.private == 'yes'"
+                                    />
+                                    <span ng-hide="healthInsurance.selfInsuranceAmnt.$invalid && healthInsurance.selfInsuranceAmnt.$dirty" class="help-block">{{selfInsuranceAmntInWords}}</span>
+                                    <div ng-show="filingHealthInsurance.selfInsuranceAmnt.$invalid && filingHealthInsurance.selfInsuranceAmnt.$dirty">
+                                        <p ng-show="filingHealthInsurance.selfInsuranceAmnt.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.selfInsuranceAmnt.$error.required"
+                                           class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.selfInsuranceAmnt.$error.min"
+                                           class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.selfInsuranceAmnt.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-9">Do you have a personal/ private health insurance
+                                policy for parents? </label>
+                            <div class="col-sm-3">
+                                <label class="checkbox-inline" for="parentPersonalInsurance_y">
+                                    <input icheck type="radio" id="parentPersonalInsurance_y"
+                                           name="parentPersonalInsurance" ng-model="healthInsuranceFormData.pvtParents"
+                                           value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="parentPersonalInsurance_n">
+                                    <input icheck type="radio" id="parentPersonalInsurance_n"
+                                           name="parentPersonalInsurance"
+                                           ng-model="healthInsuranceFormData.pvtParents" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="healthInsuranceFormData.pvtParents == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingHealthInsurance.parentPersonalInsuranceAmnt.$invalid && filingHealthInsurance.parentPersonalInsuranceAmnt.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="parentPersonalInsuranceAmnt" class="form-control"
+                                           name="parentPersonalInsuranceAmnt"
+                                           ng-model="healthInsuranceFormData.pvtParentsAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter premium paid on the policy" min="100" max="1000000"
+                                           ng-required="healthInsuranceFormData.pvtParents == 'yes'"
+                                    />
+                                    <span ng-hide="healthInsurance.parentPersonalInsuranceAmnt.$invalid && healthInsurance.parentPersonalInsuranceAmnt.$dirty" class="help-block">{{parentPersonalInsuranceAmntInWords}}</span>
+                                    <div ng-show="filingHealthInsurance.parentPersonalInsuranceAmnt.$invalid && filingHealthInsurance.parentPersonalInsuranceAmnt.$dirty">
+                                        <p ng-show="filingHealthInsurance.parentPersonalInsuranceAmnt.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.parentPersonalInsuranceAmnt.$error.required"
+                                           class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.parentPersonalInsuranceAmnt.$error.min"
+                                           class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.parentPersonalInsuranceAmnt.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-9">Do you have a critical illness insurance policy for
+                                self?</label>
+                            <div class="col-sm-3">
+                                <label class="checkbox-inline" for="illnessInsurance_yes">
+                                    <input icheck type="radio" id="illnessInsurance_yes"
+                                           name="illnessInsurance" ng-model="healthInsuranceFormData.criticalIllness"
+                                           value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="illnessInsurance_no">
+                                    <input icheck type="radio" id="illnessInsurance_no" name="illnessInsurance"
+                                           ng-model="healthInsuranceFormData.criticalIllness" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="healthInsuranceFormData.criticalIllness =='yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingHealthInsurance.illnessInsuranceAmnt.$invalid && filingHealthInsurance.illnessInsuranceAmnt.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" class="form-control"
+                                           name="illnessInsuranceAmnt"
+                                           ng-model="healthInsuranceFormData.criticalIllnessAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter premium paid on the policy " min="100" max="10000000"
+                                           ng-required="healthInsuranceFormData.criticalIllness =='yes'"
+                                    />
+                                    <span ng-hide="healthInsurance.illnessInsuranceAmnt.$invalid && healthInsurance.illnessInsuranceAmnt.$dirty" class="help-block">{{illnessInsuranceAmntInWords}}</span>
+                                    <div ng-show="filingHealthInsurance.illnessInsuranceAmnt.$invalid && filingHealthInsurance.illnessInsuranceAmnt.$dirty">
+                                        <p ng-show="filingHealthInsurance.illnessInsuranceAmnt.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.illnessInsuranceAmnt.$error.required"
+                                           class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.illnessInsuranceAmnt.$error.min"
+                                           class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.illnessInsuranceAmnt.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of HealthInsurance -->
+                        <div class="form-group required">
+                            <label class="control-label col-sm-9">Do you have any dependant with disability? </label>
+                            <div class="col-sm-3">
+                                <label class="checkbox-inline" for="disabilityDepend_yes">
+                                    <input icheck type="radio" id="disabilityDepend_yes" name="disabilityDepend"
+                                           ng-model="healthInsuranceFormData.dependentDisability" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="disabilityDepend_no">
+                                    <input icheck type="radio" id="disabilityDepend_no" name="disabilityDepend"
+                                           ng-model="healthInsuranceFormData.dependentDisability" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="healthInsuranceFormData.dependentDisability == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingHealthInsurance.disabilityDetails.$invalid && filingHealthInsurance.disabilityDetails.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <textarea rows="5" cols="50" name="disabilityDetails" form="filingHealthInsurance"
+                                              ng-minlength="1" ng-maxlength="250"
+                                              ng-model="healthInsuranceFormData.disabilityInfo"
+                                              placeholder="Provide information on who is the dependant, nature of disability and medical costs incurred for the dependant during the financial year"
+                                              ng-required="healthInsuranceFormData.dependentDisability == 'yes'">
+                                    </textarea>
+                                    <div ng-show="filingHealthInsurance.disabilityDetails.$invalid && filingHealthInsurance.disabilityDetails.$dirty">
+                                        <p ng-show="filingHealthInsurance.disabilityDetails.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.disabilityDetails.$error.required"
+                                           class="help-block">
+                                            Description is required
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.disabilityDetails.$error.minlength"
+                                           class="help-block">
+                                            Minimum description character should be of 1 character
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.disabilityDetails.$error.maxlength"
+                                           class="help-block">
+                                            Description cannot exceed 250 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of disability-->
+                        <div class="form-group required">
+                            <label class="control-label col-sm-9">Have you made any donations during the financial year
+                                which can be claimed as deduction under Sec 80G</label>
+                            <div class="col-sm-3">
+                                <label class="checkbox-inline" for="financialClaim_yes">
+                                    <input icheck type="radio" id="financialClaim_yes" name="finTaxotherInfo"
+                                           ng-model="healthInsuranceFormData.donation" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="financialClaim_no">
+                                    <input icheck type="radio" id="financialClaim_no" name="finTaxotherInfo"
+                                           ng-model="healthInsuranceFormData.donation" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="healthInsuranceFormData.donation == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingHealthInsurance.financialClaimAmnt.$invalid && filingHealthInsurance.financialClaimAmnt.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" class="form-control" name="financialClaimAmnt"
+                                           ng-model="healthInsuranceFormData.donationAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter donation amount " min="100" max="10000000"
+                                           ng-required="healthInsuranceFormData.donation == 'yes'"
+                                    />
+                                    <span ng-hide="filingHealthInsurance.financialClaimAmnt.$invalid && filingHealthInsurance.financialClaimAmnt.$dirty"
+                                          class="help-block">{{financialClaimAmntInWords}}</span>
+                                    <div ng-show="filingHealthInsurance.financialClaimAmnt.$invalid && filingHealthInsurance.financialClaimAmnt.$dirty">
+                                        <p ng-show="filingHealthInsurance.financialClaimAmnt.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.financialClaimAmnt.$error.required"
+                                           class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.financialClaimAmnt.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.financialClaimAmnt.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of donation-->
+                        <div class="form-group required">
+                            <label class="control-label col-sm-9">Do you have an education loan? </label>
+                            <div class="col-sm-3">
+                                <label class="checkbox-inline" for="educationLoan_y">
+                                    <input icheck id="educationLoan_y" type="radio" name="educationLoan"
+                                           ng-model="healthInsuranceFormData.eduLoan" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="educationLoan_n">
+                                    <input icheck id="educationLoan_n" type="radio" name="educationLoan"
+                                           ng-model="healthInsuranceFormData.eduLoan" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="healthInsuranceFormData.eduLoan == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingHealthInsurance.educationLoanAmnt.$invalid && filingHealthInsurance.educationLoanAmnt.$dirty }">
+                                <label class="control-label col-sm-6">How much interest will you be paying on the loan
+                                    during the current financial year?</label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="educationLoanAmnt" class="form-control"
+                                           name="educationLoanAmnt"
+                                           ng-model="healthInsuranceFormData.eduLoanIntAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter interest amount  " min="100" max="10000000"
+                                           ng-required="healthInsuranceFormData.eduLoan == 'yes'"
+                                    />
+                                    <span ng-hide="filingHealthInsurance.educationLoanAmnt.$invalid && filingHealthInsurance.educationLoanAmnt.$dirty"
+                                          class="help-block">{{educationLoanAmntInWords}}</span>
+                                    <div ng-show="filingHealthInsurance.educationLoanAmnt.$invalid && filingHealthInsurance.educationLoanAmnt.$dirty">
+                                        <p ng-show="filingHealthInsurance.educationLoanAmnt.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.educationLoanAmnt.$error.required"
+                                           class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.educationLoanAmnt.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingHealthInsurance.educationLoanAmnt.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of Others-->
+                        <div class="form-group required" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="filingHealthInsurance.$invalid || !formEditable"
+                                    ng-click="submitHealthInfo()"><strong>Save</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

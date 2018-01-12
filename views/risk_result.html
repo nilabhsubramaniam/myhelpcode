@@ -1,0 +1,32 @@
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="riskResultCtrl">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center">
+                    <div>
+                        <!--<c3-chart ng-attr-id="{{riskprofilechartID}}" config="riskprofilechart"></c3-chart> -->
+                        <img class="img-responsive"  src ="{{profileImageSrc}}" alt = "{{profile_risk}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6" ng-click="gotohealth()">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3 class="text-finatwork">
+                        Profile: {{profile_risk}}
+                    </h3>
+                    <span>{{text_risk}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 20px">
+            <div class="col-sm-4 col-sm-offset-2">
+                <button class="btn btn-primary" type="submit" ng-click="SetupGoal()">Set a Goal</button>
+            </div>
+        </div>
+    </div>
+</div>

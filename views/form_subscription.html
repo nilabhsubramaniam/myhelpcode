@@ -1,0 +1,46 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <!--Optional  -->
+    <div class="col-lg-10">
+        <h2> My subscriptions </h2>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="formWizardCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-sm-2  form-wizard-cofidential">
+                <p class="form-wizard-box text-center">
+                    CONFIDENTIAL &nbsp
+                    <span  tooltip-placement="left" uib-tooltip="We have laid down multiple levels of security measures to ensure the confidentiality of your account information. You can be assured your information is safe with us." >
+                                 <i class="fa fa-info-circle "></i>
+                        </span>
+                </p>
+            </div>
+            <div class="ibox">
+                <div class="ibox-content wizard">
+                    <div class="steps clearfix">
+                        <ul>
+                            <li ui-sref-active="current">
+                                <a ui-sref=".serviceCart" class="btn-default ">Service Cart</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a  ui-sref=".payment-history" class="btn-default">Payment history</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="wizard">
+                        <div class="content">
+
+                            <form name="signsubscriptionForm" class="p-lg">
+
+                                <!-- our nested state views will be injected here -->
+                                <div id="form-views" ui-view></div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "profile_created": "Profile Created",
+  "acct_info_provided": "Account Info Provided",
+  "acct_verified": "Acct Verified",
+  "docs_received": "Docs Received",
+  "kyc_verified": "KYC Submitted",
+  "create_iin": "IIN created",
+  "fatca_approved": "FATCA Approved",
+  "active": "Active",
+  "ach_approved": "ACH Approved",
+  "fully_onBoarded": "Fully Onboarded"
+}

@@ -1,0 +1,121 @@
+<!--=== Content Part ===-->
+<div class="container-fluid" data-ng-init="init()">
+    <div class="row equal-height-columns">
+        <div class="col-md-6 col-sm-6 hidden-xs image-block equal-height-column" style="padding: 0px;">
+            <img src = "/assets/img/sign_up.jpg" style="width: 100%">
+        </div>
+            <div class="col-md-6 col-sm-6 form-block equal-height-column">
+                <div class="reg-block">
+                    <a href="/index.php">
+            <img src="/assets/img/logo.png" alt="" style="width:100px;height:100px;margin-top:20px">
+            </a>
+                <div class="register-finatwork">
+                    <h3 >Register with Fin@Work</h3>
+                    <p>And achieve your financial goals</p>
+                </div>
+            <form class="m-t" role="form" name="signUp" novalidate ng-submit="doRegister()">
+                <div class="form-group  col-sm-12">
+                    <div class="form-group" ng-class="{ 'has-error' : signUp.firstName.$invalid && signUp.firstName.$dirty }">
+                        <div class="input-group">
+                            <span class="input-group-addon ">
+                                <i class="icon-pencil " aria-hidden="true"></i>
+                            </span>
+                            <input type="text" class="form-control rounded-right" name="firstName" placeholder="First Name" required ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.firstname" ng-minlength="1" maxlength="31">
+                        </div>
+                        <div ng-show="signUp.firstName.$invalid && signUp.firstName.$dirty">
+                            <p ng-show="signUp.firstName.$error.required" class="help-block">
+                                First Name is required
+                            </p>
+                            <p ng-show="signUp.firstName.$error.pattern" class="help-block">
+                                Invalid Name
+                            </p>
+                            <p ng-show="signUp.firstName.$error.minlength" class="help-block">
+                                Name should contain At least 1 character
+                            </p>
+                            <p ng-show="signUp.firstName.$error.maxlength" class="help-block">
+                                Name should contain maximum 31 characters
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group " ng-class="{ 'has-error' : signUp.lastName.$invalid && signUp.lastName.$dirty }">
+                        <div class="input-group">
+                             <span class="input-group-addon ">
+                                 <i class="icon-pencil " aria-hidden="true"></i>
+                             </span>
+                            <input type="text" class="form-control" name="lastName" placeholder="Last Name" required ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname" ng-minlength="1" maxlength="31">
+                       </div>
+                        <div ng-show="signUp.lastName.$invalid && signUp.lastName.$dirty">
+                            <p ng-show="signUp.lastName.$error.required" class="help-block">
+                                Last Name is required
+                            </p>
+                            <p ng-show="signUp.lastName.$error.pattern" class="help-block">
+                                Invalid Name
+                            </p>
+                            <p ng-show="signUp.lastName.$error.minlength" class="help-block">
+                                Name should contain At least 1 character
+                            </p>
+                            <p ng-show="signUp.lastName.$error.maxlength" class="help-block">
+                                Name should contain maximum 31 characters
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group " ng-class="{'has-error': signUp.email.$invalid && signUp.email.$dirty}">
+                        <div class="input-group">
+                             <span class="input-group-addon ">
+                                 <i class="icon-envelope " aria-hidden="true"></i>
+                             </span>
+                            <input type="email" class="form-control" name="email" placeholder="Email" required ng-pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" ng-model="register.email" maxlength="37">
+                        </div>
+                            <div ng-show="signUp.email.$invalid && signUp.email.$dirty">
+                            <p ng-show="signUp.email.$error.required" class="help-block">
+                                Email is required
+                            </p>
+                            <p ng-show="signUp.email.$error.pattern" class="help-block">
+                                Email is invalid
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group " ng-class="{'has-error': signUp.phone.$invalid && signUp.phone.$dirty}">
+                        <div class="input-group">
+                            <span class="input-group-addon ">
+                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" class="form-control" name="phone" placeholder="Phone" required ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" ng-model="register.phone">
+                        </div>
+                            <div ng-show="signUp.phone.$invalid && signUp.phone.$dirty">
+                            <p ng-show="signUp.phone.$error.required" class="help-block">
+                                Mobile Number is required
+                            </p>
+                            <p ng-show="signUp.phone.$error.pattern" class="help-block">
+                                Enter a valid 10 digit mobile number
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group input-group">
+                    <span class="input-group-addon "><i class="icon-lock " aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" placeholder="Password" required="" ng-model="register.password">
+                    </div>
+                    <div class="form-group input-group">
+                     <span class="input-group-addon "><i class="icon-lock " aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" placeholder="Confirm Password" required="" ng-model="register.cpassword">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox i-checks" required>
+                            <label>
+                                By signing up , you agree to the <b class="agree-terms" ng-click="showTermsOfUse()">Terms of Use</b> and <b class="agree-terms" ng-click="showTerms()"> Privacy Policy</b> of Fin@Work.
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width m-b" ng-submit="doRegister()" ng-disabled="signUp.$invalid">Sign Up</button>
+                        <p class="text-muted text-center"> <a href="start.html#/resendOTP"><small>Already signed up, resend OTP</small></a></p>
+                        <a class="btn btn-primary block full-width m-b" href="/start.html#/login">Login</a>
+                </div>
+            </form>
+            </div>
+            <p class="m-t"> <small>Copyright &copy 2011-17 Fin@work</small> </p>
+        </div>
+    </div>
+</div>
+<!--/container-->
+<!--=== End Content Part ===-->
+    

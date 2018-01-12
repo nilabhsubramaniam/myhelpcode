@@ -1,0 +1,78 @@
+<div class="row border-bottom" ng-controller="topNavigationCtrl">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <span minimaliza-sidebar></span>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li uib-dropdown>
+                <a class="count-info" href uib-dropdown-toggle>
+                  <img src="/img/dummy.jpg" class="dummyImage" >
+                </a>
+                <ul class="dropdown-alerts" uib-dropdown-menu style="width: 200px">
+                    <li>
+                        <a a-disabled="isEdit" ui-sref="inbox">
+                            <div>
+                                <i class="fa fa-cloud-upload"></i> Upload picture
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a a-disabled="isEdit" ng-click="OpenProfile()">
+                            <div>
+                                <i class="fa fa-user"></i> Personal profile
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a a-disabled="isEdit" ui-sref="forms.risk_profile">
+                            <div>
+                                <i class="fa fa-bolt"></i> Risk profile
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a a-disabled="isEdit" ui-sref="dashboards.dashboard_1">
+                            <div>
+                                <i class="fa fa-file-text-o"></i> Account Status
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a a-disabled="isEdit" ui-sref="dashboards.advisor">
+                            <div>
+                                <i class="fa fa-user-md"></i> My Advisor
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a  a-disabled="isEdit" ng-click="openSubscription()">
+                            <div>
+                                <i class="fa fa-user-md"></i> My subscriptions
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="text-center link-block">
+                            <a ng-click="logout()">
+                                <strong>Logout</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <!--<li>-->
+                <!--<a ng-click="$root.rightSidebar = !$root.rightSidebar">-->
+                    <!--<i class="fa fa-tasks"></i>-->
+                <!--</a>-->
+            <!--</li>-->
+        </ul>
+
+    </nav>
+</div>

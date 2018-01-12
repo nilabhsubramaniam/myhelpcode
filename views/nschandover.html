@@ -1,0 +1,38 @@
+<div class="wrapper wrapper-content animated fadeIn white-bg" ng-controller="nscHandOverCtrl" data-ng-init="init();">
+    <div class="row">
+        <div class="col-lg-12">
+            <p></p>
+            <h3><strong style="color:#660a18">Step 1: You will receive an email from NSE NMF with the transaction details for your review</strong></h3>
+            <p></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p></p>
+            <h3><strong style="color:#660a18">Step 2: For approval of the transaction, you will be taken to the payment gateway of your bank to make the payment</strong></h3>
+            <p></p>
+        </div>
+    </div>
+    <div ng-if="IsSipAvailable === 'true'" class="row">
+        <div class="col-lg-12">
+            <p></p>
+            <h3><strong style="color:#660a18">Step 3: Your SIP is automatically start from next month</strong></h3>
+            <p></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p></p>
+            <h3><strong style="color:#660a18">{{dynamicStep4}} You can track your goal and portfolio performance on your dashboard once the units are allotted</strong></h3>
+            <p></p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+        <a ui-sref="dashboards.transaction-view">Check your transaction history</a>
+            </div>
+        </div>
+</div>
+
+

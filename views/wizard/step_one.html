@@ -1,0 +1,129 @@
+<fieldset>
+    <h2>Personal Information</h2>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="First Name" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.firstname">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Last Name" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : basicInfoForm.age.$invalid && basicInfoForm.age.$dirty }">
+                <label class="control-label col-sm-3" for="age" >Date Of Birth</label>
+                <div class="col-sm-7">
+                    <div class="input-group">
+                        <input name="age" id="age" type="datetime" class="form-control" ng-model="basicInfoFormData.age" view="date" auto-close="true" min-view="date" format="YYYY-MM-DD" date-time required />
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                    </div>
+                    <p ng-show="basicInfoForm.age.$invalid" class="help-block">
+                        Your date-of-birth is required
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="PAN" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.firstname">
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">KYC</label>
+                <div class="col-sm-7">
+                    <label class="checkbox-inline" for="gender_male">
+                        <input icheck id="gender_male" ng-checked="true" type="radio" name="gender" ng-model="basicInfoFormData.gender" value="male">
+                        Male
+                    </label>
+                    <label class="checkbox-inline" for="gender_female">
+                        <input icheck id="gender_female" type="radio" name="gender" ng-model="basicInfoFormData.gender" value="Yes">
+                        Female
+                    </label>
+                    <label class="checkbox-inline" for="gender_other">
+                        <input icheck id="gender_other" type="radio" name="gender" ng-model="basicInfoFormData.gender" value="other">
+                        Other
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Tax Status" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Father" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Mother's Name" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Address Line1" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Address Line 2" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="geo-location">Location</label>
+                <div class="input-group col-sm-7">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-map-marker"></i>
+                                </span>
+                    <input type="text" class="form-control" name="location" id="geo-location" placeholder="Select City" ng-model="basicInfoFormData.location" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pincode" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Mobile" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">KYC</label>
+                <div class="col-sm-7">
+                    <label class="checkbox-inline" for="gender_male">
+                        <input icheck id="gender_male" ng-checked="true" type="radio" name="gender" ng-model="basicInfoFormData.gender" value="male">
+                        Male
+                    </label>
+                    <label class="checkbox-inline" for="gender_female">
+                        <input icheck id="gender_female" type="radio" name="gender" ng-model="basicInfoFormData.gender" value="Yes">
+                        Female
+                    </label>
+                    <label class="checkbox-inline" for="gender_other">
+                        <input icheck id="gender_other" type="radio" name="gender" ng-model="basicInfoFormData.gender" value="other">
+                        Other
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Occupation" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Address Line1" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Address Line 2" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="geo-location">Location</label>
+                <div class="input-group col-sm-7">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-map-marker"></i>
+                                </span>
+                    <input type="text" class="form-control" name="location" id="geo-location" placeholder="Select City" ng-model="basicInfoFormData.location" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Country" required="" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="register.lastname">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="text-center">
+                <div style="margin-top: 20px">
+                    <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a ui-sref="forms.wizard.step_two" class="btn btn-primary">Next</a>
+</fieldset>

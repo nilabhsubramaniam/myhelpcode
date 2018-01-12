@@ -1,0 +1,462 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+       <div class="col-lg-12" ng-controller="goalInfo" data-ng-init="init()">
+            <div class="ibox">
+                <div class="ibox-content" ng-show="requestpage">
+                    <a href="">
+                        <img  class="logo-margin" width="100" height="100" src ="{{goalimagesrc}}" />
+                    </a>
+                    <h4 class = "text-center">{{goal_name}}</h4>
+                    <form class="form-horizontal" role="form" name="goalInfoForm" id="goalInfoForm" novalidate ng-submit="submitGoalInfoForm()">
+                        <div class="form-group" ng-show="goalLabel.isRequiredGoalByName" ng-class="{ 'has-error' : goalInfoForm.goalName.$invalid && goalInfoForm.goalName.$dirty }">
+                            <label class="control-label col-sm-4" for="goalName">Goal Name</label>
+                            <div class="col-sm-6">
+                               <input type="text" id="goalName" class="form-control" name="goalName" ng-model="goalInfoFormData_goalName"  placeholder="{{goalLabel.goalNamePlaecHolder}}" />
+                            </div>
+
+                        </div>
+                        <div class="form-group" ng-hide="type ==='wealthCreation' || type === 'taxPlanning'|| type === 'crorepati'" ng-class="{ 'has-error' : goalInfoForm.currentprice.$invalid && goalInfoForm.currentprice.$dirty }">
+                              <label class="control-label col-sm-4" for="currentprice">{{goalLabel.currentprice}}</label>
+                              <div class="col-sm-6">
+                                  <div ng-class="type ==='contingency' ? 'input-group' : ''">
+                                    <span class="btn btn-default input-group-addon" ng-show="type ==='contingency'"  tooltip-placement="bottom" uib-tooltip="Monthly living expenses(including children related expenses) and EMIs but excluding discretionary expenses such as travel,shopping,eating out etc." >
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                      <input type="number" id="currentprice" class="form-control" name="currentprice"
+                                        ng-model="goalInfoFormData_currentprice"
+                                        placeholder="{{goalLabel.currentPricePlaecHolder}}"
+                                        ng-required="currentCostRequired()"
+                                        ng-pattern="/^[0-9\s]*$/" min="12000" max="1000000000" step="100000"/>
+                                  </div>
+                                  <span ng-hide="goalInfoForm.currentprice.$invalid && goalInfoForm.currentprice.$dirty" class="help-block">{{currentpriceinwords}}</span>
+                                 <div ng-show="goalInfoForm.currentprice.$invalid && goalInfoForm.currentprice.$dirty">
+                                      <p ng-show="goalInfoForm.currentprice.$error.required" class="help-block">
+                                            Current cost cannot be nil
+                                      </p>
+                                     <p ng-show="goalInfoForm.currentprice.$error.min" class="help-block">
+                                        Current cost should not be less than 12 k
+                                     </p>
+                                     <p ng-show="goalInfoForm.currentprice.$error.max" class="help-block">
+                                         Current cost should be less than hundred crore
+                                     </p>
+                                  </div>
+                              </div>
+                        </div>
+                        <!--<div class="form-group" ng-show="type === 'crorepati'" ng-class="{ 'has-error' : goalInfoForm.crorepatiCrntPrice.$invalid && goalInfoForm.crorepatiCrntPrice.$dirty }">-->
+                            <!--<label class="control-label col-sm-4" for="currentprice">{{goalLabel.currentprice}}</label>-->
+                            <!--<div class="col-sm-6">-->
+                                <!--<input type="number" id="crorepati_crntPrice" class="form-control" name="crorepatiCrntPrice"-->
+                                       <!--ng-model="goalInfoFormData_crorepaticurrentprice"-->
+                                       <!--placeholder="{{goalLabel.currentPricePlaecHolder}}"-->
+                                       <!--ng-pattern="/^[0-9\s]*$/" min="10000000" max="1000000000" step="10000000"/>-->
+                                <!--<span ng-hide="goalInfoForm.crorepatiCrntPrice.$invalid && goalInfoForm.crorepatiCrntPrice.$dirty" class="help-block">{{currentpriceinwords}}</span>-->
+                                <!--<div ng-show="goalInfoForm.crorepatiCrntPrice.$invalid && goalInfoForm.crorepatiCrntPrice.$dirty">-->
+                                    <!--<p ng-show="goalInfoForm.crorepatiCrntPrice.$error.required" class="help-block">-->
+                                        <!--Current Price-->
+                                    <!--</p>-->
+                                    <!--<p ng-show="goalInfoForm.crorepatiCrntPrice.$error.min" class="help-block">-->
+                                        <!--Current price should not be less than 1 crore-->
+                                    <!--</p>-->
+                                    <!--<p ng-show="goalInfoForm.crorepatiCrntPrice.$error.max" class="help-block">-->
+                                        <!--Current price should be less than hundred crore-->
+                                    <!--</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div ng-show="type==='crorepati'" class="form-group">
+                            <label class="control-label col-sm-4" >{{goalLabel.currentprice}}</label>
+                            <div class="col-sm-6">
+                                <rzslider rz-slider-model="crorepatiSliderOptions.value"
+                                          rz-slider-options="crorepatiSliderOptions.options"></rzslider>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-show="type === 'taxPlanning'" ng-class="{ 'has-error' : goalInfoForm.taxCurrentprice.$invalid && goalInfoForm.taxCurrentprice.$dirty }">
+                            <label class="control-label col-sm-4" for="taxCurrentprice">{{goalLabel.currentprice}}</label>
+                            <div ng-class="type === 'taxPlanning' ? 'col-sm-5' : 'col-sm-6'">
+                                <input type="number" id="taxCurrentprice" class="form-control" name="taxCurrentprice"
+                                       ng-model="goalInfoFormData_taxcurrentprice"
+                                       ng-required="type === 'taxPlanning'"
+                                       placeholder="{{goalLabel.currentPricePlaecHolder}}"
+                                       ng-pattern="/^[0-9\s]*$/" min="0" max="150000" step="10000"/>
+                                <span ng-hide="goalInfoForm.taxCurrentprice.$invalid && goalInfoForm.taxCurrentprice.$dirty" class="help-block">{{taxcurrentpriceinwords}}</span>
+                                <div ng-show="goalInfoForm.taxCurrentprice.$invalid && goalInfoForm.taxCurrentprice.$dirty">
+                                    <p ng-show="goalInfoForm.taxCurrentprice.$error.required" class="help-block">
+                                        Please enter 0 in case have not made any investments so far
+                                    </p>
+                                    <p ng-show="goalInfoForm.taxCurrentprice.$error.max" class="help-block">
+                                        Claim should be less than One Lakh Fifty Thousand
+                                    </p>
+                                </div>
+                            </div>
+                            <div ng-if="type === 'taxPlanning'" class="col-sm-1"><a class="btn btn-sm btn-primary" ng-click="taxCalculation()"><strong>Claim Breakup</strong></a></div>
+                        </div>
+
+                        <!-- Wealth Creation-->
+                        <div ng-show="type ==='wealthCreation'">
+                            <div class="form-group"  ng-class="{ 'has-error' : goalInfoForm.investibleAmtMonth.$invalid && goalInfoForm.investibleAmtMonth.$dirty }">
+                                <label class="control-label col-sm-4">{{goalLabel.investibleAmtMonth}}</label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="wealthCreation" class="form-control"
+                                           name="investibleAmtMonth" ng-model="goalInfoFormData_sip"
+                                           placeholder="{{goalLabel.investibleAmtMonthplaceholder}}"
+                                           ng-required="type ==='wealthCreation'"
+                                           ng-pattern="/^[0-9\s]*$/" min="1000" max="1000000000" step="100000"/>
+                                    <span ng-hide="goalInfoForm.investibleAmtMonth.$invalid && goalInfoForm.investibleAmtMonth.$dirty" class="help-block">{{investibleamntinwords}}</span>
+                                    <div ng-show="goalInfoForm.investibleAmtMonth.$invalid && goalInfoForm.investibleAmtMonth.$dirty">
+                                        <p ng-show="goalInfoForm.investibleAmtMonth.$error.required" class="help-block">
+                                            Investible amount per month is required
+                                        </p>
+                                        <p ng-show="goalInfoForm.investibleAmtMonth.$error.min" class="help-block">
+                                            Investible amount per month should not be less than one thousand
+                                        </p>
+                                        <p ng-show="goalInfoForm.investibleAmtMonth.$error.max" class="help-block">
+                                            Investible amount per month should be less than hundred crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">{{goalLabel.investibleAmtLumsum}}</label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="investibleAmtLumsum" class="form-control" name="investibleAmtLumsum"
+                                           ng-model="goalInfoFormData_lumpsum"
+                                           placeholder="{{goalLabel.investibleAmtLumsumplaceholder}}" ng-pattern="/^[0-9\s]*$/"  max="100000000"/>
+                                    <span ng-hide="goalInfoForm.investibleAmtLumsum.$invalid && goalInfoForm.investibleAmtLumsum.$dirty" class="help-block">{{investibleamntlumpinwords}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div ng-hide="isContingency() || type === 'taxPlanning'" class="form-group" ng-class="{ 'has-error' : goalInfoForm.year.$invalid && goalInfoForm.year.$dirty }">
+                              <label class="control-label col-sm-4" for="year">{{goalLabel.year}}</label>
+                              <div class="col-sm-6">
+                                  <div ion-range-slider range-options="yearSliderOptions"></div>
+                              </div>
+                        </div>  -->
+                        <div ng-hide="isContingency() || type === 'taxPlanning'" class="form-group">
+                            <label class="control-label col-sm-4" >{{goalLabel.year}}</label>
+                            <div class="col-sm-6">
+                                <rzslider rz-slider-model="yearSliderOptions.value"
+                                          rz-slider-options="yearSliderOptions.options"></rzslider>
+                            </div>
+                        </div>
+                        <!--<div ng-show="isContingency()" class="form-group" ng-class="{ 'has-error' : goalInfoForm.year.$invalid && goalInfoForm.year.$dirty }">
+                            <label class="control-label col-sm-4">{{goalLabel.year}}</label>
+                            <div class="col-sm-6">
+                                <div ion-range-slider range-options="monthSliderOptions"></div>
+                            </div>
+                        </div> -->
+                        <div ng-show="isContingency()" class="form-group">
+                            <label class="control-label col-sm-4" >{{goalLabel.year}}</label>
+                            <div class="col-sm-6">
+                                <rzslider rz-slider-model="monthSliderOptions.value"
+                                          rz-slider-options="monthSliderOptions.options"></rzslider>
+                            </div>
+                        </div>
+                        <div ng-show="isLoanCheckRequired()" class="form-group">
+                            <label class="control-label col-sm-4">Do you wish to take a loan to fulfil this goal?</label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="loan_yes">
+                                    <input icheck id="loan_yes" type="radio" name="loanpercentage" ng-model="isLoanPercentRequired" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="loan_no">
+                                    <input icheck id="loan_no" type="radio" ng-checked="true" name="loanpercentage" ng-model="isLoanPercentRequired" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <!--<div ng-show="isLoanRequired()" class="form-group" ng-class="{ 'has-error' : goalInfoForm.loan.$invalid && goalInfoForm.loan.$dirty }">
+                              <label class="control-label col-sm-4" for="loan">{{goalLabel.percentage}}</label>
+                              <div class="col-sm-6">
+                                  <div ion-range-slider range-options="percentageSliderOptions"></div>
+                              </div>
+                        </div> -->
+                        <div ng-show="isLoanRequired()" class="form-group">
+                            <label class="control-label col-sm-4" >{{goalLabel.percentage}}</label>
+                            <div class="col-sm-6">
+                                <rzslider rz-slider-model="percentageSliderOptions.value"
+                                          rz-slider-options="percentageSliderOptions.options"></rzslider>
+                            </div>
+                        </div>
+                        <div ng-show="isContingency() || type === 'taxPlanning'" class="form-group" ng-class="{ 'has-error' : goalInfoForm.lyingamount.$invalid && goalInfoForm.lyingamount.$dirty }">
+                            <label class="control-label col-sm-4" for="lyingamount">{{goalLabel.lyingamount}}</label>
+                            <div class="col-sm-6">
+                                <div ng-class="type ==='contingency' ? 'input-group' : ''">
+                                    <span class="btn btn-default input-group-addon" ng-show="type ==='contingency'"  tooltip-placement="bottom" uib-tooltip="Average balance maintained in your savings account at any point in time. Ideal amount is one months’ expenses. " >
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                    <input type="number" ng-disabled="type === 'taxPlanning'" id="lyingamount" class="form-control" name="lyingamount" ng-model="goalInfoFormData_lyingamount" ng-required="isContingency()"  placeholder="{{goalLabel.lyingAmountPlaecHolder}}" ng-pattern="/^[0-9\s]*$/" min="0" max="1000000"/>
+                                </div>
+                                    <span ng-hide="goalInfoForm.lyingamount.$invalid && goalInfoForm.lyingamount.$dirty" class="help-block">{{lyingamountinwords}}</span>
+                                <div ng-show="goalInfoForm.lyingamount.$invalid && goalInfoForm.lyingamount.$dirty">
+                                    <p ng-show="goalInfoForm.lyingamount.$error.required" class="help-block">
+                                        Amount Lying
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="isContingency()" class="form-group">
+                            <label class="control-label col-sm-4" >{{goalLabel.achieveMonth}}</label>
+                            <div class="col-sm-6">
+                                <rzslider rz-slider-model="achieveMonthSliderOptions.value"
+                                          rz-slider-options="achieveMonthSliderOptions.options"></rzslider>
+                            </div>
+                        </div>
+                        <!-- Tax Planing-->
+                        <!--<div ng-show="type === 'taxPlanning'" class="form-group" ng-class="{ 'has-error' : goalInfoForm.monthstoinvestment.$invalid && goalInfoForm.monthstoinvestment.$dirty }">-->
+                            <!--<label class="control-label col-sm-4" for="monthstoinvestment">Months To Investment</label>-->
+                            <!--<div class="col-sm-6">-->
+                                <!--<select  id="monthstoinvestment" class="form-control" name="monthstoinvestment"-->
+                                        <!--ng-model="goalInfoFormData_monthstoinvestment"-->
+                                        <!--ng-required="type === 'taxPlanning'"-->
+                                        <!--placeholder="Months To Investment" >-->
+                                    <!--<option value=''>&#45;&#45;Select Months To Investment&#45;&#45;</option>-->
+                                    <!--<option ng-repeat="(key, value) in monthstoinvestmentList" value="{{value}}" >{{value}}</option>-->
+                                <!--</select>-->
+                                <!--<div ng-show="goalInfoForm.monthstoinvestment.$invalid && goalInfoForm.monthstoinvestment.$dirty">-->
+                                    <!--<p ng-show="goalInfoForm.monthstoinvestment.$invalid" class="help-block">-->
+                                        <!--Months To Investment is required-->
+                                    <!--</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!-- Tax Planing-->
+                        <div class="form-group" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="goalInfoForm.$invalid" type="submit" ng-disabled="goalInfoForm.$invalid"><strong>Create</strong></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="ibox float-e-margins"  ng-show="responsepage">
+                    <div class="ibox-content">
+                        <a href="">
+                            <img  class="logo-margin" width="100" height="100" src ="{{goalimagesrc}}" />
+                        </a>
+                        <div ng-hide="type === 'taxPlanning'" class="row">
+                            <div class="col-xs-3 vcenter" >
+                                <div class=" goal_box_finatwork goal_box">
+                                    <div class="info">
+                                        <h4 class="text-center">{{goalLabel.todaycost}}</h4>
+                                        <h2 class="text-center">{{getCurrentPrice(currentPrice)}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-1 vcenter">
+                                <div class="goal_border_finatwork"></div>
+                            </div>
+                            <div class="col-xs-3 vcenter">
+                                <div class="">
+                                    <div>
+                                        <h4 class="text-center">Inflated at <b style="color:#660a18"> {{inflation}} % </b> annually for  </h4>
+                                        <h4 class="text-center">the next <b style="color:#660a18"> {{tenure}} {{(type === "contingency")?'Months':'Years'}} </b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-1 vcenter">
+                                <div class="goal_border_finatwork"></div>
+                            </div>
+                            <div class="col-xs-3 vcenter">
+                                <div class="goal_box_finatwork goal_box">
+                                    <div class="info">
+                                        <h4 class="text-center">{{goalLabel.featurecost}}</h4>
+                                        <h2 class="text-center ">{{thousandseparator(futurePrice)}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row" ng-show="type === 'taxPlanning'">
+                            <div class="row text-taxplanning">
+                                <h4 class="text-center"><strong>Recommended investment in Equity Linked Savings Scheme (ELSS)</strong></h4>
+                            </div>
+                            <div class="row">
+                                <h4 class="text-center"><span class="goal_spanborder"><strong style="color:#660a18">{{thousandseparator(futurePrice)}} </strong></span></h4>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content text-center">
+                                        <div class="taxplanning-top">
+                                            <img class="image-tax-planning" src ="/assets/img/taxplaning_graph.png"  />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="isCorpusRequired()">
+                            <div class="col-sm-6">
+                                <h4 class="text-right">{{goalLabel.corpusLabel}}</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <h4 class="">
+                                    <span class="" tooltip-placement="bottom" uib-tooltip={{goalLabel.corpustooltip}}>
+                                        <i class="fa fa-info-circle font-awesome-size goal-info-margin" aria-hidden="true"></i>
+                                        <strong>
+                                            <b class="goal_spanborder " style="color:#660a18">{{thousandseparator(retCorpus)}}</b>
+                                        </strong>
+                                    </span>
+                                </h4>
+                            </div>
+                        </div>
+                        <br/>
+                        <div ng-hide="type === 'taxPlanning'" class="row">
+                            <div class="col-sm-6">
+                                <h4 class="text-right">{{goalLabel.investmentLabel}}</h4>
+                            </div>
+                            <div class="col-sm-6" >
+                                <h4 class="">
+                                    <span class="" tooltip-placement="bottom" uib-tooltip="{{goalLabel.investmenttooltip}}">
+                                        <i class="fa fa-info-circle font-awesome-size goal-info-margin" aria-hidden="true"></i>
+                                        <strong>
+                                            <b class="goal_spanborder" style="color:#660a18">{{thousandseparator(resMonthlyInvestment)}}</b>
+                                        </strong>
+                                    </span>
+                                </h4>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <button class="btn btn-sm btn-primary goal-button-margin" ng-click="back()"><strong>Back</strong></button>
+                                <button class="btn btn-sm btn-primary" ng-click="next()"><strong>Next</strong></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox float-e-margins" ng-show="setgoalpage" data-ng-init="setGoalInit()">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="img">
+                                    <img  class="logo-margin" width="100" height="100" src ="{{goalimagesrc}}" />
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="row" ng-show="type === 'home' || type === 'other' || type === 'vehicle' || type === 'marriage' || type === 'retirement' || type === 'education' || type === 'crorepati'">
+                                    <h4><strong>{{ goalName || $state.params.type}}  - {{goalLabel.accumulateText}} <span style="color:#660a18"> {{thousandseparator(accumulatedAmt)}}</span> by <span style="color:#660a18">{{accumulatedYear}} </span></strong></h4>
+                                </div>
+                                <div class="row" ng-show="type === 'taxPlanning'">
+                                    <h4><strong>{{ goalName}} - {{goalLabel.accumulateText}} <span style="color:#660a18">{{thousandseparator(accumulatedAmt)}}</span> in FY {{getFinancialYear()}} </strong></h4>
+                                </div>
+                                <div class="row" ng-show="type === 'contingency'">
+                                    <h4><strong>{{ goalName || $state.params.type}}  - {{goalLabel.accumulateText}} <span style="color:#660a18">{{thousandseparator(accumulatedAmt)}}</span> in <span style="color:#660a18">{{tenure}}</span> month </strong></h4>
+                                </div>
+                                <div class="row" ng-show="type === 'wealthCreation'">
+                                    <!--<h4><strong>{{ goalName || $state.params.type}}  - {{goalLabel.accumulateText}} {{thousandseparator(monthlyInvestment)}} per  month & {{thousandseparator(goalInfoFormData_lumpsum)}} as lumpsum until {{accumulatedYear}} </strong></h4>-->
+                                    <h4><strong>{{ goalName || $state.params.type}} - {{goalLabel.accumulateText}} <span style="color:#660a18">{{thousandseparator(lumpsumAmount)}}</span> (in lumpsum) and <span style="color:#660a18">{{thousandseparator(resMonthlyInvestment)}}</span> (in SIP) until <span style="color:#660a18">{{accumulatedYear}}</span> (Expected  future value <span style="color:#660a18">{{thousandseparator(accumulatedAmt)}} </span>) </strong></h4>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <h4 class="text-center"><strong>{{goalLabel.investmentLabel}} </strong></h4>
+                                </div>
+                                <div class="row">
+                                    <h4 class="text-center"><span class="goal_spanborder"><strong style="color:#660a18">{{thousandseparator(resMonthlyInvestment)}} </strong></span></h4>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <h4 class="goal-home-commit">I would like to commit the following amount for this goal:</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <form class="form-horizontal" role="form" name="setGoalForm" id="setGoalForm" novalidate ng-submit="submitSetGoalForm()">
+                                    <div class="form-group" ng-class="{ 'has-error' : setGoalForm.lumpsumAmount.$invalid && setGoalForm.lumpsumAmount.$dirty }">
+                                          <label class="control-label col-sm-5" for="lumpsumAmount" >Lumpsum Amount </label>
+                                          <div class="col-sm-5">
+                                              <div class="input-group">
+                                                   <span class="btn btn-default input-group-addon" tooltip-placement="left" uib-tooltip="If you wish to invest a lumpsum amount towards this goal, enter it here">
+                                                        <i class="fa fa-info"></i>
+                                                    </span>
+                                             <input type="number" id="lumpsumAmount" class="form-control" name="lumpsumAmount" ng-model="lumpsumAmount" placeholder="Lumpsum Amount" ng-pattern="/^[0-9\s]*$/" ng-minlength="1" ng-maxlength="9"/>
+                                              </div>
+                                              <span ng-hide="setGoalForm.lumpsumAmount.$invalid && setGoalForm.lumpsumAmount.$dirty" class="help-block">{{lumpsumAmountinwords}}</span>
+                                             <div ng-show="setGoalForm.lumpsumAmount.$invalid && setGoalForm.lumpsumAmount.$dirty">
+                                                  <p ng-show="setGoalForm.lumpsumAmount.$error.required" class="help-block">
+                                                        Lumpsum Amount
+                                                  </p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="form-group" ng-class="{ 'has-error' : setGoalForm.monthlyInvestment .$invalid && setGoalForm.monthlyInvestment.$dirty }">
+                                          <label class="control-label col-sm-5" for="monthlyInvestment">Monthly investment </label>
+                                          <div class="col-sm-5">
+                                              <div class="input-group">
+                                                  <span class="btn btn-default input-group-addon" tooltip-placement="top" uib-tooltip="Enter the monthly investment you wish to make for this goal">
+                                                        <i class="fa fa-info"></i>
+                                                    </span>
+                                                 <input type="number" id="monthlyInvestment" class="form-control" name="monthlyInvestment" ng-model="monthlyInvestment" placeholder="Monthly Investment" ng-pattern="/^[0-9\s]*$/" ng-minlength="1" ng-maxlength="9"/>
+                                              </div>
+                                                  <span ng-hide="setGoalForm.monthlyInvestment.$invalid && setGoalForm.monthlyInvestment.$dirty" class="help-block">{{monthlyInvestmentinwords}}</span>
+                                                 <div ng-show="setGoalForm.monthlyInvestment.$invalid && setGoalForm.monthlyInvestment.$dirty">
+                                                      <p ng-show="setGoalForm.monthlyInvestment.$error.required" class="help-block">
+                                                            Monthly Investment
+                                                      </p>
+                                                  </div>
+                                          </div>
+                                      </div>
+                                    <div class="form-group" style="text-align: right;">
+                                        <button class="btn btn-sm btn-primary" ng-disabled="setGoalForm.$invalid" type="submit" ng-disabled="setGoalForm.$invalid"><strong>Visualize my goal</strong></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content">
+                                        <div>
+                                            <c3-chart ng-attr-id="{{dynamicChartId}}" config="chart"></c3-chart>
+                                        </div>
+                                    </div>
+                                    <div ng-if="type === 'retirement'">
+                                        <h5 class = "text-center">{{goalLabel.guagenote}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-hide="isContingency()">
+                            <!--<div class="col-sm-12">
+                                <h5 class = "text-center">1) How your investments are going to grow in three different scenarios (optimistic/realistic/pessimistic) vs leaving the same amount in Bank Fixed Deposit.</h5>
+                                <h5 class = "text-center">2) Returns in Realistic scenario are calculated on the basis of your risk profile and time horizon of the goal.</h5>
+                                <h5 class = "text-center">3) The other two scenarios are 25% better (optimistic)/worse (pessimistic) to give you a fair sense of investment growth</h5>
+                            </div> -->
+                            <div class="col-sm-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h4 class = "text-center"><strong>Investment Growth Over Time  </strong><span class="areachartinfo" tooltip-placement="bottom" uib-tooltip="1) How your investments are going to grow in three different scenarios (optimistic/realistic/pessimistic) vs leaving the same amount in Bank Fixed Deposit. 2) Returns in Realistic scenario are calculated on the basis of your risk profile and time horizon of the goal. 3) The other two scenarios are 25% better (optimistic)/worse (pessimistic) to give you a fair sense of investment growth">
+                                            <i class="fa fa-info-circle tab-goaldetails font-awesome-size"></i>
+                                        </span></h4>
+                                    </div>
+                                    <div class="ibox-content text-center">
+                                        <div>
+                                             <c3-chart ng-attr-id="{{areaChartId}}" config="areachart"></c3-chart>
+                                        </div>
+                                        <div>
+                                            <h4 class = "text-center"> {{goalLabel.areachartLabel}} <strong style="color:#660a18"> {{thousandseparator(FDtoRealDiff)}}</strong></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="isContingency()">
+                            <div class="col-sm-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content text-center">
+                                        <div>
+                                            <img class="image-contingency" src ="/assets/img/contingency_graph.png"  />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <button ng-if="pageStatus === 'fromhome'" class="btn btn-sm btn-primary goal-button-margin" ng-click="backtoResponsePage()"><strong>Back</strong></button>
+                                <button class="btn btn-sm btn-primary" ng-click="setMyGoal()"><strong>Save my goal</strong></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

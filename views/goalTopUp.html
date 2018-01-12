@@ -1,0 +1,193 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12" ng-controller="goalTopUpController" data-ng-init="init()">
+            <div class="ibox">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="img">
+                                    <img  class="logo-margin" width="100" height="100" src ="{{goalimagesrc}}" />
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="row" ng-show="goalData.type === 'home' || goalData.type === 'other' || goalData.type === 'vehicle' || goalData.type === 'marriage' || goalData.type === 'retirement' || goalData.type === 'education' || goalData.type === 'crorepati'">
+                                    <h4><strong>{{ goalData.name || goalData.type}}  - {{accumulateText}} <span style="color:#660a18"> {{thousandseparator(accumulatedAmt)}}</span> by <span style="color:#660a18">{{goalData.maturity}} </span></strong></h4>
+                                </div>
+                                <div class="row" ng-show="goalData.type === 'taxPlanning'">
+                                    <h4><strong>{{goalData.name}} - {{accumulateText}} <span style="color:#660a18">{{thousandseparator(accumulatedAmt)}}</span> in FY {{getFinancialYear()}} </strong></h4>
+                                </div>
+                                <div class="row" ng-show="goalData.type === 'contingency'">
+                                    <h4><strong>{{ goalData.name || goalData.type}}  - {{accumulateText}} <span style="color:#660a18">{{thousandseparator(accumulatedAmt)}}</span> in <span style="color:#660a18">{{goalData.tenure}}</span> month </strong></h4>
+                                </div>
+                                <div class="row" ng-show="goalData.type === 'wealthCreation'">
+                                    <h4><strong>{{ goalData.name || goalData.type}}  - {{accumulateText}} </strong></h4>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row">
+                                    <h4><b>Existing investment</b></h4>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form class="form-horizontal" role="form" name="setGoalForm" id="setGoalForm">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2">
+                                        <label>Lumpsum</label>
+                                    </div>
+                                    <div class="col-sm-2" style="margin-left:-22px">
+                                        <label>Ongoing SIP</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label>Market Value</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>No of months passed</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p style="margin-left:15px"><b class="goal_spanborder " style="color:#660a18">{{goalData.lumpsum}}</b>
+                                    </p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p><b class="goal_spanborder " style="color:#660a18">{{goalData.sip}}</b></p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p><b class="goal_spanborder " style="color:#660a18">{{goalData.marketValue}}</b></p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p><b class="goal_spanborder " style="color:#660a18">{{goalData.monthsPassed}}</b></p>
+                                </div>
+                                <div class="col-sm-3 topUpGauge">
+                                    <c3-chart ng-attr-id="{{dynamicChartId}}" config="chart"></c3-chart>
+                                    <div ng-if="type === 'retirement'">
+                                        <h5 class="text-center">{{goalLabel.guagenote}}</h5>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <hr>
+                        <div class="col-sm-12">
+                            <h4><b>Top up</b></h4>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <form class="form-horizontal" role="form" name="topUpGoal" id="topUpGoalInfo" novalidate ng-submit="visualizeGoalTopUp()">
+                                    <div class="form-group" ng-class="{ 'has-error' : topUpGoal.topUpLumpsumAmount.$invalid && topUpGoal.topUpLumpsumAmount.$dirty }">
+                                        <label class="control-label col-sm-4" for="topUpLumpsumAmount" >Lumpsum Amount </label>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                   <span class="btn btn-default input-group-addon" tooltip-placement="left" uib-tooltip="If you wish to invest a lumpsum amount towards this goal, enter it here">
+                                                        <i class="fa fa-info"></i>
+                                                    </span>
+                                                <input type="number" id="topUpLumpsumAmount" class="form-control" name="topUpLumpsumAmount" ng-model="lumpSumTopUp" placeholder="Lumpsum Amount" ng-pattern="/^[0-9\s]*$/" ng-minlength="1" ng-maxlength="9"/>
+                                            </div>
+                                            <span ng-hide="topUpGoal.topUpLumpsumAmount.$invalid && topUpGoal.topUpLumpsumAmount.$dirty" class="help-block">{{lumsumTopUpInWords}}</span>
+                                            <div ng-show="topUpGoal.topUpLumpsumAmount.$invalid && topUpGoal.topUpLumpsumAmount.$dirty">
+                                                <p ng-show="topUpGoal.topUpLumpsumAmount.$error.required" class="help-block">
+                                                    Lumpsum
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : topUpGoal.monthlyInvestment .$invalid && topUpGoal.monthlyInvestment.$dirty }" ng-hide ="goalData.balMonths < 6">
+                                        <label class="control-label col-sm-4" for="topUpMonthlyInvestment">Monthly investment </label>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                  <span class="btn btn-default input-group-addon" tooltip-placement="top" uib-tooltip="Enter the monthly investment you wish to make for this goal">
+                                                        <i class="fa fa-info"></i>
+                                                    </span>
+                                                <input type="number" id="topUpMonthlyInvestment" class="form-control" name="topUpMonthlyInvestment" ng-model="monthlyTopUp" placeholder="Monthly Investment"
+                                                       ng-pattern="/^[0-9\s]*$/"
+                                                       ng-minlength="1"
+                                                       ng-maxlength="9"
+                                                       />
+                                            </div>
+                                            <span ng-hide="topUpGoal.monthlyInvestment.$invalid && topUpGoal.monthlyInvestment.$dirty" class="help-block">{{sipTopUpInWords}}</span>
+                                            <div ng-show="topUpGoal.monthlyInvestment.$invalid && topUpGoal.monthlyInvestment.$dirty">
+                                                <p ng-show="topUpGoal.monthlyInvestment.$error.required" class="help-block">
+                                                    SIP
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : topUpGoal.balancedYear .$invalid && topUpGoal.balancedYear.$dirty }">
+                                        <label class="control-label col-sm-4 balanceYear" for="topUpMonthlyInvestment"> Balance years left</label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-12" style="margin-left:-14px">
+                                                <p>
+                                                    <b class="goal_spanborder topUpBalanceYear" style="color:#660a18">{{balanceYear}}</b>
+                                                        &nbsp <b style="color:#660a18">Year/s</b>
+                                                        &nbsp   <b style="color:#660a18;">&</b>
+                                                    <b class="goal_spanborder " style="color:#660a18;margin-left:4px">{{balanceMonth}} </b>
+                                                        &nbsp  <b style="color:#660a18">Month/s</b>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group" style="text-align: right;">
+                                        <button class="btn btn-sm btn-primary" ng-disabled="topUpGoal.$invalid" type="submit"><strong>Visualize my goal</strong></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Gauge Display -->
+                            <div class="col-sm-5">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content">
+                                        <div>
+                                            <c3-chart ng-attr-id="{{topUpDynamicChartID}}" config="topUpchart"></c3-chart>
+                                        </div>
+                                    </div>
+                                    <div ng-if="type === 'retirement'">
+                                        <h5 class = "text-center">{{goalLabel.guagenote}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /End of Gauge Display -->
+                        </div>
+                        <!-- /End of Top Up goal-->
+                        <div class="row" ng-hide="goalData.type === 'contingency'">
+                            <div class="col-sm-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h4 class = "text-center"><strong>Investment Growth Over Time  </strong><span class="areachartinfo" tooltip-placement="bottom" uib-tooltip="1) How your investments are going to grow in three different scenarios (optimistic/realistic/pessimistic) vs leaving the same amount in Bank Fixed Deposit. 2) Returns in Realistic scenario are calculated on the basis of your risk profile and time horizon of the goal. 3) The other two scenarios are 25% better (optimistic)/worse (pessimistic) to give you a fair sense of investment growth">
+                                            <i class="fa fa-info-circle tab-goaldetails font-awesome-size"></i>
+                                        </span></h4>
+                                    </div>
+                                    <div class="ibox-content text-center">
+                                        <div>
+                                            <c3-chart ng-attr-id="{{areaChartId}}" config="areaChart"></c3-chart>
+                                        </div>
+                                        <div>
+                                            <h4 class = "text-center"> {{areachartLabel}} <strong style="color:#660a18"> {{thousandseparator(FDtoRealDiff)}}</strong></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="goalData.type === 'contingency'">
+                            <div class="col-sm-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content text-center">
+                                        <div>
+                                            <img class="image-contingency" src ="/assets/img/contingency_graph.png"  />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <button class="btn btn-sm btn-primary" ng-click="setGoalTopUp()"><strong>Commit</strong></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

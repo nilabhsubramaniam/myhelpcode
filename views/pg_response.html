@@ -1,0 +1,20 @@
+<div class="wrapper wrapper-content animated fadeIn white-bg" ng-controller="pgResponseController" data-ng-init="init()">
+    <div class="row">
+        <div class="col-lg-12"  ng-show="trxnSuccess">
+            <p></p>
+            <h3><strong style="color:#660a18"><span><h1>Success!</h1></span>Thank you for being with us</strong></h3>
+        </div>
+        <div class="col-lg-12"  ng-show="!trxnSuccess">
+            <h3>
+                <strong style="color:#660a18">
+                    <h1>Failed!</h1>We didn't expect this. Still if you are facing this issue <b>call us</b>. We are happy to help you
+                </strong>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <a ui-sref="forms.subscription.payment-history">Check your payment history</a>
+        </div>
+    </div>
+</div>

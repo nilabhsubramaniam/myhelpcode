@@ -1,0 +1,8 @@
+{
+  "businessIncome": "Business Income",
+  "rentalIncome": "Rental Income",
+  "investmentIncome": "Investment Income",
+  "freelancingIncome": "Freelancing Income",
+  "partTimeJobIncome": "Income from part time job",
+  "salaryIncome": "Salary Income"
+}

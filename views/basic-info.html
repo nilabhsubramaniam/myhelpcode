@@ -1,0 +1,150 @@
+<div class="wrapper wrapper-content animated fadeInRight" id="basicInfo">
+    <div class="row">
+       <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="basicInfo" data-ng-init="init()">
+                    <h4 class="center-adjustment">Help us know a little about you</h4>
+                    <form class="form-horizontal"  role="form" name="basicInfoForm" id="basicInfoForm" novalidate ng-submit="submitBasicInfoForm()">
+                        <div class="form-group required"  ng-class="{ 'has-error' : basicInfoForm.dob.$invalid && basicInfoForm.dob.$dirty }">
+                            <label class="control-label col-sm-4" for="dob" >Date Of Birth</label>
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                <span class="btn btn-default input-group-addon" tooltip-placement="top" uib-tooltip="Investments in the name of minor (<18 yrs) not allowed" >
+                                     <i class="fa fa-info"></i>
+                                </span>
+                                    <input name="dob" id="dob" type="datetime" class="form-control" ng-model="basicInfoFormData.dob" view="date" auto-close="true" min-view="date" format="YYYY-MM-DD" date-time required />
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                                <p ng-show="basicInfoForm.dob.$invalid" class="help-block">
+                                   Your date of birth is required
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-4">Gender</label>
+                            <div class="col-sm-7">
+                                <label class="checkbox-inline" for="gender_male">
+                                    <input icheck id="gender_male" ng-checked="true" type="radio" name="gender" ng-model="basicInfoFormData.gender" value="male">
+                                    Male
+                                </label>
+                                <label class="checkbox-inline" for="gender_female">
+                                    <input icheck id="gender_female" type="radio" name="gender" ng-model="basicInfoFormData.gender" value="female">
+                                    Female
+                                </label>
+                                <label class="checkbox-inline" for="gender_transgender">
+                                    <input icheck id="gender_transgender" type="radio" name="gender" ng-model="basicInfoFormData.gender" value="transgender">
+                                    Transgender
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-4">Status</label>
+                            <div class="col-sm-7">
+                                <label class="checkbox-inline" for="NRE_no">
+                                    <input icheck type="radio" id="NRE_no" ng-checked="true" name="NRE" ng-model="basicInfoFormData.NRI" value="RI">
+                                    Resident
+                                </label>
+                                <label class="checkbox-inline" for="NRE_yes">
+                                    <input icheck type="radio" id="NRE_yes" name="NRE" ng-model="basicInfoFormData.NRI" value="NRI">
+                                    Non Resident
+                                </label>
+                                <label class="checkbox-inline" for="NRE_poi">
+                                    <input icheck type="radio"  id="NRE_poi" name="NRE" ng-model="basicInfoFormData.NRI" value="PIO">
+                                    Person of Indian Origin
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : basicInfoForm.location.$invalid && basicInfoForm.location.$dirty }">
+                            <label class="control-label col-sm-4" for="geo-location">City</label>
+                            <div class=" col-sm-5">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                        <i class="fa fa-map-marker"></i>
+                                    </span>
+                                <input type="text" class="form-control" name="location" id="geo-location" placeholder="Select City" ng-model="basicInfoFormData.location" required />
+                                </div>
+                                <div ng-show="basicInfoForm.location.$invalid && basicInfoForm.location.$dirty">
+                                    <p ng-show="basicInfoForm.location.$error.required" class="help-block">
+                                        Location is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required" >
+                            <label class="control-label col-sm-4">Marital Status</label>
+                            <div class="col-sm-7">
+                                <label class="checkbox-inline" for="is_married_no">
+                                    <input icheck id="is_married_no" type="radio" ng-checked="true" name="is_married" ng-model="basicInfoFormData.is_married" value="single">
+                                    Single
+                                </label>
+                                <label class="checkbox-inline" for="is_married_yes">
+                                    <input icheck id="is_married_yes" type="radio" name="is_married" ng-model="basicInfoFormData.is_married" value="married">
+                                   Married
+                                </label>
+                                <label class="checkbox-inline" for="other">
+                                    <input icheck id="other" type="radio" name="is_married" ng-model="basicInfoFormData.is_married" value="other">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="basicInfoFormData.is_married == 'married'">
+                            <div class="form-group required"  ng-class="{ 'has-error' : basicInfoForm.spouse_age.$invalid && basicInfoForm.spouse_age.$dirty }" >
+                                <label class="control-label col-sm-4" for="spouse_age" >Spouse Age</label>
+                                <div class="col-sm-5">
+                                   <input type="text" id="spouse_age" class="form-control touchSpin" name="spouse_age"
+                                          ng-pattern="/^[0-9]{1,3}?$/"
+                                          placeholder="Enter spouse age "
+                                          ng-model="basicInfoFormData.spouse_age"
+                                          ng-required="basicInfoFormData.is_married == '1'"/>
+                                    <div ng-show="basicInfoForm.spouse_age.$invalid && basicInfoForm.spouse_age.$dirty">
+                                        <p ng-show="basicInfoForm.spouse_age.$error.required" class="help-block">
+                                            Spouse age is required
+                                        </p>
+                                        <p ng-show="basicInfoForm.spouse_age.$error.pattern" class="help-block">
+                                            Enter age in digits only
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group " ng-class="{ 'has-error' : basicInfoForm.children.$invalid && basicInfoForm.children.$dirty }" >
+                            <label class="control-label col-sm-4" for="children" >No. Of Children</label>
+                            <div class="col-sm-5">
+                                <input type="text" id="children" class="form-control touchSpin" name="children" touch-spin spin-options="spinOption1"
+                                       ng-model="basicInfoFormData.children"
+                                />
+                                <p ng-show="basicInfoForm.children.$invalid" class="help-block">
+                                    Number of children is required
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : basicInfoForm.dependents.$invalid && basicInfoForm.dependents.$dirty }">
+                            <span class="control-label col-sm-4" tooltip-placement="bottom" uib-tooltip="Family members (including parents) who are dependent upon you financially">
+                             <label  for="dependents">No. Of Dependents</label>
+                                    <i class="fa fa-info-circle"></i>
+                            </span>
+                            <div class="col-sm-5">
+                                <input  id="dependents" type="text" class="form-control touchSpin"  name="dependents"   touch-spin spin-options="spinOption1"
+                                        ng-model="basicInfoFormData.dependents" required >
+                                <p ng-show="basicInfoForm.dependents.$invalid" class="help-block">
+                                    Number of dependents is required
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group required" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="basicInfoForm.$invalid" type="submit" ng-disabled="basicInfoForm.$invalid"><strong>{{submitText}}</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group{
+        margin-top:20px  !important;
+    }
+</style>

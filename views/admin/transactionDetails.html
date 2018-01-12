@@ -1,0 +1,28 @@
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="formWizardCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content wizard">
+                    <div class="steps clearfix">
+                        <ul>
+                            <li ui-sref-active="current">
+                                <a ui-sref=".goal-status" class="btn-default">Goal status</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a ui-sref=".transaction-status" class="btn-default">Transaction status</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="wizard">
+                        <div>
+                            <form name="operationsDetails" class="p-lg">
+                                <!-- our nested state views will be injected here -->
+                                <div id="form-views" ui-view></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

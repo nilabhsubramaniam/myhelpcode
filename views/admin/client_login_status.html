@@ -1,0 +1,32 @@
+<div class="row" ng-controller="clientsCtrl">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>UserName</th>
+                            <th>User Id</th>
+                            <th>Mobile Verified</th>
+                            <th>Attempts</th>
+                            <th>Last Login</th>
+                            <th>Created On</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in users">
+                            <td>{{user.username}}</td>
+                            <td>{{user._userid}}</td>
+                            <td>{{user.is_mobile_verified}}</td>
+                            <td>{{user.attempts}}</td>
+                            <td>{{user.last}}</td>
+                            <td>{{user.createdAt }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

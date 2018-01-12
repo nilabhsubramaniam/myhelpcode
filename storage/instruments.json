@@ -1,0 +1,13 @@
+{
+  "ppf": "Public Provident Fund",
+  "fd": "Fixed Deposit",
+  "recurringDeposit": "Recurring Deposit",
+  "sukanyaSamriddhiScheme": "Sukanya Samdriddhi Scheme",
+  "nsc-KVP": "National Savings Certificate/Kishan Vikas Patra",
+  "bondDebenture-cd": "Bond/Debenture/Company Deposit",
+  "gold": "Gold",
+  "mutualFund":"Mutual Fund",
+  "shares":"Shares",
+  "realEstate":"Real Estate",
+  "others":"Others"
+}

@@ -1,0 +1,40 @@
+<!--=== Content Part ===-->
+<div class="container-fluid">
+   <div class="row equal-height-columns">
+       <div class="col-md-6 col-sm-6 hidden-xs image-block equal-height-column" style="padding: 0px;">
+           <img src = "/assets/img/sign_up.jpg" style="width: 100%">
+       </div>
+      <div class="col-md-6 col-sm-6 form-block equal-height-column">
+         <a href="/index.php">
+         <img src="assets/img/logo.png" alt="" style="width:100px;height:100px;margin-top:20px">
+         </a>
+            <h3 style="margin-top:30px">Register to Finatwork</h3>
+        <p>Enter OTP sent to your mobile.</p>
+        <form class="m-t" role="form" name="otp" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : otp.pin.$invalid && otp.pin.$dirty }">
+                <div class="input-group">
+                    <span class="input-group-addon ">
+                        <i class="icon-pencil " aria-hidden="true"></i>
+                    </span>
+                    <input type="password" class="form-control" name="pin" placeholder="OTP" required ng-pattern="/^[0-9]{1,7}$/" ng-model="register.otp" ng-minlength="5">
+                </div>
+                    <div ng-show="otp.pin.$invalid && otp.pin.$dirty">
+                  <p ng-show="otp.pin.$error.required" class="help-block">
+                    OTP is required
+                  </p>
+                  <p ng-show="otp.pin.$error.pattern" class="help-block">
+                    Invalid OTP
+                  </p>
+                  <p ng-show="otp.pin.$error.minlength" class="help-block">
+                      OTP should be atleast 5 digits
+                  </p>
+                </div>
+            </div>
+            <button type="submit" ng-disabled="otp.$invalid" class="btn btn-primary block full-width m-b" ng-click="doRegisterOTP()">Sign Up</button>
+        </form>
+         <p class="m-t"> <small>Copyright &copy 2011-17 Fin@work</small> </p>
+      </div>
+   </div>
+</div>
+<!--/container-->
+<!--=== End Content Part ===-->

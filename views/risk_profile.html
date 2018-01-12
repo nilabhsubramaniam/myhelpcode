@@ -1,0 +1,44 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Risk Profile</h2>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="riskProfileCtrl" data-ng-init="init()">
+    <div class="row">
+        <uib-progressbar class="progress-striped active" max="150" value="dynamic" type="success"></uib-progressbar>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h4><b>Please answer the following questions by selecting only one response to each question. There are no right or wrong answers; please follow your instinct to select what appeals you the most</b></h4>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+                        <div class="form-group">
+                            <span>{{qno+1}}.</span> <span>{{question_text}}</span>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <div ng-repeat="ans in answers">
+                                    <label>
+                                        <input type="radio" checked="" value="{{ $index }}" id="optionsRadios"
+                                               name="optionsRadios" ng-model="$parent.optionsRadios"> {{ans.option}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit"  ng-click="submitQuestion(question_text,qno)">Next</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

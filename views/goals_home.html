@@ -1,0 +1,14 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class = "ibox-content" ng-controller="goalsHome" data-ng-init="init();">
+        <div class="row">
+              <div class = "col-lg-3 col-md-3 col-xs-6 thumb" ng-repeat="goal in goals">
+                  <a href="" ng-click="goalDetails(goal.type)" >
+                    <div class = "" >
+                       <img class="img-responsive"  src ="{{goal.src}}" alt = "{{goal.name}}">
+                    </div>
+                      </a>
+                  </a>
+               </div>
+        </div>
+    </div>
+</div>

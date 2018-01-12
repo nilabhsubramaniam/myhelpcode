@@ -1,0 +1,36 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="formWizardCtrl" data-ng-init="init()">
+                    <div class="wizard ">
+                        <div class="steps clearfix personalWorkMargin">
+                            <ul>
+                                <li ui-sref-active="current" class="current" style="width:16%">
+                                    <a ui-sref=".existingGoal" class="btn-default touchSpin">Existing Goals</a>
+                                </li>
+                                <li ui-sref-active="current" class="current" style="width:16%">
+                                    <a ui-sref=".impGoal" class="btn-default touchSpin ">Important Goals</a>
+                                </li>
+                                <li ui-sref-active="current" class="current" style="width:16%">
+                                    <a ui-sref=".additionalGoal" class="btn-default touchSpin ">Additional Goals</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="">
+                            <div class="content">
+
+                                <form name="finGpsPersonalForm">
+
+                                    <!-- our nested state views will be injected here -->
+                                    <div id="form-views" ui-view></div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

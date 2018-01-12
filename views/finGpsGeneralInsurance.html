@@ -1,0 +1,324 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="finGpsGeneralInsuranceCtrl" data-ng-init="init()">
+                    <form class="form-horizontal" role="form" name="finGpsGeneralInsurance" id="generalInsuranceForm"
+                          novalidate ng-submit="submitGeneralInsurance()">
+                        <h3>Do you have the following insurances?</h3>
+                        <!-- Private Health Insurance Policy-->
+                        <div class="form-group required">
+                            <label class="control-label col-sm-5"> Private Health Insurance Policy</label>
+                            <div class="col-sm-5">
+                                <label class="checkbox-inline" for="pvtHealthInsurance_yes">
+                                    <input icheck type="radio" id="pvtHealthInsurance_yes" name="pvtHealthInsurance"
+                                           ng-model="generalInsuranceForm.pvtHealthInsurance" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="pvtHealthInsurance_no">
+                                    <input icheck type="radio" id="pvtHealthInsurance_no" name="pvtHealthInsurance"
+                                           ng-model="generalInsuranceForm.pvtHealthInsurance" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Selction on Yes-->
+                        <div ng-show="generalInsuranceForm.pvtHealthInsurance =='yes'">
+                            <!-- Self Insurance-->
+                            <div class="form-group"
+                                 ng-class="{'has-error':finGpsGeneralInsurance.selfInsurance.$invalid && finGpsGeneralInsurance.selfInsurance.$dirty}">
+                                <label class="control-label col-sm-5" for="selfInsurance">Self</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="selfInsurance" class="form-control" name="selfInsurance"
+                                           ng-model="generalInsuranceForm.pvtAmt"
+                                           placeholder="Amount of cover"
+                                           min="100"
+                                           max="500000000"
+                                    >
+                                    <div ng-show="finGpsGeneralInsurance.selfInsurance.$invalid && finGpsGeneralInsurance.selfInsurance.$dirty">
+
+                                        <p ng-show="finGpsGeneralInsurance.selfInsurance.$error.min" class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="finGpsGeneralInsurance.selfInsurance.$error.max" class="help-block">
+                                            Amount cannot exceed 50 crores
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!---Spouse Insurance-->
+                            <div class="form-group"
+                                 ng-class="{'has-error':finGpsGeneralInsurance.spouseInsurance.$invalid && finGpsGeneralInsurance.spouseInsurance.$dirty}">
+                                <label class="control-label col-sm-5" for="spouseInsurance">Spouse</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="spouseInsurance" class="form-control"
+                                           name="spouseInsurance"
+                                           placeholder="Amount of cover"
+                                           ng-model="generalInsuranceForm.pvtSpouseAmt"
+                                           min="100"
+                                           max="500000000"
+                                    >
+                                    <div ng-show="finGpsGeneralInsurance.spouseInsurance.$invalid && finGpsGeneralInsurance.spouseInsurance.$dirty">
+
+                                        <p ng-show="finGpsGeneralInsurance.spouseInsurance.$error.min"
+                                           class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="finGpsGeneralInsurance.spouseInsurance.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 50 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Parents insurance-->
+                            <div class="form-group"
+                                 ng-class="{'has-error':finGpsGeneralInsurance.parentsInsurance.$invalid && finGpsGeneralInsurance.parentsInsurance.$dirty}">
+                                <label class="control-label col-sm-5" for="parentsInsurance">Parents</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="parentsInsurance" class="form-control"
+                                           name="parentsInsurance"
+                                           placeholder="Amount of cover"
+                                           ng-model="generalInsuranceForm.pvtParentsAmt"
+                                           min="100"
+                                           max="500000000"
+                                    >
+                                    <div ng-show="finGpsGeneralInsurance.parentsInsurance.$invalid && finGpsGeneralInsurance.parentsInsurance.$dirty">
+
+                                        <p ng-show="finGpsGeneralInsurance.parentsInsurance.$error.min"
+                                           class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="finGpsGeneralInsurance.parentsInsurance.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 50 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Critical Illness Policy-->
+                        <div class="form-group required">
+                            <label class="control-label col-sm-5">Critical Illness Policy</label>
+                            <div class="col-sm-5">
+                                <label class="checkbox-inline" for="criticalIllnessPolicy_yes">
+                                    <input icheck type="radio" id="criticalIllnessPolicy_yes"
+                                           name="criticalIllnessPolicy"
+                                           ng-model="generalInsuranceForm.criticalIllnessPolicy" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="criticalIllnessPolicy_no">
+                                    <input icheck type="radio" id="criticalIllnessPolicy_no"
+                                           name="criticalIllnessPolicy"
+                                           ng-model="generalInsuranceForm.criticalIllnessPolicy" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Selection on Yes-->
+                        <div ng-show="generalInsuranceForm.criticalIllnessPolicy =='yes'">
+                            <!-- Self Insurance-->
+                            <div class="form-group"
+                                 ng-class="{'has-error':finGpsGeneralInsurance.selfIllnessPolicy.$invalid && finGpsGeneralInsurance.selfIllnessPolicy.$dirty}">
+                                <label class="control-label col-sm-5" for="selfIllnessPolicy">Self</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="selfIllnessPolicy" class="form-control"
+                                           name="selfIllnessPolicy"
+                                           placeholder="Amount of cover"
+                                           ng-model="generalInsuranceForm.criticalAmt"
+                                           min="100"
+                                           max="500000000"
+                                    >
+                                    <div ng-show="finGpsGeneralInsurance.selfIllnessPolicy.$invalid && finGpsGeneralInsurance.selfIllnessPolicy.$dirty">
+
+                                        <p ng-show="finGpsGeneralInsurance.selfIllnessPolicy.$error.min"
+                                           class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="finGpsGeneralInsurance.selfIllnessPolicy.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 50 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!---Spouse Insurance-->
+                            <div class="form-group"
+                                 ng-class="{'has-error':finGpsGeneralInsurance.spouseIllnessPolicy.$invalid && finGpsGeneralInsurance.spouseIllnessPolicy.$dirty}">
+                                <label class="control-label col-sm-5" for="spouseIllnessPolicy">Spouse</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="spouseIllnessPolicy" class="form-control"
+                                           name="spouseIllnessPolicy"
+                                           placeholder="Amount of cover"
+                                           ng-model="generalInsuranceForm.criticalSpouseAmt"
+                                           min="100"
+                                           max="500000000"
+                                    >
+                                    <div ng-show="finGpsGeneralInsurance.spouseIllnessPolicy.$invalid && finGpsGeneralInsurance.spouseIllnessPolicy.$dirty">
+
+                                        <p ng-show="finGpsGeneralInsurance.spouseIllnessPolicy.$error.min"
+                                           class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="finGpsGeneralInsurance.spouseIllnessPolicy.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 50 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Parents insurance-->
+                            <div class="form-group"
+                                 ng-class="{'has-error':finGpsGeneralInsurance.parentsIllnessPolicy.$invalid && finGpsGeneralInsurance.parentsIllnessPolicy.$dirty}">
+                                <label class="control-label col-sm-5" for="parentsIllnessPolicy">Parents</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="parentsIllnessPolicy" class="form-control"
+                                           name="parentsIllnessPolicy"
+                                           placeholder="Amount of cover"
+                                           ng-model="generalInsuranceForm.criticalParentsAmt"
+                                           min="100"
+                                           max="500000000"
+                                    >
+                                    <div ng-show="finGpsGeneralInsurance.parentsIllnessPolicy.$invalid && finGpsGeneralInsurance.parentsIllnessPolicy.$dirty">
+
+                                        <p ng-show="finGpsGeneralInsurance.parentsIllnessPolicy.$error.min"
+                                           class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="finGpsGeneralInsurance.parentsIllnessPolicy.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 50 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Personal Accident Policy-->
+                        <div class="form-group required">
+                            <label class="control-label col-sm-5">Personal Accident Policy</label>
+                            <div class="col-sm-5">
+                                <label class="checkbox-inline" for="personalAccidentPolicy_yes">
+                                    <input icheck type="radio" id="personalAccidentPolicy_yes"
+                                           name="personalAccidentPolicy"
+                                           ng-model="generalInsuranceForm.personalAccidentPolicy" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="personalAccidentPolicy_no">
+                                    <input icheck type="radio" id="personalAccidentPolicy_no"
+                                           name="personalAccidentPolicy"
+                                           ng-model="generalInsuranceForm.personalAccidentPolicy" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Selection on Yes-->
+                        <div ng-show="generalInsuranceForm.personalAccidentPolicy =='yes'">
+                            <!-- Self Insurance-->
+                            <div class="form-group"
+                                 ng-class="{'has-error':finGpsGeneralInsurance.selfAccidentPolicy.$invalid && finGpsGeneralInsurance.selfAccidentPolicy.$dirty}">
+                                <label class="control-label col-sm-5" for="selfAccidentPolicy">Self</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="selfAccidentPolicy" class="form-control"
+                                           name="selfAccidentPolicy"
+                                           placeholder="Amount of cover"
+                                           ng-model="generalInsuranceForm.personalAmt"
+                                           min="100"
+                                           max="500000000"
+                                    >
+                                    <div ng-show="finGpsGeneralInsurance.selfAccidentPolicy.$invalid && finGpsGeneralInsurance.selfAccidentPolicy.$dirty">
+
+                                        <p ng-show="finGpsGeneralInsurance.selfAccidentPolicy.$error.min"
+                                           class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="finGpsGeneralInsurance.selfAccidentPolicy.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 50 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!---Spouse Insurance-->
+                            <div class="form-group"
+                                 ng-class="{'has-error':finGpsGeneralInsurance.spouseAccidentPolicy.$invalid && finGpsGeneralInsurance.spouseAccidentPolicy.$dirty}">
+                                <label class="control-label col-sm-5" for="spouseAccidentPolicy">Spouse</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="spouseAccidentPolicy" class="form-control"
+                                           name="spouseAccidentPolicy"
+                                           placeholder="Amount of cover"
+                                           ng-model="generalInsuranceForm.personalSpouseAmt"
+                                           min="100"
+                                           max="500000000"
+                                    >
+                                    <div ng-show="finGpsGeneralInsurance.spouseAccidentPolicy.$invalid && finGpsGeneralInsurance.spouseAccidentPolicy.$dirty">
+
+                                        <p ng-show="finGpsGeneralInsurance.spouseAccidentPolicy.$error.min"
+                                           class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="finGpsGeneralInsurance.spouseAccidentPolicy.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 50 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Parents insurance-->
+                            <div class="form-group"
+                                 ng-class="{'has-error':finGpsGeneralInsurance.parentsAccidentPolicy.$invalid && finGpsGeneralInsurance.parentsAccidentPolicy.$dirty}">
+                                <label class="control-label col-sm-5" for="parentsAccidentPolicy">Parents</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="parentsAccidentPolicy" class="form-control"
+                                           name="parentsAccidentPolicy"
+                                           placeholder="Amount of cover"
+                                           ng-model="generalInsuranceForm.personalParentsAmt"
+                                           min="100"
+                                           max="500000000"
+                                    >
+                                    <div ng-show="finGpsGeneralInsurance.parentsAccidentPolicy.$invalid && finGpsGeneralInsurance.parentsAccidentPolicy.$dirty">
+
+                                        <p ng-show="finGpsGeneralInsurance.parentsAccidentPolicy.$error.min"
+                                           class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="finGpsGeneralInsurance.parentsAccidentPolicy.$error.max"
+                                           class="help-block">
+                                            Amount cannot exceed 50 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsGeneralInsurance.userComment.$invalid && finGpsGeneralInsurance.userComment.$dirty }">
+                            <label class="control-label col-sm-5" for="UserComment">Any Additional comments</label>
+                            <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="userComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="generalInsuranceForm.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                                <div ng-show="finGpsGeneralInsurance.userComment.$invalid && finGpsGeneralInsurance.userComment.$dirty">
+                                    <p ng-show="finGpsGeneralInsurance.userComment.$error.maxlength" class="help-block">
+                                        Comments cannot exceed 250 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="finGpsGeneralInsurance.$invalid "
+                                    type="submit"><strong>Save</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

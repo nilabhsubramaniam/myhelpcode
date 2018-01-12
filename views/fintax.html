@@ -1,0 +1,37 @@
+<h3>As a part of FinTax service, you are eligible to avail two sub-services. Choose the one you wish to begin with</h3>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="row">
+            <div class="ibox">
+                <div class="" ng-controller="finTax" data-ng-init="init();">
+                    <div class=" col-sm-12 ibox-content">
+                        <div class="col-sm-6 " style="text-align: center">
+                            <img class="img-responsive" src="/assets/img/taxOptimizationInfographic.jpg" alt=""
+                                 style="width:280px;height: 280px;margin-left:15px;cursor:pointer"
+                                 ng-click="taxOptimisation()">
+                            <div class="col-lg-5" style="text-align: center; margin-left:50px;margin-top:-17px">
+                                <h5>FY {{currentFinancialYear}}</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 " style="text-align: center">
+                            <img class="img-responsive" src="/assets/img/taxFilingInfographic.jpg" alt=""
+                                 style="width:280px;height: 280px">
+                            <div class="col-lg-8" style="text-align: center ;margin-left:-20px ; margin-top:-17px">
+                                <select id="financialYear" class="form-control center-adjustment"
+                                        name="financialYear"
+                                        ng-model="fiscalYear"
+                                        ng-change="taxFiling(fiscalYear)"
+                                >
+                                    <option value=''>--------Select Financial year-------</option>
+                                    <option value="{{prevFinancialYear}}">FY {{prevFinancialYear}}</option>
+                                    <option value="{{currentFinancialYear}}" >FY {{currentFinancialYear}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

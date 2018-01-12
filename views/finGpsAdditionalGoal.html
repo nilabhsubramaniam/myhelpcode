@@ -1,0 +1,154 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="finGpsAdditionalGoalsCtrl" data-ng-init="init()">
+                    <form class="form-horizontal" role="form" name="finGpsAdditionalGoals" id="finGpsAdditionalGoalsForm"
+                          novalidate>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="goalType" >Goal
+                                Type </label>
+                            <label class="control-label col-sm-2" for="goalName" >Goal
+                                Name</label>
+                            <label class="control-label col-sm-2" for="targetYear">Target
+                                Year</label>
+                            <label class="control-label col-sm-2" for="amount" style="text-align:center">Amount</label>
+                            <label class="control-label col-sm-2" for="priority"
+                                   style="text-align:center">Priority</label>
+                        </div>
+
+                        <div class="form-group" ng-repeat="goal in additionalGoalList track by $index"
+                             style="margin-left:22px">
+                            <ng-form class="form-horizontal" role="form" name="additionalGoal">
+                                <div class="col-sm-2"
+                                     ng-class="{ 'has-error' : additionalGoal.goalType.$invalid && additionalGoal.goalType.$dirty }">
+                                    <select id="goalType" class="form-control" name="goalType"
+                                            required
+                                            ng-model="goal.additionalType">
+                                        <option value=''>----Select Type------</option>
+                                        <option ng-repeat="(key, value) in goalTypeList" value="{{key}}">{{value}}
+                                        </option>
+                                    </select>
+                                    <div ng-show="additionalGoal.goalType.$invalid && additionalGoal.goalType.$dirty">
+                                        <p ng-show="additionalGoal.goalType.$error.required"
+                                           class="help-block">
+                                            Type is required
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Goal Name-->
+                                <div class="col-sm-2"
+                                     ng-class="{ 'has-error' : additionalGoal.goalName.$invalid && additionalGoal.goalName.$dirty }">
+                                    <input type="text" id="goalName" class="form-control" name="goalName"
+                                           ng-model="goal.name"
+                                           ng-pattern="/^[a-zA-Z\s]*$/"
+                                           placeholder="Enter goal name "
+                                    />
+                                    <div ng-show="additionalGoal.goalName.$invalid && additionalGoal.goalName.$dirty">
+
+                                        <p ng-show="additionalGoal.goalName.$error.pattern"
+                                           class="help-block">
+                                            Invalid Goal name
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!--- Target Year-->
+                                <div class="col-sm-2"
+                                     ng-class="{ 'has-error' : additionalGoal.targetYear.$invalid && additionalGoal.targetYear.$dirty }">
+                                    <input type="datetime" id="targetYear"
+                                           class="form-control "
+                                           name="targetYear"
+                                           ng-model="goal.year"
+                                           view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                                           min-date='todayDate'
+                                           date-time
+                                    >
+                                    <div ng-show="additionalGoal.targetYear.$invalid && additionalGoal.targetYear.$dirty">
+                                        <p ng-show="additionalGoal.targetYear.$error.required"
+                                           class="help-block">
+                                            Target year is required
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                                <!-- Amount-->
+                                <div class="col-sm-2"
+                                     ng-class="{ 'has-error' : additionalGoal.amount.$invalid && additionalGoal.amount.$dirty }">
+                                    <input type="number" id="amount" class="form-control" name="amount"
+                                           required
+                                           ng-model="goal.amount"
+                                           ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter amount "
+                                    />
+                                    <div ng-show="additionalGoal.amount.$invalid && additionalGoal.amount.$dirty">
+                                        <p ng-show="additionalGoal.amount.$error.required"
+                                           class="help-block">
+                                            Amount is required
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Priority-->
+                                <div class="col-sm-2"
+                                     ng-class="{ 'has-error' : additionalGoal.priority.$invalid && additionalGoal.priority.$dirty }">
+                                    <select id="priority" class="form-control" name="priority"
+                                            required
+                                            ng-model="goal.priority">
+                                        <option value=''>Select priority</option>
+                                        <option value='high'>High</option>
+                                        <option value='Medium'>Medium</option>
+                                        <option value='low'>Low</option>
+                                    </select>
+                                    <div ng-show="additionalGoal.priority.$invalid && additionalGoal.priority.$dirty">
+                                        <p ng-show="additionalGoal.priority.$error.required"
+                                           class="help-block">
+                                            Priority is required
+                                        </p>
+                                    </div>
+                                </div>
+                                <span class="btn btn-default" ng-show="additionalGoalList.length >1"
+                                      ng-click="deleteAdditionalGoal($index)">
+                                        <i class="fa fa-minus"></i>
+                                </span>
+                                <span class="btn btn-default" ng-hide="additionalGoalList.length > 7"
+                                      ng-click="addAdditionalGoal(goal)">
+                                        <i class="fa fa-plus"></i>
+                                </span>
+                            </ng-form>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsAdditionalGoals.userComment.$invalid && finGpsAdditionalGoals.userComment.$dirty }">
+                            <label class="control-label col-sm-5" for="UserComment">Any Additional comments</label>
+                            <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="userComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="finGpsAdditionalGoalsForm.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                                <div ng-show="finGpsAdditionalGoals.userComment.$invalid && finGpsAdditionalGoals.userComment.$dirty">
+                                    <p ng-show="finGpsAdditionalGoals.userComment.$error.maxlength" class="help-block">
+                                        Comments cannot exceed 250 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="finGpsAdditionalGoals.$invalid "
+                                    ng-click="submitAdditionalGoal()"><strong>Save</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="ibox-content" ng-controller="goallistcontroller" data-ng-init="init()">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Saved Goals </h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-5 m-b-xs">
+                            </div>
+                            <div class="col-sm-4 m-b-xs">
+
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control" ng-model ="searchName"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+
+                                    <th></th>
+                                    <th style="color:#660a18">Goal Type</th>
+                                    <th style="color:#660a18">Name</th>
+                                    <th style="color:#660a18">Goal Year</th>
+                                    <th style="color:#660a18">Goal Cost</th>
+                                    <th style="color:#660a18">Future Value</th>
+                                    <th style="color:#660a18">Reqd Monthly Investment</th>
+                                    <th style="color:#660a18">Amount Committed Lumpsum</th>
+                                    <th style="color:#660a18">Amount Committed Monthly</th>
+                                    <th style="color:#660a18">Goal Achievable %</th>
+                                    <!--<th width="90" style="color:#660a18">Action</th> -->
+                                    <th style="color:#660a18">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="goallist in goallists | filter : searchName | orderBy : 'goallist.name'">
+                                    <input type="hidden"  ng-model="goallist.isEditable">
+                                    <input type="hidden"  ng-model="goallist._goalid">
+                                    <td>
+                                        <input class="icheckbox_square-red" type="checkbox" ng-model="goallist.isUpdated" ng-click="updateSelection($index, goallists)" />
+                                    </td>
+                                    <td>
+                                        <img src ="{{'/img/goal_'+goallist.type+'_m.png'}}" width="42" height="42"/>
+                                        <input type="hidden" id="currentPrice" class="form-control" ng-model="goallist.type"  ng-disabled="disabled()" /></td>
+                                    <td>{{goallist.name}}
+                                        <!--<input type="text" class="form-control" ng-model="goallist.name"  ng-disabled="disabled()" /> -->
+                                    </td>
+                                    <td>{{goallist.maturity}}
+                                        <!--<input type="text" width="60px" class="form-control" ng-model="goallist.maturity"  ng-disabled="disabled()" /> -->
+                                    </td>
+                                    <td>{{goallist.currentPrice}}
+                                        <!--<input type="text" class="form-control" ng-model="goallist.currentPrice"  ng-disabled="disabled()" /> -->
+                                    </td>
+                                    <td>{{goallist.futurePrice}}
+                                        <!--<input type="text" class="form-control" ng-model="goallist.futurePrice"  ng-disabled="disabled()" /> -->
+                                    </td>
+                                    <td>{{goallist.sipRequired}}
+                                        <!--<input type="text" class="form-control" ng-model="goallist.sipRequired"  ng-disabled="disabled()" /> -->
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" ng-model="goallist.lumpsum"  ng-disabled="!goallist.isLumpsumEditable" required/>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" ng-model="goallist.sip"  ng-disabled="!goallist.isSIPEditable" required/></td>
+                                    <td>{{getPercentage(goallist.percentAchievable)}}
+                                        <!--<input type="text" width="40px" class="form-control" value="{{getPercentage(goallist.percentAchievable)}}"  ng-disabled="disabled()" required/></td> -->
+                                    <td>
+                                        <!--<div ng-hide="goallist.isEditable">
+                                            <button class="btn btn-sm btn-primary" ng-click="isEditable($index)" ><strong>Edit</strong></button>
+                                        </div>
+                                        <div ng-hide="!goallist.isEditable">
+                                            <button class="btn btn-sm btn-primary" ng-click="isEditable($index);updateGoal($index);" ><strong>Update</strong></button>
+                                        </div> -->
+                                        <a ng-hide="goallist.isEditable" ng-click="isEditable($index)">Edit</a>
+                                        <a ng-hide="!goallist.isEditable" ng-click="updateGoal($index);">Update</a>
+                                        <a ng-click="delete($index)"> | Delete</a>
+                                    </td>
+                                    <td>
+                                        <!--<button class="btn btn-sm btn-primary" ng-click="delete($index)" ><strong>Delete</strong></button> -->
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <div class="form-group text-center">
+                                <button class="btn btn-sm btn-primary" ng-click="addNewGoal()" ><strong>Add new goal</strong></button>
+                                <button class="btn btn-sm btn-primary" ng-click="Submit()" ><strong>Commit Investments</strong></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

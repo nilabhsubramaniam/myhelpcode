@@ -1,0 +1,138 @@
+<div class="wrapper wrapper-content animated fadeIn white-bg" ng-controller="fileUploadCtrl" data-ng-init="init();">
+    <div >
+        <div class="row">
+            <div class="col-lg-12" ng-hide="acctRegnFormAvailable">
+                <p></p>
+                <h3><strong style="color:#660a18">Hurray! We are almost there. Please upload the supporting documents here</strong></h3>
+                <p></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-md-6" style="margin-bottom: 10px" >
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <span class="btn btn-default btn-file"><span
+                            class="fileinput-new">PAN Card</span>
+                    <span class="fileinput-exists"></span>
+                        <input class="docs-disabled" type="file" name="..." file-model="pan" ng-disabled="acctRegnFormAvailable"/>
+                    </span>
+                        <span class="fileinput-filename"></span>
+                        <button class="btn btn-success docs-disabled" style="height:52px" ng-click="uploadPan()" ng-disabled="acctRegnFormAvailable" type="button">
+                            <i class="fa fa-upload" style="font-size: 20px"></i>&nbsp;&nbsp;
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="isPanViewLinkExists" class="col-md-6" style="margin-bottom: 10px">
+                    <a ng-href="{{viewPan}}" target="_blank">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <span class="btn btn-default btn-file" style="width: 60%;padding:15px"><span
+                            class="fileinput-new">Uploaded Pan Card</span>
+                    <span class="fileinput-exists"></span>
+                    <span class="fileinput-filename"></span>
+
+                   <!--<button class="btn btn-success" style="height:45px" type="button">
+                       <i class="fa fa-download" style="font-size: 15px"></i>&nbsp;&nbsp;
+                   </button> -->
+                          </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-md-6" style="margin-bottom: 10px" >
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <span class="btn btn-default btn-file"><span class="fileinput-new">Address Proof</span>
+                    <span class="fileinput-exists"></span>
+                        <input class="docs-disabled" type="file" name="..." file-model="address" ng-disabled="acctRegnFormAvailable" /></span>
+                        <span class="fileinput-filename"></span>
+                        <button class="btn btn-success docs-disabled" style="height:52px" ng-click="uploadAddress()" ng-disabled="acctRegnFormAvailable" type="button">
+                            <i class="fa fa-upload" style="font-size: 20px"></i>&nbsp;&nbsp;
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="isAddressViewLinkExists" class="col-md-6" style="margin-bottom: 10px">
+                    <a ng-href="{{viewAddress}}" target="_blank">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <span class="btn btn-default btn-file" style="width: 60%;padding:15px">
+                        <span class="fileinput-new">Uploaded Address Proof</span>
+                    <span class="fileinput-exists"></span>
+                    <span class="fileinput-filename"></span>
+
+                    <!--<button class="btn btn-success" style="height:45px" type="button">
+                        <i class="fa fa-download" style="font-size: 15px"></i>&nbsp;&nbsp;
+                    </button> -->
+                         </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-md-6" style="margin-bottom: 10px" >
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <span class="btn btn-default btn-file"><span class="fileinput-new">Cancelled Copy of Cheque</span>
+                    <span class="fileinput-exists"></span>
+                        <input class="docs-disabled" type="file" name="..." file-model="cancelledcheque" ng-disabled="acctRegnFormAvailable"/></span>
+                        <span class="fileinput-filename"></span>
+                        <button class="btn btn-success docs-disabled" style="height:52px" ng-click="uploadCancelledCheque()" ng-disabled="acctRegnFormAvailable" type="button">
+                            <i class="fa fa-upload" style="font-size: 20px"></i>&nbsp;&nbsp;
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="isPanChequeLinkExists" class="col-md-6" style="margin-bottom: 10px">
+                    <a ng-href="{{viewCancelledcheque}}" target="_blank">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <span class="btn btn-default btn-file" style="width: 60%;padding:15px">
+                        <span class="fileinput-new">Uploaded Cancelled Cheque</span>
+                    <span class="fileinput-exists"></span>
+                    <span class="fileinput-filename"></span>
+
+                    <!--<button class="btn btn-success" style="height:45px" type="button">
+                        <i class="fa fa-download" style="font-size: 15px"></i>&nbsp;&nbsp;
+                    </button> -->
+                         </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div ng-if="acctRegnFormAvailable" class="row">
+            <div class="col-lg-12">
+                <p></p>
+                <h3><strong style="color:#660a18">View Account Opening Form</strong></h3>
+                <p></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                <!--<span ng-if="isGeneratePDFEnabled">-->
+                    <!--<button class="btn btn-primary btn-lg" type="button" ng-click="generatePDF()"><i class="fa fa-paste"></i>&nbsp;&nbsp;<span class="bold"> Generate PDF</span></button>-->
+                <!--</span>-->
+                <span ng-if="acctRegnFormAvailable">
+                    <a ng-href="{{viewAcctRegnForm}}" class="btn btn-primary btn-lg" type="button"><i class="fa fa-download"></i>&nbsp;&nbsp;<span class="bold">Download PDF</span></a>
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-if="acctRegnFormAvailable" class="col-lg-12">
+                <p></p>
+                <h3><strong style="color:#660a18">Please courier the signed form to our office address as below:</strong></h3>
+                <p></p>
+                <h5><strong>FInatwork Wealth Services Pvt Ltd</strong></h5>
+                <h5><strong>G1 Ebony, No 7/1-2 Hosur Road</strong></h5>
+                <h5><strong>Langford Town</strong></h5>
+                <h5><strong>Bangalore - 560025</strong></h5>
+                <h5><strong>Please feel free to call our office (080-41227738) in case you have any queries.</strong>
+                </h5>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

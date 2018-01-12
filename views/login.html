@@ -1,0 +1,51 @@
+<!--=== Content Part ===-->
+<div class="container-fluid">
+   <div class="row equal-height-columns">
+      <div class="col-md-6 col-sm-6 hidden-xs image-block equal-height-column" style="padding: 0px;">
+         <img src = "/assets/img/sign_up.jpg" style="width: 100%">
+      </div>
+      <div class="col-md-6 col-sm-6 form-block equal-height-column">
+         <a href="/index.php">
+         <img src="assets/img/logo.png" alt="" style="width:100px;height:100px;margin-top:20px">
+         </a>
+         <h2 class="margin-bottom-30" style="margin-top:50px">Login To Your Account</h2>
+         <form class="m-t" role="form" id="logIn" name="logIn" novalidate ng-submit="doLogin()">
+            <div class="form-group" ng-class="{'has-error' : logIn.email.$invalid && logIn.email.$dirty }">
+               <div class="input-group">
+               <span class="input-group-addon ">
+                  <i class="icon-pencil " aria-hidden="true"></i>
+               </span>
+               <input type="email" class="form-control" name="email" placeholder="Email" required ng-pattern= "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"  ng-model="login.username" maxlength="37">
+              </div>
+               <div ng-show="logIn.email.$invalid && logIn.email.$dirty">
+                  <p ng-show="logIn.email.$error.required" class="help-block">
+                    Username  is required
+                  </p>
+                  <p ng-show="logIn.email.$error.pattern" class="help-block">
+                    Invalid Username
+                  </p>
+                  <p ng-show="logIn.email.$error.maxlength" class="help-block">
+                     You have Entered  wrong username
+                  </p>
+                </div>
+            </div>
+            <div class="form-group">
+               <div class="input-group">
+                  <span class="input-group-addon ">
+                     <i class="icon-lock " aria-hidden="true"></i>
+                  </span>
+                <input type="password" class="form-control" placeholder="Password" autocomplete="off" required="" ng-model="login.password">
+               </div>
+            </div>
+            <button type="submit" ng-disabled="logIn.$invalid" class="btn btn-primary block full-width m-b">Login</button>
+            <a href="start.html#/forgot_password"><small>Forgot password?</small></a>
+            <p> <a href="start.html#/resendOTP"><small>Already signed up, resend OTP</small></a></p>
+            <p class="text-muted text-center"><small>Do not have an account?</small></p>
+            <a class="btn btn-primary block full-width m-b" href="start.html#/register">Create an account</a>
+         </form>
+         <p class="m-t"> <small>Copyright &copy 2011-17 Fin@work</small> </p>
+      </div>
+   </div>
+</div>
+<!--/container-->
+<!--=== End Content Part ===-->

@@ -1,0 +1,105 @@
+<h3>Thank you for subscribing FinTax service. Please answer a few basic questions to get started:</h3>
+<div class="wrapper wrapper-content animated fadeInRight" >
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="basicInfoTaxCtrl" data-ng-init="init()">
+                    <form class="form-horizontal"  role="form" name="taxOptimize" id="taxOptimize" novalidate >
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Do you have income from Salary? </label>
+                            <div class="col-sm-6" >
+
+                                    <label class="checkbox-inline" for="income_sal_y">
+                                        <input icheck id="income_sal_y"  type="radio" name="incomeSal"  ng-model="basicInfoTaxFormData.salaried" value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="income_sal_y_n">
+                                        <input icheck id="income_sal_y_n" type="radio" name="incomeSal" ng-model="basicInfoTaxFormData.salaried" value="no">
+                                        No
+                                    </label>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Did you change your employment during the current financial year?</label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="employment_change_y">
+                                    <input icheck type="radio" id="employment_change_y"  name="employmentChange"  ng-model="basicInfoTaxFormData.changedJob" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="employment_change_n">
+                                    <input icheck type="radio" id="employment_change_n" name="employmentChange" ng-model="basicInfoTaxFormData.changedJob" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group required" >
+                            <label class="control-label col-sm-6">Do you own a House Property? </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="houseProperty_yes">
+                                    <input icheck id="houseProperty_yes" type="radio"  name="houseProperty" ng-model="basicInfoTaxFormData.houseProp" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="houseProperty_no">
+                                    <input icheck id="houseProperty_no" type="radio" name="houseProperty" ng-model="basicInfoTaxFormData.houseProp" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-show="basicInfoTaxFormData.houseProp == 'yes'" >
+                            <label class="control-label col-sm-6">Do you have a home loan on your House Property?</label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="houseProperty_yes">
+                                    <input icheck id="housePropertyloan_yes" type="radio"  name="housePropertyloan" ng-model="basicInfoTaxFormData.homeLoan" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="houseProperty_no">
+                                    <input icheck id="housePropertyloan_no" type="radio" name="housePropertyloan" ng-model="basicInfoTaxFormData.homeLoan" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6"> Do you have any income from other sources?</label>
+                            <div class="col-sm-6">
+                                <span class="" tooltip-placement="bottom"
+                                      uib-tooltip=" Interest on fixed deposits, any income apart from salary and rental income">
+                                      <i class="fa fa-info-circle" style="margin-left: -14px;"></i>
+                                </span>
+                                <label class="checkbox-inline" for="otherSrc_yes">
+                                    <input icheck id="otherSrc_yes" type="radio"  name="otherSource" ng-model="basicInfoTaxFormData.otherIncomeSrc" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="otherSrc_no">
+                                    <input icheck id="otherSrc_no" type="radio" name="otherSource" ng-model="basicInfoTaxFormData.otherIncomeSrc" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Do you invest in either or all of shares/ mutual funds/ bonds etc?</label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="invest_yes">
+                                    <input icheck id="invest_yes" type="radio"  name="investment" ng-model="basicInfoTaxFormData.investment" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="invest_no">
+                                    <input icheck id="invest_no" type="radio" name="investment" ng-model="basicInfoTaxFormData.investment" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group required" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="taxOptimize.$invalid " ng-click="finTaxBasicInfo()"><strong>Submit</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group{
+        margin-top:20px  !important;
+    }
+</style>

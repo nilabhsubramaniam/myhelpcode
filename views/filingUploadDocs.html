@@ -1,0 +1,237 @@
+<div class="wrapper wrapper-content animated fadeIn white-bg" ng-controller="docsTaxFilingCtrl" novalidate
+     data-ng-init="init(); ">
+    <form class="form-horizontal" role="form" name="filingUploadDoc" id="filingUploadDoc"
+          novalidate>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-8">
+                    <div class="uploadDocFiling">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <span class="btn btn-default btn-file">
+                                    <span class="fileinput-new">{{docTypeMapping[taxFiling]}}</span>
+                                    <span class="fileinput-exists"></span>
+                                    <input class="docs-disabled" type="file" name="..."
+                                           file-model='filingDoc'
+                                           ng-disabled="uploadAllowed == false"/>
+                                </span>
+                            <span class="fileinput-filename"></span>
+                            <button class="btn btn-success docs-disabled uploadFilingButton"
+                                    ng-click="uploadDoc()"
+                                    ng-disabled="uploadAllowed == false" type="button">
+                                <i class="fa fa-upload uploadFontFiling"></i>&nbsp;&nbsp;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <label class="docFilingLabelTop">General </label>
+                    <div class="col-sm-12">
+                        <ul>
+                            <li>
+                                <label class="checkbox-inline" for="PAN">
+                                    <input icheck type="radio" id="PAN" name="PAN"
+                                           ng-model="taxFiling" value="pan">
+                                    PAN <span style="color:red"> * </span>
+                                </label>
+                                <span ng-if="viewPAN" class="uploadTickGeneral-1">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                            </li>
+                            <li class="uploadFiling">
+                                <label class="checkbox-inline" for="PAN26">
+                                    <input icheck type="radio" id="PAN26" name="PAN"
+                                           ng-model="taxFiling" value="form26AS">
+                                    26AS Tax Credit Statement<span style="color:red"> * </span>
+                                </label>
+                                <span ng-if="viewForm26AS" class="uploadTickGeneral-2">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                            </li>
+                            <li class="uploadFiling">
+                                <label class="checkbox-inline" for="pervYearReturn">
+                                    <input icheck type="radio" id="pervYearReturn" name="PAN"
+                                           ng-model="taxFiling" value="prevYearReturn">
+                                    Previous year's return
+                                </label>
+                                <span ng-if="viewPrevYearReturn" class="uploadTickGeneral-3">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="docFilingCapitalLabel">Capital Gains</label>
+                    <ul>
+                        <li class="uploadFiling">
+                            <label class="checkbox-inline" for="detailReport">
+                                <input icheck type="radio" id="detailReport" name="houseProp1"
+                                       ng-model="taxFiling" value="capGainShare">
+                                Gains/losses from shares
+                            </label>
+                            <span ng-if="viewCapGainShare" class="uploadTickCapital-1">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                        </li>
+                        <li class="uploadFiling">
+                            <label class="checkbox-inline" for="mutualFundReport">
+                                <input icheck type="radio" id="mutualFundReport" name="houseProp2"
+                                       ng-model="taxFiling" value="capGainMF">
+                                Gains/losses from mutual funds
+                            </label>
+                            <span ng-if="viewCapGainMF" class="uploadTickCapital-2">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                        </li>
+                        <li class="uploadFiling">
+                            <label class="checkbox-inline" for="securityReport">
+                                <input icheck type="radio" id="securityReport" name="houseProp"
+                                       ng-model="taxFiling" value="capGainOther">
+                                Gains/losses from bonds/ gold/ other securities
+                            </label>
+                            <span ng-if="viewCapGainOther" class="uploadTickCapital-3">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <label class=" docSalaryLabel">Salary</label>
+                    <div class="col-sm-12">
+                        <ul>
+                            <li>
+                                <label class="checkbox-inline" for="uploadForm16">
+                                    <input icheck type="radio" id="uploadForm16" name="salary"
+                                           ng-model="taxFiling" value="form16">
+                                    Form 16 <span style="color:red"> * </span>
+                                </label>
+                                <span ng-if="viewForm16" class="uploadTickSalary">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class=" docFilingDeductionsLabel">Deductions </label>
+                    <div class="col-sm-12">
+                        <ul>
+                            <li>
+                                <label class="checkbox-inline" for="investproof">
+                                    <input icheck type="radio" id="investproof" name="deductions"
+                                           ng-model="taxFiling" value="proofSec80C">
+                                    Proofs for investment under Section 80C
+                                </label>
+                                <span ng-if="viewProofSec80C" class="uploadTickDeductions-1">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                            </li>
+                            <li class="uploadFiling">
+                                <label class="checkbox-inline" for="healthProof">
+                                    <input icheck type="radio" id="healthProof" name="deductions"
+                                           ng-model="taxFiling" value="proofSec80D">
+                                    Proof of health insurance policy
+                                </label>
+                                <span ng-if="viewProofSec80D" class="uploadTickDeductions-2">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                            </li>
+                            <li class="uploadFiling">
+                                <label class="checkbox-inline" for="donationProof">
+                                    <input icheck type="radio" id="donationProof" name="deductions"
+                                           ng-model="taxFiling" value="proofSec80G">
+                                    Proof of donation made
+                                </label>
+                                <span ng-if="viewProofSec80G" class="uploadTickDeductions-3">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                            </li>
+                            <li class="uploadFiling">
+                                <label class="checkbox-inline" for="educationInterest">
+                                    <input icheck type="radio" id="educationInterest" name="deductions"
+                                           ng-model="taxFiling" value="proofSec80E">
+                                    Proof of interest paid on education loan
+                                </label>
+                                <span ng-if="viewProofSec80E" class="uploadTickDeductions-4">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="docFilingHouseprop">
+                    <label class="docSalaryLabel">House Property</label>
+                    <ul>
+                        <li class="uploadFiling">
+                            <label class="checkbox-inline salInputText" for="interestCert">
+                                <input icheck type="radio" id="interestCert" name="houseProp"
+                                       ng-model="taxFiling" value="interestCert">
+                                Interest certificate provided by the lender <br>(bank/institution from whom loan is taken)
+                            </label>
+                            <span ng-if="viewInterestCert" style="margin-top: 18px">
+                                        <span> <i class="fa fa-check"></i> </span>
+                                    </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="col-sm-6 uploadIncomeOtherSrc">
+                    <label class="docIncomeOtherSrc">Income from Other sources</label>
+                    <ul>
+                        <li class="uploadFiling">
+                            <label class="checkbox-inline incomeOtherInputText" for="savingAcctInterest">
+                                <input icheck type="radio" id="savingAcctInterest" name="savingAcctInterest"
+                                       ng-model="taxFiling" value="savingAcctInterest">
+                                Statement of savings account interest
+                            </label>
+                            <span ng-if="viewSavingAcctInterest" style="margin-top: 19px">
+                            <span> <i class="fa fa-check"></i> </span>
+                        </span>
+                        </li>
+                        <li class="uploadFiling">
+                            <label class="checkbox-inline incomeOtherInputText" for="miscDoc">
+                                <input icheck type="radio" id="miscDoc" name="miscDoc"
+                                       ng-model="taxFiling" value="miscDoc">
+                                Miscellaneous
+                            </label>
+                            <span ng-if="viewMiscDoc" class="uploadTickDeductions-4">
+                            <span> <i class="fa fa-check"></i> </span>
+                        </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group required" style="text-align: center">
+            <button class="btn btn-sm btn-default" ng-click="checkUploadedDocuments()">Check uploaded documents</button>
+        </div>
+        <div class="form-group required" style="text-align: center; margin-top:10px">
+            <button class="btn btn-sm btn-primary" ng-click="initiatePdfReport()" ng-disabled="!submitAllowed"><strong>I'm
+                through! Submit to my tax
+                advisor</strong>
+            </button>
+        </div>
+    </form>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

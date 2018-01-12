@@ -1,0 +1,37 @@
+<!--=== Content Part ===-->
+<div class="container-fluid">
+   <div class="row equal-height-columns">
+       <div class="col-md-6 col-sm-6 hidden-xs image-block equal-height-column" style="padding: 0px;">
+           <img src = "/assets/img/sign_up.jpg" style="width: 100%">
+       </div>
+      <div class="col-md-6 col-sm-6 form-block equal-height-column">
+         <a href="/index.php">
+         <img src="assets/img/logo.png" alt="" style="width:100px;height:100px;margin-top:20px">
+         </a>
+            <h3 style="margin-top:30px">Register to Finatwork</h3>
+        <p>Enter your registered Email.</p>
+        <form class="m-t" role="form" name="returnedUser" novalidate>
+            <div class="form-group" ng-class="{'has-error': returnedUser.email.$invalid && returnedUser.email.$dirty}">
+                <div class="input-group">
+                     <span class="input-group-addon ">
+                         <i class="icon-envelope " aria-hidden="true"></i>
+                     </span>
+                 <input type="email" class="form-control" name="email" placeholder="Email" required ng-pattern= "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" ng-model="email" maxlength="37">
+               </div>
+                <div ng-show="returnedUser.email.$invalid && returnedUser.email.$dirty">
+                    <p ng-show="returnedUser.email.$error.required" class="help-block">
+                        Email is required
+                    </p>
+                    <p ng-show="returnedUser.email.$error.pattern" class="help-block">
+                        Email is invalid
+                    </p>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b" ng-click="resendOTP()" ng-disabled="returnedUser.$invalid">Send OTP</button>
+        </form>
+         <p class="m-t"> <small>Copyright &copy 2011-17 Fin@work</small> </p>
+      </div>
+   </div>
+</div>
+<!--/container-->
+<!--=== End Content Part ===-->

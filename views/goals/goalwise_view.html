@@ -1,0 +1,130 @@
+<div ng-controller="goalWiseDashboardCtrl" data-ng-init="init()">
+    <a href="" ng-class="{activeborder: selected==goal.type}"  ng-click="setIndividualGoal(goal.type,goal.src,goal.name)" ng-repeat="goal in goalsList">
+        <img  class="goalimageborder" width="100" height="100" src ="{{goal.src}}" />
+    </a>
+    <div class="row" ng-repeat="goal in goals">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h4 class = "text-center"><strong>Goalwise View</strong></h4>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th rowspan="2">Personalized Name</th>
+                                <th rowspan="2">Goal Year</th>
+                                <th rowspan="2">Goal Future Value (₹)</th>
+                                <th rowspan="2">Reqd Monthly Investment (₹)</th>
+                                <th colspan="2">Amount Committed</th>
+                                <th rowspan="2">Goal Achievable %</th>
+                                <th colspan="2">Goal Achieved</th>
+                            </tr>
+                            <tr>
+                                <th>lumpsum (₹)</th>
+                                <th>monthly (₹)</th>
+                                <th>%</th>
+                                <th>Amount (₹)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{ goal.name }}</td>
+                                <td>{{ goal.maturity }}</td>
+                                <td>{{ thousandseparator(goal.futurePrice)}}</td>
+                                <td>{{ thousandseparator(goal.sipRequired)}}</td>
+                                <td>{{ thousandseparator(goal.lumpsum)}}</td>
+                                <td>{{ thousandseparator(goal.sip)}}</td>
+                                <td>{{ goal.percentAchievable}}</td>
+                                <td>{{ goal.percentAchieved}}</td>
+                                <td>{{ thousandseparator(getNumber(goal.marketValue))}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="ibox-title">
+                            <h5><strong>Goal Progress</strong></h5>
+                        </div>
+                        <uib-progressbar class="progress-striped active" value="goal.percentAchieved" type="{{type}}">{{goal.percentAchieved}}</uib-progressbar>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h4 class = "text-center"><strong>Asset Allocation</strong> </h4>
+                                </div>
+                                <div class="ibox-content">
+                                    <div>
+                                        <c3chart bindto-id="{{dynamicChartId+$index}}">
+                                            <chart-column column-id="Gold/International"
+                                                          column-values="{{goal.assetAllocation.gold/goal.marketValue}}"
+                                                          column-type="pie"/>
+                                            <chart-column column-id="Debt - ShortTerm"
+                                                          column-values="{{goal.assetAllocation.debtShort/goal.marketValue}}"
+                                                          column-type="pie"/>
+                                            <chart-column column-id="Debt - LongTerm"
+                                                          column-values="{{goal.assetAllocation.debtLong/goal.marketValue}}"
+                                                          column-type="pie"/>
+                                            <chart-column column-id="Equity - MidCap"
+                                                          column-values="{{goal.assetAllocation.equityMid/goal.marketValue}}"
+                                                          column-type="pie"/>
+                                            <chart-column column-id="Equity - LargeCap"
+                                                          column-values="{{goal.assetAllocation.equityLarge/goal.marketValue}}"
+                                                          column-type="pie"/>
+                                            <chart-column column-id="Liquid"
+                                                          column-values="{{goal.assetAllocation.liquid/goal.marketValue}}"
+                                                          column-type="pie"/>
+                                            <chart-column column-id="TaxSaving (ELSS)"
+                                                          column-values="{{goal.assetAllocation.elss/goal.marketValue}}"
+                                                          column-type="pie"/>
+                                            <chart-column column-id="Hybrid"
+                                                          column-values="{{funds.assetAllocation.hybrid/goal.marketValue}}"
+                                                          column-type="pie"/>
+                                            <chart-pie expand="true"/>
+                                            <chart-legend show-legend="false"/>
+                                        </c3chart>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="ibox-title">
+                                <h4 class = "text-center"><strong>Portfolio </strong></h4>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Scheme Name</th>
+                                    <th>Invested Amt</th>
+                                    <th>Current Value</th>
+                                    <th>Absolute Returns(%)</th>
+                                    <th>Annualized Returns (XIRR %)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr ng-repeat="fund in goal.funds">
+                                    <td>{{getFundName(fund._schemeId)}}</td>
+                                    <td>{{thousandseparator(getNumber(fund.investedCost))}}</td>
+                                    <td>{{thousandseparator(getNumber(fund.marketValue))}}</td>
+                                    <td>{{getDecimal(fund.absReturn * 100)}}</td>
+                                    <td>{{getDecimal(fund.xirr * 100)}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total</b></td>
+                                    <td><b>{{thousandseparator(getNumber(goal.investedCost))}}</b></td>
+                                    <td><b>{{thousandseparator(getNumber(goal.marketValue))}}</b></td>
+                                    <td><b>{{getDecimal(goal.absReturn * 100)}}</b></td>
+                                    <td><b>{{getDecimal(goal.xirr * 100)}}</b></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

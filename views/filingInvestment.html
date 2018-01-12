@@ -1,0 +1,547 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>
+                Have you made any of the following investments or incurred expenses under the given heads in the current
+                financial year?
+            </h3>
+        </div>
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="filingInvestmentCtrl" data-ng-init="init()">
+                    <div class="goalText" ng-show="investmentInfoAvailable">
+                        <button class="btn btn-sm btn-primary " ng-click="copyOptimization()"><strong>Copy from Tax Optimisation</strong>
+                        </button>
+                    </div>
+                    <form class="form-horizontal" role="form" name="filingInvestment" id="filingInvestment" novalidate>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Tax saving bank fixed deposits </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="fixedDeposit_yes">
+                                    <input icheck id="fixedDeposit_yes" type="radio" name="fixedDeposit"
+                                           ng-model="finTaxInvestmentFormData.taxSavingFD" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="fixedDeposit_no">
+                                    <input icheck id="fixedDeposit_no" type="radio"
+                                           name="fixedDeposit"
+                                           ng-model="finTaxInvestmentFormData.taxSavingFD" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="finTaxInvestmentFormData.taxSavingFD == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingInvestment.fixedDepositAmnt.$invalid && filingInvestment.fixedDepositAmnt.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="fixedDepositAmnt" class="form-control"
+                                           name="fixedDepositAmnt"
+                                           ng-model="finTaxInvestmentFormData.taxSavingFDAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter fixed deposit principal amount  " min="100" max="10000000"
+                                           ng-required="finTaxInvestmentFormData.taxSavingFD == 'yes'"
+                                    />
+                                    <span ng-hide="finTaxInvestment.fixedDepositAmnt.$invalid && finTaxInvestment.fixedDepositAmnt.$dirty" class="help-block">{{taxSavingFDAmtInWords}}</span>
+                                    <div ng-show="filingInvestment.fixedDepositAmnt.$invalid && filingInvestment.fixedDepositAmnt.$dirty">
+                                        <p ng-show="filingInvestment.fixedDepositAmnt.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingInvestment.fixedDepositAmnt.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingInvestment.fixedDepositAmnt.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingInvestment.fixedDepositAmnt.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Tax saving mutual funds (ELSS) </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="mutualFund_yes">
+                                    <input icheck type="radio" id="mutualFund_yes" name="mutualFund"
+                                           ng-model="finTaxInvestmentFormData.taxSavingMF" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="mutualFund_no">
+                                    <input icheck type="radio" id="mutualFund_no" name="mutualFund"
+                                           ng-model="finTaxInvestmentFormData.taxSavingMF" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="finTaxInvestmentFormData.taxSavingMF == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingInvestment.mutualFundAmnt.$invalid && filingInvestment.mutualFundAmnt.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="mutualFundAmnt" class="form-control" name="mutualFundAmnt"
+                                           ng-model="finTaxInvestmentFormData.taxSavingMFAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter amount invested in ELSS " min="100" max="10000000"
+                                           ng-required="finTaxInvestmentFormData.taxSavingMF == 'yes'"
+                                    />
+                                    <span ng-hide="finTaxInvestment.mutualFundAmnt.$invalid && finTaxInvestment.mutualFundAmnt.$dirty" class="help-block">{{mutualFundAmntInWords}}</span>
+                                    <div ng-show="filingInvestment.mutualFundAmnt.$invalid && filingInvestment.mutualFundAmnt.$dirty">
+                                        <p ng-show="filingInvestment.mutualFundAmnt.$error.pattern" class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingInvestment.mutualFundAmnt.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingInvestment.mutualFundAmnt.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingInvestment.mutualFundAmnt.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Public Provident Fund (PPF) </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="ppf_yes">
+                                    <input icheck type="radio" id="ppf_yes"
+                                           name="ppf" ng-model="finTaxInvestmentFormData.taxSavingPF" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="ppf_no">
+                                    <input icheck type="radio" id="ppf_no" name="ppf"
+                                           ng-model="finTaxInvestmentFormData.taxSavingPF" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="finTaxInvestmentFormData.taxSavingPF == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingInvestment.ppfAmount.$invalid && filingInvestment.ppfAmount.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="ppfAmount" class="form-control" name="ppfAmount"
+                                           ng-model="finTaxInvestmentFormData.taxSavingPFAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter PPF contribution amount  " min="100" max="10000000"
+                                           ng-required = "finTaxInvestmentFormData.taxSavingPF == 'yes'"
+                                    />
+                                    <span ng-hide="finTaxInvestment.ppfAmount.$invalid && finTaxInvestment.ppfAmount.$dirty" class="help-block">{{ppfAmountInWords}}</span>
+                                    <div ng-show="filingInvestment.ppfAmount.$invalid && filingInvestment.ppfAmount.$dirty">
+                                        <p ng-show="filingInvestment.ppfAmount.$error.pattern" class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingInvestment.ppfAmount.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingInvestment.ppfAmount.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingInvestment.ppfAmount.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">National Savings Certificate (NSC) </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="nsc_yes">
+                                    <input icheck type="radio" id="nsc_yes"
+                                           name="nsc" ng-model="finTaxInvestmentFormData.taxSavingNSC" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="nsc_no">
+                                    <input icheck type="radio" id="nsc_no" name="nsc"
+                                           ng-model="finTaxInvestmentFormData.taxSavingNSC" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="finTaxInvestmentFormData.taxSavingNSC == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingInvestment.nationalSaving.$invalid && filingInvestment.nationalSaving.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="nationalSaving" class="form-control" name="nationalSaving"
+                                           ng-model="finTaxInvestmentFormData.taxSavingNSCAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter NSC investment amount  " min="100" max="10000000"
+                                           ng-required="finTaxInvestmentFormData.taxSavingNSC == 'yes'"
+                                    />
+                                    <span ng-hide="finTaxInvestment.nationalSaving.$invalid && finTaxInvestment.nationalSaving.$dirty" class="help-block">{{nationalSavingInWords}}</span>
+                                    <div ng-show="filingInvestment.nationalSaving.$invalid && filingInvestment.nationalSaving.$dirty">
+                                        <p ng-show="filingInvestment.nationalSaving.$error.pattern" class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingInvestment.nationalSaving.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingInvestment.nationalSaving.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingInvestment.nationalSaving.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Life Insurance premiums paid </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="lic_yes">
+                                    <input icheck type="radio" id="lic_yes"
+                                           name="lifeInsurance" ng-model="finTaxInvestmentFormData.taxSavingLI"
+                                           value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="lic_no">
+                                    <input icheck type="radio" id="lic_no" name="lifeInsurance"
+                                           ng-model="finTaxInvestmentFormData.taxSavingLI" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="finTaxInvestmentFormData.taxSavingLI == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingInvestment.licAmount.$invalid && filingInvestment.licAmount.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="licAmount" class="form-control" name="licAmount"
+                                           ng-model="finTaxInvestmentFormData.taxSavingLIAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter total premiums paid on all life policies " min="100" max="10000000"
+                                           ng-required="finTaxInvestmentFormData.taxSavingLI == 'yes'"
+                                    />
+                                    <span ng-hide="finTaxInvestment.licAmount.$invalid && finTaxInvestment.licAmount.$dirty" class="help-block">{{licAmountInWords}}</span>
+                                    <div ng-show="filingInvestment.licAmount.$invalid && filingInvestment.licAmount.$dirty">
+                                        <p ng-show="filingInvestment.licAmount.$error.pattern" class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingInvestment.licAmount.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingInvestment.licAmount.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingInvestment.licAmount.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Sukanya Samriddhi Yojana (SSY) </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="sukanyaYojna_yes">
+                                    <input icheck type="radio" id="sukanyaYojna_yes"
+                                           name="sukanyaYojna" ng-model="finTaxInvestmentFormData.taxSavingSSY"
+                                           value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="sukanyaYojna_no">
+                                    <input icheck type="radio" id="sukanyaYojna_no" name="sukanyaYojna"
+                                           ng-model="finTaxInvestmentFormData.taxSavingSSY" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="finTaxInvestmentFormData.taxSavingSSY == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingInvestment.sukanyaYojnaAmnt.$invalid && filingInvestment.sukanyaYojnaAmnt.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="sukanyaYojnaAmnt" class="form-control"
+                                           name="sukanyaYojnaAmnt"
+                                           ng-model="finTaxInvestmentFormData.taxSavingSSYAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter SSY contribution amount  " min="100" max="10000000"
+                                           ng-required="finTaxInvestmentFormData.taxSavingSSY == 'yes'"
+                                    />
+                                    <span ng-hide="finTaxInvestment.sukanyaYojnaAmnt.$invalid && finTaxInvestment.sukanyaYojnaAmnt.$dirty" class="help-block">{{sukanyaYojnaAmntInWords}}</span>
+                                    <div ng-show="filingInvestment.sukanyaYojnaAmnt.$invalid && filingInvestment.sukanyaYojnaAmnt.$dirty">
+                                        <p ng-show="filingInvestment.sukanyaYojnaAmnt.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingInvestment.sukanyaYojnaAmnt.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingInvestment.sukanyaYojnaAmnt.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingInvestment.sukanyaYojnaAmnt.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Child/ children tuition fees </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="childFees_yes">
+                                    <input icheck type="radio" id="childFees_yes"
+                                           name="childFees" ng-model="finTaxInvestmentFormData.taxSavingTutFee"
+                                           value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="childFees_no">
+                                    <input icheck type="radio" id="childFees_no" name="childFees"
+                                           ng-model="finTaxInvestmentFormData.taxSavingTutFee" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="finTaxInvestmentFormData.taxSavingTutFee == 'yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingInvestment.childFeesAmnt.$invalid && filingInvestment.childFeesAmnt.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="childFeesAmnt" class="form-control" name="childFeesAmnt"
+                                           ng-model="finTaxInvestmentFormData.taxSavingTutFeeAmt"
+                                           ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter expenses incurred on tuition fees " min="100" max="10000000"
+                                           ng-required="finTaxInvestmentFormData.taxSavingTutFee == 'yes'"
+                                    />
+                                    <span ng-hide="finTaxInvestment.childFeesAmnt.$invalid && finTaxInvestment.childFeesAmnt.$dirty" class="help-block">{{childFeesAmntInWords}}</span>
+                                    <div ng-show="filingInvestment.childFeesAmnt.$invalid && filingInvestment.childFeesAmnt.$dirty">
+                                        <p ng-show="filingInvestment.childFeesAmnt.$error.pattern" class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingInvestment.childFeesAmnt.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingInvestment.childFeesAmnt.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingInvestment.childFeesAmnt.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">National Pension Scheme (NPS) </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="pensionScheme_yes">
+                                    <input icheck type="radio" id="pensionScheme_yes"
+                                           name="pensionScheme" ng-model="finTaxInvestmentFormData.taxSavingNPS"
+                                           value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="pensionScheme_no">
+                                    <input icheck type="radio" id="pensionScheme_no" name="employmentChange"
+                                           ng-model="finTaxInvestmentFormData.taxSavingNPS" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="finTaxInvestmentFormData.taxSavingNPS =='yes'">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingInvestment.pensionSchemeAmnt.$invalid && filingInvestment.pensionSchemeAmnt.$dirty }">
+                                <label class="control-label col-sm-6"></label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="pensionSchemeAmnt" class="form-control"
+                                           name="pensionSchemeAmnt"
+                                           ng-model="finTaxInvestmentFormData.taxSavingNPSAmt" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter NPS contribution amount  " min="100" max="10000000"
+                                           ng-required="finTaxInvestmentFormData.taxSavingNPS =='yes'"
+                                    />
+                                    <span ng-hide="finTaxInvestment.pensionSchemeAmnt.$invalid && finTaxInvestment.pensionSchemeAmnt.$dirty" class="help-block">{{pensionSchemeAmntInWords}}</span>
+                                    <div ng-show="filingInvestment.pensionSchemeAmnt.$invalid && filingInvestment.pensionSchemeAmnt.$dirty">
+                                        <p ng-show="filingInvestment.pensionSchemeAmnt.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingInvestment.pensionSchemeAmnt.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingInvestment.pensionSchemeAmnt.$error.min" class="help-block">
+                                            Amount cannot be lower than Rs.100
+                                        </p>
+                                        <p ng-show="filingInvestment.pensionSchemeAmnt.$error.max" class="help-block">
+                                            Amount cannot exceed 1 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-6">Any other, please specify </label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline" for="other_yes">
+                                    <input icheck type="radio" id="other_yes"
+                                           name="other" ng-model="finTaxInvestmentFormData.other" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="other_no">
+                                    <input icheck type="radio" id="other_no" name="other"
+                                           ng-model="finTaxInvestmentFormData.other" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="finTaxInvestmentFormData.other == 'yes'">
+                            <div class="form-group ">
+                                <div ng-class="{ 'has-error' : filingInvestment.name.$invalid && filingInvestment.name.$dirty }">
+                                    <label class="control-label col-sm-3" for="name"></label>
+                                    <div class="col-sm-3 ">
+                                        <input type="text" id="name" class="form-control" name="name"
+                                               ng-model="finTaxInvestmentFormData.name1"
+                                               placeholder="Enter investment Description" ng-minlength="1"
+                                               ng-maxlength="20" ng-required="finTaxInvestmentFormData.other == 'yes'"
+                                        />
+                                        <div ng-show="filingInvestment.name.$invalid && filingInvestment.name.$dirty">
+                                            <p ng-show="filingInvestment.name.$error.required" class="help-block">
+                                                Description required
+                                            </p>
+                                            <p ng-show="filingInvestment.name.$error.pattern" class="help-block">
+                                                Invalid Description
+                                            </p>
+                                            <p ng-show="filingInvestment.name.$error.minlength" class="help-block">
+                                                Description Should Contain Atleast 1 Character
+                                            </p>
+                                            <p ng-show="filingInvestment.name.$error.maxlength" class="help-block">
+                                                Description cannot exceed 20 characters
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-class="{ 'has-error' : filingInvestment.amount.$invalid && filingInvestment.amount.$dirty }">
+                                    <div class="col-sm-4 ">
+                                        <input type="number" id="amount" class="form-control " name="amount"
+                                               ng-model="finTaxInvestmentFormData.amt1" ng-pattern="/^[0-9]*$/"
+                                               placeholder="Enter amount invested " min="100" max="10000000"
+                                               ng-required="finTaxInvestmentFormData.other == 'yes'"
+                                        />
+                                        <span ng-hide="finTaxInvestment.amount.$invalid && finTaxInvestment.amount.$dirty" class="help-block">{{amountInWords}}</span>
+                                        <div ng-show="filingInvestment.amount.$invalid && filingInvestment.amount.$dirty">
+                                            <p ng-show="filingInvestment.amount.$error.pattern" class="help-block">
+                                                Invalid amount
+                                            </p>
+                                            <p ng-show="filingInvestment.amount.$error.required" class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingInvestment.amount.$error.min" class="help-block">
+                                                Amount cannot be lower than Rs.100
+                                            </p>
+                                            <p ng-show="filingInvestment.amount.$error.max" class="help-block">
+                                                Amount cannot exceed 1 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 2nd other info field-->
+                            <div class="form-group ">
+                                <div ng-class="{ 'has-error' : filingInvestment.namedes.$invalid && filingInvestment.namedes.$dirty }">
+                                    <label class="control-label col-sm-3" for="name"></label>
+                                    <div class="col-sm-3 ">
+                                        <input type="text" id="namedes" class="form-control" name="namedes"
+                                               ng-model="finTaxInvestmentFormData.name2"
+                                               placeholder="Enter investment Description"
+                                               ng-minlength="1"
+                                               ng-maxlength="20"/>
+                                        <div ng-show="filingInvestment.namedes.$invalid && filingInvestment.namedes.$dirty">
+                                            <p ng-show="filingInvestment.namedes.$error.pattern" class="help-block">
+                                                Invalid name
+                                            </p>
+                                            <p ng-show="filingInvestment.namedes.$error.minlength" class="help-block">
+                                                Description Should Contain Atleast 1 Character
+                                            </p>
+                                            <p ng-show="filingInvestment.namedes.$error.maxlength" class="help-block">
+                                                Description cannot exceed 20 characters
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-class="{ 'has-error' : filingInvestment.amountdes.$invalid && filingInvestment.amountdes.$dirty }">
+                                    <div class="col-sm-4 ">
+                                        <input type="number" id="amountdes" class="form-control " name="amountdes"
+                                               ng-model="finTaxInvestmentFormData.amt2" ng-pattern="/^[0-9]*$/"
+                                               placeholder="Enter amount invested " min="100" max="10000000"/>
+                                        <span ng-hide="finTaxInvestment.amountdes.$invalid && finTaxInvestment.amountdes.$dirty" class="help-block">{{amountdesInWords}}</span>
+                                        <div ng-show="filingInvestment.amountdes.$invalid && filingInvestment.amountdes.$dirty">
+                                            <p ng-show="filingInvestment.amountdes.$error.pattern" class="help-block">
+                                                Invalid amount
+                                            </p>
+                                            <p ng-show="filingInvestment.amountdes.$error.required" class="help-block">
+                                                Amnt is required
+                                            </p>
+                                            <p ng-show="filingInvestment.amountdes.$error.min" class="help-block">
+                                                Amount cannot be lower than Rs.100
+                                            </p>
+                                            <p ng-show="filingInvestment.amountdes.$error.max" class="help-block">
+                                                Amount cannot exceed 1 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 3rd other info field-->
+                            <div class="form-group ">
+                                <div ng-class="{ 'has-error' : filingInvestment.nameOther.$invalid && filingInvestment.nameOther.$dirty }">
+                                    <label class="control-label col-sm-3" for="name"></label>
+                                    <div class="col-sm-3 ">
+                                        <input type="text" id="nameOther" class="form-control" name="nameOther"
+                                               ng-model="finTaxInvestmentFormData.name3"
+                                               placeholder="Enter investment Description" ng-minlength="1"
+                                               ng-maxlength="20"/>
+                                        <div ng-show="filingInvestment.nameOther.$invalid && filingInvestment.nameOther.$dirty">
+                                            <p ng-show="filingInvestment.nameOther.$error.pattern" class="help-block">
+                                                Invalid name
+                                            </p>
+                                            <p ng-show="filingInvestment.nameOther.$error.minlength" class="help-block">
+                                                Description Should Contain Atleast 1 Character
+                                            </p>
+                                            <p ng-show="filingInvestment.nameOther.$error.maxlength" class="help-block">
+                                                Description cannot exceed 20 characters
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-class="{ 'has-error' : filingInvestment.amountOther.$invalid && filingInvestment.amountOther.$dirty }">
+                                    <div class="col-sm-4 ">
+                                        <input type="number" id="amountOther" class="form-control " name="amountOther"
+                                               ng-model="finTaxInvestmentFormData.amt3" ng-pattern="/^[0-9]*$/"
+                                               placeholder="Enter amount invested" min="100" max="10000000"/>
+                                        <span ng-hide="finTaxInvestment.amountOther.$invalid && finTaxInvestment.amountOther.$dirty" class="help-block">{{amountOtherInWords}}</span>
+                                        <div ng-show="filingInvestment.amountOther.$invalid && filingInvestment.amountOther.$dirty">
+                                            <p ng-show="filingInvestment.amountOther.$error.pattern" class="help-block">
+                                                Invalid name
+                                            </p>
+                                            <p ng-show="filingInvestment.amountOther.$error.required" class="help-block">
+                                                Amnt is required
+                                            </p>
+                                            <p ng-show="filingInvestment.amountOther.$error.min" class="help-block">
+                                                Amount cannot be lower than Rs.100
+                                            </p>
+                                            <p ng-show="filingInvestment.amountOther.$error.max" class="help-block">
+                                                Amount cannot exceed 1 crore
+                                            </p>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="filingInvestment.$invalid || !formEditable"
+                                    ng-click="submitInvstmnt()"><strong>Save</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

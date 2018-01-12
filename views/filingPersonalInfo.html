@@ -1,0 +1,264 @@
+<uib-accordion>
+    <uib-accordion-group heading="Personal Information" is-open = "true">
+        <div ng-controller="filingPersonalInfoCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="filingPersonalInfoForm" id="filingPersonalInfo"
+                  novalidate>
+                <div class="form-group required"
+                     ng-class="{ 'has-error' : filingPersonalInfoForm.residenceAddress.$invalid && filingPersonalInfoForm.residenceAddress.$dirty }">
+                    <label class="control-label col-sm-4" for="residenceAddress">Residence Address</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="residenceAddress" class="form-control" name="residenceAddress"
+                               required
+                               ng-model="personalInfoFormData.address"
+                               ng-minlength="1"
+                               ng-maxlength="55"
+                               placeholder=" "
+                        />
+                        <div ng-show="filingPersonalInfoForm.residenceAddress.$invalid && filingPersonalInfoForm.residenceAddress.$dirty">
+                            <p ng-show="filingPersonalInfoForm.residenceAddress.$error.required"
+                               class="help-block">
+                                Address is required
+                            </p>
+                            <p ng-show="filingPersonalInfoForm.residenceAddress.$error.minlength"
+                               class="help-block">
+                                Address Atleast 1 Character
+                            </p>
+                            <p ng-show="filingPersonalInfoForm.residenceAddress.$error.maxlength"
+                               class="help-block">
+                                Address cannot exceed 55 Characters
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--End of address -->
+                <div class="form-group required"
+                     ng-class="{ 'has-error' : filingPersonalInfoForm.empolyerCategory.$invalid && filingPersonalInfoForm.empolyerCategory.$dirty }">
+                    <label class="control-label col-sm-4" for="empolyerCategory">
+                        Employer Category
+                    </label>
+                    <div class="col-sm-7">
+                        <select id="empolyerCategory" class="form-control center-adjustment"
+                                name="empolyerCategory" required
+                                ng-model="personalInfoFormData.employerCat"
+                        >
+                            <option value=''>--------Employer category-------</option>
+                            <option value="Govt">Government</option>
+                            <option value="PSU">PSU</option>
+                            <option value="Other">Other</option>
+                            <option value="NA">Not Applicable</option>
+                        </select>
+                        <div ng-show="filingPersonalInfoForm.empolyerCategory.$invalid && filingPersonalInfoForm.empolyerCategory.$dirty">
+                            <p ng-show="filingPersonalInfoForm.empolyerCategory.$error.required"
+                               class="help-block">
+                                Employer category is required
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of employer category-->
+                <div class="form-group required"
+                     ng-class="{ 'has-error' : filingPersonalInfoForm.aadhar.$invalid && filingPersonalInfoForm.aadhar.$dirty }">
+                    <label class="control-label col-sm-4" for="residenceAddress">Aadhar Number</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="aadhar" class="form-control" name="aadhar"
+                               ng-model="personalInfoFormData.aadhar"
+                               placeholder="Enter 12 digit Aadhar number "
+                               required
+                               ng-pattern="/^[0-9]{12}$/"
+                        />
+                        <div ng-show="filingPersonalInfoForm.aadhar.$invalid && filingPersonalInfoForm.aadhar.$dirty">
+                            <p ng-show="filingPersonalInfoForm.aadhar.$error.pattern" class="help-block">
+                                Aadhar number should be numerical, without any space and exactly 12 digits
+                            </p>
+                            <p ng-show="filingPersonalInfoForm.aadhar.$error.required" class="help-block">
+                                Aadhar Number is required
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Aadhar -->
+                <div class="form-group "
+                     ng-class="{ 'has-error' : filingPersonalInfoForm.passport.$invalid && filingPersonalInfoForm.passport.$dirty }">
+                    <label class="control-label col-sm-4" for="residenceAddress">Passport Number </label>
+                    <div class="col-sm-7">
+                        <input type="text" id="passport" class="form-control" name="passport"
+                               ng-model="personalInfoFormData.passport"
+                               placeholder="Enter passport number "
+                               ng-minlength="1"
+                               ng-maxlength="20"
+                        />
+                        <div ng-show="filingPersonalInfoForm.passport.$invalid && filingPersonalInfoForm.passport.$dirty">
+                            <p ng-show="filingPersonalInfoForm.passport.$error.minlength" class="help-block">
+                                Passport number cannot be less than 1 char
+                            </p>
+                            <p ng-show="filingPersonalInfoForm.passport.$error.maxlength" class="help-block">
+                                Passport number cannot exceed 20 characters
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of passport-->
+                <div class="form-group required"
+                     ng-class="{ 'has-error' : filingPersonalInfoForm.residentialStatus.$invalid && filingPersonalInfoForm.residentialStatus.$dirty }">
+                    <label class="control-label col-sm-4" for="residentialStatus">
+                        Residential Status
+                    </label>
+                    <div class="col-sm-7">
+                        <select id="residentialStatus" class="form-control center-adjustment"
+                                name="residentialStatus" required
+                                ng-model="personalInfoFormData.residential_status"
+                        >
+                            <option value=''>--------Residential Status-------</option>
+                            <option value="RI">Resident Indian</option>
+                            <option value="NRI">Non-Resident(NRI)</option>
+                        </select>
+                        <div ng-show="filingPersonalInfoForm.residentialStatus.$invalid && filingPersonalInfoForm.residentialStatus.$dirty">
+                            <p ng-show="filingPersonalInfoForm.residentialStatus.$error.required"
+                               class="help-block">
+                                Residential status is required
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of residential status-->
+                <div class="form-group required"
+                     ng-class="{ 'has-error' : filingPersonalInfoForm.fatherName.$invalid && filingPersonalInfoForm.fatherName.$dirty }">
+                    <label class="control-label col-sm-4" for="residenceAddress">Father's Name </label>
+                    <div class="col-sm-7">
+                        <input type="text" id="fatherName" class="form-control" name="fatherName"
+                               required
+                               ng-model="personalInfoFormData.fatherName"
+                               ng-minlength="1"
+                               ng-maxlength="100"
+                               placeholder=" "
+                               ng-pattern="/^[a-zA-Z\s]*$/"
+                        />
+                        <div ng-show="filingPersonalInfoForm.fatherName.$invalid && filingPersonalInfoForm.fatherName.$dirty">
+                            <p ng-show="filingPersonalInfoForm.fatherName.$error.required" class="help-block">
+                                Father's name is required
+                            </p>
+                            <p ng-show="filingPersonalInfoForm.fatherName.$error.pattern" class="help-block">
+                                Invalid father's name
+                            </p>
+                            <p ng-show="filingPersonalInfoForm.fatherName.$error.minlength" class="help-block">
+                                Father's name should contain At least 1 character
+                            </p>
+                            <p ng-show="filingPersonalInfoForm.fatherName.$error.maxlength" class="help-block">
+                                Father's name cannot exceed 100 characters
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group required" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="filingPersonalInfoForm.$invalid || !formEditable"
+                            ng-click="submitPersonalInfo()"><strong>Save</strong></button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="Bank Information">
+        <div ng-controller="filingBankInfoCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="filingBankInfo" id="filingBankInfo"
+                  novalidate>
+                <div class="form-group required">
+                    <label class="control-label col-sm-3" for="ifscCode">IFSC Code </label>
+                    <label class="control-label col-sm-4" for="bankAccNo">Bank Account Number</label>
+                    <label class="control-label col-sm-3" for="accountType">Type of Account</label>
+                </div>
+
+                <div class="form-group required" ng-repeat="bank in bankList track by $index" >
+                    <ng-form class="form-horizontal" role="form" name="filingBankInfoForm"
+                             novalidate>
+                        <div class="col-sm-4"
+                             ng-class="{ 'has-error' : filingBankInfoForm.ifscCode.$invalid && filingBankInfoForm.ifscCode.$dirty }">
+                            <input type="text" id="ifscCode" class="form-control" name="ifscCode"
+                                   required
+                                   ng-model="bank.ifsc_code"
+                                   ng-pattern="/^[A-Za-z]{4}\d{7}$/"
+                                   placeholder="Enter IFSC code of your bank "
+                                   ng-disabled ="!formEditable"
+                            />
+                            <div ng-show="filingBankInfoForm.ifscCode.$invalid && filingBankInfoForm.ifscCode.$dirty">
+                                <p ng-show="filingBankInfoForm.ifscCode.$error.required"
+                                   class="help-block">
+                                    IFSC code is required
+                                </p>
+                                <p ng-show="filingBankInfoForm.ifscCode.$error.pattern"
+                                   class="help-block">
+                                   Invalid IFSC code
+                                </p>
+                            </div>
+                        </div>
+                        <!-- End of residence address-->
+                        <div class="col-sm-4"
+                             ng-class="{ 'has-error' : filingBankInfoForm.bankAccNo.$invalid && filingBankInfoForm.bankAccNo.$dirty }">
+                            <input type="text" id="bankAccNo" class="form-control" name="bankAccNo"
+                                   ng-model="bank.account_number"
+                                   required
+                                   placeholder="Enter bank account number "
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-pattern="/^[0-9]*$/"
+                                   ng-disabled ="!formEditable"
+                            />
+                            <div ng-show="filingBankInfoForm.bankAccNo.$invalid && filingBankInfoForm.bankAccNo.$dirty">
+                                <p ng-show="filingBankInfoForm.bankAccNo.$error.pattern" class="help-block">
+                                    Bank account number should be numerical, without any space
+                                </p>
+                                <p ng-show="filingBankInfoForm.bankAccNo.$error.required"
+                                   class="help-block">
+                                    Bank account number is required
+                                </p>
+                                <p ng-show="filingBankInfoForm.bankAccNo.$error.minlength"
+                                   class="help-block">
+                                    Bank account number contain Atleast 1 number
+                                </p>
+                                <p ng-show="filingBankInfoForm.bankAccNo.$error.maxlength"
+                                   class="help-block">
+                                    Bank account number cannot exceed 50 number
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- End of bank account number -->
+                        <div class="col-sm-3"
+                             ng-class="{ 'has-error' : filingBankInfoForm.accountType.$invalid && filingBankInfoForm.accountType.$dirty }">
+                            <select id="accountType" class="form-control center-adjustment"
+                                    name="accountType" required
+                                    ng-model="bank.account_type"
+                                    ng-disabled ="!formEditable"
+                            >
+                                <option value=''>--------Type of Account-------</option>
+                                <option value="saving">Savings</option>
+                                <option value="current">Current</option>
+                            </select>
+                            <div ng-show="filingBankInfoForm.accountType.$invalid && filingBankInfoForm.accountType.$dirty">
+                                <p ng-show="filingBankInfoForm.accountType.$error.required"
+                                   class="help-block">
+                                    Account type is required
+                                </p>
+                            </div>
+                        </div>
+                        <!-- End of Account type status-->
+                        <span class="btn btn-default tax-filing-margin-plus" ng-show="bankList.length >1 && formEditable"
+                              ng-click="deleteBank($index)">
+                            <i class="fa fa-minus"></i></span>
+
+                        <span class="btn btn-default" ng-hide="bankList.length > 4 || !formEditable" ng-click="addBankInfo(bank)">
+                            <i class="fa fa-plus"></i></span>
+
+                    </ng-form>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-sm btn-primary" ng-disabled="filingBankInfo.$invalid || !formEditable"
+                            ng-click="submitBankInfo()"><strong>Save</strong></button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+</uib-accordion>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

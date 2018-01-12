@@ -1,0 +1,15 @@
+{
+    "CI": "Company Identification Number",
+    "E" : "Driving License",
+    "B" : "Election ID Card",
+    "E1": "Global Entity Identification Number",
+    "D" : "ID Card",
+    "X" : "Not categorized",
+    "H" : "NREGA Job Card",   
+    "C" : "PAN Card",
+    "A" : "Passport",
+    "T" : "TIN [Tax Payer Identification Number]",
+    "G" : "UIDIA / Aadhar letter",
+    "GI": "US GIIN",
+    "O" : "Others"
+}

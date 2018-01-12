@@ -1,0 +1,64 @@
+<div class="row" ng-controller="personalinfoStatusCtrl">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>User Id</th>
+                            <th>Name</th>
+                            <th>Date of Birth</th>
+                            <th>Occupation</th>
+                            <th>Occupation(other)</th>
+                            <th>PAN</th>
+                            <th>KYC Verified</th>
+                            <th>Tax Status</th>
+                            <th>Father Name/Spouse Name</th>
+                            <th>Correspondence Address(India)</th>
+                            <th></th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Country</th>
+                            <th>Pin code</th>
+                            <th>Residential Status</th>
+                            <th>Overseas Address</th>
+                            <th></th>
+                            <th>NRI City</th>
+                            <th>NRI State</th>
+                            <th>NRI Country</th>
+                            <th>NRI Pin code</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="personal in personals">
+                            <td>{{personal._userid}}</td>
+                            <td>{{personal.panName}}</td>
+                            <td>{{personal.dob}}</td>
+                            <td>{{personal.occupation}}</td>
+                            <td>{{personal.occupation_other}}</td>
+                            <td>{{personal.PAN}}</td>
+                            <td>{{personal.KYC}}</td>
+                            <td>{{personal.tax_status}}</td>
+                            <td>{{personal.father}}</td>
+                            <td>{{personal.addr1}}</td>
+                            <td>{{personal.addr2}}</td>
+                            <td>{{personal.city}}</td>
+                            <td>{{personal.state}}</td>
+                            <td>{{personal.country}}</td>
+                            <td>{{personal.pincode}}</td>
+                            <td>{{personal.NRI }}</td>
+                            <td>{{personal.nri_addr1 }}</td>
+                            <td>{{personal.nri_addr2 }}</td>
+                            <td>{{personal.nri_city }}</td>
+                            <td>{{personal.nri_state }}</td>
+                            <td>{{personal.nri_country }}</td>
+                            <td>{{personal.nri_pincode }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

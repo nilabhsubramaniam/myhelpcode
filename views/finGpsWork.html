@@ -1,0 +1,215 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="finGpsWorkCtrl" data-ng-init="init()">
+                    <form class="form-horizontal" role="form" name="finGpsWork" id="finGpsWorkFormData" novalidate>
+                        <div class="form-group required workTab" ng-show="isSpouseContribution">
+                            <label class="control-label col-sm-5">Is your spouse also contributing to your overall
+                                family income?
+                            </label>
+                            <div class="col-sm-7">
+                                <label class="checkbox-inline" for="spouseContribution_yes">
+                                    <input icheck type="radio" id="spouseContribution_yes" name="spouseContribution"
+                                           ng-model="finGpsWorkFormData.spouseContribution" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="spouseContribution_no">
+                                    <input icheck type="radio" id="spouseContribution_no" name="spouseContribution"
+                                           ng-model="finGpsWorkFormData.spouseContribution" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3"></label>
+                            <label class="control-label col-sm-4"><b class="text-finatwork">Self</b></label>
+                            <label class="control-label col-sm-3" ng-show="finGpsWorkFormData.spouseContribution == 'yes'"><b
+                                    class="text-finatwork">Spouse</b></label>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-5" for="occupation">Category</label>
+                            <div class="col-sm-3"
+                                 ng-class="{ 'has-error' : finGpsWork.occupation.$invalid && finGpsWork.occupation.$dirty }">
+                                <select id="occupation" class="form-control" name="occupation"
+                                        ng-model="finGpsWorkFormData.category" required>
+                                    <option value=''>------Select Occupation-------</option>
+                                    <option ng-repeat="(key, value) in occupationList" value="{{key}}">{{value}}
+                                    </option>
+                                </select>
+                                <div ng-show="finGpsWork.occupation.$invalid && finGpsWork.occupation.$dirty">
+                                    <p ng-show="finGpsWork.occupation.$error.required" class="help-block">
+                                        Occupation is required
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" ng-show="finGpsWorkFormData.spouseContribution == 'yes'"
+                                 ng-class="{ 'has-error' : finGpsWork.spouseOccupation.$invalid && finGpsWork.spouseOccupation.$dirty }">
+                                <select id="spouseOccupation" class="form-control" name="spouseOccupation"
+                                        ng-model="finGpsWorkFormData.spouseCategory"
+                                        ng-required="finGpsWorkFormData.spouseContribution == 'yes'">
+                                    <option value=''>-----Select Occupation------</option>
+                                    <option ng-repeat="(key, value) in occupationList" value="{{key}}">{{value}}
+                                    </option>
+                                </select>
+                                <div ng-show="finGpsWork.spouseOccupation.$invalid && finGpsWork.spouseOccupation.$dirty">
+                                    <p ng-show="finGpsWork.spouseOccupation.$error.required" class="help-block">
+                                        Occupation is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5" for="businessName">Organisation/Business
+                                Name</label>
+                            <div class="col-sm-3"
+                                 ng-class="{'has-error':finGpsWork.businessName.$invalid && finGpsWork.businessName.$dirty}">
+                                <input type="text" id="businessName" class="form-control"
+                                       name="businessName"
+                                       placeholder="Enter Name "
+                                       ng-model="finGpsWorkFormData.organisation"
+                                       ng-minlength="2"
+                                       ng-maxlength="100"
+                                >
+                                <div ng-show="finGpsWork.businessName.$invalid && finGpsWork.businessName.$dirty">
+                                    <p ng-show="finGpsWork.businessName.$error.minlength" class="help-block">
+                                        Name cannot be less than 2 characters
+                                    </p>
+                                    <p ng-show="finGpsWork.businessName.$error.maxlength" class="help-block">
+                                         Name cannot exceed 100 characters
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" ng-show="finGpsWorkFormData.spouseContribution == 'yes'"
+                                 ng-class="{'has-error':finGpsWork.spouseBusinessName.$invalid && finGpsWork.spouseBusinessName.$dirty}">
+                                <input type="text" id="spouseBusinessName" class="form-control"
+                                       name="spouseBusinessName"
+                                       placeholder="Enter Name "
+                                       ng-model="finGpsWorkFormData.spouseOrganisation"
+                                       ng-minlength="2"
+                                       ng-maxlength="100"
+                                >
+                                <div ng-show="finGpsWork.spouseBusinessName.$invalid && finGpsWork.spouseBusinessName.$dirty">
+                                    <p ng-show="finGpsWork.spouseBusinessName.$error.minlength" class="help-block">
+                                        Name cannot be less than 2 characters
+                                    </p>
+                                    <p ng-show="finGpsWork.spouseBusinessName.$error.maxlength" class="help-block">
+                                       Name cannot exceed 100 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5" for="designation">Your role/ Designation</label>
+                            <div class="col-sm-3"
+                                 ng-class="{'has-error':finGpsWork.designation.$invalid && finGpsWork.designation.$dirty}">
+                                <input type="text" id="designation" class="form-control"
+                                       name="designation"
+                                       placeholder="Enter role/ designation"
+                                       ng-model="finGpsWorkFormData.designation"
+                                       ng-minlength="2"
+                                       ng-maxlength="100"
+                                >
+                                <div ng-show="finGpsWork.designation.$invalid && finGpsWork.designation.$dirty">
+                                    <p ng-show="finGpsWork.designation.$error.minlength" class="help-block">
+                                        Role/designation  cannot be less than 2 characters
+                                    </p>
+                                    <p ng-show="finGpsWork.designation.$error.maxlength" class="help-block">
+                                        Role/designation  cannot exceed 100 characters
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" ng-show="finGpsWorkFormData.spouseContribution == 'yes'"
+                                 ng-class="{'has-error':finGpsWork.spouseDesignation.$invalid && finGpsWork.spouseDesignation.$dirty}">
+                                <input type="text" id="spouseDesignation" class="form-control"
+                                       name="spouseDesignation"
+                                       placeholder="Enter role/ designation"
+                                       ng-model="finGpsWorkFormData.spouseDesignation"
+                                       ng-minlength="2"
+                                       ng-maxlength="100"
+                                >
+                                <div ng-show="finGpsWork.spouseDesignation.$invalid && finGpsWork.spouseDesignation.$dirty">
+                                    <p ng-show="finGpsWork.spouseDesignation.$error.minlength" class="help-block">
+                                        Role/designation cannot be less than 2 characters
+                                    </p>
+                                    <p ng-show="finGpsWork.spouseDesignation.$error.maxlength" class="help-block">
+                                        Role/designation  cannot exceed 100 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-5" for="workingPeriod">Working period (in
+                                months)</label>
+                            <div class="col-sm-3"
+                                 ng-class="{'has-error':finGpsWork.workingPeriod.$invalid && finGpsWork.workingPeriod.$dirty}">
+                                <input type="number" id="workingPeriod" class="form-control"
+                                       name="workingPeriod"
+                                       ng-pattern="/^[0-9]*$/"
+                                       placeholder="Enter Working period "
+                                       ng-model="finGpsWorkFormData.workingPeriod"
+                                       required
+                                />
+                                <div ng-show="finGpsWork.workingPeriod.$invalid && finGpsWork.workingPeriod.$dirty">
+                                    <p ng-show="finGpsWork.workingPeriod.$error.required" class="help-block">
+                                        Working period is required
+                                    </p>
+                                    <p ng-show="finGpsWork.workingPeriod.$error.pattern" class="help-block">
+                                        Working period will be in months
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" ng-show="finGpsWorkFormData.spouseContribution == 'yes'"
+                                 ng-class="{'has-error':finGpsWork.spouseWorkingPeriod.$invalid && finGpsWork.spouseWorkingPeriod.$dirty}">
+                                <input type="number" id="spouseWorkingPeriod" class="form-control"
+                                       name="spouseWorkingPeriod"
+                                       ng-pattern="/^[0-9]*$/"
+                                       placeholder="Enter Working period "
+                                       ng-model="finGpsWorkFormData.spouseWorkingPeriod"
+                                       ng-required="spouseContribution == 'yes'"
+                                />
+                                <div ng-show="finGpsWork.spouseWorkingPeriod.$invalid && finGpsWork.spouseWorkingPeriod.$dirty">
+                                    <p ng-show="finGpsWork.spouseWorkingPeriod.$error.pattern" class="help-block">
+                                        working period will be in months
+                                    </p>
+                                    <p ng-show="finGpsWork.spouseWorkingPeriod.$error.required" class="help-block">
+                                        working period will be in months
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsWork.userComment.$invalid && finGpsWork.userComment.$dirty }">
+                            <label class="control-label col-sm-5" for="UserComment">Any Additional comments</label>
+                            <div class="col-sm-7"></div>
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="userComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="finGpsWorkFormData.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                                <div ng-show="finGpsPersonal.userComment.$invalid && finGpsPersonal.userComment.$dirty">
+                                    <p ng-show="finGpsPersonal.userComment.$error.maxlength" class="help-block">
+                                        Comments cannot exceed 250 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="finGpsWork.$invalid "
+                                    ng-click="submit()"><strong>Save</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

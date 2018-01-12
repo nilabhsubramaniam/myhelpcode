@@ -1,0 +1,38 @@
+<div class="row" ng-controller="bankinfoStatusCtrl">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>User Id</th>
+                            <th>Name (as per Bank Account)</th>
+                            <th>Bank Name</th>
+                            <th></th>
+                            <th>IFSC Code</th>
+                            <th>Bank Branch</th>
+                            <th>Bank Address</th>
+                            <th>Account Number</th>
+                            <th>Account Type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="bankinfo in bank">
+                            <td>{{bankinfo._userid}}</td>
+                            <td>{{bankinfo.acctName}}</td>
+                            <td>{{bankinfo.name}}</td>
+                            <td>{{bankinfo.otherBankText}}</td>
+                            <td>{{bankinfo.code}}</td>
+                            <td>{{bankinfo.branch}}</td>
+                            <td>{{bankinfo.addr}}</td>
+                            <td>{{bankinfo.account_number}}</td>
+                            <td>{{bankinfo.account_type}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

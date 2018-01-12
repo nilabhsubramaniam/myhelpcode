@@ -1,0 +1,139 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="finGpsIncomeCtrl" data-ng-init="init()">
+                    <form class="form-horizontal" role="form" name="finGpsIncomeCashFlow" id="incomeCashFlowForm"
+                          novalidate>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2 ">Category</label>
+                            <label class="control-label col-sm-2" style="margin-left:54px">Self</label>
+                            <label class="control-label col-sm-3" style="margin-left:8px">Spouse</label>
+                            <label class="control-label col-sm-3" style="margin-left:-11px">Frequency</label>
+                        </div>
+                        <div class="form-group" ng-repeat="income in incomeList track by $index">
+                            <ng-form class="form-horizontal" role="form" name="incomeCashFlow">
+                                <div class="col-sm-3"
+                                     ng-class="{ 'has-error' : incomeCashFlow.category.$invalid && incomeCashFlow.category.$dirty }">
+                                    <select id="instrument" class="form-control" name="category"
+                                            required
+                                            ng-model="income.category">
+                                        <option value=''>--------Select category------</option>
+                                        <option ng-repeat="(key, value) in otherSrcIncomeList " value="{{key}}">
+                                            {{value}}
+                                        </option>
+                                    </select>
+                                    <div ng-show="incomeCashFlow.category.$invalid && incomeCashFlow.category.$dirty">
+                                        <p ng-show="incomeCashFlow.category.$error.required"
+                                           class="help-block">
+                                            Category is required
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Self -->
+                                <div class="col-sm-3"
+                                     ng-class="{'has-error':incomeCashFlow.selfIncome.$invalid && incomeCashFlow.selfIncome.$dirty}">
+                                    <input type="number" id="selfIncome" class="form-control"
+                                           required
+                                           name="selfIncome"
+                                           placeholder="Enter amount"
+                                           ng-model="income.selfIncome"
+                                           min="1000"
+                                           max="100000000"
+                                    >
+                                    <span ng-hide="incomeCashFlow.selfIncome.$invalid && incomeCashFlow.selfIncome.$dirty"
+                                          class="help-block">{{annualIncomeInWords}}</span>
+                                    <div ng-show="incomeCashFlow.selfIncome.$invalid && incomeCashFlow.selfIncome.$dirty">
+                                        <p ng-show="incomeCashFlow.selfIncome.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="incomeCashFlow.selfIncome.$error.min" class="help-block">
+                                            Amount cannot be less than 1000
+                                        </p>
+                                        <p ng-show="incomeCashFlow.selfIncome.$error.max" class="help-block">
+                                            Amount  cannot be greater 10 crore
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Spouse-->
+                                <div class="col-sm-3"
+                                     ng-class="{'has-error':incomeCashFlow.spouseIncome.$invalid && incomeCashFlow.spouseIncome.$dirty}">
+                                    <input type="number" id="spouseIncome" class="form-control"
+                                           required
+                                           name="spouseIncome"
+                                           placeholder="Enter amount"
+                                           ng-model="income.SpouseIncome"
+                                           min="1000"
+                                           max="100000000"
+                                    >
+                                    <span ng-hide="incomeCashFlow.spouseIncome.$invalid && incomeCashFlow.spouseIncome.$dirty"
+                                          class="help-block">{{annualIncomeInWords}}</span>
+                                    <div ng-show="incomeCashFlow.spouseIncome.$invalid && incomeCashFlow.spouseIncome.$dirty">
+                                        <p ng-show="incomeCashFlow.spouseIncome.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="incomeCashFlow.spouseIncome.$error.min" class="help-block">
+                                            Amount cannot be less than 1000
+                                        </p>
+                                        <p ng-show="incomeCashFlow.spouseIncome.$error.max" class="help-block">
+                                            Amount cannot be greater 10 crore
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2"
+                                     ng-class="{ 'has-error' : incomeCashFlow.category.$invalid && incomeCashFlow.category.$dirty }">
+                                    <select id="frequency" class="form-control" name="frequency"
+                                            ng-model="income.frequency">
+                                        <option value=''>-------Select frequency-----</option>
+                                        <option value="monthly">Monthly</option>
+                                        <option value="annually">Annually</option>
+
+                                    </select>
+                                </div>
+                                <span class="btn btn-default" ng-show="incomeList.length >1"
+                                      style="padding:2px 7px"
+                                      ng-click="deleteIncomeGoal($index)">
+                                        <i class="fa fa-minus"></i>
+                                    </span>
+                                <span class="btn btn-default" ng-hide="incomeList.length > 7"
+                                      style="padding:2px 7px"
+                                      ng-click="addIncomeGoal(income)">
+                                        <i class="fa fa-plus"></i>
+                                </span>
+                            </ng-form>
+                        </div>
+                        <!--User comments-->
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : finGpsIncomeCashFlow.userComment.$invalid && finGpsIncomeCashFlow.userComment.$dirty }">
+                            <label class="control-label col-sm-5" for="UserComment">Any Additional comments</label>
+                            <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="userComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="incomeCashFlowForm.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                                <div ng-show="finGpsIncomeCashFlow.userComment.$invalid && finGpsIncomeCashFlow.userComment.$dirty">
+                                    <p ng-show="finGpsIncomeCashFlow.userComment.$error.maxlength" class="help-block">
+                                        Comments cannot exceed 250 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="finGpsIncomeCashFlow.$invalid "
+                                    ng-click="submitIncomeCashFlow()"><strong>Save</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

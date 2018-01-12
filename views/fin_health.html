@@ -1,0 +1,474 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <div class="col-lg-10">
+            <a href="/index.php">
+                <img class="img-responsive imgTeam-approach img-align-left" src="assets/img/logo.png"
+                     style="width:100px;height:100px; margin-top:10px" alt="">
+            </a>
+        </div>
+        <div class="col-lg-2">
+            <img class="img-responsive imgTeam-approach img-align-left" src="assets/img/icons/finhealth.jpg"
+                 style=" width:80%; height:50%;margin-top:20px" alt="">
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="finHealthCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" data-target="#tab-1" aria-expanded="true">Savings Habit</a>
+                    </li>
+                    <li class=""><a data-toggle="tab" data-target="#tab-2" aria-expanded="false">Contingency
+                        Preparedness</a></li>
+                    <li class=""><a data-toggle="tab" data-target="#tab-3" aria-expanded="false">Loan Situation</a></li>
+                    <li class=""><a data-toggle="tab" data-target="#tab-4" aria-expanded="false">Investment
+                        Discipline</a></li>
+                    <li class=""><a data-toggle="tab" data-target="#tab-5" aria-expanded="false">General Awareness</a>
+                    </li>
+                    <li class=""><a data-toggle="tab" data-target="#tab-6" aria-expanded="false"
+                                    ng-click="overAllScoreValidate()">Overall Assessment</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="panel-body">
+                            <form ng-show="savingsHabitStatus" method="get" class="form-horizontal">
+                                <div ng-repeat="questionD in category1">
+                                    <div class="form-group finhealth-form-group">
+                                        <span>{{questionD.qsno}}.</span> <span>{{questionD.question}}</span>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group finhealth-form-group">
+                                        <div class="col-sm-10">
+                                            <div ng-repeat="ans in questionD.answer">
+                                                <label class="finhealth-label">
+                                                    <input type="radio" checked="" value="{{ $index }}"
+                                                           id="{{'savingsHabit'+$parent.$index}}"
+                                                           name="{{optionsRadios+$parent.$index}}"
+                                                           ng-model="Answer[$parent.questionD._id]"> {{ans.option}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-primary finhealth-submit-margin" type="submit"
+                                                ng-click="submitQuestion('savingsHabit')">Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- start from health result-->
+                            <div class="ibox-content" ng-hide="savingsHabitStatus">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-content">
+                                                <div class="text-center">
+                                                    <div width="70%" ng-radial-gauge ranges="ranges"
+                                                         value="savingsHabitScore" value-unit="unit"
+                                                         precision="precision" lower-limit="lowerLimit"
+                                                         upper-limit="upperLimit"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div><h4><strong><u>Assessment</u></strong></h4></div>
+                                        <span class="text-adjustment">{{savingsHabitDesctiption}}</span>
+                                        <p></p>
+                                        <p></p>
+                                        <div>
+                                            <b>{{description[0].Thumb_Rule_Header}}</b>
+                                        </div>
+                                        <div ng-repeat="thumbRule in description[0].Thumb_Rules">
+                                            <ul class="text-adjustment">
+                                                <li class="text-adjustment">{{thumbRule.thumbrule}}</li>
+                                            </ul>
+                                        </div>
+                                        <div><h4><strong><u>Recommended Services</u></strong></h4></div>
+                                        <span>We suggest you explore the following services</span>
+                                        <div>
+                                            <br>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINTELLIGENT" target="_blank"><strong>{{description[0].service_1}}</strong></a>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINGPS" target="_blank"><strong>{{description[0].service_2}}</strong></a>
+                                            <button class="btn btn-sm btn-primary finhealth-signup-margin"
+                                                    ng-hide="isLogedin"
+                                                    ng-click="goNewState(description[0].service_3)"><strong>{{description[0].service_3}}</strong>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                        <div class="panel-body">
+                            <form ng-show="contingencyPreparednessStatus" method="get" class="form-horizontal">
+                                <div ng-repeat="questionD in category2">
+                                    <div class="form-group finhealth-form-group">
+                                        <span>{{questionD.qsno}}.</span> <span>{{questionD.question}}</span>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group finhealth-form-group">
+                                        <div class="col-sm-10">
+                                            <div ng-repeat="ans in questionD.answer">
+                                                <label class="finhealth-label">
+                                                    <input type="radio" checked="" value="{{ $index }}"
+                                                           id="{{'contingencyPreparedness'+$parent.$index}}"
+                                                           name="{{optionsRadios+$parent.$index}}"
+                                                           ng-model="Answer[$parent.questionD._id]"> {{ans.option}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-primary finhealth-submit-margin" type="submit"
+                                                ng-click="submitQuestion('contingencyPreparedness')">Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="ibox-content" ng-hide="contingencyPreparednessStatus">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-content">
+                                                <div class="text-center">
+                                                    <div width="70%" ng-radial-gauge ranges="ranges"
+                                                         value="contingencyPreparednessScore" value-unit="unit"
+                                                         precision="precision" lower-limit="lowerLimit"
+                                                         upper-limit="upperLimit"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div><h4><strong><u>Assessment</u></strong></h4></div>
+                                        <span class="text-adjustment">{{contingencyDesctiption}}</span>
+                                        <p></p>
+                                        <p></p>
+                                        <p><b>{{description[1].Thumb_Rule_Header}} </b></p>
+                                        <div ng-repeat="thumbRule in description[1].Thumb_Rules">
+                                            <ul class="text-adjustment">
+                                                <li class="text-adjustment">{{thumbRule.thumbrule}}</li>
+                                            </ul>
+                                        </div>
+                                        <div><h4><strong><u>Recommended Services</u></strong></h4></div>
+                                        <span>We suggest you explore the following services</span>
+                                        <div>
+                                            <br>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINSURANCE" target="_blank"><strong>{{description[1].service_1}}</strong></a>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINTELLIGENT" target="_blank"><strong>{{description[1].service_2}}</strong></a>
+                                            <button class="btn btn-sm btn-primary finhealth-signup-margin"
+                                                    ng-hide="isLogedin"
+                                                    ng-click="goNewState(description[1].service_3)"><strong>{{description[1].service_3}}</strong>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-3" class="tab-pane">
+                        <div class="panel-body">
+                            <form ng-show="loansituationStatus" method="get" class="form-horizontal">
+                                <div ng-repeat="questionD in category3">
+                                    <div class="form-group finhealth-form-group">
+                                        <span>{{questionD.qsno}}.</span> <span>{{questionD.question}}</span>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group finhealth-form-group">
+                                        <div class="col-sm-10">
+                                            <div ng-repeat="ans in questionD.answer">
+                                                <label class="finhealth-label">
+                                                    <input type="radio" checked="" value="{{ $index }}"
+                                                           id="{{'loansituation'+$parent.$index}}"
+                                                           name="{{optionsRadios+$parent.$index}}"
+                                                           ng-model="Answer[$parent.questionD._id]"> {{ans.option}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-primary finhealth-submit-margin" type="submit"
+                                                ng-click="submitQuestion('loansituation')">Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="ibox-content" ng-hide="loansituationStatus">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-content">
+                                                <div class="text-center">
+                                                    <div width="70%" ng-radial-gauge ranges="ranges"
+                                                         value="loansituationScore" value-unit="unit"
+                                                         precision="precision" lower-limit="lowerLimit"
+                                                         upper-limit="upperLimit"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div><h4><strong><u>Assessment</u></strong></h4></div>
+                                        <span class="text-adjustment">{{loansituationDesctiption}}</span>
+                                        <p></p>
+                                        <p></p>
+                                        <p><b>{{description[2].Thumb_Rule_Header}} </b></p>
+                                        <div ng-repeat="thumbRule in description[2].Thumb_Rules">
+                                            <ul class="text-adjustment">
+                                                <li class="text-adjustment">{{thumbRule.thumbrule}}</li>
+                                            </ul>
+                                        </div>
+                                        <div><h4><strong><u>Recommended Services</u></strong></h4></div>
+                                        <span>We suggest you explore the following services</span>
+                                        <div>
+                                            <br>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINGPS" target="_blank"><strong>{{description[2].service_1}}</strong></a>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINTAX" target="_blank"><strong>{{description[2].service_2}}</strong></a>
+                                            <button class="btn btn-sm btn-primary finhealth-signup-margin"
+                                                    ng-hide="isLogedin"
+                                                    ng-click="goNewState(description[2].service_3)"><strong>{{description[2].service_3}}</strong>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-4" class="tab-pane">
+                        <div class="panel-body">
+                            <form ng-show="investmentDisciplineStatus" method="get" class="form-horizontal">
+                                <div ng-repeat="questionD in category4">
+                                    <div class="form-group finhealth-form-group">
+                                        <span>{{questionD.qsno}}.</span> <span>{{questionD.question}}</span>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group finhealth-form-group">
+                                        <div class="col-sm-10">
+                                            <div ng-repeat="ans in questionD.answer">
+                                                <label class="finhealth-label">
+                                                    <input type="radio" checked="" value="{{ $index }}"
+                                                           id="{{'investmentDiscipline'+$parent.$index}}"
+                                                           name="{{optionsRadios+$parent.$index}}"
+                                                           ng-model="Answer[$parent.questionD._id]"> {{ans.option}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-primary finhealth-submit-margin" type="submit"
+                                                ng-click="submitQuestion('investmentDiscipline')">Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="ibox-content" ng-hide="investmentDisciplineStatus">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-content">
+                                                <div class="text-center">
+                                                    <div width="70%" ng-radial-gauge ranges="ranges"
+                                                         value="investmentDisciplineScore" value-unit="unit"
+                                                         precision="precision" lower-limit="lowerLimit"
+                                                         upper-limit="upperLimit"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div><h4><strong><u>Assessment</u></strong></h4></div>
+                                        <span class="text-adjustment">{{investmentDesctiption}}</span>
+                                        <p></p>
+                                        <p></p>
+                                        <p><b>{{description[3].Thumb_Rule_Header}} </b></p>
+                                        <div ng-repeat="thumbRule in description[3].Thumb_Rules">
+                                            <ul class="text-adjustment">
+                                                <li class="text-adjustment">{{thumbRule.thumbrule}}</li>
+                                            </ul>
+                                        </div>
+                                        <div><h4><strong><u>Recommended Services</u></strong></h4></div>
+                                        <span>We suggest you explore the following services</span>
+                                        <div>
+                                            <br>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINTELLIGENT" target="_blank"><strong>{{description[3].service_1}}</strong></a>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINTAX" target="_blank"><strong>{{description[3].service_2}}</strong></a>
+                                            <button class="btn btn-sm btn-primary finhealth-signup-margin"
+                                                    ng-hide="isLogedin"
+                                                    ng-click="goNewState(description[3].service_3)"><strong>{{description[3].service_3}}</strong>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-5" class="tab-pane">
+                        <div class="panel-body">
+                            <form ng-show="generalAwarenessStatus" method="get" class="form-horizontal">
+                                <div ng-repeat="questionD in category5">
+                                    <div class="form-group finhealth-form-group">
+                                        <span>{{questionD.qsno}}.</span> <span>{{questionD.question}}</span>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group finhealth-form-group">
+                                        <div class="col-sm-10">
+                                            <div ng-repeat="ans in questionD.answer">
+                                                <label class="finhealth-label">
+                                                    <input type="radio" checked="" value="{{ $index }}"
+                                                           id="{{'generalAwareness'+$parent.$index}}"
+                                                           name="{{optionsRadios+$parent.$index}}"
+                                                           ng-model="Answer[$parent.questionD._id]"> {{ans.option}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-primary finhealth-submit-margin" type="submit"
+                                                ng-click="submitQuestion('generalAwareness')">Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="ibox-content" ng-hide="generalAwarenessStatus">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-content">
+                                                <div class="text-center">
+                                                    <div width="70%" ng-radial-gauge ranges="ranges"
+                                                         value="generalAwarenessScore" value-unit="unit"
+                                                         precision="precision" lower-limit="lowerLimit"
+                                                         upper-limit="upperLimit"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div><h4><strong><u>Assessment</u></strong></h4></div>
+                                        <span class="text-adjustment">{{generalAwarenessDesctiption}}</span>
+                                        <p></p>
+                                        <p></p>
+                                        <p><b>{{description[4].Thumb_Rule_Header}} </b></p>
+                                        <div ng-repeat="thumbRule in description[4].Thumb_Rules">
+                                            <ul class="text-adjustment">
+                                                <li class="text-adjustment">{{thumbRule.thumbrule}}</li>
+                                            </ul>
+                                        </div>
+                                        <div><h4><strong><u>Recommended Services</u></strong></h4></div>
+                                        <span>We suggest you explore the following services</span>
+                                        <div>
+                                            <br>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINESTATE" target="_blank"><strong>{{description[4].service_1}}</strong></a>
+                                            <a class="btn btn-sm btn-primary goal-button-margin"
+                                               href="/services.php#FINGPS" target="_blank"><strong>{{description[4].service_2}}</strong></a>
+                                            <button class="btn btn-sm btn-primary finhealth-signup-margin"
+                                                    ng-hide="isLogedin"
+                                                    ng-click="goNewState(description[4].service_3)"><strong>{{description[4].service_3}}</strong>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-6" class="tab-pane">
+                        <div class="panel-body">
+                            <div ng-show="showForm">
+                                <form ng-hide="isLogedin" class="m-t" role="form" id="logIn" name="logIn" novalidate
+                                      ng-submit="finHealthReport()">
+                                    <div class="form-group"
+                                         ng-class="{'has-error' : logIn.name.$invalid && logIn.name.$dirty }">
+                                        <div class="input-group">
+                                          <span class="input-group-addon ">
+                                             <i class="icon-lock " aria-hidden="true"></i>
+                                          </span>
+                                            <input type="text" class="form-control" placeholder="Enter  name "
+                                                   name="name"
+                                                   autocomplete="off" required="" ng-model="login.name"
+                                                   ng-pattern="/^[a-zA-Z\s]*$/">
+                                        </div>
+                                        <div ng-show="logIn.name.$invalid && logIn.name.$dirty">
+                                            <p ng-show="logIn.name.$error.required" class="help-block">
+                                                Name is required
+                                            </p>
+                                            <p ng-show="logIn.name.$error.pattern" class="help-block">
+                                                Invalid Name
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                         ng-class="{'has-error' : logIn.email.$invalid && logIn.email.$dirty }">
+                                        <div class="input-group ">
+                                           <span class="input-group-addon ">
+                                              <i class="icon-pencil " aria-hidden="true"></i>
+                                           </span>
+                                            <input type="email" class="form-control" name="email" placeholder="Email"
+                                                   required
+                                                   ng-pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+                                                   ng-model="login.email" maxlength="37">
+                                        </div>
+                                        <div ng-show="logIn.email.$invalid && logIn.email.$dirty">
+                                            <p ng-show="logIn.email.$error.required" class="help-block">
+                                                Username is required
+                                            </p>
+                                            <p ng-show="logIn.email.$error.pattern" class="help-block">
+                                                Invalid Username
+                                            </p>
+                                            <p ng-show="logIn.email.$error.maxlength" class="help-block">
+                                                You have Entered wrong username
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button type="submit" ng-disabled="logIn.$invalid"
+                                            class="btn btn-primary block full-width m-b">Send me the report!
+                                    </button>
+                                </form>
+                            </div>
+                            <div ng-show="successMessage">
+                                <p class="text-adjustment">
+                                <h3>Thank you! Your FinHealth report is on its way to your inbox.</h3></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

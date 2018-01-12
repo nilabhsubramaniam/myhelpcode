@@ -1,0 +1,125 @@
+@media (max-width: 991px) {
+    .nav > li:first-child {
+        padding-top: 135px;
+    }
+
+    .slick-dots {
+        display: none !important;
+    }
+
+    .chess-about-us-inner--left {
+        padding: 50px 50px 50px 50px;
+    }
+
+    .chess-about-us-inner--right {
+        padding: 50px 50px 50px 50px;
+    }
+
+    .aboutTeam {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .how-do-we-do {
+        float: right;
+    }
+
+    .footer h2:after {
+        display: none !important;
+    }
+
+    #blog {
+        margin-top: -100px;
+    }
+
+    #pricing {
+        margin-bottom: -100px;
+    }
+}
+
+@media (max-width: 650px) {
+    .HomeBanner{
+        background-image: url(/assets/img/master_banner_blur.jpg);
+    }
+
+    .PlanningBanner{
+        background-image: url(/assets/img/Goals_Planning_banner_text_blur.jpg);
+    }
+
+    .FinTax{
+        background-image: url(/assets/img/tax_blur.jpg);
+    }
+
+    .FIntelligent{
+        background-image: url(/assets/img/invt_planning_banner_blur.jpg);
+    }
+
+    .FinEstate{
+        background-image: url(/assets/img/Estate_Planning_banner_text_blur.jpg);
+    }
+
+    .FInsurance {
+        background-image: url(/assets/img/insurance_planning_banner_blur.jpg);
+    }
+    .promo-item-content h3{
+        color:white !important;
+        font-size: 28px;
+    }
+
+    .promo-item-content h3 strong{
+        font-size: 28px;
+    }
+
+    .promo-item-content h4{
+        color:white !important;
+        font-size: 25px;
+    }
+
+    .promo-item-content .KnowMore {
+        position: inherit !important;
+    }
+    body{
+        overflow-x: hidden;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .banner-sec-heading{
+        color:white;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+}
+
+@media (min-width: 650px) {
+    .HomeBanner {
+        background-image: url(/assets/img/master_banner.jpg);
+    }
+
+    .PlanningBanner {
+        background-image: url(/assets/img/Goals_Planning_banner_text.jpg);
+    }
+
+    .FinTax {
+        background-image: url(/assets/img/tax.jpg);
+    }
+
+    .FIntelligent {
+        background-image: url(/assets/img/invt_planning_banner.jpg);
+    }
+
+    .FinEstate {
+        background-image: url(/assets/img/Estate_Planning_banner_text.jpg);
+    }
+
+    .FInsurance {
+        background-image: url(/assets/img/insurance_planning_banner.jpg);
+    }
+
+    .banner-sec-heading{
+        color:black;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+}

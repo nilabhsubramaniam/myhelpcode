@@ -1,0 +1,184 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="filingSalaryIncomeCtrl" data-ng-init="init()">
+                    <h4></h4>
+                    <form class="form-horizontal" role="form" name="filingSalaryIncomeForm" id="filingSalaryIncome"
+                          novalidate>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-5">Do you have any income from salary?</label>
+                            <div class="col-sm-7">
+                                <label class="checkbox-inline" for="incomeSal_yes">
+                                    <input icheck type="radio" id="incomeSal_yes" name="incomeSal"
+                                           ng-model="salaryFormData.salaried" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="incomeSal_no">
+                                    <input icheck type="radio" id="incomeSal_no" name="houseOwn"
+                                           ng-model="salaryFormData.salaried" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="salaryFormData.salaried =='yes'">
+                            <div class="form-group "
+                                 ng-class="{ 'has-error' : filingSalaryIncomeForm.employerName.$invalid && filingSalaryIncomeForm.employerName.$dirty }">
+                                <label class="control-label col-sm-5" for="employerName">Current Employer Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="employerName" class="form-control" name="employerName"
+                                           ng-model="salaryFormData.employer"
+                                           placeholder="Enter company name "
+                                           ng-minlength="1"
+                                           ng-maxlength="100"
+                                    />
+                                    <div ng-show="filingSalaryIncomeForm.employerName.$invalid && filingSalaryIncomeForm.employerName.$dirty">
+                                        <p ng-show="filingSalaryIncomeForm.employerName.$error.minlength"
+                                           class="help-block">
+                                            Employer name contain Atleast 1 Character
+                                        </p>
+                                        <p ng-show="filingSalaryIncomeForm.employerName.$error.maxlength"
+                                           class="help-block">
+                                            Employer name cannot exceed 100 Characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of Employer Name  -->
+                            <div class="form-group ">
+                                    <label class="control-label col-sm-5">Employment Period (during the financial year)</label>
+                                    <div class="col-sm-3">
+                                        <input type="datetime" id="empolymentPeriodStart" class="form-control "
+                                               name="employmetPeriodStart"
+                                               ng-model="salaryFormData.employmentFromDate"
+                                               view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                                               min-date='startFiscalYear' max-date='endFiscalYear'
+                                               date-time
+                                        />
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <input type="datetime" id="empolymentPeriodEnd" class="form-control "
+                                               name="employmetEndDate"
+                                               ng-model="salaryFormData.employmentEndDate"
+                                               placeholder="Select End date here"
+                                               view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                                               min-date='startFiscalYear' max-date='endFiscalYear'
+                                               date-time
+                                        />
+                                    </div>
+                            </div>
+                            <!-- End of employemnt date-->
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5">Did you change your employment during the current
+                                    financial year?</label>
+                                <div class="col-sm-7">
+                                    <label class="checkbox-inline" for="employmentChange_yes">
+                                        <input icheck type="radio" id="employmentChange_yes" name="employmentChange"
+                                               ng-model="salaryFormData.changedJob"
+                                               value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="employmentChange_no">
+                                        <input icheck type="radio" id="employmentChange_no" name="employmentChange"
+                                               ng-model="salaryFormData.changedJob" value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-show="salaryFormData.changedJob =='yes'">
+                                <div class="form-group required">
+                                    <label class="control-label col-sm-4">Employer Name</label>
+                                    <label class="control-label col-sm-3">Start date</label>
+                                    <label class="control-label col-sm-3">End date</label>
+                                </div>
+                                <div class="form-group" ng-repeat="employer in salaryFormData.prevEmploymentDetails track by $index">
+                                    <ng-form class="form-horizontal" role="form" name="filingSalaryForm" id="filingSalaryEmployment"
+                                             novalidate>
+                                        <label class="control-label col-sm-1"></label>
+                                        <div class="col-sm-4" ng-class="{ 'has-error' : filingSalaryForm.PreviousEmployerName.$invalid && filingSalaryForm.PreviousEmployerName.$dirty }">
+                                            <input type="text" id="PreviousEmployerName" class="form-control"
+                                                   name="PreviousEmployerName"
+                                                   ng-model="employer.PrevEmployer"
+                                                   ng-required ="salaryFormData.changedJob =='yes'"
+                                                   placeholder="Enter company name "
+                                                   ng-minlength="1"
+                                                   ng-maxlength="100"
+                                                   ng-disabled="!formEditable"
+                                            />
+                                            <div ng-show="filingSalaryForm.PreviousEmployerName.$invalid && filingSalaryForm.PreviousEmployerName.$dirty">
+                                                <p ng-show="filingSalaryForm.PreviousEmployerName.$error.required"
+                                                   class="help-block">
+                                                    Employer name is required
+                                                </p>
+                                                <p ng-show="filingSalaryForm.PreviousEmployerName.$error.minlength"
+                                                   class="help-block">
+                                                    Employer name contain Atleast 1 Character
+                                                </p>
+                                                <p ng-show="filingSalaryForm.PreviousEmployerName.$error.maxlength"
+                                                   class="help-block">
+                                                    Employer name cannot exceed 100 Characters
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" ng-class="{ 'has-error' : filingSalaryForm.PreviousempolymentPeriodStart.$invalid && filingSalaryForm.PreviousempolymentPeriodStart.$dirty }">
+                                            <input type="datetime" id="PreviousempolymentPeriodStart" class="form-control "
+                                                   name="PreviousempolymentPeriodStart"
+                                                   ng-required ="salaryFormData.changedJob =='yes'"
+                                                   ng-model="employer.PrevEmploymentFromDate"
+                                                   view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                                                   min-date='startFiscalYear' max-date='endFiscalYear'
+                                                   date-time
+                                                   ng-disabled="!formEditable"
+                                            />
+                                            <div ng-show="filingSalaryForm.PreviousempolymentPeriodStart.$invalid && filingSalaryForm.PreviousempolymentPeriodStart.$dirty">
+                                                <p ng-show="filingSalaryForm.PreviousempolymentPeriodStart.$error.required"
+                                                   class="help-block">
+                                                    Employment Period is required
+                                                </p>
+                                            </div>
+                                        </div>
+                                            <div class="col-sm-3" ng-class="{ 'has-error' : filingSalaryForm.PreviousempolymentEnd.$invalid && filingSalaryForm.PreviousempolymentEnd.$dirty }">
+                                                <input type="datetime" id="PreviousempolymentEnd" class="form-control "
+                                                       name="PreviousempolymentEnd"
+                                                       ng-required ="salaryFormData.changedJob =='yes'"
+                                                       ng-model="employer.PrevEmploymentEndDate"
+                                                       view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                                                       min-date='startFiscalYear' max-date='endFiscalYear'
+                                                       date-time
+                                                       ng-disabled="!formEditable"
+                                                />
+                                                <div ng-show="filingSalaryForm.PreviousempolymentEnd.$invalid && filingSalaryForm.PreviousempolymentEnd.$dirty">
+                                                    <p ng-show="filingSalaryForm.PreviousempolymentEnd.$error.required">
+                                                        Employment Period is required
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        <div  ng-click="addEmployer($index)"
+                                              ng-hide="salaryFormData.prevEmploymentDetails.length >1 || !formEditable"
+                                              ng-disabled ="filingSalaryForm.$invalid">
+                                            <span class="btn btn-default"> <i class="fa fa-plus"></i> </span>
+                                        </div>
+                                        <div   ng-click="deleteEmployer($index)"
+                                          ng-show="salaryFormData.prevEmploymentDetails.length >1 && formEditable">
+                                            <span class="btn btn-default"><i class="fa fa-minus"></i></span>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="filingSalaryIncomeForm.$invalid || !formEditable"
+                                    ng-click="submitSalaryIncomeInfo()"><strong>Save</strong></button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

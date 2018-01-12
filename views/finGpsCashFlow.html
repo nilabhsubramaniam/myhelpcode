@@ -1,0 +1,34 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="formWizardCtrl" data-ng-init="init()">
+                    <div class="wizard ">
+                        <div class="steps clearfix personalWorkMargin">
+                            <ul>
+                                <li ui-sref-active="current" class="current" style="width:16%">
+                                    <a ui-sref=".incomeCashFlow" class="btn-default touchSpin">Income</a>
+                                </li>
+                                <li ui-sref-active="current" class="current" style="width:16%">
+                                    <a ui-sref=".expensesCashFlow" class="btn-default touchSpin ">Expenses</a>
+                                </li>
+                                <li ui-sref-active="current" class="current" style="width:17%">
+                                    <a ui-sref=".regularInvestment" class="btn-default touchSpin ">Regular
+                                        investment</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="">
+                            <div class="content">
+                                <form name="finGpsCashFlowForm">
+                                    <!-- our nested state views will be injected here -->
+                                    <div id="form-views" ui-view></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

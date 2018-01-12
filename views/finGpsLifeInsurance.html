@@ -1,0 +1,330 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="finGpsInsuranceCtrl" data-ng-init="init()">
+                    <div ng-show="addLifeInsurance">
+                        <p><i class="text-finatwork">Please upload policy documents also in the Docs tab</i></p>
+                        <form class="form-horizontal" role="form" name="finGpsLifeInsurance"
+                              id="finGpsLifeInsuranceForm"
+                              novalidate
+                              ng-submit="submitLifeInsuranceForm()">
+
+                            <!--Policy type -->
+                            <div class="form-group required"
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.policyType.$invalid && finGpsLifeInsurance.policyType.$dirty }">
+                                <label class="control-label col-sm-3" for="relation">Policy Type</label>
+                                <div class="col-sm-5">
+                                    <select id="relation" class="form-control" name="policyType"
+                                            ng-model="finGpsLifeInsuranceForm.policyType"
+                                            ng-change="otherLifeInsurance()"
+                                            required
+                                    >
+                                        <option value=''>--Select policy Type--</option>
+                                        <option ng-repeat="(key, value) in policyList" value="{{value}}">{{value}}
+                                        </option>
+                                    </select>
+                                    <div ng-show="finGpsLifeInsurance.policyType.$invalid && finGpsLifeInsurance.policyType.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.policyType.$invalid" class="help-block">
+                                            Policy type is required
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Others please specify-->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.otherName.$invalid && finGpsLifeInsurance.otherName.$dirty }"
+                                 ng-show="otherInsuranceDetails">
+                                <label class="control-label col-sm-3" for="otherName"></label>
+                                <div class="col-sm-5">
+                                    <input type="text" id="otherName" class="form-control" name="otherName"
+                                           ng-model="finGpsLifeInsuranceForm.otherInsurance"
+                                           ng-required="otherInsuranceDetails"
+                                           placeholder="Please specify name"
+                                           ng-minlength="2"
+                                           ng-maxlength="100"/>
+                                    <div ng-show="finGpsLifeInsurance.otherName.$invalid && finGpsLifeInsurance.otherName.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.otherName.$error.required" class="help-block">
+                                            Name is required
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.otherName.$error.minlength"
+                                           class="help-block">
+                                            Name Should Contain Atleast 2 Characters
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.otherName.$error.maxlength"
+                                           class="help-block">
+                                            Name cannot exceed 100 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Insured Name-->
+                            <div class="form-group required"
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.insuredName.$invalid && finGpsLifeInsurance.insuredName.$dirty }">
+                                <label class="control-label col-sm-3" for="name">Insured Name</label>
+                                <div class="col-sm-5">
+                                    <input type="text" id="name" class="form-control" name="insuredName"
+                                           ng-model="finGpsLifeInsuranceForm.insuredName"
+                                           required
+                                           ng-pattern="/^[a-zA-Z\s]*$/"
+                                           placeholder="Enter name of insured"
+                                           ng-minlength="2"
+                                           ng-maxlength="100"/>
+                                    <div ng-show="finGpsLifeInsurance.insuredName.$invalid && finGpsLifeInsurance.insuredName.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.insuredName.$error.required" class="help-block">
+                                            Name is required
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.insuredName.$error.pattern" class="help-block">
+                                            Invalid name
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.insuredName.$error.minlength"
+                                           class="help-block">
+                                            Name Should Contain Atleast 2 Characters
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.insuredName.$error.maxlength"
+                                           class="help-block">
+                                            Name cannot exceed 100 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Insurer Name -->
+                            <div class="form-group "
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.insurerName.$invalid && finGpsLifeInsurance.insurerName.$dirty }">
+                                <label class="control-label col-sm-3" for="insurerName">Insurer Name</label>
+                                <div class="col-sm-5">
+                                    <input type="text" id="insurerName" class="form-control" name="insurerName"
+                                           ng-model="finGpsLifeInsuranceForm.insurerName"
+                                           ng-pattern="/^[a-zA-Z\s]*$/"
+                                           placeholder="Enter name of insurer"
+                                           ng-minlength="2"
+                                           ng-maxlength="100"/>
+                                    <div ng-show="finGpsLifeInsurance.insurerName.$invalid && finGpsLifeInsurance.insurerName.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.insurerName.$error.pattern" class="help-block">
+                                            Invalid name
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.insurerName.$error.minlength"
+                                           class="help-block">
+                                            Name Should Contain Atleast 2 Characters
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.insurerName.$error.maxlength"
+                                           class="help-block">
+                                            Name cannot exceed 100 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Policy Name -->
+                            <div class="form-group "
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.policyName.$invalid && finGpsLifeInsurance.policyName.$dirty }">
+                                <label class="control-label col-sm-3" for="policyName">Policy Name</label>
+                                <div class="col-sm-5">
+                                    <input type="text" id="policyName" class="form-control" name="policyName"
+                                           ng-model="finGpsLifeInsuranceForm.policyName"
+                                           placeholder="Enter policy name"
+                                           ng-minlength="2"
+                                           ng-maxlength="100"/>
+                                    <div ng-show="finGpsLifeInsurance.policyName.$invalid && finGpsLifeInsurance.policyName.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.policyName.$error.minlength" class="help-block">
+                                            Name Should Contain Atleast 2 Characters
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.policyName.$error.maxlength" class="help-block">
+                                            Name cannot exceed 100 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Issue Date-->
+                            <div class="form-group required"
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.issueDate.$invalid && finGpsLifeInsurance.issueDate.$dirty }">
+                                <label class="control-label col-sm-3" for="issueDate">Issue Date</label>
+                                <div class="col-sm-5">
+                                    <input type="datetime" id="issueDate" class="form-control" name="issueDate"
+                                           ng-model="finGpsLifeInsuranceForm.issueDate"
+                                           placeholder="YYYY-MM-DD"
+                                           date-time
+                                           max-date='todayDate'
+                                           view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                                    >
+                                    <div ng-show="finGpsLifeInsurance.issueDate.$invalid && finGpsLifeInsurance.issueDate.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.issueDate.$invalid" class="help-block">
+                                            Issue Date is required
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Sum Assured / Life Cover-->
+                            <div class="form-group required"
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.lifeCover.$invalid && finGpsLifeInsurance.lifeCover.$dirty }">
+                                <label class="control-label col-sm-3" for="lifeCover">Sum Assured / Life Cover</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="lifeCover" class="form-control" name="lifeCover"
+                                           ng-model="finGpsLifeInsuranceForm.lifeCover"
+                                           required
+                                           placeholder=" Enter sum assured/ Life cover"
+                                           min="500"
+                                           max="500000000"/>
+                                    <div ng-show="finGpsLifeInsurance.lifeCover.$invalid && finGpsLifeInsurance.lifeCover.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.lifeCover.$error.required" class="help-block">
+                                            Sum assured/Life Cover is required
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.lifeCover.$error.min" class="help-block">
+                                            Life cover cannot be less than Rs.500
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.lifeCover.$error.max" class="help-block">
+                                            Life cover cannot exceed 50 Crores
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Premium-->
+                            <div class="form-group required"
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.premium.$invalid && finGpsLifeInsurance.premium.$dirty }">
+                                <label class="control-label col-sm-3" for="premium">Premium</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="premium" class="form-control" name="premium"
+                                           ng-model="finGpsLifeInsuranceForm.premium"
+                                           required
+                                           placeholder="Enter premium Amount "
+                                           min="500"
+                                           max="500000000"/>
+                                    <div ng-show="finGpsLifeInsurance.premium.$invalid && finGpsLifeInsurance.premium.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.premium.$error.required" class="help-block">
+                                            Premium amount is required
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.premium.$error.min" class="help-block">
+                                            Premium amount cannot be less than Rs.500
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.premium.$error.max" class="help-block">
+                                            Premium amount cannot exceed 50 Crores
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Premium Paying Term (in Months)-->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.premiumInMonths.$invalid && finGpsLifeInsurance.premiumInMonths.$dirty }">
+                                <label class="control-label col-sm-3" for="premiumInMonths">Premium Paying Term (in
+                                    Months)</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="premiumInMonths" class="form-control"
+                                           name="premiumInMonths"
+                                           ng-model="finGpsLifeInsuranceForm.premiumInMonths"
+                                           placeholder=" Enter premium paying term in months "
+                                           min="1"
+                                           max="600"/>
+                                    <div ng-show="finGpsLifeInsurance.premiumInMonths.$invalid && finGpsLifeInsurance.premiumInMonths.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.premiumInMonths.$error.min" class="help-block">
+                                            Premium term cannot be less than 1 Month
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.premiumInMonths.$error.max" class="help-block">
+                                            Premium term cannot exceed 600 months
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Policy Maturity term-->
+                            <div class="form-group required"
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.policyMaturityTerm.$invalid && finGpsLifeInsurance.policyMaturityTerm.$dirty }">
+                                <label class="control-label col-sm-3" for="premium">Policy Maturity term</label>
+                                <div class="col-sm-5">
+                                    <input type="number" id="policyMaturityTerm" class="form-control"
+                                           name="policyMaturityTerm"
+                                           ng-model="finGpsLifeInsuranceForm.policyMaturityTerm"
+                                           required
+                                           placeholder=" Enter policy Maturity term  "
+                                           min="1"
+                                           max="100"/>
+                                    <div ng-show="finGpsLifeInsurance.policyMaturityTerm.$invalid && finGpsLifeInsurance.policyMaturityTerm.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.policyMaturityTerm.$error.required"
+                                           class="help-block">
+                                            Policy term is required
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.policyMaturityTerm.$error.min"
+                                           class="help-block">
+                                            Policy term cannot be less than 1
+                                        </p>
+                                        <p ng-show="finGpsLifeInsurance.policyMaturityTerm.$error.max"
+                                           class="help-block">
+                                            Policy term cannot exceed 100
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : finGpsLifeInsurance.userComment.$invalid && finGpsLifeInsurance.userComment.$dirty }">
+                                <label class="control-label col-sm-3" for="lifeInsuranceComment">Any Additional
+                                    comments</label>
+                                <div class="col-sm-5">
+                                <textarea rows="4" cols="48" name="lifeInsuranceComment" id="lifeInsuranceComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="finGpsLifeInsuranceForm.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                                    <div ng-show="finGpsLifeInsurance.userComment.$invalid && finGpsLifeInsurance.userComment.$dirty">
+                                        <p ng-show="finGpsLifeInsurance.userComment.$error.maxlength"
+                                           class="help-block">
+                                            Comments cannot exceed 250 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="_id" name="_id" ng-model="finGpsLifeInsuranceForm._id"/>
+                            <!--What is this use for ?? ask sir -->
+                            <div class="form-group" style="text-align: center;">
+                                <button class="btn btn-sm btn-primary"
+                                        ng-disabled="finGpsLifeInsurance.$invalid  || !formEditable"
+                                        type="submit"><strong>Save</strong>
+                                </button>
+                                <button class="btn btn-sm btn-primary"
+                                        ng-click="cancelLifeInsurance()"><strong>Cancel</strong></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div ng-hide="addLifeInsurance">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Policy Type</th>
+                                <th>Insured Name</th>
+                                <th>Issue Date</th>
+                                <th>Sum Assured/Life Cover</th>
+                                <th>Policy Maturity term</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="lifeInsurance in lifeInsuranceList">
+                                <td>{{ lifeInsurance.policyType }}</td>
+                                <td>{{ lifeInsurance.insuredName }}</td>
+                                <td>{{ lifeInsurance.issueDate }}</td>
+                                <td>{{ lifeInsurance.lifeCover }}</td>
+                                <td>{{ lifeInsurance.policyMaturityTerm }}</td>
+                                <td>
+                                    <a ng-click="edit(lifeInsurance._id)">edit</a> |
+                                    <a ng-click="delete(lifeInsurance._id)">delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <button ng-hide="formStatus || lifeInsuranceList.length == 8"
+                                    ng-disabled="!formEditable"
+                                    class="btn btn-sm btn-primary goal-button-margin" ng-click="addFinGpsLifeInsurance()">
+                                <strong>Add more policy</strong></button>
+                            <button class="btn btn-sm btn-primary"
+                                    ng-disabled="!formEditable" ng-click="submitLifeInsurance()">
+                                <strong>{{submitText}}</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

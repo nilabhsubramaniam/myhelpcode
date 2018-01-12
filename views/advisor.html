@@ -1,0 +1,25 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="row">
+            <div class="ibox">
+                <div class="" ng-controller="advisorController" data-ng-init="init();" >
+                    <div class=" col-sm-12 ibox-content" ng-repeat = " assignee in  assignedPersonal track by $index ">
+                        <div class="col-sm-4">
+                            <img class="img-responsive imageCircle" src="{{assignee.src}}" alt=""
+                                 style="width:150px;height: 150px;margin-top:10px"
+                            >
+                        </div>
+                            <div class="col-lg-6 text-adjustment" ng-show="assignedPersonal">
+                                <h3 style="text-align: center"> {{assignee.designation}}</h3>
+                                <hr>
+                                <h4><b class="text-finatwork">Name: </b> &nbsp {{assignee.name}}</h4>
+                                <h4><b class="text-finatwork">Email: </b> &nbsp {{assignee.email}}</h4>
+                                <h4><b class="text-finatwork">Phone: </b>{{assignee.phone}}</h4>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

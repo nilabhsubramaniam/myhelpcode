@@ -1,0 +1,30 @@
+<div class="row" ng-controller="userQuesryStatusCtrl">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Message</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="query in userQuery">
+                            <td>{{query.name}}</td>
+                            <td>{{query.email}}</td>
+                            <td>{{query.phone}}</td>
+                            <td>{{query.message}}</td>
+                            <td>{{query.status}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

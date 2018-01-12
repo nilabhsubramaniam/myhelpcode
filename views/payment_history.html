@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins" ng-controller="transcationHistoryController" >
+            <div class="ibox-content" style="overflow-x: scroll">
+                <table   class="table table-bordered dataTables-example table-hover  goal-dashboard-center">
+                    <thead>
+                    <tr>
+                        <th rowspan="2">Date</th>
+                        <th rowspan="2">Service</th>
+                        <th >Status</th>
+                        <th rowspan="2">Transcation ID</th>
+                        <th rowspan="2">Amount</th>
+                        <th rowspan="2">Valid till</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr ng-repeat="paymnet in pg">
+                        <td>{{ paymnet.createdAt}}</td>
+                        <td>{{ paymnet.name}}</td>
+                        <td>{{ paymnet.status}}</td>
+                        <td>{{paymnet.trxnid}}</td>
+                        <td>{{paymnet.amount}}</td>
+                        <td>{{paymnet.validity}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

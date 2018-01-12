@@ -1,0 +1,176 @@
+[
+	{
+		"type": "Savings Habit",
+		"service_1": "FinTelligent",
+		"service_2": "FinGPS",
+		"service_3": "Free Sign Up",
+		"Thumb_Rule_Header":"Some tips for developing good savings habits",
+		"Thumb_Rules":[
+			{
+				"thumbrule" :	"Change your money equation from Income – Expenses = Savings to Income – Savings = Expenses. Save first, then spend."
+			},
+			{
+				"thumbrule":	"Budget your expenses. Track your spending against the budget. Identify expenses heads where you often exceed your budget and commit to work on those."
+			},
+			{
+				"thumbrule":	"Don’t let your money sit idle in the bank account. Anything beyond one months expenses should be invested."
+			}
+		],
+		"options": [
+			{
+				"commentary": "Great! You are doing it right. With keen focus on savings and control on expenses, you are steadily paving way for a healthy financial future."
+			},
+			{
+				"commentary": "You are getting there and with just a little more effort in managing your income and expenses well, you should be able to set yourself up for a healthy financial future."
+			},
+			{
+				"commentary": "Something is better than nothing.Start small if you have to, but its time to get going. Motivation to save will come only when you start saving a little and see it grow."
+			}
+		]
+	},
+	{
+		"type": "Contingency Preparedness",
+		"service_1": "FinSure",
+		"service_2": "FinTelligent",
+		"service_3": "Free Sign Up",
+		"Thumb_Rule_Header":"Here are some things you can do to be adequately prepared for any emergency situation",
+		"Thumb_Rules":[
+			{
+				"thumbrule" :	"Before you start investing, set aside 3-6 months expenses in a liquid mutual fund. This is the best investment option to keep funds safe, liquid and earn a return better than savings account."
+			},
+			{
+				"thumbrule":	"If you are married and both are working, 3 months contingency fund will suffice. If it is a single earning member, at least 6 months expenses should be set aside."
+			},
+			{
+				"thumbrule":	"That we are mortal is a fact, so if someone is financially dependent on you, get a life insurance cover. Pure term insurance cover is the right choice; not endowments or moneybacks."
+			},
+			{
+				"thumbrule":	"Get a health insurance cover for self and family, even if you have one from your employer."
+			}
+		],
+		"options": [
+			{
+				"commentary": "Great! You are doing it right. Being prepared for any contingencies in life is most critical and you seem have ticked all boxes on this one."
+			},
+			{
+				"commentary": "You are half way there in your contingency preparedness. This is one of the most critical elements for a good financial life and hence get the missing links in place soon."
+			},
+			{
+				"commentary": "There is a big risk in not being prepared for contingencies because they can come knocking suddenly and can affect your life’s plans in a big way. Better safe than sorry. Act on it now!"
+			}
+		]
+	},
+	{
+		"type": "Loan situation",
+		"service_1": "FinGPS",
+		"service_2": "FinTax",
+		"service_3": "Free Sign Up",
+		"Thumb_Rule_Header":"Here are some things you can do to never get into a debt trap",
+		"Thumb_Rules":[
+			{
+				"thumbrule" :	"Restrict your EMI’s to not more than 35% of your monthly income."
+			},
+			{
+				"thumbrule":	"Home loan is a relatively good loan because of the tax benefits; avoid car loan and personal loan and don’t even think about credit card debt!"
+			},
+			{
+				"thumbrule":	"Plan in advance for big ticket expenses. One tip is to start an expense fund where you can contribute on a monthly basis and use the money from the fund for any big ticket expenses."
+			}
+		],
+		"options": [
+			{
+				"commentary": "Great! You are doing it right. With your liabilities in control, you can divert larger part of your income into savings and in turn building wealth for future."
+			},
+			{
+				"commentary": "Be cautious. While you are not overboard when it comes to debt, it is easy to slip. Exercise fiscal prudence and keep a check on liabilities."
+			},
+			{
+				"commentary": "You are slowly moving towards a debt trap, if you are not already there. Fiscal prudence is critical in your case and make amends before it gets out of hand."
+			}
+		]
+	},
+	{
+		"type": "Investment Discipline",
+		"service_1": "FinTelligent",
+		"service_2": "FinTax",
+		"service_3": "Free Sign Up",
+		"Thumb_Rule_Header":"Inculcate investment discipline by developing some of these habits",
+		"Thumb_Rules":[
+			{
+				"thumbrule" :	"Savings is good but unless savings are invested into right products, you will not go very far."
+			},
+			{
+				"thumbrule":	"Have a clear roadmap for your financial goals and make sure your investments are workings towards your goals and not against them."
+			},
+			{
+				"thumbrule":	"Do not buy products that you don’t understand or make sure you have understood the product before your sign the dotted line."
+			},
+			{
+				"thumbrule": "Don’t put all your eggs in one basket; diversify your investment portfolio. Get help if you cannot do it yourself."
+			}
+		],
+		"options": [
+			{
+				"commentary": "Great! You seem to have it all figured out. With an eye on your goals in life and right investment plan, there is not much that can come in the way of achieving what you want for yourself."
+			},
+			{
+				"commentary": "You are getting there and with just a little effort and hand holding, you should be on your way to achieving the important milestones in your life."
+			},
+			{
+				"commentary": "Failing to plan is planning to fail. Every journey needs a destination and the journey of your life is most important. Set your milestones and do everything it takes to get there."
+			}
+		]
+	},
+	{
+		"type": "General Awareness",
+		"service_1": "FinEstate",
+		"service_2": "FinGPS",
+		"service_3": "Free Sign Up",
+		"Thumb_Rule_Header":"Increase your awareness on money matters by doing some of the following",
+		"Thumb_Rules":[
+			{
+				"thumbrule" :	"Devote an hour a week if not more to reading about personal finance. It could be books, magazines, newspapers – anything so long as it is making you wiser in your decisions."
+			},
+			{
+				"thumbrule":	"Devote an hour a month to take stock of what is happening to your own financial life – whether it is expense management, investments, goals etc."
+			},
+			{
+				"thumbrule":	"Ensure that someone in your family (whom you trust) knows about your financial affairs. It could be spouse, parents, sibling or anyone else."
+			},
+			{
+				"thumbrule": "If you own assets, make a Will. Don’t wait till 60 years to have one!"
+			}
+		],
+		"options": [
+			{
+				"commentary": "Great! You are doing it right. Keeping the family abreast of your financial affairs and planning for them after you are not there is one of the best things you have done for them.."
+			},
+			{
+				"commentary": "Some hits. Some misses. Its time to move from average to best. Keeping the family abreast of your financial affairs and planning for them after you are not there is most crucial."
+			},
+			{
+				"commentary": "Keeping the family abreast of your financial affairs and planning for them after you are not there is most crucial. You seem to have a lot of ground to cover. Start now!"
+			}
+		]
+	},
+	{
+		"type": "OverAll",
+		"options": [
+			{
+				"commentary": "Excellent"
+			},
+			{
+				"commentary": "Very Good"
+			},
+			{
+				"commentary": "Good"
+			},
+			{
+				"commentary": "Average"
+			},
+			{
+				"commentary": "Poor"
+			}
+		]
+	}
+]

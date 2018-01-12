@@ -1,0 +1,82 @@
+<nav class="navbar-default navbar-static-side" role="navigation" ng-controller="navigationCtrl">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+
+                <div class="profile-element" uib-dropdown style="margin-top: -20px">
+                    <img src="/assets/img/logo.png" style="height: auto;width: 117px;"/>
+                    <!--<img alt="image" class="img-circle" src="img/profile_small.jpg"/>-->
+                    <br/>
+
+                </div>
+                <div class="logo-element">
+                    FWI
+                </div>
+            </li>
+            <li>
+                <a a-disabled="isEdit" uib-dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold" id="full_name">{{user_name}}</strong>
+                             </span>
+                                <span class="text-muted text-xs block"></span>
+                            </span>
+                </a>
+            </li>
+            <li ng-class="{active: $state.includes('forms.my_finatwork')}">
+                <a  a-disabled="isEdit" href="start.html"><i class=" fa fa-dashboard"></i> <span class="nav-label">{{ 'My Fin@Work' | translate }}</span></a>
+            </li>
+            <li ng-class="{active: $state.includes('forms.fin_health')}">
+                <a  a-disabled="isEdit" ui-sref="dashboards.health_result" ng-click="VisitSVC('FinHealth')"><i class="fa fa-bell"></i> <span class="nav-label">{{ 'FinHealth' | translate }}</span> </a>
+            </li>
+
+            <li ng-class="{active : $state.includes('charts')}">
+                <a  a-disabled="isEdit" href=""><i class="fa fa-pie-chart"></i> <span class="nav-label">{{ 'FinTelligent Portfolios' | translate }}</span>
+                    <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('charts')}">
+                    <li ><a a-disabled="isEdit" ui-sref="dashboards.goals_home">Set a Goal</a></li>
+                    <li ><a class="verify-dashboards-view" a-disabled="isEdit" ui-sref="dashboards.goal-dashboard">Dashboard</a></li>
+                    <li ><a class="verify-goalwise-view" a-disabled="isEdit" ui-sref="dashboards.goalwise-view">Goalwise View</a></li>
+                    <li ><a class="verify-portfolio-view" a-disabled="isEdit" ui-sref="dashboards.portfolio-view">Portfolio View</a></li>
+                </ul>
+            </li>
+            <li >
+                <a a-disabled="isEdit" ng-click="openFinGps()"><i class="fa fa-globe"></i> <span class="nav-label">{{ 'FinGPS' | translate }}</span> </a>
+            </li>
+
+            <li >
+                <a a-disabled="isEdit" ng-click="openFinTax()"><i class="fa fa-rupee"></i> <span class="nav-label">{{ 'FinTax' | translate }}</span> </a>
+            </li>
+
+            <li >
+                <a a-disabled="isEdit" ui-sref="finsure"><i class="fa fa-umbrella"></i> <span class="nav-label">{{ 'FinSure' | translate }}</span> </a>
+            </li>
+
+            <li >
+                <a a-disabled="isEdit" ui-sref="finestate"><i class="fa fa-paw"></i> <span class="nav-label">{{ 'FinEstate' | translate }}</span> </a>
+            </li>
+            <li ng-class="{active: $state.includes('charts')}" id="Operations" style="display: none">
+                <a href="" a-disabled="isEdit"><i class="fa fa-user"></i> <span class="nav-label">{{ 'Operations' | translate }}</span>
+                    <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('charts')}">
+                    <li ><a a-disabled="isEdit" ui-sref="admin.clients">Clients</a></li>
+                    <li ><a a-disabled="isEdit" ui-sref="forms.wizard.account_verify">Client Verification</a></li>
+                    <li ><a a-disabled="isEdit" ui-sref="admin.userQuery">User Query</a></li>
+                    <li ><a a-disabled="isEdit" ui-sref="forms.transaction.goal-status">Goal Status</a></li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('charts')}" id="Reversefeed" style="display: none">
+                <a a-disabled="isEdit" href=""><i class="fa fa-user"></i> <span class="nav-label">{{ 'Reversefeed' | translate }}</span>
+                    <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('charts')}">
+                    <li ><a a-disabled="isEdit" ui-sref="admin.report">Report</a></li>
+                    <li ><a a-disabled="isEdit" ui-sref="admin.camsTrxn">CAMS Trxn</a></li>
+                    <li ><a a-disabled="isEdit" ui-sref="admin.karvyTrxn">Karvy Trxn</a></li>
+                    <li ><a a-disabled="isEdit" ui-sref="admin.franklinTrxn">Franklin Trxn</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>

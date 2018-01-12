@@ -1,0 +1,193 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="filingOtherSrcInfoCtrl" data-ng-init="init()">
+                    <h4></h4>
+                    <form class="form-horizontal" role="form" name="filingOtherSrc" id="filingOtherSrc"
+                          novalidate>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-5">Do you have any income from other sources?</label>
+                            <div class="col-sm-7">
+                                <label class="checkbox-inline" for="otherIncomeSrc_yes">
+                                    <input icheck type="radio" id="otherIncomeSrc_yes" name="otherIncomeSrc"
+                                           ng-model="otherSrcForm.otherIncomeSrc" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="otherIncomeSrc_no">
+                                    <input icheck type="radio" id="otherIncomeSrc_no" name="otherIncomeSrc"
+                                           ng-model="otherSrcForm.otherIncomeSrc" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="otherSrcForm.otherIncomeSrc == 'yes'">
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5">Do you have any interest income from fixed or
+                                    recurring deposits during the financial year? </label>
+                                <div class="col-sm-7">
+                                    <label class="checkbox-inline" for="incomeInterest_yes">
+                                        <input icheck type="radio" id="incomeInterest_yes" name="incomeInterest"
+                                               ng-model="otherSrcForm.incomeInterest" value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="incomeInterest_no">
+                                        <input icheck type="radio" id="incomeInterest_no" name="incomeInterest"
+                                               ng-model="otherSrcForm.incomeInterest" value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-show="otherSrcForm.incomeInterest == 'yes'">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : filingOtherSrc.interestAmnt.$invalid && filingOtherSrc.interestAmnt.$dirty }">
+                                    <label class="control-label col-sm-6">If yes, please specify amount </label>
+                                    <div class="col-sm-6">
+                                        <input type="number" id="interestAmnt" class="form-control"
+                                               name="interestAmnt"
+                                               ng-model="otherSrcForm.amountSB" ng-pattern="/^[0-9]*$/"
+                                               placeholder="Enter interest earned  " min="100" max="50000000"
+                                               ng-required="otherSrcForm.incomeInterest == 'yes'"
+                                        />
+                                        <span ng-hide="filingOtherSrc.interestAmnt.$invalid && filingOtherSrc.interestAmnt.$dirty"
+                                              class="help-block">{{otherSrcAmntInWords}}</span>
+                                        <div ng-show="filingOtherSrc.interestAmnt.$invalid && filingOtherSrc.interestAmnt.$dirty">
+                                            <p ng-show="filingOtherSrc.interestAmnt.$error.pattern"
+                                               class="help-block">
+                                                Amount is invalid
+                                            </p>
+                                            <p ng-show="filingOtherSrc.interestAmnt.$error.required" class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingOtherSrc.interestAmnt.$error.min" class="help-block">
+                                                Amount cannot be lower than 100
+                                            </p>
+                                            <p ng-show="filingOtherSrc.interestAmnt.$error.max" class="help-block">
+                                                Amount cannot exceed 5 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : filingOtherSrc.interestCredited.$invalid && filingOtherSrc.interestCredited.$dirty }">
+                                <label class="control-label col-sm-6">What is the interest credited on your savings
+                                    account during the financial year?</label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="interestCredited" class="form-control"
+                                           name="interestCredited"
+                                           ng-model="otherSrcForm.interestSB" ng-pattern="/^[0-9]*$/"
+                                           placeholder="Enter interest earned on savings account   " min="100"
+                                           max="50000000"
+                                    />
+                                    <span ng-hide="filingOtherSrc.interestCredited.$invalid && filingOtherSrc.interestCredited.$dirty"
+                                          class="help-block">{{intrstCreditAmntInWords}}</span>
+                                    <div ng-show="filingOtherSrc.interestCredited.$invalid && filingOtherSrc.interestCredited.$dirty">
+                                        <p ng-show="filingOtherSrc.interestCredited.$error.pattern"
+                                           class="help-block">
+                                            Amount is invalid
+                                        </p>
+                                        <p ng-show="filingOtherSrc.interestCredited.$error.required" class="help-block">
+                                            Amount is required
+                                        </p>
+                                        <p ng-show="filingOtherSrc.interestCredited.$error.min" class="help-block">
+                                            Amount cannot be lower than 100
+                                        </p>
+                                        <p ng-show="filingOtherSrc.interestCredited.$error.max" class="help-block">
+                                            Amount cannot exceed 5 crore
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5">Is there any other source of income that does not
+                                    qualify under any other heads of income (lottery, gifts, horse racing)?</label>
+                                <div class="col-sm-7">
+                                    <label class="checkbox-inline" for="unaccountedIncome_yes">
+                                        <input icheck type="radio" id="unaccountedIncome_yes" name="unaccountedIncome"
+                                               ng-model="otherSrcForm.unaccountedIncome" value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="unaccountedIncome_no">
+                                        <input icheck type="radio" id="unaccountedIncome_no" name="unaccountedIncome"
+                                               ng-model="otherSrcForm.unaccountedIncome" value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-show="otherSrcForm.unaccountedIncome == 'yes'">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : filingOtherSrc.unaccountedDetails.$invalid && filingOtherSrc.unaccountedDetails.$dirty }">
+                                    <label class="control-label col-sm-4"></label>
+                                    <div class="col-sm-4">
+                                    <textarea rows="3" cols="30" name="unaccountedDetails" form="filingOtherSrc"
+                                              ng-minlength="1" ng-maxlength="100"
+                                              ng-model="otherSrcForm.otherDescr"
+                                              placeholder="If yes, please specify"
+                                              ng-required="otherSrcForm.unaccountedIncome == 'yes'">
+                                    </textarea>
+                                        <div ng-show="filingOtherSrc.unaccountedDetails.$invalid && filingOtherSrc.unaccountedDetails.$dirty">
+                                            <p ng-show="filingOtherSrc.unaccountedDetails.$error.required"
+                                               class="help-block">
+                                                description is required
+                                            </p>
+                                            <p ng-show="filingOtherSrc.unaccountedDetails.$error.minlength"
+                                               class="help-block">
+                                                Minimum description character should be of 1 character
+                                            </p>
+                                            <p ng-show="filingOtherSrc.unaccountedDetails.$error.maxlength"
+                                               class="help-block">
+                                                Description exceding 100 characters
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error' : filingOtherSrc.descriptionAmnt.$invalid && filingOtherSrc.descriptionAmnt.$dirty }">
+                                        <div class="col-sm-4" style="margin-top:-21px">
+                                            <input type="number" id="descriptionAmnt" class="form-control"
+                                                   name="descriptionAmnt"
+                                                   ng-model="otherSrcForm.otherAmt" ng-pattern="/^[0-9]*$/"
+                                                   placeholder="Enter income amount  "
+                                                   min="100" max="50000000"
+                                                   ng-required="otherSrcForm.unaccountedIncome == 'yes'"
+                                            />
+                                            <span ng-hide="filingOtherSrc.descriptionAmnt.$invalid && filingOtherSrc.descriptionAmnt.$dirty"
+                                                  class="help-block">{{descriptionAmntInWords}}</span>
+                                            <div ng-show="filingOtherSrc.descriptionAmnt.$invalid && filingOtherSrc.descriptionAmnt.$dirty">
+                                                <p ng-show="filingOtherSrc.descriptionAmnt.$error.pattern"
+                                                   class="help-block">
+                                                    Amount is invalid
+                                                </p>
+                                                <p ng-show="filingOtherSrc.descriptionAmnt.$error.required"
+                                                   class="help-block">
+                                                    Amnt is required
+                                                </p>
+                                                <p ng-show="filingOtherSrc.descriptionAmnt.$error.min"
+                                                   class="help-block">
+                                                    Amount cannot be lower than 100
+                                                </p>
+                                                <p ng-show="filingOtherSrc.descriptionAmnt.$error.max"
+                                                   class="help-block">
+                                                    Amount cannot exced 5 crore
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="filingOtherSrc.$invalid || !formEditable "
+                                    ng-click="submitOtherSrcInfo()"><strong>Save</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

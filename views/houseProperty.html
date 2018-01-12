@@ -1,0 +1,413 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="housePropTaxCtrl" data-ng-init="init()">
+                    <div ng-show="AddProp">
+                        <form class="form-horizontal" role="form" name="houseProperty" id="housePropertyRelated"
+                              novalidate>
+                            <div class="form-group required" ng-show="propertyList.length == 0">
+                                <label class="control-label col-sm-5">Do you own a House Property?</label>
+                                <div class="col-sm-7">
+                                    <label class="checkbox-inline" for="ownHouse_yes">
+                                        <input icheck type="radio" id="ownHouse_yes" name="houseOwn"
+                                               ng-model="housePropertyData.houseProp" value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="ownHouse_no">
+                                        <input icheck type="radio" id="ownHouse_no" name="houseOwn"
+                                               ng-model="housePropertyData.houseProp" value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-show="housePropertyData.houseProp == 'yes'">
+                                <div class="form-group required">
+                                    <label class="control-label col-sm-5">What is the nature of the house
+                                        property?</label>
+                                    <div class="col-sm-7">
+                                        <label class="checkbox-inline" for="houseType_selfocc">
+                                            <input icheck type="radio" id="houseType_selfocc" name="houseType"
+                                                   ng-model="housePropertyData.propType" value="selfOccupied" ng-required="housePropertyData.houseProp == 'yes'">
+                                            Self occupied
+                                        </label>
+                                        <label class="checkbox-inline" for="houseType_rented">
+                                            <input icheck type="radio" id="houseType_rented" name="houseType"
+                                                   ng-model="housePropertyData.propType" value="rented">
+                                            Rented
+                                        </label>
+                                        <label class="checkbox-inline" for="houseType_underCons">
+                                            <input icheck type="radio" id="houseType_underCons" name="houseType"
+                                                   ng-model="housePropertyData.propType" value="underConstruction">
+                                            Under construction
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- Self Occupied -->
+                                <div ng-show="housePropertyData.propType == 'selfOccupied' || housePropertyData.propType == 'rented' || housePropertyData.propType == 'underConstruction'">
+                                    <div class="form-group required" ng-show="housePropertyData.propType == 'underConstruction'">
+                                        <label class="control-label col-sm-5">Do you expect to take possession of the
+                                            property in current financial year?</label>
+                                        <div class="col-sm-6">
+                                            <span class="" tooltip-placement="bottom"
+                                                  uib-tooltip="Will the property be registered in the current financial year?">
+                                            <i class="fa fa-info-circle" style="margin-left: -12px;"></i>
+                                                 </span>
+                                            <label class="checkbox-inline" for="possessProperty_yes">
+                                                <input icheck type="radio" id="possessProperty_yes"
+                                                       name="possessPropertyUC"
+                                                       ng-model="housePropertyData.possInCurrYear" value="yes">
+                                                Yes
+                                            </label>
+                                            <label class="checkbox-inline" for="possessProperty_no">
+                                                <input icheck type="radio" id="possessProperty_no"
+                                                       name="possessPropertyUC"
+                                                       ng-model="housePropertyData.possInCurrYear" value="no">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group required">
+                                        <label class="control-label col-sm-5">Is the property co-owned?</label>
+                                        <div class="col-sm-6">
+                                            <label class="checkbox-inline" for="propertyOwn_yes">
+                                                <input icheck type="radio" id="propertyOwn_yes" name="propertyOwn"
+                                                       ng-model="housePropertyData.coOwned" value="yes">
+                                                Yes
+                                            </label>
+                                            <label class="checkbox-inline" for="propertyOwn_no">
+                                                <input icheck type="radio" id="propertyOwn_no" name="propertyOwn"
+                                                       ng-model="housePropertyData.coOwned" value="no">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- if user select yes -->
+                                    <div class="form-group required" ng-show="housePropertyData.coOwned == 'yes'"
+                                         ng-class="{ 'has-error' : houseProperty.shareCoOwner.$invalid && houseProperty.shareCoOwner.$dirty }">
+                                        <label class="control-label col-sm-5">What is the share of the co-owner?</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" id="shareCoOwner" class="form-control"
+                                                   name="shareCoOwner"
+                                                   ng-model="housePropertyData.coOwnerShare" ng-pattern="/^[0-9]*$/"
+                                                   min="1" max="100"
+                                                   placeholder="Enter percentage share of co-owner"
+                                                   ng-required="housePropertyData.coOwned == 'yes'"
+                                            />
+                                            <span ng-hide="houseProperty.shareCoOwner.$invalid && houseProperty.shareCoOwner.$dirty" class="help-block">{{coOwnerShareInWords}}</span>
+                                            <div ng-show="houseProperty.shareCoOwner.$invalid && houseProperty.shareCoOwner.$dirty">
+                                                <p ng-show="houseProperty.shareCoOwner.$error.required" class="help-block">
+                                                    Percentage is required
+                                                </p>
+                                                <p ng-show="houseProperty.shareCoOwner.$error.pattern"
+                                                   class="help-block">
+                                                    Percentage is invalid
+                                                </p>
+                                                <p ng-show="houseProperty.shareCoOwner.$error.min" class="help-block">
+                                                    Percentage cannot be lower than 1
+                                                </p>
+                                                <p ng-show="houseProperty.shareCoOwner.$error.max" class="help-block">
+                                                    Percentage cannot exceed 100
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /end of yes question-->
+                                    <!-- 2nd question-->
+                                    <div class="form-group required">
+                                        <label class="control-label col-sm-5">Is there a home loan on the
+                                            property?</label>
+                                        <div class="col-sm-6">
+                                            <label class="checkbox-inline" for="home_loan_yes">
+                                                <input icheck type="radio" id="home_loan_yes" name="homeLoan"
+                                                       ng-model="housePropertyData.loan" value="yes">
+                                                Yes
+                                            </label>
+                                            <label class="checkbox-inline" for="home_loan_no">
+                                                <input icheck type="radio" id="home_loan_no" name="homeLoan"
+                                                       ng-model="housePropertyData.loan" value="no">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- If user select yes then this set of question will appear-->
+                                    <div ng-show="housePropertyData.loan == 'yes'">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : houseProperty.lenderName.$invalid && houseProperty.lenderName.$dirty }">
+                                            <label class="control-label col-sm-5">Lender Name</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" id="lenderName" class="form-control"
+                                                       name="lenderName"
+                                                       ng-model="housePropertyData.lender" ng-pattern="/^[a-zA-Z\s]*$/"
+                                                       placeholder="Name the bank from whom loan is taken"
+                                                       ng-minlength="1"
+                                                       ng-maxlength="50"
+                                                />
+                                                <div ng-show="houseProperty.lenderName.$invalid && houseProperty.lenderName.$dirty">
+                                                    <p ng-show="houseProperty.lenderName.$error.pattern" class="help-block">
+                                                        Lender Name is invalid
+                                                    </p>
+                                                    <p ng-show="houseProperty.lenderName.$error.maxlength" class="help-block">
+                                                        Lender Name cannot exceed fifty characters
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group required"
+                                             ng-class="{ 'has-error' : houseProperty.loanAvailed.$invalid && houseProperty.loanAvailed.$dirty }">
+                                            <label class="control-label col-sm-5">Home Loan availed (Rs)</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" id="loanAvailed" class="form-control"
+                                                       name="loanAvailed"
+                                                       ng-model="housePropertyData.loanAmt" ng-pattern="/^[0-9]*$/"
+                                                       min="100" max="100000000"
+                                                       placeholder="Enter total loan amount availed"
+                                                       ng-required="housePropertyData.loan == 'yes'"
+                                                />
+                                                <span ng-hide="houseProperty.loanAvailed.$invalid && houseProperty.loanAvailed.$dirty" class="help-block">{{loanAmtInWords}}</span>
+                                                <div ng-show="houseProperty.loanAvailed.$invalid && houseProperty.loanAvailed.$dirty">
+                                                    <p ng-show="houseProperty.loanAvailed.$error.pattern"
+                                                       class="help-block">
+                                                        Inavalid amount
+                                                    </p>
+                                                    <p ng-show="houseProperty.loanAvailed.$error.required" class="help-block">
+                                                        Amount is required
+                                                    </p>
+                                                    <p ng-show="houseProperty.loanAvailed.$error.min" class="help-block">
+                                                        Amount cannot be lower than  ₹ 100
+                                                    </p>
+                                                    <p ng-show="houseProperty.loanAvailed.$error.max" class="help-block">
+                                                        Amount cannot exceed 10 crores
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group required"
+                                             ng-class="{ 'has-error' : houseProperty.tenure.$invalid && houseProperty.tenure.$dirty }">
+                                            <label class="control-label col-sm-5">Tenure (in years) </label>
+                                            <div class="col-sm-6">
+                                                <input type="number" id="tenure" class="form-control" name="tenure"
+                                                       ng-model="housePropertyData.tenure" ng-pattern="/^[0-9]*$/"
+                                                       placeholder="Enter tenure of the loan"
+                                                       ng-required="housePropertyData.loan == 'yes'"
+                                                       min="1"
+                                                       max="35"
+                                                />
+                                                <div ng-show="houseProperty.tenure.$invalid && houseProperty.tenure.$dirty">
+                                                    <p ng-show="houseProperty.tenure.$error.pattern" class="help-block">
+                                                        Tenure will be in number
+                                                    </p>
+                                                    <p ng-show="houseProperty.tenure.$error.required" class="help-block">
+                                                        Tenure is required
+                                                    </p>
+                                                    <p ng-show="houseProperty.tenure.$error.min" class="help-block">
+                                                         Tenure should not be less than 1 year
+                                                    </p>
+                                                    <p ng-show="houseProperty.tenure.$error.max" class="help-block">
+                                                        Tenure  cannot exceed 35 years
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group required"
+                                             ng-class="{ 'has-error' : houseProperty.currentIntrst.$invalid && houseProperty.currentIntrst.$dirty }">
+                                            <label class="control-label col-sm-5">Current rate of interest (%)</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" id="currentIntrst" class="form-control"
+                                                       name="currentIntrst"
+                                                       ng-model="housePropertyData.ROI"
+                                                       ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+                                                       min="1" max="20" step="0.01"
+                                                       placeholder="Enter current rate of interest on loan"
+                                                       ng-required="housePropertyData.loan == 'yes'"
+                                                />
+                                                <span ng-hide="houseProperty.currentIntrst.$invalid && houseProperty.currentIntrst.$dirty" class="help-block">{{ROIInWords}}</span>
+                                                <div ng-show="houseProperty.currentIntrst.$invalid && houseProperty.currentIntrst.$dirty">
+                                                    <p ng-show="houseProperty.currentIntrst.$error.pattern" class="help-block">
+                                                        Decimal allowed up to 2 places
+                                                    </p>
+                                                    <p ng-show="houseProperty.currentIntrst.$error.required" class="help-block">
+                                                        Percentage is required
+                                                    </p>
+                                                    <p ng-show="houseProperty.currentIntrst.$error.min" class="help-block">
+                                                        Percentage cannot be lower than 1
+                                                    </p>
+                                                    <p ng-show="houseProperty.currentIntrst.$error.max" class="help-block">
+                                                        Percentage cannot exceed 20
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group required"
+                                             ng-class="{ 'has-error' : houseProperty.emi.$invalid && houseProperty.emi.$dirty }">
+                                            <label class="control-label col-sm-5">EMI (Rs)</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" id="emi" class="form-control" name="emi"
+                                                       ng-model="housePropertyData.EMI" ng-pattern="/^[0-9]*$/"
+                                                       min="100" max="10000000"
+                                                       placeholder="Enter monthly EMI amount"
+                                                       ng-required="housePropertyData.loan == 'yes'"
+                                                />
+                                                <span ng-hide="houseProperty.emi.$invalid && houseProperty.emi.$dirty" class="help-block">{{EMIInWords}}</span>
+                                                <div ng-show="houseProperty.emi.$invalid && houseProperty.emi.$dirty">
+                                                    <p ng-show="houseProperty.emi.$error.pattern" class="help-block">
+                                                        Amount in rupees
+                                                    </p>
+                                                    <p ng-show="houseProperty.emi.$error.required" class="help-block">
+                                                        Amount is required
+                                                    </p>
+                                                    <p ng-show="houseProperty.emi.$error.min" class="help-block">
+                                                        Amount cannot be lower than ₹ 100
+                                                    </p>
+                                                    <p ng-show="houseProperty.emi.$error.max" class="help-block">
+                                                        Amount cannot exceed 1 crore
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group required"
+                                             ng-class="{ 'has-error' : houseProperty.oustandingLoan.$invalid && houseProperty.oustandingLoan.$dirty }">
+                                            <label class="control-label col-sm-5">Outstanding loan amount as on date
+                                                (Rs)</label>
+                                            <div class="col-sm-6">
+                                                <div class="input-group">
+                                                <span class="btn btn-default input-group-addon" tooltip-placement="top"
+                                                      uib-tooltip="What is the principal outstanding as on date?">
+                                                     <i class="fa fa-info"></i>
+                                                </span>
+                                                    <input type="number" id="oustandingLoan" class="form-control"
+                                                           name="oustandingLoan"
+                                                           ng-model="housePropertyData.loanPending"
+                                                           ng-pattern="/^[0-9]*$/"
+                                                           min="100" max="100000000"
+                                                           placeholder="Enter principal outstanding on the loan"
+                                                           ng-required="housePropertyData.loan == 'yes'"
+                                                    />
+                                                </div>
+                                                <span ng-hide="houseProperty.oustandingLoan.$invalid && houseProperty.oustandingLoan.$dirty" class="help-block">{{loanPendingInWords}}</span>
+                                                <div ng-show="houseProperty.oustandingLoan.$invalid && houseProperty.oustandingLoan.$dirty">
+                                                    <p ng-show="houseProperty.oustandingLoan.$error.pattern"
+                                                       class="help-block">
+                                                        Amount in rupees
+                                                    </p>
+                                                    <p ng-show="houseProperty.oustandingLoan.$error.required" class="help-block">
+                                                        Amount is required
+                                                    </p>
+                                                    <p ng-show="houseProperty.oustandingLoan.$error.min" class="help-block">
+                                                        Amount cannot be lower than ₹ 100
+                                                    </p>
+                                                    <p ng-show="houseProperty.oustandingLoan.$error.max" class="help-block">
+                                                        Amount cannot exceed 10 crores
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="housePropertyData.propType == 'rented'">
+                                            <div class="form-group"
+                                                 ng-class="{ 'has-error' : houseProperty.propTaxRented.$invalid && houseProperty.propTaxRented.$dirty }">
+                                                <label class="control-label col-sm-5">Property tax paid in the current
+                                                    year
+                                                    (Rs)</label>
+                                                <div class="col-sm-6">
+                                                    <input type="number" id="propTaxRented" class="form-control"
+                                                           name="propTaxRented"
+                                                           ng-model="housePropertyData.propTax"
+                                                           ng-pattern="/^[0-9]*$/"
+                                                           min="100" max="10000000"
+                                                           placeholder="Enter property tax amount paid in current year"
+                                                    />
+                                                    <span ng-hide="houseProperty.propTaxRented.$invalid && houseProperty.propTaxRented.$dirty" class="help-block">{{propTaxInWords}}</span>
+                                                    <div ng-show="houseProperty.propTaxRented.$invalid && houseProperty.propTaxRented.$dirty">
+                                                        <p ng-show="houseProperty.propTaxRented.$error.pattern"
+                                                           class="help-block">
+                                                            Amount in rupees
+                                                        </p>
+                                                        <p ng-show="houseProperty.propTaxRented.$error.min" class="help-block">
+                                                            Amount cannot be lower than ₹ 100
+                                                        </p>
+                                                        <p ng-show="houseProperty.propTaxRented.$error.max" class="help-block">
+                                                            Amount cannot exceed 1 crore
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group required"
+                                                 ng-class="{ 'has-error' : houseProperty.rentRecieved.$invalid && houseProperty.rentRecieved.$dirty }">
+                                                <label class="control-label col-sm-5">Rent received per month
+                                                    (Rs)</label>
+                                                <div class="col-sm-6">
+                                                    <input type="number" id="rentRecieved" class="form-control"
+                                                           name="rentRecieved"
+                                                           ng-model="housePropertyData.rent"
+                                                           ng-pattern="/^[0-9]*$/"
+                                                           min="100" max="10000000"
+                                                           placeholder="Enter monthly rental income "
+                                                           ng-required="housePropertyData.loan == 'yes' && housePropertyData.propType === 'rented' "
+                                                    />
+                                                    <span ng-hide="houseProperty.rentRecieved.$invalid && houseProperty.rentRecieved.$dirty" class="help-block">{{rentInWords}}</span>
+                                                    <div ng-show="houseProperty.rentRecieved.$invalid && houseProperty.rentRecieved.$dirty">
+                                                        <p ng-show="houseProperty.rentRecieved.$error.pattern"
+                                                           class="help-block">
+                                                            Amount in rupees
+                                                        </p>
+                                                        <p ng-show="houseProperty.rentRecieved.$error.required" class="help-block">
+                                                            Amount is required
+                                                        </p>
+                                                        <p ng-show="houseProperty.rentRecieved.$error.min" class="help-block">
+                                                            Amount cannot be lower than ₹ 100
+                                                        </p>
+                                                        <p ng-show="houseProperty.rentRecieved.$error.max" class="help-block">
+                                                            Amount cannot exceed 1 crore
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <input type="hidden" id="_id" name="_id" ng-model="housePropertyData._id"/>
+                    <div class="form-group required" style="text-align: center;">
+                        <button class="btn btn-sm btn-primary" ng-disabled="houseProperty.$invalid || !formEditable"
+                                ng-click="submitFinTaxHouseProp()"><strong>Save</strong></button>
+                        <button class="btn btn-sm btn-primary"
+                                ng-click="cancelProperty()"><strong>Cancel</strong></button>
+                    </div>
+                    </form>
+                </div>
+                <div ng-hide="AddProp">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>House Type</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="houseProp in propertyList track by $index">
+                            <td>{{ housePropUI(houseProp.propType) }}</td>
+                            <td>
+                                <a ng-click="edit(houseProp._id)">edit</a> |
+                                <a ng-click="delete(houseProp._id)">delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <button ng-hide="propertyList.length == 3"
+                                class="btn btn-sm btn-primary goal-button-margin" ng-disabled="!formEditable" ng-click="addProperty()"><strong>Add
+                            property</strong></button>
+                        <button class="btn btn-sm btn-primary" ng-disabled="!formEditable" ng-click="submitHouseProp()"><strong>Save</strong>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

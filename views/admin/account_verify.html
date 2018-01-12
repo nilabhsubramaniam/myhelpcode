@@ -1,0 +1,119 @@
+<div class="wrapper wrapper-content animated fadeIn" ng-controller="accountVerifyCTRL" data-ng-init="init();">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registration Status</h5>
+                    <span class="label label-primary"></span>
+                    <div ibox-tools></div>
+                </div>
+
+                <div class="ibox-content inspinia-timeline">
+                    <!--<ul class="account-list-group" ng-repeat="status in userStatus | orderBy: 'date':false">
+                        <li class="account-list-group-item">
+                            <div class="content no-top-border">
+                                <p class="m-b-xs"><strong>{{status.date}}</strong></p>
+                            </div>
+                            <div class="content no-top-border" ng-class="status.isactive ? 'userstateactive' : 'userstateinactive'">
+                                <p class="m-b-xs"><strong>{{status.status}}</strong></p>
+                            </div>
+                        </li>
+                    </ul> -->
+                    <ul class="progress-tracker progress-tracker--text progress-tracker--center">
+                        <li class="progress-step is-complete" ng-repeat="status in userStatus | orderBy: 'date':false">
+                            <span class="progress-marker"></span>
+                            <span class="progress-text">
+                              <h4 class="progress-title">{{status.date}}</h4>
+                              {{status.status}}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <form class="form-horizontal" role="form" name="accountVerifyForm" id="accountVerifyForm" novalidate ng-submit="sendRequest()">
+                        <div class="table-responsive">
+                            <table class="table table-striped account-verification-table">
+                                <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Subject</th>
+                                    <th>User</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="note in notes">
+                                    <td>{{note.date}}</td>
+                                    <td>{{note.text}}</td>
+                                    <td>{{note.user}}</td>
+                                    <td>{{note.status}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : accountVerifyForm.requesttype.$invalid && accountVerifyForm.requesttype.$dirty }">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12">
+                                    <select id="requesttype" class="form-control" name="requesttype"
+                                            ng-model="requestType" required placeholder="Select Request Type">
+                                        <option value=''>--Select Account Status--</option>
+                                        <option value="acct_verified">Account Verified Mail</option>
+                                        <option value="acct_verification_defect">Account Verification Defect</option>
+                                        <option value="docs_received">Documents Received Mail</option>
+                                        <option value="doc_defect">Document Defect</option>
+                                        <option value="kyc_verified">KYC Submitted</option>
+                                        <option value="kyc_verification_defect">KYC Verification Defect</option>
+                                        <option value="create_iin">Create IIN</option>
+                                        <option value="update_iin">Update IIN</option>
+                                        <option value="iin_defect">IIN Defect</option>
+                                        <option value="ach_registration">ACH Registration</option>
+                                        <option value="fatca_approval">FATCA Approval Mail</option>
+                                        <option value="fatca_approved">FATCA Approved</option>
+                                        <option value="active">Active Mail</option>
+                                        <option value="ach_approved">ACH Approved</option>
+                                        <option value="ach_approval_defect">ACH Approval Defect</option>
+                                        <option value="fully_onBoarded">Fully On Boarded Mail</option>
+                                    </select>
+                                </div>
+                                <div ng-show="accountVerifyForm.requesttype.$invalid && accountVerifyForm.requesttype.$dirty">
+                                    <p ng-show="accountVerifyForm.requesttype.$error.required" class="help-block">
+                                        Service Request is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : accountVerifyForm.message.$invalid && accountVerifyForm.message.$dirty }">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12">
+                                    <textarea id="message" rows="4" class="form-control" name="message" placeholder="Type your message here.." ng-model="message" required ></textarea>
+                                </div>
+                                <div ng-show="accountVerifyForm.message.$invalid && accountVerifyForm.message.$dirty">
+                                    <p ng-show="accountVerifyForm.message.$error.required" class="help-block">
+                                        Message is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary"  ng-disabled="accountVerifyForm.$invalid" type="submit">
+                                <strong>Update</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group{
+        margin-top:20px  !important;
+    }
+</style>

@@ -1,0 +1,636 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-content" ng-controller="personalInfo" data-ng-init="init()">
+                <h4></h4>
+                <form class="form-horizontal" role="form" name="personalInfoForm" id="personalInfoForm" novalidate
+                      ng-submit="submitPersonalInfoForm()">
+                    <div class="form-group required">
+                        <div ng-class="{ 'has-error' : personalInfoForm.firstName.$invalid && personalInfoForm.firstName.$dirty }">
+                            <label class="control-label col-sm-4" for="firstName">Name&nbsp(as per PAN)</label>
+                            <div class="col-sm-3 ">
+                                <input type="text" id="firstName" class="form-control" name="firstName"
+                                       ng-model="personalInfoFormData.firstName" required ng-pattern="/^[a-zA-Z\s]*$/"
+                                       placeholder="First" ng-minlength="1" maxlength="30"/>
+                                <div ng-show="personalInfoForm.firstName.$invalid && personalInfoForm.firstName.$dirty">
+                                    <p ng-show="personalInfoForm.firstName.$error.required" class="help-block">
+                                        Name is required
+                                    </p>
+                                    <p ng-show="personalInfoForm.firstName.$error.pattern" class="help-block">
+                                        Invalid name
+                                    </p>
+                                    <p ng-show="personalInfoForm.firstName.$error.minlength" class="help-block">
+                                        Name Should Contain Atleast 1 Character
+                                    </p>
+                                    <p ng-show="personalInfoForm.firstName.$error.maxlength" class="help-block">
+                                        Name cannot exceed  30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                            <!-- Middle Name-->
+                        <div ng-class="{ 'has-error' : personalInfoForm.middleName.$invalid && personalInfoForm.middleName.$dirty }">
+                            <div class="col-sm-2 ">
+                                <input type="text" id="middleName" class="form-control " name="middleName"
+                                       ng-model="personalInfoFormData.middleName"  ng-pattern="/^[a-zA-Z\s]*$/"
+                                       placeholder="Middle " ng-minlength="1" maxlength="30"/>
+                                <div ng-show="personalInfoForm.middleName.$invalid && personalInfoForm.middleName.$dirty">
+                                    <p ng-show="personalInfoForm.middleName.$error.pattern" class="help-block">
+                                        Invalid name
+                                    </p>
+                                    <p ng-show="personalInfoForm.middleName.$error.minlength" class="help-block">
+                                        Name Should Contain Atleast 1 Character
+                                    </p>
+                                    <p ng-show="personalInfoForm.middleName.$error.maxlength" class="help-block">
+                                        Name cannot exceed  30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                            <!-- Last Name-->
+                        <div ng-class="{ 'has-error' : personalInfoForm.lastName.$invalid && personalInfoForm.lastName.$dirty }">
+                            <div class="col-sm-2">
+                                <input type="text" id="lastName" class="form-control " name="lastName"
+                                       ng-model="personalInfoFormData.lastName" ng-pattern="/^[a-zA-Z\s]*$/"
+                                       placeholder="Last" ng-minlength="1" maxlength="30"/>
+                                <div ng-show="personalInfoForm.lastName.$invalid && personalInfoForm.lastName.$dirty">
+                                    <p ng-show="personalInfoForm.lastName.$error.pattern" class="help-block">
+                                        Invalid name
+                                    </p>
+                                    <p ng-show="personalInfoForm.lastName.$error.minlength" class="help-block">
+                                        Name Should Contain Atleast 1 Character
+                                    </p>
+                                    <p ng-show="personalInfoForm.lastName.$error.maxlength" class="help-block">
+                                        Name cannot exceed  30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Madien First Name -->
+                    <div class="form-group">
+                        <div ng-class="{ 'has-error' : personalInfoForm.maidenName.$invalid && personalInfoForm.maidenName.$dirty }">
+                            <label class="control-label col-sm-4" for="maidenName">Maiden Name (If any)</label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="btn btn-default input-group-addon" tooltip-placement="bottom" uib-tooltip="Please mention your earlier surname if it got changed after marriage" >
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                    <input type="text" id="maidenName" class="form-control" name="maidenName"
+                                           ng-model="personalInfoFormData.maidenFirstName" ng-pattern="/^[a-zA-Z\s]*$/"
+                                           placeholder="First" ng-minlength="1" maxlength="30"/>
+                                </div>
+                                <div ng-show="personalInfoForm.maidenName.$invalid && personalInfoForm.maidenName.$dirty">
+                                    <p ng-show="personalInfoForm.maidenName.$error.pattern" class="help-block">
+                                        Invalid name
+                                    </p>
+                                    <p ng-show="personalInfoForm.maidenName.$error.minlength" class="help-block">
+                                        Name Should Contain Atleast 1 Character
+                                    </p>
+                                    <p ng-show="personalInfoForm.maidenName.$error.maxlength" class="help-block">
+                                        Name cannot exceed  30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Maiden Middle Name -->
+                        <div ng-class="{ 'has-error' : personalInfoForm.maidenMiddleName.$invalid && personalInfoForm.maidenMiddleName.$dirty }">
+                            <div class="col-sm-2">
+                                <input type="text" id="maidenmiddleName" class="form-control" name="maidenMiddleName"
+                                           ng-model="personalInfoFormData.maidenMiddleName" ng-pattern="/^[a-zA-Z\s]*$/"
+                                           placeholder="Middle" ng-minlength="1" maxlength="30"/>
+                                <div ng-show="personalInfoForm.maidenMiddleName.$invalid && personalInfoForm.maidenMiddleName.$dirty">
+                                    <p ng-show="personalInfoForm.maidenMiddleName.$error.pattern" class="help-block">
+                                        Invalid name
+                                    </p>
+                                    <p ng-show="personalInfoForm.maidenMiddleName.$error.minlength" class="help-block">
+                                        Name Should Contain Atleast 1 Character
+                                    </p>
+                                    <p ng-show="personalInfoForm.maidenMiddleName.$error.maxlength" class="help-block">
+                                        Name cannot exceed  30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Maiden Last Name-->
+                    <div ng-class="{ 'has-error' : personalInfoForm.maidenLastName.$invalid && personalInfoForm.maidenLastName.$dirty }">
+                        <div class="col-sm-2">
+                                <input type="text" id="maidenLastName" class="form-control personal-width" name="maidenLastName"
+                                       ng-model="personalInfoFormData.maidenLastName" ng-pattern="/^[a-zA-Z\s]*$/"
+                                       placeholder="Last " ng-minlength="1" maxlength="30"/>
+                            <div ng-show="personalInfoForm.maidenLastName.$invalid && personalInfoForm.maidenLastName.$dirty">
+                                <p ng-show="personalInfoForm.maidenLastName.$error.pattern" class="help-block">
+                                    Invalid name
+                                </p>
+                                <p ng-show="personalInfoForm.maidenLastName.$error.minlength" class="help-block">
+                                    Name Should Contain Atleast 1 Character
+                                </p>
+                                <p ng-show="personalInfoForm.maidenLastName.$error.maxlength" class="help-block">
+                                    Name cannot exceed  30 characters
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="form-group required"
+                         ng-class="{ 'has-error' : personalInfoForm.dob.$invalid && personalInfoForm.dob.$dirty }">
+                        <label class="control-label col-sm-4" for="dob">Date of Birth&nbsp(as per PAN)</label>
+                        <div class="col-sm-7">
+                            <div class="input-group" type="datetime">
+                                <input name="dob" id="dob"  class="form-control"
+                                       ng-model="personalInfoFormData.dob" view="date" auto-close="true" min-view="date"
+                                       format="YYYY-MM-DD" date-time required/>
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                            </div>
+                            <p ng-show="personalInfoForm.dob.$invalid" class="help-block">
+                                Your date of birth is required
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group required"
+                         ng-class="{ 'has-error' : personalInfoForm.occupation.$invalid && personalInfoForm.occupation.$dirty }">
+                        <label class="control-label col-sm-4" for="occupation">Occupation</label>
+                        <div class="col-sm-7">
+                            <select id="occupation" class="form-control" name="occupation"
+                                    ng-model="personalInfoFormData.occupation" ng-change="otherOccupationdetails()" required>
+                                <option value=''>--Select Occupation--</option>
+                                <option ng-repeat="(key, value) in occupationList" value="{{key}}">{{value}}</option>
+                            </select>
+                            <div ng-show="personalInfoForm.occupation.$invalid && personalInfoForm.occupation.$dirty">
+                                <p ng-show="personalInfoForm.occupation.$error.required" class="help-block">
+                                    Occupation is required
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error' : personalInfoForm.otherOccupation.$invalid && personalInfoForm.otherOccupation.$dirty }"
+                         ng-show="otherOccupation">
+                        <label class="control-label col-sm-4"> </label>
+                        <div class="col-sm-7">
+                            <input type="text" id="otherOccupation" class="form-control" name="otherOccupation"
+                                   ng-model="personalInfoFormData.occupation_other"  ng-pattern="/^[a-zA-Z\s]*$/"
+                                   placeholder="Enter Your Occupation"  ng-minlength="1" maxlength="62"
+                                   ng-required="otherOccupation"/>
+                            <div ng-show="personalInfoForm.otherOccupation.$invalid && personalInfoForm.otherOccupation.$dirty">
+                                <p ng-show="personalInfoForm.otherOccupation.$error.required" class="help-block">
+                                    occupation Name is required
+                                </p>
+                                <p ng-show="personalInfoForm.otherOccupation.$error.pattern" class="help-block">
+                                    Invalid Occupation
+                                </p>
+                                <p ng-show="personalInfoForm.otherOccupation.$error.minlength" class="help-block">
+                                    Ocupation Should Contain Atleast 1 Character
+                                </p>
+                                <p ng-show="personalInfoForm.otherOccupation.$error.maxlength" class="help-block">
+                                     Occupation Name cannot exceed 62 characters
+                                </p>
+                            </div>
+                        </div>
+                </div>
+                    <div class="form-group required"
+                         ng-class="{ 'has-error' : personalInfoForm.PAN.$invalid && personalInfoForm.PAN.$dirty }">
+                        <label class="control-label col-sm-4" for="PAN">PAN</label>
+                        <div class="col-sm-7">
+                            <input type="password" id="PAN" class="form-control" name="PAN"
+                                   ng-model="personalInfoFormData.PAN" required
+                                   ng-pattern="/^([a-zA-Z]{3})(p|P)([a-zA-Z]{1})(\d{4})([a-zA-Z]{1})$/" placeholder="PAN "/>
+                            <div ng-show="personalInfoForm.PAN.$invalid && personalInfoForm.PAN.$dirty">
+                                <p ng-show="personalInfoForm.PAN.$error.required" class="help-block">
+                                    PAN  is required
+                                </p>
+                                <p ng-show="personalInfoForm.PAN.$error.pattern" class="help-block">
+                                    Invalid PAN
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group required"
+                         ng-class="{ 'has-error' : personalInfoForm.confirmPAN.$invalid && personalInfoForm.confirmPAN.$dirty }">
+                        <label class="control-label col-sm-4" for="confirmPAN"> Confirm PAN</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="confirmPAN" class="form-control" name="confirmPAN"
+                                   ng-model="personalInfoFormData.confirmPAN" required
+                                   ng-pattern="/^([a-zA-Z]{3})(p|P)([a-zA-Z]{1})(\d{4})([a-zA-Z]{1})$/" placeholder=" Confirm PAN "/>
+                            <div ng-show="personalInfoForm.confirmPAN.$invalid && personalInfoForm.confirmPAN.$dirty">
+                                <p ng-show="personalInfoForm.confirmPAN.$error.required" class="help-block">
+                                    PAN  is required
+                                </p>
+                                <p ng-show="personalInfoForm.confirmPAN.$error.pattern" class="help-block">
+                                    Invalid PAN
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="control-label col-sm-4">KYC Verified</label>
+                        <div class="col-sm-7">
+                            <label class="checkbox-inline" for="KYC_yes">
+                                <input icheck id="KYC_yes" type="radio" name="KYC"
+                                       ng-model="personalInfoFormData.KYC" value="1">
+                                Yes
+                            </label>
+                            <label class="checkbox-inline" for="KYC_no">
+                                <input icheck id="KYC_no" ng-checked="true" type="radio" name="KYC"
+                                       ng-model="personalInfoFormData.KYC" value="0">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group required" ng-show="personalInfoFormData.KYC == '1'"
+                         ng-class="{ 'has-error' : personalInfoForm.kinNumber.$invalid && personalInfoForm.kinNumber.$dirty }">
+                        <label class="control-label col-sm-4" for="kinNumber">KIN Number</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="kinNumber" class="form-control" name="kinNumber"
+                                    ng-model="personalInfoFormData.KIN" required ng-pattern="/^[a-zA-Z0-9]*$/"
+                                    placeholder="KYC Number" ng-minlength="1" maxlength="14"
+                                    ng-required="personalInfoFormData.KYC == '1'"/>
+                            <div ng-show="personalInfoForm.kinNumber.$invalid && personalInfoForm.kinNumber.$dirty">
+                                <p ng-show="personalInfoForm.kinNumber.$error.required" class="help-block">
+                                    KYC Number  is required
+                                </p>
+                                <p ng-show="personalInfoForm.kinNumber.$error.pattern" class="help-block">
+                                    Invalid KYC number
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group required"
+                         ng-class="{ 'has-error' : personalInfoForm.tax_status.$invalid && personalInfoForm.tax_status.$dirty }">
+                        <label class="control-label col-sm-4" for="tax_status">Tax Status</label>
+                        <div class="col-sm-7">
+                            <select id="tax_status" class="form-control" name="tax_status"
+                                    ng-model="personalInfoFormData.tax_status" required>
+                                <option value=''>--Select Tax Status--</option>
+                                <option ng-repeat="(key, value) in taxStatusList" value="{{key}}">{{value}}</option>
+                            </select>
+                            <p ng-show="personalInfoForm.tax_status.$invalid && personalInfoForm.tax_status.$dirty"
+                               class="help-block">
+                                Tax Status is required
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Father First Name-->
+                    <div class="form-group required">
+                        <div ng-class="{ 'has-error' : personalInfoForm.fatherFirstName.$invalid && personalInfoForm.fatherFirstName.$dirty }">
+                            <label class="control-label col-sm-4" for="fatherFirstName">Father/Spouse Name (as per PAN)</label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="btn btn-default input-group-addon" tooltip-placement="bottom" uib-tooltip="Father or Spouse name as per PAN card" >
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                <input type="text" id="fatherFirstName" class="form-control " name="fatherFirstName"
+                                       ng-model="personalInfoFormData.fatherFirstName" placeholder="First"
+                                       ng-minlength="1"
+                                       maxlength="30"
+                                       ng-pattern="/^[a-zA-Z\s]*$/"
+                                       required/>
+                                  </div>
+                                <div ng-show="personalInfoForm.fatherFirstName.$invalid && personalInfoForm.fatherFirstName.$dirty">
+                                    <p ng-show="personalInfoForm.fatherFirstName.$error.required" class="help-block">
+                                            Father/Spouse name is required
+                                    </p>
+                                    <p ng-show="personalInfoForm.fatherFirstName.$error.pattern" class="help-block">
+                                        Invalid Father/Spouse name
+                                    </p>
+                                    <p ng-show="personalInfoForm.fatherFirstName.$error.minlength" class="help-block">
+                                        Father/Spouse Name should contain At least 1 character
+                                    </p>
+                                    <p ng-show="personalInfoForm.fatherFirstName.$error.maxlength" class="help-block">
+                                        Father/Spouse name cannot exceed 30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Faher/Spouse Middle Name-->
+                        <div  ng-class="{ 'has-error' : personalInfoForm.fatherMiddleName.$invalid && personalInfoForm.fatherMiddleName.$dirty }">
+                            <div class="col-sm-2 ">
+                                    <input type="text" id="fatherMiddleName" class="form-control" name="fatherMiddleName"
+                                           ng-model="personalInfoFormData.fatherMiddleName" placeholder="Middle"
+                                           ng-minlength="1"
+                                           maxlength="30"
+                                           ng-pattern="/^[a-zA-Z\s]*$/"
+                                    />
+                                <div ng-show="personalInfoForm.fatherMiddleName.$invalid && personalInfoForm.fatherMiddleName.$dirty">
+                                    <p ng-show="personalInfoForm.fatherMiddleName.$error.pattern" class="help-block">
+                                        Invalid Father/Spouse name
+                                    </p>
+                                    <p ng-show="personalInfoForm.fatherMiddleName.$error.minlength" class="help-block">
+                                        Father/Spouse Name should contain At least 1 character
+                                    </p>
+                                    <p ng-show="personalInfoForm.fatherMiddleName.$error.maxlength" class="help-block">
+                                        Father/Spouse name cannot exceed 30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Faher/Spouse Last Name-->
+                        <div  ng-class="{ 'has-error' : personalInfoForm.fatherLastName.$invalid && personalInfoForm.fatherLastName.$dirty }">
+                            <div class="col-sm-2">
+                                    <input type="text" id="fatherLastName" class="form-control" name="fatherLastName"
+                                           ng-model="personalInfoFormData.fatherLastName" placeholder="Last"
+                                           ng-minlength="1"
+                                           maxlength="30"
+                                           ng-pattern="/^[a-zA-Z\s]*$/"
+                                    />
+                                <div ng-show="personalInfoForm.fatherLastName.$invalid && personalInfoForm.fatherLastName.$dirty">
+                                    <p ng-show="personalInfoForm.fatherLastName.$error.pattern" class="help-block">
+                                        Invalid Father/Spouse name
+                                    </p>
+                                    <p ng-show="personalInfoForm.fatherLastName.$error.minlength" class="help-block">
+                                        Father/Spouse Name should contain At least 1 character
+                                    </p>
+                                    <p ng-show="personalInfoForm.fatherLastName.$error.maxlength" class="help-block">
+                                        Father/Spouse name cannot exceed 30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mother First name-->
+                    <div class=" form-group required " >
+                        <div ng-class="{ 'has-error' : personalInfoForm.motherFirstName.$invalid && personalInfoForm.motherFirstName.$dirty }">
+                            <label class="control-label col-sm-4" for="motherFirstName">Mother Name</label>
+                            <div class="col-sm-3">
+                                    <input type="text" id="motherFirstName" class="form-control " name="motherFirstName"
+                                           ng-model="personalInfoFormData.motherFirstName" placeholder="First "
+                                           ng-minlength="1"
+                                           maxlength="30"
+                                           ng-pattern="/^[a-zA-Z\s]*$/"
+                                           required/>
+                                <div ng-show="personalInfoForm.motherFirstName.$invalid && personalInfoForm.motherFirstName.$dirty">
+                                    <p ng-show="personalInfoForm.motherFirstName.$error.required" class="help-block">
+                                        First name is required
+                                    </p>
+                                    <p ng-show="personalInfoForm.motherFirstName.$error.pattern" class="help-block">
+                                        Invalid first name
+                                    </p>
+                                    <p ng-show="personalInfoForm.motherFirstName.$error.minlength" class="help-block">
+                                        First name should contain At least 1 character
+                                    </p>
+                                    <p ng-show="personalInfoForm.motherFirstName.$error.maxlength" class="help-block">
+                                        First name cannot exceed 30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mother Middle name-->
+                        <div ng-class="{ 'has-error' : personalInfoForm.motherMiddleName.$invalid && personalInfoForm.motherMiddleName.$dirty }">
+                            <div class="col-sm-2 ">
+                                <input type="text" id="motherMiddleName" class="form-control" name="motherMiddleName"
+                                       ng-model="personalInfoFormData.motherMiddleName" placeholder="Middle"
+                                       ng-minlength="1"
+                                       maxlength="30"
+                                       ng-pattern="/^[a-zA-Z\s]*$/"
+                                />
+                                <div ng-show="personalInfoForm.motherMiddleName.$invalid && personalInfoForm.motherMiddleName.$dirty">
+                                    <p ng-show="personalInfoForm.motherMiddleName.$error.pattern" class="help-block">
+                                        Invalid name
+                                    </p>
+                                    <p ng-show="personalInfoForm.motherMiddleName.$error.minlength" class="help-block">
+                                        Name should contain At least 1 character
+                                    </p>
+                                    <p ng-show="personalInfoForm.mother.$error.maxlength" class="help-block">
+                                        Name cannot exceed 30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mother Last Name-->
+                        <div  ng-class="{ 'has-error' : personalInfoForm.motherLastName.$invalid && personalInfoForm.motherLastName.$dirty }">
+                            <div class="col-sm-2">
+                                <input type="text" id="motherLastName" class="form-control" name="motherLastName"
+                                       ng-model="personalInfoFormData.motherLastName" placeholder="Last"
+                                       ng-minlength="1"
+                                       maxlength="30"
+                                       ng-pattern="/^[a-zA-Z\s]*$/"
+                                />
+                                <div ng-show="personalInfoForm.motherLastName.$invalid && personalInfoForm.motherLastName.$dirty">
+                                    <p ng-show="personalInfoForm.motherLastName.$error.pattern" class="help-block">
+                                        Invalid name
+                                    </p>
+                                    <p ng-show="personalInfoForm.motherLastName.$error.minlength" class="help-block">
+                                        Name should contain At least 1 character
+                                    </p>
+                                    <p ng-show="personalInfoForm.motherLastName.$error.maxlength" class="help-block">
+                                        Name cannot exceed 30 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                    <div class="form-group required" ng-class="{ 'has-error' : personalInfoForm.addressProof.$invalid && personalInfoForm.addressProof.$dirty }">
+                        <label class="control-label col-sm-4" for="addressProof">
+                            Proof of Address
+                        </label>
+                        <div class="col-sm-7">
+                            <div class="input-group">
+                                 <span class="btn btn-default input-group-addon" tooltip-placement="bottom" uib-tooltip="The address should be as per the supporting document which will be provided as address proof">
+                                     <i class="fa fa-info"></i>
+                                </span>
+                                <select id="addressProof" class="form-control center-adjustment" name="addressProof" required ng-model="personalInfoFormData.addressProofType" placeholder="Proof of Address">
+                                    <option value=''>----Proof of Address----</option>
+                                    <option value="Passport">Passport Number</option>
+                                    <option value="VoterID">Voter ID Card</option>
+                                    <option value="DL">Driving License</option>
+                                    <option value="AadharCard">Aadhaar Card</option>
+                                    <option value="Nrega">NREGA Job Card</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div ng-show="personalInfoForm.addressProof.$invalid && personalInfoForm.addressProof.$dirty">
+                                <p ng-show="personalInfoForm.addressProof.$error.required" class="help-block">
+                                    Address proof  is required
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group required"
+                         ng-class="{ 'has-error' : personalInfoForm.addr1.$invalid && personalInfoForm.addr1.$dirty }">
+                        <label class="control-label col-sm-4" for="addr1"> Correspondence Address (India)</label>
+                        <div class="col-sm-7">
+                            <div class="input-group">
+                                <span class="btn btn-default input-group-addon" tooltip-placement="bottom" uib-tooltip="The address should be as per the supporting document which will be provided as address proof">
+                                     <i class="fa fa-info"></i>
+                                </span>
+                                <input type="text" id="addr1" class="form-control" name="addr1"
+                                       ng-model="personalInfoFormData.addr1" required
+                                       ng-minlength="1"
+                                       maxlength="55"
+                                       placeholder="Line 1"
+                                      />
+                            </div>
+                            <div ng-show="personalInfoForm.addr1.$invalid && personalInfoForm.addr1.$dirty">
+                                <p ng-show="personalInfoForm.addr1.$error.required" class="help-block">
+                                    Address Line 1 is required
+                                </p>
+                                <p ng-show="personalInfoForm.addr1.$error.minlength" class="help-block">
+                                    Address Line 1 Should Contain Atleast 1 Character
+                                </p>
+                                <p ng-show="personalInfoForm.addr1.$error.maxlength" class="help-block">
+                                    Address Line 1 cannot exceed 55 Characters
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="addr2"></label>
+                        <div class="col-sm-7">
+                            <input type="text" id="addr2" class="form-control" name="addr2"
+                                   ng-model="personalInfoFormData.addr2" placeholder="Line 2"  maxlength="55"/>
+                        </div>
+                        <div ng-show="personalInfoForm.addr1.$invalid && personalInfoForm.addr1.$dirty">
+                            <p ng-show="personalInfoForm.addr2.$error.minlength" class="help-block">
+                                Address Line 1 Should Contain Atleast 1 Character
+                            </p>
+                            <p ng-show="personalInfoForm.addr2.$error.maxlength" class="help-block">
+                                Address Line 1 cannot exceed 55 Characters
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group required"
+                         ng-class="{ 'has-error' : personalInfoForm.location.$invalid && personalInfoForm.location.$dirty }">
+                        <label class="control-label col-sm-4" for="geo-location">City</label>
+                        <div class="col-sm-7">
+                            <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-map-marker"></i>
+                                    </span>
+                                <input type="text" class="form-control" name="location" id="geo-location"
+                                       placeholder="Select City" ng-model="personalInfoFormData.location" required/>
+                            </div>
+                            <p ng-show="personalInfoForm.location.$invalid && personalInfoForm.location.$dirty"
+                               class="help-block">
+                                Location is required
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group required"
+                         ng-class="{ 'has-error' : personalInfoForm.pincode.$invalid && personalInfoForm.pincode.$dirty }">
+                        <label class="control-label col-sm-4" for="pincode">Pin code</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="pincode" class="form-control" name="pincode" ng-pattern="/^[1-9][0-9]{5}$/"
+                                   ng-model="personalInfoFormData.pincode" required placeholder="Pin code"
+                                />
+                            <div ng-show="personalInfoForm.pincode.$invalid && personalInfoForm.pincode.$dirty">
+                                <p ng-show="personalInfoForm.pincode.$error.required" class="help-block">
+                                    Pin code is required
+                                </p>
+                                <p ng-show="personalInfoForm.pincode.$error.pattern" class="help-block">
+                                    Enter a valid 6 digits pin code
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group required" ng-class="{ 'has-error' : personalInfoForm.residentialStatus.$invalid && personalInfoForm.residentialStatus.$dirty }">
+                        <label class="control-label col-sm-4" for="residentialStatus">
+                            Residential Status
+                        </label>
+                        <div class="col-sm-7">
+                                <select id="residentialStatus" class="form-control center-adjustment" name="residentialStatus" required ng-model="personalInfoFormData.NRI" placeholder="Proof of Address">
+                                    <option value='' >--------Residential Status-------</option>
+                                    <option value="RI">Resident Indian</option>
+                                    <option value="NRI">Non-Resident(NRI)</option>
+                                    <option value="PIO">Person of Indian Origin</option>
+                                </select>
+                            <div ng-show="personalInfoForm.residentialStatus.$invalid && personalInfoForm.residentialStatus.$dirty">
+                                <p ng-show="personalInfoForm.residentialStatus.$error.required" class="help-block">
+                                    Residential status  is required
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="personalInfoFormData.NRI == 'NRI' || personalInfoFormData.NRI == 'PIO'">
+                        <div class="form-group required"  ng-class="{ 'has-error' : personalInfoForm.nri_addr1.$invalid && personalInfoForm.nri_addr1.$dirty }">
+                            <label class="control-label col-sm-4" for="nri_addr1">Overseas Address</label>
+                            <div class="col-sm-7">
+                                <input type="text" id="nri_addr1" class="form-control" name="nri_addr1"
+                                       ng-model="personalInfoFormData.nri_addr1"
+                                       ng-minlength="1"
+                                       maxlength="55"
+                                       placeholder=" Line 1"
+                                       ng-required="personalInfoFormData.NRI == 'NRI'|| personalInfoFormData.NRI == 'PIO'" />
+                                <div ng-show="personalInfoForm.nri_addr1.$invalid && personalInfoForm.nri_addr1.$dirty">
+                                    <p ng-show="personalInfoForm.nri_addr1.$error.required" class="help-block">
+                                        Address Line 1 is required
+                                    </p>
+                                    <p ng-show="personalInfoForm.nri_addr1.$error.minlength" class="help-block">
+                                        Address Line 1 Should Contain Atleast 1 Character
+                                    </p>
+                                    <p ng-show="personalInfoForm.nri_addr1.$error.maxlength" class="help-block">
+                                        Address Line 1 cannot exceed 55 Characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="nri_addr2"></label>
+                            <div class="col-sm-7">
+                                <input type="text" id="nri_addr2" class="form-control" name="nri_addr2"
+                                       ng-model="personalInfoFormData.nri_addr2 "
+                                       ng-minlength="1"
+                                       maxlength="55"
+                                       placeholder=" Line 2"
+                                        />
+                            </div>
+                            <div ng-show="personalInfoForm.nri_addr1.$invalid && personalInfoForm.nri_addr1.$dirty">
+                                <p ng-show="personalInfoForm.nri_addr1.$error.minlength" class="help-block">
+                                    Address Line 1 Should Contain Atleast 1 Character
+                                </p>
+                                <p ng-show="personalInfoForm.nri_addr2.$error.maxlength" class="help-block">
+                                    Address Line 1 Should Contain maximum 55 Characters
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group required"  ng-class="{ 'has-error' : personalInfoForm.nri_location.$invalid && personalInfoForm.nri_location.$dirty }">
+                            <label class="control-label col-sm-4" for="nri-geo-location">NRI Location</label>
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-map-marker"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="nri_location" id="nri-geo-location"
+                                           placeholder="Select City" ng-model="personalInfoFormData.nri_location" required
+                                           ng-required="personalInfoFormData.NRI == 'NRI'|| personalInfoFormData.NRI == 'PIO'"
+                                    />
+                                </div>
+                                <div ng-show="personalInfoForm.nri_location.$invalid && personalInfoForm.nri_location.$dirty">
+                                    <p ng-show="personalInfoForm.nri_location.$error.required" class="help-block">
+                                        Location is required
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group required" ng-class="{ 'has-error' : personalInfoForm.nri_pincode.$invalid && personalInfoForm.nri_pincode.$dirty }">
+                            <label class="control-label col-sm-4" for="nri_pincode">NRI Pin code</label>
+                            <div class="col-sm-7">
+                                <input type="text" id="nri_pincode" class="form-control" name="nri_pincode"
+                                       ng-model="personalInfoFormData.nri_pincode"  required placeholder="NRI Pin code"
+                                       ng-required="personalInfoFormData.NRI == 'NRI'|| personalInfoFormData.NRI == 'PIO'"
+                                />
+                                <div ng-show="personalInfoForm.nri_pincode.$invalid && personalInfoForm.nri_pincode.$dirty">
+                                    <p ng-show="personalInfoForm.nri_pincode.$error.required" class="help-block">
+                                        Pin Code is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group required" style="text-align: center;">
+                        <button class="btn btn-sm btn-primary" ng-disabled="personalInfoForm.$invalid" type="submit"
+                                ng-disabled="personalInfoForm.$invalid"><strong>{{submitText}}</strong></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group{
+        margin-top:20px  !important;
+    }
+</style>

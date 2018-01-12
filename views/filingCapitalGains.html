@@ -1,0 +1,635 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="filingCapitalGainsCtrl" data-ng-init="init()">
+                    <h4></h4>
+                    <form class="form-horizontal" role="form" name="filingCapitalGain" id="filingCapitalGain"
+                          novalidate>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-5">Do you invest in either or all of shares/ mutual
+                                funds/ bonds etc?</label>
+                            <div class="col-sm-7">
+                                <label class="checkbox-inline" for="investment_yes">
+                                    <input icheck type="radio" id="investment_yes" name="investment"
+                                           ng-model="capitalGainsFormData.investment" value="yes">
+                                    Yes
+                                </label>
+                                <label class="checkbox-inline" for="investment_no">
+                                    <input icheck type="radio" id="investment_no" name="investment"
+                                           ng-model="capitalGainsFormData.investment" value="no">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-show="capitalGainsFormData.investment == 'yes'">
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5">Do you have any capital gains or losses from
+                                    shares? </label>
+                                <div class="col-sm-7">
+                                    <label class="checkbox-inline" for="capitalShare_yes">
+                                        <input icheck type="radio" id="capitalShare_yes" name="capitalShare"
+                                               ng-model="capitalGainsFormData.share" value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="capitalShare_no">
+                                        <input icheck type="radio" id="capitalShare_no" name="capitalShare"
+                                               ng-model="capitalGainsFormData.share" value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- End of residence address-->
+                            <div ng-show="capitalGainsFormData.share == 'yes'">
+                                <div class="form-group "
+                                     ng-class="{ 'has-error' : filingCapitalGain.longTermShare.$invalid && filingCapitalGain.longTermShare.$dirty }">
+                                    <label class="control-label col-sm-5" for="longTermShare">Long Term Capital
+                                        Gain/Loss on sale of shares </label>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                    <span class="btn btn-default input-group-addon" tooltip-placement="bottom"
+                                          uib-tooltip="Profits/ Losses booked after 1 year of holding. Use minus sign in case of loss">
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                            <input type="number" id="longTermShare" class="form-control"
+                                                   name="longTermShare"
+                                                   ng-model="capitalGainsFormData.shareLTCG"
+                                                   required
+                                                   placeholder="Enter LTCG/L amount "
+                                                   min="-100000000"
+                                                   max="100000000"
+                                                   ng-required="capitalGainsFormData.share == 'yes'"
+                                            />
+                                        </div>
+                                        <span ng-hide="filingCapitalGain.longTermShare.$invalid && filingCapitalGain.longTermShare.$dirty"
+                                              class="help-block">{{LTCGInWords}}</span>
+                                        <div ng-show="filingCapitalGain.longTermShare.$invalid && filingCapitalGain.longTermShare.$dirty">
+                                            <p ng-show="filingCapitalGain.longTermShare.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingCapitalGain.longTermShare.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than -10 crore
+                                            </p>
+                                            <p ng-show="filingCapitalGain.longTermShare.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 10 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group "
+                                     ng-class="{ 'has-error' : filingCapitalGain.shortTermShare.$invalid && filingCapitalGain.shortTermShare.$dirty }">
+                                    <label class="control-label col-sm-5" for="shortTermShare">Short Term Capital
+                                        Gain/Loss
+                                        on sale of shares </label>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                    <span class="btn btn-default input-group-addon" tooltip-placement="bottom"
+                                          uib-tooltip="Profits/ Losses booked after 1 year of holding. Use minus sign in case of loss">
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                            <input type="number" id="shortTermShare" class="form-control"
+                                                   name="shortTermShare"
+                                                   ng-model="capitalGainsFormData.shareSTCG"
+                                                   required
+                                                   placeholder="Enter STCG/L amount  "
+                                                   min="-100000000"
+                                                   max="100000000"
+                                                   ng-required="capitalGainsFormData.share == 'yes'"
+                                            />
+                                        </div>
+                                        <span ng-hide="filingCapitalGain.shortTermShare.$invalid && filingCapitalGain.shortTermShare.$dirty"
+                                              class="help-block">{{STCGInWords}}</span>
+                                        <div ng-show="filingCapitalGain.shortTermShare.$invalid && filingCapitalGain.shortTermShare.$dirty">
+                                            <p ng-show="filingCapitalGain.shortTermShare.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingCapitalGain.shortTermShare.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than -10 crore
+                                            </p>
+                                            <p ng-show="filingCapitalGain.shortTermShare.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 10 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required" ng-show="capitalGainsFormData.investment == 'yes'">
+                                <label class="control-label col-sm-5">Do you have any capital gains or losses from
+                                    mutual funds?</label>
+                                <div class="col-sm-7">
+                                    <label class="checkbox-inline" for="capitalMutualFund_yes">
+                                        <input icheck type="radio" id="capitalMutualFund_yes" name="capitalMutualFund"
+                                               ng-model="capitalGainsFormData.mutualFund" value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="capitalMutualFund_no">
+                                        <input icheck type="radio" id="capitalMutualFund_no" name="capitalMutualFund"
+                                               ng-model="capitalGainsFormData.mutualFund" value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-show="capitalGainsFormData.mutualFund == 'yes'">
+                                <div class="form-group "
+                                     ng-class="{ 'has-error' : filingCapitalGain.longTermEquity.$invalid && filingCapitalGain.longTermEquity.$dirty }">
+                                    <label class="control-label col-sm-5" for="longTermShare">Long Term Capital
+                                        Gain/Loss on sale of equity mutual funds </label>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                    <span class="btn btn-default input-group-addon" tooltip-placement="bottom"
+                                          uib-tooltip="Profits/ Losses booked after 1 year of holding. Use minus sign in case of loss">
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                            <input type="number" id="longTermEquity" class="form-control"
+                                                   name="longTermEquity"
+                                                   ng-model="capitalGainsFormData.mfLTCGEquity"
+                                                   required
+                                                   placeholder="Enter LTCG/L amount on equity funds"
+                                                   min="-100000000"
+                                                   max="100000000"
+                                                   ng-required="capitalGainsFormData.mutualFund == 'yes'"
+                                            />
+                                        </div>
+                                        <span ng-hide="filingCapitalGain.longTermEquity.$invalid && filingCapitalGain.longTermEquity.$dirty"
+                                              class="help-block">{{mfLTCGEInWords}}</span>
+                                        <div ng-show="filingCapitalGain.longTermEquity.$invalid && filingCapitalGain.longTermEquity.$dirty">
+                                            <p ng-show="filingCapitalGain.longTermEquity.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingCapitalGain.longTermEquity.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than -10 crore
+                                            </p>
+                                            <p ng-show="filingCapitalGain.longTermEquity.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 10 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group "
+                                     ng-class="{ 'has-error' : filingCapitalGain.shortTermEquity.$invalid && filingCapitalGain.shortTermEquity.$dirty }">
+                                    <label class="control-label col-sm-5" for="shortTermShare">Short Term Capital
+                                        Gain/Loss on sale of equity mutual funds </label>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                    <span class="btn btn-default input-group-addon" tooltip-placement="bottom"
+                                          uib-tooltip="Profits/ Losses booked after 1 year of holding. Use minus sign in case of loss">
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                            <input type="number" id="shortTermEquity" class="form-control"
+                                                   name="shortTermEquity"
+                                                   ng-model="capitalGainsFormData.mfSTCGEquity"
+                                                   required
+                                                   placeholder="Enter STCG/L amount on equity funds  "
+                                                   min="-100000000"
+                                                   max="100000000"
+                                                   ng-required="capitalGainsFormData.mutualFund == 'yes'"
+                                            />
+                                        </div>
+                                        <span ng-hide="filingCapitalGain.shortTermEquity.$invalid && filingCapitalGain.shortTermEquity.$dirty"
+                                              class="help-block">{{mfSTCInWords}}</span>
+                                        <div ng-show="filingCapitalGain.shortTermEquity.$invalid && filingCapitalGain.shortTermEquity.$dirty">
+                                            <p ng-show="filingCapitalGain.shortTermEquity.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingCapitalGain.shortTermEquity.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than -10 crore
+                                            </p>
+                                            <p ng-show="filingCapitalGain.shortTermEquity.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 10 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group "
+                                     ng-class="{ 'has-error' : filingCapitalGain.longTermDebt.$invalid && filingCapitalGain.longTermDebt.$dirty }">
+                                    <label class="control-label col-sm-5" for="longTermShare">Long Term Capital
+                                        Gain/Loss on sale of debt mutual funds </label>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                    <span class="btn btn-default input-group-addon" tooltip-placement="bottom"
+                                          uib-tooltip="Profits/ Losses booked after 3 year of holding. Use minus sign in case of loss">
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                            <input type="number" id="longTermDebt" class="form-control"
+                                                   name="longTermDebt"
+                                                   ng-model="capitalGainsFormData.mfLTCGDebt"
+                                                   required
+                                                   placeholder="Enter LTCG/L amount on debt funds"
+                                                   min="-100000000"
+                                                   max="100000000"
+                                                   ng-required="capitalGainsFormData.mutualFund == 'yes'"
+                                            />
+                                        </div>
+                                        <span ng-hide="filingCapitalGain.longTermDebt.$invalid && filingCapitalGain.longTermDebt.$dirty"
+                                              class="help-block">{{mfLTCGDInWords}}</span>
+                                        <div ng-show="filingCapitalGain.longTermDebt.$invalid && filingCapitalGain.longTermDebt.$dirty">
+                                            <p ng-show="filingCapitalGain.longTermDebt.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingCapitalGain.longTermDebt.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than -10 crore
+                                            </p>
+                                            <p ng-show="filingCapitalGain.longTermDebt.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 10 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group "
+                                     ng-class="{ 'has-error' : filingCapitalGain.shortTermDebt.$invalid && filingCapitalGain.shortTermDebt.$dirty }">
+                                    <label class="control-label col-sm-5" for="shortTermShare">Short Term Capital
+                                        Gain/Loss on sale of debt mutual funds </label>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                    <span class="btn btn-default input-group-addon" tooltip-placement="bottom"
+                                          uib-tooltip="Profits/ Losses booked after 3 year of holding. Use minus sign in case of loss">
+                                         <i class="fa fa-info"></i>
+                                    </span>
+                                            <input type="number" id="shortTermDebt" class="form-control"
+                                                   name="shortTermDebt"
+                                                   ng-model="capitalGainsFormData.mfSTCGDebt"
+                                                   required
+                                                   placeholder="Enter STCG/L amount on debt funds "
+                                                   min="-100000000"
+                                                   max="100000000"
+                                                   ng-required="capitalGainsFormData.mutualFund == 'yes'"
+                                            />
+                                        </div>
+                                        <span ng-hide="filingCapitalGain.shortTermDebt.$invalid && filingCapitalGain.shortTermDebt.$dirty"
+                                              class="help-block">{{mfSTCDInWords}}</span>
+                                        <div ng-show="filingCapitalGain.shortTermDebt.$invalid && filingCapitalGain.shortTermDebt.$dirty">
+                                            <p ng-show="filingCapitalGain.shortTermDebt.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingCapitalGain.shortTermDebt.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than -10 crore
+                                            </p>
+                                            <p ng-show="filingCapitalGain.shortTermDebt.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 10 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required" ng-show="capitalGainsFormData.investment == 'yes'">
+                                <label class="control-label col-sm-5">Do you have any capital gains or losses from any
+                                    other securities (bonds, gold) ? </label>
+                                <div class="col-sm-7">
+                                    <label class="checkbox-inline" for="capitalMutualFund_yes">
+                                        <input icheck type="radio" id="capitalSecurities_yes" name="capitalSecurities"
+                                               ng-model="capitalGainsFormData.securities" value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="capitalSecurities_no">
+                                        <input icheck type="radio" id="capitalSecurities_no" name="capitalSecurities"
+                                               ng-model="capitalGainsFormData.securities" value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-show="capitalGainsFormData.securities == 'yes'">
+                                <div class="form-group "
+                                     ng-class="{ 'has-error' : filingCapitalGain.bondSale.$invalid && filingCapitalGain.bondSale.$dirty }">
+                                    <label class="control-label col-sm-5" for="bondSale">Capital gains/losses from sale
+                                        of bonds/ debentures </label>
+                                    <div class="col-sm-6">
+                                        <input type="number" id="bondSale" class="form-control"
+                                               name="bondSale"
+                                               ng-model="capitalGainsFormData.securitiesBond"
+                                               placeholder="Enter amount of profit/loss"
+                                               min="-100000000"
+                                               max="100000000"
+                                               ng-required="capitalGainsFormData.securities == 'yes'"
+                                        />
+                                        <span ng-hide="filingCapitalGain.bondSale.$invalid && filingCapitalGain.bondSale.$dirty"
+                                              class="help-block">{{SecBondInWords}}</span>
+                                        <div ng-show="filingCapitalGain.bondSale.$invalid && filingCapitalGain.bondSale.$dirty">
+                                            <p ng-show="filingCapitalGain.bondSale.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingCapitalGain.bondSale.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than -10 crore
+                                            </p>
+                                            <p ng-show="filingCapitalGain.bondSale.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 10 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group "
+                                     ng-class="{ 'has-error' : filingCapitalGain.goldSale.$invalid && filingCapitalGain.goldSale.$dirty }">
+                                    <label class="control-label col-sm-5" for="goldSale">Capital gains/losses from sale
+                                        of gold</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" id="goldSale" class="form-control"
+                                               name="goldSale"
+                                               ng-model="capitalGainsFormData.securitiesGold"
+                                               placeholder="Enter amount of profit/loss  "
+                                               min="-100000000"
+                                               max="100000000"
+                                               ng-required="capitalGainsFormData.securities == 'yes'"
+                                        />
+                                        <span ng-hide="filingCapitalGain.goldSale.$invalid && filingCapitalGain.goldSale.$dirty"
+                                              class="help-block">{{SecGoldInWords}}</span>
+                                        <div ng-show="filingCapitalGain.goldSale.$invalid && filingCapitalGain.goldSale.$dirty">
+                                            <p ng-show="filingCapitalGain.goldSale.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingCapitalGain.goldSale.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than -10 crore
+                                            </p>
+                                            <p ng-show="filingCapitalGain.goldSale.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 10 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group "
+                                     ng-class="{ 'has-error' : filingCapitalGain.otherSecurity.$invalid && filingCapitalGain.otherSecurity.$dirty }">
+                                    <label class="control-label col-sm-5" for="otherSecurity">Capital gains/losses from
+                                        sale of any other security</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" id="otherSecurity" class="form-control"
+                                               name="otherSecurity"
+                                               ng-model="capitalGainsFormData.securitiesOther"
+                                               placeholder="Enter amount of profit/loss"
+                                               min="-100000000"
+                                               max="100000000"
+                                               ng-required="capitalGainsFormData.securities == 'yes'"
+                                        />
+                                        <span ng-hide="filingCapitalGain.otherSecurity.$invalid && filingCapitalGain.otherSecurity.$dirty"
+                                              class="help-block">{{SecOtherInWords}}</span>
+                                        <div ng-show="filingCapitalGain.otherSecurity.$invalid && filingCapitalGain.otherSecurity.$dirty">
+                                            <p ng-show="filingCapitalGain.otherSecurity.$error.required"
+                                               class="help-block">
+                                                Amount is required
+                                            </p>
+                                            <p ng-show="filingCapitalGain.otherSecurity.$error.min"
+                                               class="help-block">
+                                                Amount cannot be lower than -10 crore
+                                            </p>
+                                            <p ng-show="filingCapitalGain.otherSecurity.$error.max"
+                                               class="help-block">
+                                                Amount cannot exceed 10 crore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required" ng-show="capitalGainsFormData.investment == 'yes'">
+                                <label class="control-label col-sm-5">Do you have any capital gains or losses from a
+                                    property transaction? </label>
+                                <div class="col-sm-7">
+                                    <label class="checkbox-inline" for="propertyTranx_yes">
+                                        <input icheck type="radio" id="propertyTranx_yes" name="propertyTranx"
+                                               ng-model="capitalGainsFormData.propTransaction" value="yes">
+                                        Yes
+                                    </label>
+                                    <label class="checkbox-inline" for="propertyTranx_no">
+                                        <input icheck type="radio" id="propertyTranx_no" name="propertyTranx"
+                                               ng-model="capitalGainsFormData.propTransaction" value="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-show="capitalGainsFormData.propTransaction == 'yes'">
+                                <uib-accordion>
+                                    <uib-accordion-group heading="Property transaction gain/loss">
+                                        <uib-accordion>
+                                            <uib-accordion-group heading="{{getIdToName($index)}}" ng-repeat="capital in capitalGainsFormData.propTransactionDetails track by $index" is-open="isOpen">
+                                                <div class="form-group required"
+                                                     ng-class="{ 'has-error' : filingCapitalGain.propNature.$invalid && filingCapitalGain.propNature.$dirty }">
+                                                    <label class="control-label col-sm-5" for="propNature">What is the
+                                                        nature of the property sold?</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="propNature" class="form-control center-adjustment"
+                                                                name="propNature"
+                                                                ng-model="capital.propNature"
+                                                                ng-required="capitalGainsFormData.propTransaction == 'yes'"
+                                                                ng-disabled="!formEditable"
+                                                        >
+                                                            <option value=''>----Nature of Property----</option>
+                                                            <option value="house">House</option>
+                                                            <option value="land">Land</option>
+                                                            <option value="commercial">Commercial</option>
+                                                        </select>
+                                                        <div ng-show="filingCapitalGain.propNature.$invalid && filingCapitalGain.propNature.$dirty">
+                                                            <p ng-show="filingCapitalGain.propNature.$error.required"
+                                                               class="help-block">
+                                                                Property type is required
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group required">
+                                                    <div ng-class="{ 'has-error' : filingCapitalGain.purchaseDate.$invalid && filingCapitalGain.purchaseDate.$dirty }">
+                                                        <label class="control-label col-sm-5">What was the date of purchase of the property? </label>
+                                                        <div class="col-sm-6">
+                                                            <input type="datetime" id="purchaseDate"
+                                                                   class="form-control "
+                                                                   name="purchaseDate"
+                                                                   ng-model="capital.propPurDate"
+                                                                   view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                                                                   max-date='todayDate'
+                                                                   date-time
+                                                                   ng-required="capitalGainsFormData.propTransaction == 'yes' && capital.propNature != ''"
+                                                                   ng-disabled="!formEditable"
+                                                            />
+                                                            <div ng-show="filingCapitalGain.purchaseDate.$invalid && filingCapitalGain.purchaseDate.$dirty">
+                                                                <p ng-show="filingCapitalGain.purchaseDate.$error.required"
+                                                                   class="help-block">
+                                                                    Purchase date is required
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group required"
+                                                     ng-class="{ 'has-error' : filingCapitalGain.purchaseCost.$invalid && filingCapitalGain.purchaseCost.$dirty }">
+                                                    <label class="control-label col-sm-5" for="purchaseCost">What was the purchase cost of the property?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="number" id="purchaseCost" class="form-control"
+                                                               name="purchaseCost"
+                                                               ng-model="capital.propPurCost"
+                                                               placeholder="Enter purchase cost including all related expenses"
+                                                               min="100"
+                                                               max="500000000"
+                                                               ng-required="capitalGainsFormData.propTransaction == 'yes' && capital.propNature != ''"
+                                                               ng-disabled="!formEditable"
+                                                        />
+                                                        <span ng-hide="filingCapitalGain.purchaseCost.$invalid && filingCapitalGain.purchaseCost.$dirty"
+                                                              class="help-block">{{purCostInWords}}</span>
+                                                        <div ng-show="filingCapitalGain.purchaseCost.$invalid && filingCapitalGain.purchaseCost.$dirty">
+                                                            <p ng-show="filingCapitalGain.purchaseCost.$error.required"
+                                                               class="help-block">
+                                                                Amount is required
+                                                            </p>
+                                                            <p ng-show="filingCapitalGain.purchaseCost.$error.min"
+                                                               class="help-block">
+                                                                Amount cannot be lower than 100
+                                                            </p>
+                                                            <p ng-show="filingCapitalGain.purchaseCost.$error.max"
+                                                               class="help-block">
+                                                                Amount cannot exceed 50 crore
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group "
+                                                     ng-class="{ 'has-error' : filingCapitalGain.improvementCost.$invalid && filingCapitalGain.improvementCost.$dirty }">
+                                                    <label class="control-label col-sm-5" for="improvementCost">What was
+                                                        the cost of
+                                                        improvement of property, if any?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="number" id="improvementCost" class="form-control"
+                                                               name="improvementCost"
+                                                               ng-model="capital.improvementCost"
+                                                               placeholder="Enter any cost incurred for improvement "
+                                                               min="100"
+                                                               max="500000000"
+                                                               ng-disabled="!formEditable"
+                                                        />
+                                                        <span ng-hide="filingCapitalGain.improvementCost.$invalid && filingCapitalGain.improvementCost.$dirty"
+                                                              class="help-block">{{ImproveCostInWords}}</span>
+                                                        <div ng-show="filingCapitalGain.improvementCost.$invalid && filingCapitalGain.improvementCost.$dirty">
+                                                            <p ng-show="filingCapitalGain.improvementCost.$error.min"
+                                                               class="help-block">
+                                                                Amount cannot be lower than 100
+                                                            </p>
+                                                            <p ng-show="filingCapitalGain.improvementCost.$error.max"
+                                                               class="help-block">
+                                                                Amount cannot exceed 50 crore
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group required">
+                                                    <div ng-class="{ 'has-error' : filingCapitalGain.saleDate.$invalid && filingCapitalGain.saleDate.$dirty }">
+                                                        <label class="control-label col-sm-5">What is the date of sale of property? </label>
+                                                        <div class="col-sm-6">
+                                                            <input type="datetime" id="saleDate"
+                                                                   class="form-control "
+                                                                   name="saleDate"
+                                                                   ng-model="capital.propSaleDate"
+                                                                   view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                                                                   min-date='startFiscalYear' max-date='todayDate'
+                                                                   date-time
+                                                                   ng-required="capitalGainsFormData.propTransaction == 'yes' && capital.propNature != ''"
+                                                                   ng-disabled="!formEditable"
+                                                            />
+                                                            <p ng-show="filingCapitalGain.saleDate.$error.required"
+                                                               class="help-block">
+                                                                Sale date is required
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group"
+                                                     ng-class="{ 'has-error' : filingCapitalGain.saleValue.$invalid && filingCapitalGain.saleValue.$dirty }">
+                                                    <label class="control-label col-sm-5" for="saleValue">What is the
+                                                        sale value of property?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="number" id="saleValue" class="form-control"
+                                                               name="saleValue"
+                                                               ng-model="capital.propSaleVal"
+                                                               placeholder="Enter sale value"
+                                                               min="100"
+                                                               max="500000000"
+                                                               ng-disabled="!formEditable"
+                                                        />
+                                                        <span ng-hide="filingCapitalGain.saleValue.$invalid && filingCapitalGain.saleValue.$dirty"
+                                                              class="help-block">{{saleValueInWords}}</span>
+                                                        <div ng-show="filingCapitalGain.saleValue.$invalid && filingCapitalGain.saleValue.$dirty">
+                                                            <p ng-show="filingCapitalGain.saleValue.$error.min"
+                                                               class="help-block">
+                                                                Amount cannot be lower than 100
+                                                            </p>
+                                                            <p ng-show="filingCapitalGain.saleValue.$error.max"
+                                                               class="help-block">
+                                                                Amount cannot exceed 50 crore
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group"
+                                                     ng-class="{ 'has-error' : filingCapitalGain.costIncurred.$invalid && filingCapitalGain.costIncurred.$dirty }">
+                                                    <label class="control-label col-sm-5" for="costIncurred">What are
+                                                        the costs incurred in sale of property?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="number" id="costIncurred" class="form-control"
+                                                               name="costIncurred"
+                                                               ng-model="capital.costIncurred"
+                                                               placeholder="Enter expenses relating to sale of property"
+                                                               min="100"
+                                                               max="50000000"
+                                                               ng-disabled="!formEditable"
+                                                        />
+                                                        <span ng-hide="filingCapitalGain.costIncurred.$invalid && filingCapitalGain.costIncurred.$dirty"
+                                                              class="help-block">{{costInWords}}</span>
+                                                        <div ng-show="filingCapitalGain.costIncurred.$invalid && filingCapitalGain.costIncurred.$dirty">
+                                                            <p ng-show="filingCapitalGain.costIncurred.$error.min"
+                                                               class="help-block">
+                                                                Amount cannot be lower than 100
+                                                            </p>
+                                                            <p ng-show="filingCapitalGain.costIncurred.$error.max"
+                                                               class="help-block">
+                                                                Amount cannot exceed 5 crore
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group required" style="text-align: center;">
+                                                    <button ng-hide="capitalGainsFormData.propTransactionDetails.length >= 2 || !formEditable" class="btn btn-sm btn-primary" ng-disabled="filingCapitalGain.$invalid"
+                                                            ng-click="addCapitalInfo(capital)"><strong>Add property </strong></button>
+                                                    <button class="btn btn-sm btn-primary" ng-show="capital.delete && formEditable"
+                                                            ng-click="updateCapitalInfo($index)"><strong>Update</strong></button>
+                                                    <button class="btn btn-sm btn-primary" ng-show="capital.delete && formEditable"
+                                                            ng-click="deleteCapitalInfo($index)"><strong>Delete</strong></button>
+                                                    <button class="btn btn-sm btn-primary" ng-show="!capital.delete && formEditable"
+                                                            ng-click="cancelCapitalInfo($index)"><strong>Cancel</strong></button>
+                                                </div>
+                                            </uib-accordion-group>
+                                        </uib-accordion>
+                                    </uib-accordion-group>
+                                </uib-accordion>
+                            </div>
+                        </div>
+                        <div class="form-group required" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="filingCapitalGain.$invalid || !formEditable"
+                                    ng-click="submitCapitalGains('true')"><strong>Save</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

@@ -1,0 +1,226 @@
+[
+  {
+    "scheme": "HDFC Equity Fund",
+    "schemeCode": "02",
+    "schemeId": "H02",
+    "amcCode": "H",
+    "amc": "HDFC"
+  },
+  {
+    "scheme": "Kotak Gold Fund",
+    "schemeCode": "46",
+    "schemeId": "K46",
+    "amcCode": "K",
+    "amc": "Kotak Mahindra"
+  },
+  {
+    "scheme": "Birla Sunlife Dynamic Bond Fund",
+    "schemeCode": "321G",
+    "schemeId": "B321G",
+    "amcCode": "B",
+    "amc": "Birla Sunlife"
+  },
+  {
+    "scheme": "Franklin High Growth Companies Fund",
+    "schemeCode": "273",
+    "schemeId": "FTI273",
+    "amcCode": "FTI",
+    "amc": "Franklin Templeton"
+  },
+  {
+    "scheme": "DSP Blackrock Focus 25 Fund",
+    "schemeCode": "349",
+    "schemeId": "D349",
+    "amcCode": "D",
+    "amc": "DSP BlackRock"
+  },
+  {
+    "scheme": "Reliance Gold Savings Fund",
+    "schemeCode": "GDGPGR",
+    "schemeId": "RMFGDGPGR",
+    "amcCode": "RMF",
+    "amc": "Reliance"
+  },
+  {
+    "scheme": "IDFC Dynamic Bond Fund",
+    "schemeCode": "82",
+    "schemeId": "G82",
+    "amcCode": "G",
+    "amc": "IDFC"
+  },
+  {
+    "scheme": "Franklin Asian Equity Fund",
+    "schemeCode": "304",
+    "schemeId": "FTI304",
+    "amcCode": "FTI",
+    "amc": "Franklin Templeton"
+  },
+  {
+    "scheme": "ICICI Pru Short Term Fund",
+    "schemeCode": "24",
+    "schemeId": "P24",
+    "amcCode": "P",
+    "amc": "ICICI Prudential"
+  },
+  {
+    "scheme": "ICICI Pru  Fund PF Option",
+    "schemeCode": "53PF",
+    "schemeId": "P53PF",
+    "amcCode": "P",
+    "amc": "ICICI Prudential"
+  },
+  {
+    "scheme": "ICICI Pru US Bluechip Fund",
+    "schemeCode": "1950",
+    "schemeId": "P1950",
+    "amcCode": "P",
+    "amc": "ICICI Prudential"
+  },
+  {
+    "scheme": "ICICI Pru Value Discovery Fund",
+    "schemeCode": "DFG",
+    "schemeId": "PDFG",
+    "amcCode": "P",
+    "amc": "ICICI Prudential"
+  },
+  {
+    "scheme": "Reliance Banking Fund",
+    "schemeCode": "BFGPGR",
+    "schemeId": "RMFBFGPGR",
+    "amcCode": "RMF",
+    "amc": "Reliance"
+  },
+  {
+    "scheme": "IDFC SSIF - Medium Term Fund",
+    "schemeCode": "MTG",
+    "schemeId": "GMTG",
+    "amcCode": "G",
+    "amc": "IDFC"
+  },
+  {
+    "scheme": "Birla Sunlife Short Term Opportunities Fund",
+    "schemeCode": "341G",
+    "schemeId": "B341G",
+    "amcCode": "B",
+    "amc": "Birla Sunlife"
+  },
+  {
+    "scheme": "Birla Sunlife Frontline Equity Fund",
+    "schemeCode": "92",
+    "schemeId": "B92",
+    "amcCode": "B",
+    "amc": "Birla Sunlife"
+  },
+  {
+    "scheme": "Franklin India Bluechip Fund",
+    "schemeCode": "038",
+    "schemeId": "FTI038",
+    "amcCode": "FTI",
+    "amc": "Franklin Templeton"
+  },
+  {
+    "scheme": "DSP Blackrock TIGER Fund",
+    "schemeCode": "13",
+    "schemeId": "D13",
+    "amcCode": "D",
+    "amc": "DSP BlackRock"
+  },
+  {
+    "scheme": "Franklin India Low Duration Fund",
+    "schemeCode": "400",
+    "schemeId": "FTI400",
+    "amcCode": "FTI",
+    "amc": "Franklin Templeton"
+  },
+  {
+    "scheme": "Franklin India Income Builder Fund",
+    "schemeCode": "012",
+    "schemeId": "FTI012",
+    "amcCode": "FTI",
+    "amc": "Franklin Templeton"
+  },
+  {
+    "scheme": "Reliance Money Manager Fund",
+    "schemeCode": "LPIGGR",
+    "schemeId": "RMFLPIGGR",
+    "amcCode": "RMF",
+    "amc": "Reliance"
+  },
+  {
+    "scheme": "DSP Blackrock Money Manager Fund",
+    "schemeCode": "98",
+    "schemeId": "D98",
+    "amcCode": "D",
+    "amc": "DSP BlackRock"
+  },
+  {
+    "scheme": "IDFC Arbitarage Fund",
+    "schemeCode": "209",
+    "schemeId": "G209",
+    "amcCode": "G",
+    "amc": "IDFC"
+  },
+  {
+    "scheme": "ICICI Pru Arbitarage Fund",
+    "schemeCode": "EDIRG",
+    "schemeId": "PEDIRG",
+    "amcCode": "P",
+    "amc": "ICICI Prudential"
+  },
+  {
+    "scheme": "Franklin India Taxshield",
+    "schemeCode": "034",
+    "schemeId": "FTI034",
+    "amcCode": "FTI",
+    "amc": "Franklin Templeton"
+  },
+  {
+    "scheme": "Axis Long Term Equity Fund",
+    "schemeCode": "TSGPGGR",
+    "schemeId": "128TSGPGGR",
+    "amcCode": "128",
+    "amc": "Axis"
+  },
+  {
+    "scheme": "Reliance Tax Saver (ELSS) Fund",
+    "schemeCode": "TSGPGR",
+    "schemeId": "RMFTSGPGR",
+    "amcCode": "RMF",
+    "amc": "Reliance"
+  },
+  {
+    "scheme": "Birla Sunlife Tax Relief'96 Fund",
+    "schemeCode": "02G",
+    "schemeId": "B02G",
+    "amcCode": "B",
+    "amc": "Birla Sunlife"
+  },
+  {
+    "scheme": "Reliance Equity Savings Fund",
+    "schemeCode": "ESGPGR",
+    "schemeId": "RMFESGPGR",
+    "amcCode": "RMF",
+    "amc": "Reliance"
+  },
+  {
+    "scheme": "DSP Blackrock Dynamic Asset Allocation Fund",
+    "schemeCode": "539",
+    "schemeId": "D539",
+    "amcCode": "D",
+    "amc": "DSP BlackRock"
+  },
+  {
+    "scheme": "SBI Magnum Balanced Fund",
+    "schemeCode": "24G",
+    "schemeId": "L24G",
+    "amcCode": "L",
+    "amc": "SBI"
+  },
+  {
+    "scheme": "HDFC MIP - Long Term Plan",
+    "schemeCode": "MILTG",
+    "schemeId": "HMILTG",
+    "amcCode": "H",
+    "amc": "HDFC"
+  }
+]

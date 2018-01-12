@@ -1,0 +1,40 @@
+<div class="row" ng-controller="basicinfoStatusCtrl">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>User Id</th>
+                            <th>Date Of Birth</th>
+                            <th>Gender</th>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Marital Status</th>
+                            <th>Spouse Age</th>
+                            <th>No.Of Children</th>
+                            <th>Number of Dependents</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="basic in basics">
+                            <td>{{basic._userid}}</td>
+                            <td>{{basic.dob}}</td>
+                            <td>{{basic.gender}}</td>
+                            <td>{{basic.country}}</td>
+                            <td>{{basic.state}}</td>
+                            <td>{{basic.city}}</td>
+                            <td>{{basic.is_married}}</td>
+                            <td>{{basic.spouse_age }}</td>
+                            <td>{{basic.children }}</td>
+                            <td>{{basic.dependents }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

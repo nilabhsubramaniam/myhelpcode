@@ -1,0 +1,258 @@
+<uib-accordion>
+    <uib-accordion-group heading="Retirement Goal" is-open="true">
+        <div ng-controller="finGpsImpGoalsCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="finGpsRetirementGoals" id="finGpsRetirementGoals"
+                  novalidate>
+                <div class="form-group" ng-class="{'has-error':finGpsRetirementGoals.prefAgeRetirement.$invalid && finGpsRetirementGoals.prefAgeRetirement.$error}">
+                    <div class="col-sm-3"></div>
+                    <label class="control-label col-sm-3" for="prefAgeRetirement">Preferred age of
+                        retirement</label>
+                    <div class="col-sm-5">
+                        <input type="number" id="prefAgeRetirement"
+                               name="prefAgeRetirement"
+                               class="form-control touchSpin"
+                               placeholder="Enter age"
+                               required
+                               min="30"
+                               max="80"
+                               ng-model="finGpsRetirementGoals.retirementAge">
+                        <div ng-show="finGpsRetirementGoals.prefAgeRetirement.$invalid && finGpsRetirementGoals.prefAgeRetirement.$error">
+                            <p ng-show="finGpsRetirementGoals.prefAgeRetirement.$error.required" class ="help-block">
+                                    Retirement age is required
+                            </p>
+                            <p ng-show="finGpsRetirementGoals.prefAgeRetirement.$error.min" class ="help-block">
+                                Retirement age cannot be less than 35 years
+                            </p>
+                            <p ng-show="finGpsRetirementGoals.prefAgeRetirement.$error.max" class="help-block">
+                                Retirement age cannot exceed 80 years
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-6">Do you expect any lifestyle changes after retirement?</label>
+                    <div class="col-sm-5">
+                        <label class="checkbox-inline" for="lifestyleChange_same">
+                            <input icheck id="lifestyleChange_same" type="radio" name="lifestyleChange"
+                                   ng-model="finGpsRetirementGoals.lifestyleChange" value="same">
+                            Same
+                        </label>
+                        <label class="checkbox-inline" for="lifestyleChange_increase">
+                            <input icheck id="lifestyleChange_increase" type="radio" name="loan"
+                                   ng-model="finGpsRetirementGoals.lifestyleChange" value="increase">
+                            Increase
+                        </label>
+                        <label class="checkbox-inline" for="lifestyleChange_decrease">
+                            <input icheck id="lifestyleChange_decrease" type="radio" name="loan"
+                                   ng-model="finGpsRetirementGoals.lifestyleChange" value="decrease">
+                            Decrease
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : finGpsRetirementGoals.userComment.$invalid && finGpsRetirementGoals.userComment.$dirty }">
+                    <label class="control-label col-sm-2"></label>
+                    <label class="control-label col-sm-4" for="retirementUserComment">Any Specific desires after retirement?</label>
+                    <div class="col-sm-6">
+                                <textarea rows="4" cols="48" name="userComment" id="retirementUserComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="finGpsRetirementGoals.retirementComment"
+                                          placeholder="Travelling around the world, Floating a charitable institution etc."
+                                >
+                                </textarea>
+                        <div ng-show="finGpsRetirementGoals.userComment.$invalid && finGpsRetirementGoals.userComment.$dirty">
+                            <p ng-show="finGpsRetirementGoals.userComment.$error.maxlength" class="help-block">
+                                Comments cannot exceed 250 characters
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="finGpsRetirementGoals.$invalid "
+                            ng-click="submit()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="Contingency Goal" is-open="true">
+        <div ng-controller="finGpsImpGoalsCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="finGpsContingencyGoals" id="finGpsContingencyGoals"
+                  novalidate>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">I want to build contingency fund for</label>
+                    <div class="col-sm-7">
+                        <span class="" tooltip-placement="bottom"
+                              uib-tooltip="A contingency fund can be useful for many purposes like, emergency hospitalization, job-loss, help to relatives etc. If you have a contingency fund, you can tackle uncertain situations easily.">
+                                            <i class="fa fa-info-circle"></i>
+                                                 </span>
+                        <label class="checkbox-inline" for="contingencyFund_threeMonth">
+                            <input icheck id="contingencyFund_threeMonth" type="radio" name="contingencyFund_threeMonth"
+                                   ng-model="finGpsContingencyGoals.contingencyFund" value="threeMonth">
+                            3 Months
+                        </label>
+                        <label class="checkbox-inline" for="contingencyFund_sixMonth">
+                            <input icheck id="contingencyFund_sixMonth" type="radio" name="contingencyFund_sixMonth"
+                                   ng-model="finGpsContingencyGoals.contingencyFund" value="sixMonth">
+                            6 Months
+                        </label>
+                        <label class="checkbox-inline" for="contingencyFund_nineMonth">
+                            <input icheck id="contingencyFund_nineMonth" type="radio" name="contingencyFund_nineMonth"
+                                   ng-model="finGpsContingencyGoals.contingencyFund" value="nineMonth">
+                            9 Months
+                        </label>
+                        <label class="checkbox-inline" for="contingencyFund_twelveMonth">
+                            <input icheck id="contingencyFund_twelveMonth" type="radio" name="contingencyFund_twelveMonth"
+                                   ng-model="finGpsContingencyGoals.contingencyFund" value="twelveMonth">
+                            12 Months
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : finGpsContingencyGoals.userComment.$invalid && finGpsContingencyGoals.userComment.$dirty }">
+                    <label class="control-label col-sm-4" for="contingencyUserComment">Any Additional comments</label>
+                    <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="contingencyUserComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="finGpsContingencyGoals.contingencyComment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                        <div ng-show="finGpsContingencyGoals.userComment.$invalid && finGpsContingencyGoals.userComment.$dirty">
+                            <p ng-show="finGpsContingencyGoals.userComment.$error.maxlength" class="help-block">
+                                Comments cannot exceed 250 characters
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="finGpsRetirementGoals.$invalid "
+                            ng-click="submitContingencyGoal()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="Child Related Goals" is-open="true">
+        <div ng-controller="finGpsImpGoalsCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="finGpsChildRelatedGoals" id="finGpsChildRelatedGoals"
+                  novalidate>
+                <div class="form-group">
+                    <label class="control-label col-sm-1" for="offspring"
+                           style="text-align:center">Child</label>
+                    <label class="control-label col-sm-2" for="category"
+                           style="text-align:center">Category</label>
+                    <label class="control-label col-sm-2" for="startYear" style="text-align:center">Start
+                        year</label>
+                    <label class="control-label col-sm-2" for="endYear" style="text-align:center">End
+                        year</label>
+                    <label class="control-label col-sm-2" for="amount" style="text-align:center">Amount</label>
+                    <label class="control-label col-sm-2" for="priority"
+                           style="text-align:center">Priority</label>
+                </div>
+                <div class="form-group" ng-repeat=" childrenDetails in childrenDetailsList track by $index">
+                    <div class="col-sm-1">
+                        <select id="offspring" class="form-control" name="offspring"
+                                ng-model="childrenDetails.offspring">
+                            <option value="">----</option>
+                            <option value="child1">1</option>
+                            <option value="child2">2</option>
+                            <option value="child3">3</option>
+                            <option value="child4">4</option>
+                        </select>
+                    </div>
+
+                    <!-- offspring Category-->
+                    <div class="col-sm-2">
+                        <select id="category" class="form-control" name="category"
+                                ng-model="childrenDetails.category">
+                            <option value="">--Select category--</option>
+                            <option value="underGraduation">Under Graduation</option>
+                            <option value="post graduation">Post Graduation</option>
+                            <option value="marriage">Marriage</option>
+                            <option value="marriage">Other</option>
+                        </select>
+                    </div>
+
+                    <!--- offSpring start Year endYear-->
+                    <div class="col-sm-2"
+                         ng-class="{ 'has-error' : finGpsChildRelatedGoals.startYear.$invalid && finGpsChildRelatedGoals.startYear.$dirty }">
+                        <input type="datetime" id="startYear" class="form-control" name="startYear"
+                               ng-model="childrenDetails.startYear"
+                               placeholder="YYYY"
+                               date-time
+                               view="date" auto-close="true" min-view="date" format="YYYY"
+                        />
+                    </div>
+
+                    <!-- offSpring endYear-->
+                    <div class="col-sm-2"
+                         ng-class="{ 'has-error' : finGpsChildRelatedGoals.startYear.$invalid && finGpsChildRelatedGoals.startYear.$dirty }">
+                        <input type="datetime" id="endYear" class="form-control" name="endYear"
+                               ng-model="childrenDetails.endYear"
+                               placeholder="YYY-MM-DD"
+                               date-time
+                               view="date" auto-close="true" min-view="date" format="YYYY-MM-DD"
+                        />
+                    </div>
+                    <!-- Offspring amount-->
+                    <div class="col-sm-2"
+                         ng-class="{ 'has-error' : finGpsChildRelatedGoals.amount.$invalid && finGpsChildRelatedGoals.amount.$dirty }">
+                        <input type="number" id="amount" class="form-control" name="amount"
+                               ng-model="childrenDetails.amount"
+                               ng-pattern="/^[0-9]*$/"
+                               placeholder="Enter amount "
+                        >
+                    </div>
+                    <!-- offspring Priority-->
+                    <div class="col-sm-2"
+                         ng-class="{ 'has-error' : finGpsChildRelatedGoals.priority.$invalid && finGpsChildRelatedGoals.priority.$dirty }">
+                        <select id="priority" class="form-control" name="priority"
+                                ng-model="childrenDetails.priority">
+                            <option value=''>-----Select priority------</option>
+                            <option value='high'>High</option>
+                            <option value='Medium'>Medium</option>
+                            <option value='low'>Low</option>
+                        </select>
+                    </div>
+                    <span class="btn btn-default" style="padding:2px 7px"
+                          ng-show="childrenDetailsList.length >1"
+                          ng-click="deleteOffspring($index)">
+                            <i class="fa fa-minus"></i></span>
+                    <span class="btn btn-default" style="padding:2px 7px"
+                          ng-hide="childrenDetailsList.length > 5"
+                          ng-click="addOffspring(childrenDetails)">
+                            <i class="fa fa-plus"></i></span>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : finGpsChildRelatedGoals.userComment.$invalid && finGpsChildRelatedGoals.userComment.$dirty }">
+                    <label class="control-label col-sm-5" for="UserComment">Any Additional comments</label>
+                    <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="userComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="userComment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                        <div ng-show="finGpsChildRelatedGoals.userComment.$invalid && finGpsChildRelatedGoals.userComment.$dirty">
+                            <p ng-show="finGpsChildRelatedGoals.userComment.$error.maxlength" class="help-block">
+                                Comments cannot exceed 250 characters
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="finGpsImpGoals.$invalid "
+                            ng-click="submitChildsGoal()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+</uib-accordion>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

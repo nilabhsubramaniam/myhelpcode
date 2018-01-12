@@ -1,0 +1,72 @@
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="healthResultCtrl">
+    <div class="row">
+        <div class="col-xs-10 text-left">
+            <p></p>
+            <div class="previous">
+                <h3 class="text-center"><strong style="color:#660a18">Based on your response to the FinHealth questionnaire, our assessment is as follows</strong></h3>
+            </div>
+            <p></p>
+        </div>
+        <div class="col-xs-2 text-right">
+            <p></p>
+            <div class="next">
+                <button class="btn btn-sm btn-primary" ng-click="getStarted()"><strong>Set a goal</strong></button>
+            </div>
+            <p></p>
+        </div>
+    </div>
+    <div class="row" ng-repeat="score in scores">
+        <div class="col-lg-12" ng-if="!getCategory(score.category)">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h4>{{score.category}}</h4>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="text-center">
+                                        <div width="50%" ng-radial-gauge ranges="ranges" value="score.score" value-unit="unit" precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit"></div>
+                                    </div>
+                                    <div>
+                                        <h5 class = "text-center">{{getScoreLabel(score.score)}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div><h4><strong><u>Assessment</u></strong></h4></div>
+                            <span>{{score.commentary}}</span>
+                            <p></p><p></p>
+                            <p><b>{{score.thumb_rule_header}} </b></p>
+                            <div ng-repeat="thumbRule in score.thumb_rules">
+                                <ul class="text-adjustment">
+                                <li class="text-adjustment">{{thumbRule.thumbrule}}</li>
+                                </ul>
+                            </div>
+                            <div><h4><strong><u>Suggestion</u></strong></h4></div>
+                            <span>We suggest you explore the following services</span>
+                            <div>
+                                <br>
+                                <button class="btn btn-sm btn-primary goal-button-margin" ng-click="goNewState(score.service_1)"><strong>{{score.service_1}}</strong></button>
+                                <button class="btn btn-sm btn-primary" ng-click="goNewState(score.service_2)"><strong>{{score.service_2}}</strong></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 text-left">
+
+        </div>
+        <div class="col-xs-2 text-right">
+            <div class="next">
+                <button class="btn btn-sm btn-primary" ng-click="getStarted()"><strong>Set a goal</strong></button>
+            </div>
+            <p></p>
+        </div>
+    </div>
+</div>

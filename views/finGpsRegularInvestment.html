@@ -1,0 +1,107 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content" ng-controller="finGpsRegularInvestCtrl" data-ng-init="init()">
+                    <form class="form-horizontal" role="form" name="regularInvestment" id="regularInvestmentForm"
+                          novalidate>
+                        <div class="form-group ">
+                            <label class="control-label col-sm-3" style="text-align:center">Particulars</label>
+                            <label class="control-label col-sm-2" style="text-align:center">Holder</label>
+                            <label class="control-label col-sm-3" style="text-align:center">Amount</label>
+                            <label class="control-label col-sm-2" style="text-align:center">Cycle </label>
+                        </div>
+                        <div class="form-group" ng-repeat="investment in investmentTypeList track by $index" style="margin-left:22px" >
+                            <ng-form class="form-horizontal" role="form" name="regularInvestmentForm">
+                                <div class="col-sm-3" ng-class="{'has-error':regularInvestmentForm.particularInvestment.$invalid && regularInvestmentForm.particularInvestment.$dirty}">
+                                    <select class="form-control" name="particularInvestment"
+                                            required
+                                            ng-model="investment.particulars">
+                                        <option value=''>-------Select type------------</option>
+                                        <option ng-repeat="(key, value) in investmentTypeRecord" value="{{key}}">{{value}}</option>
+                                    </select>
+                                    <div ng-show="regularInvestmentForm.particularInvestment.$invalid && regularInvestmentForm.particularInvestment.$dirty">
+                                        <p ng-show="regularInvestmentForm.particularInvestment.$error.required"
+                                           class="help-block">
+                                            Type is required
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control" name="investmentHolder"
+                                            ng-model="investment.holder">
+                                        <option value=''>-------Select holder------</option>
+                                        <option value=''>Self</option>
+                                        <option value=''>Spouse</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3" ng-class="{'has-error':regularInvestmentForm.investmentAmount.$invalid && regularInvestmentForm.investmentAmount.$dirty}">
+                                    <input type="number" class="form-control"
+                                           name="investmentAmount"
+                                           placeholder="Enter amount"
+                                           ng-model="investment.amount"
+                                           min="100"
+                                           max="5000000"
+                                    >
+                                    <div ng-show="regularInvestmentForm.investmentAmount.$invalid && regularInvestmentForm.investmentAmount.$dirty">
+                                        <p ng-show="regularInvestmentForm.investmentAmount.$error.min" class="help-block">
+                                            Amount cannot be less than Rs.100
+                                        </p>
+                                        <p ng-show="regularInvestmentForm.investmentAmount.$error.max" class="help-block">
+                                            Amount cannot be greater than Rs.50 lakhs
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control" name="investmentCycle"
+                                            ng-model="investment.cycle">
+                                        <option value=''>Select cycle</option>
+                                        <option value=''>Annually</option>
+                                        <option value=''>Monthly</option>
+                                    </select>
+                                </div>
+                                <span class="btn btn-default" ng-show="investmentTypeList.length >1"
+                                      ng-click="delRegularInvestment($index)">
+                                        <i class="fa fa-minus"></i>
+                                </span>
+                                <span class="btn btn-default" ng-hide="investmentTypeList.length > 4"
+                                      ng-click="addRegularInvestment(investment)">
+                                        <i class="fa fa-plus"></i>
+                                </span>
+                            </ng-form>
+                        </div>
+                        <!-- Additional Comments-->
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : regularInvestment.userComment.$invalid && regularInvestment.userComment.$dirty }">
+                            <label class="control-label col-sm-5" for="UserComment">Any Additional comments</label>
+                            <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="userComment"
+                                          ng-minlength="1" ng-maxlength="250"
+                                          ng-model="regularInvestmentForm.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                                <div ng-show="regularInvestment.userComment.$invalid && regularInvestment.userComment.$dirty">
+                                    <p ng-show="regularInvestment.userComment.$error.maxlength" class="help-block">
+                                        Comments cannot exceed 250 characters
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align: center;">
+                            <button class="btn btn-sm btn-primary" ng-disabled="regularInvestment.$invalid "
+                                    ng-click="submitRegularInvestment()"><strong>Save</strong>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>

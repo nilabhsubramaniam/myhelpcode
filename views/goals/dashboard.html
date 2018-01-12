@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox-content" ng-controller="goalDashboardCtrl" data-ng-init="init()">
+            <div class="row">
+                    <div id="series_chart_div" style="height: 500px;"></div>
+            </div>
+            <a ui-sref="dashboards.transaction-view"><b>Check your transaction history</b></a>
+            <br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content" style="overflow-x: scroll">
+                             <table datatable="ng" dt-options="dtOptions" class="table table-bordered dataTables-example table-hover  goal-dashboard-center">
+                                <thead>
+                                <tr>
+                                    <th rowspan="2">Goal Type</th>
+                                    <th rowspan="2">Goal Year</th>
+                                    <th rowspan="2">Goal Future Value (₹)</th>
+                                    <th rowspan="2">Reqd Monthly Investment (₹)</th>
+                                    <th colspan="2">Amount Committed</th>
+                                    <th rowspan="2">Goal Achievable %</th>
+                                    <th colspan="2">Goal Achieved</th>
+                                    <th rowspan="2">Action</th>
+                                </tr>
+                                <tr>
+                                    <th>Lumpsum (₹)</th>
+                                    <th>Monthly (₹)</th>
+                                    <th>%</th>
+                                    <th>Amount (₹)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr ng-repeat="goal in goals" ng-class="isexecuteState(goal.state) ? 'executestatebg' : 'otherstatebg'">
+                                    <td><img src ="{{'/img/goal_'+goal.type+'_m.png'}}" width="42" height="42"/></td>
+                                    <td>{{ goal.maturity }}</td>
+                                    <td>{{ thousandseparator(goal.futurePrice)}}</td>
+                                    <td>{{ thousandseparator(goal.sipRequired)}}</td>
+                                    <td>{{ thousandseparator(goal.lumpsum)}}</td>
+                                    <td>{{ thousandseparator(goal.sip)}}</td>
+                                    <td>{{ goal.percentAchievable}}</td>
+                                    <td>{{ goal.percentAchieved}}</td>
+                                    <td>{{ thousandseparator(getNumber(goal.marketValue))}}</td>
+                                    <td>
+                                        <a ng-show="isExecuteState(goal.state)" ng-click="commitGoal(goal._goalid)">Execute/Edit</a>
+                                        <a ng-show="isActiveState(goal.state)" ng-click="stopGoal(goal._goalid)">Stop</a>
+                                        <!--<a ng-show="isActiveState(goal.state)" ng-click="revisitGoal(goal._goalid)">| Re-visit</a>-->
+                                        <a ng-show="isTopUpState(goal._goalid)" ng-click="topUp(goal._goalid)"> | Top-up  </a> ||
+                                        <a ng-show="isExecuteState(goal.state)" ng-click="deleteGoal(goal._goalid)"> | Delete</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

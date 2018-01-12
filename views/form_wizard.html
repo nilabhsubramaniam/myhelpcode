@@ -1,0 +1,64 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>My Profile</h2>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="formWizardCtrl">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-sm-2  form-wizard-cofidential">
+                    <p class="form-wizard-box text-center">
+                        CONFIDENTIAL &nbsp
+                        <span  tooltip-placement="left" uib-tooltip="We have laid down multiple levels of security measures to ensure the confidentiality of your account information. You can be assured your information is safe with us." >
+                                 <i class="fa fa-info-circle "></i>
+                        </span>
+                    </p>
+            </div>
+            <div class="ibox">
+                <div class="ibox-content wizard">
+                    <div class="steps clearfix">
+                        <ul>
+                            <li ui-sref-active="current">
+                                <a ui-sref=".basic_info" class="btn-default">Basic Info</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a a-disabled="isEdit || isFormEdit.personal" ui-sref=".personal-info" class="btn-default">Personal Information</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a a-disabled="isEdit || isFormEdit.bank" ui-sref=".bank-info" class="btn-default">Bank Information</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a a-disabled="isEdit || isFormEdit.nominee" ui-sref=".nominee-info" class="btn-default">Nominee</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a a-disabled="isEdit || isFormEdit.kyc" ui-sref=".kyc-fatca" class="btn-default">KYC/FATCA</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a a-disabled="isEdit || isFormEdit.docs" ui-sref=".file_upload" class="btn-default">Docs</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a a-disabled="isEdit || isFormEdit.service" ui-sref=".service_request" class="btn-default">Service Request</a>
+                            </li>
+                            <li ui-sref-active="current" id="account_verify" style="display: none">
+                                <a a-disabled="isEdit || isFormEdit.account" ui-sref=".account_verify" class="btn-default">Account Verification</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="wizard">
+                        <div class="content">
+
+                        <form name="signupForm" class="p-lg">
+
+                            <!-- our nested state views will be injected here -->
+                            <div id="form-views" ui-view></div>
+                        </form>
+
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,883 @@
+<uib-accordion>
+    <uib-accordion-group heading="Household utilities" is-open="true">
+        <div ng-controller="finGpsExpensesHouseHoldCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="householdUtilities" id="householdUtilitiesForm"
+                  novalidate>
+                <div class="form-group">
+                    <label class="control-label col-sm-4"><h3>Expenses</h3></label>
+                    <label class="control-label col-sm-2"><h3>Amount</h3></label>
+                    <label class="control-label col-sm-4"><h3>Cycle</h3></label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="groceries">Groceries</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':householdUtilities.groceryAmount.$invalid && householdUtilities.groceryAmount.$dirty}">
+                        <input type="number" id="groceries" class="form-control"
+                               name="groceryAmount"
+                               placeholder="Enter amount"
+                               ng-model="householdUtilitiesForm.groceryAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="householdUtilities.groceryAmount.$invalid && householdUtilities.groceryAmount.$dirty">
+                            <p ng-show="householdUtilities.groceryAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="householdUtilities.groceryAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakhs
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select id="groceryCycle" class="form-control"
+                                name="groceryCycle"
+                                ng-model="householdUtilitiesForm.groceryCycle">
+                            <option value=''>-----Select Cycle----</option>
+                            <option value='annually' selected>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Utility-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="utilityPayments">Utility Payments</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':householdUtilities.utilityPaymentAmount.$invalid && householdUtilities.utilityPaymentAmount.$dirty}">
+                        <input type="number" id="utilityPayments" class="form-control"
+                               name="utilityPaymentAmount"
+                               placeholder="Enter amount"
+                               ng-model="householdUtilitiesForm.utilityPaymentAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="householdUtilities.utilityPaymentAmount.$invalid && householdUtilities.utilityPaymentAmount.$dirty">
+                            <p ng-show="householdUtilities.utilityPaymentAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="householdUtilities.utilityPaymentAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select id="utilityPaymentsCycle" class="form-control"
+                                name="utilityPaymentsCycle"
+                                ng-model="householdUtilitiesForm.utilityPaymentsCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- House Rent-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="houseRent">House Rent</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':householdUtilities.houseRentAmount.$invalid && householdUtilities.houseRentAmount.$dirty}">
+                        <input type="number" id="houseRent" class="form-control"
+                               name="houseRentAmount"
+                               placeholder="Enter amount"
+                               ng-model="householdUtilitiesForm.houseRentAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="householdUtilities.houseRentAmount.$invalid && householdUtilities.houseRentAmount.$dirty">
+                            <p ng-show="householdUtilities.houseRentAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="householdUtilities.houseRentAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select id="houseRentCycle" class="form-control"
+                                name="houseRentCycle"
+                                ng-model="householdUtilitiesForm.houseRentCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Medical-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="houseRent">Medical</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':householdUtilities.medicalAmount.$invalid && householdUtilities.medicalAmount.$dirty}">
+                        <input type="number" id="medicalAmount" class="form-control"
+                               name="medicalAmount"
+                               placeholder="Enter amount"
+                               ng-model="householdUtilitiesForm.medicalAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="householdUtilities.medicalAmount.$invalid && householdUtilities.medicalAmount.$dirty">
+                            <p ng-show="householdUtilities.medicalAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="householdUtilities.medicalAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select id="medicalCycle" class="form-control"
+                                name="medicalCycle"
+                                ng-model="householdUtilitiesForm.medicalCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Fuel-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="fuelAmount">Fuel</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':householdUtilities.fuelAmount.$invalid && householdUtilities.fuelAmount.$dirty}">
+                        <input type="number" id="fuelAmount" class="form-control"
+                               name="fuelAmount"
+                               placeholder="Enter amount"
+                               ng-model="householdUtilitiesForm.fuelAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="householdUtilities.fuelAmount.$invalid && householdUtilities.fuelAmount.$dirty">
+                            <p ng-show="householdUtilities.fuelAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="householdUtilities.fuelAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select id="fuelCycle" class="form-control"
+                                name="fuelCycle"
+                                ng-model="householdUtilitiesForm.fuelCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!--Repairs & Maintenance -->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="repairMaintenanceAmount">Repairs & Maintenance </label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':householdUtilities.repairMaintenanceAmount.$invalid && householdUtilities.repairMaintenanceAmount.$dirty}">
+                        <input type="number" id="repairMaintenanceAmount" class="form-control"
+                               name="repairMaintenanceAmount"
+                               placeholder="Enter amount"
+                               ng-model="householdUtilitiesForm.repairMaintenanceAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="householdUtilities.repairMaintenanceAmount.$invalid && householdUtilities.repairMaintenanceAmount.$dirty">
+                            <p ng-show="householdUtilities.repairMaintenanceAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="householdUtilities.repairMaintenanceAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select id="repairMaintenanceCycle" class="form-control"
+                                name="repairMaintenanceCycle"
+                                ng-model="householdUtilitiesForm.repairMaintenanceCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Additional particular-->
+                <div class="form-group" ng-repeat="particular in additionalParticularList track by $index">
+                    <ng-form class="form-horizontal" role="form" name="additionalParticular">
+                        <div class="col-sm-3 expenseCashFlow">
+                            <input type="text" class="form-control"
+                                   name="additionalParticular"
+                                   placeholder="Add any other Expenses"
+                                   ng-model="particular.addParticular"
+                            >
+                        </div>
+                        <div class="col-sm-4"
+                             ng-class="{'has-error':additionalParticular.addParticularAmount.$invalid && additionalParticular.addParticularAmount.$dirty}">
+                            <input type="number" id="addParticularAmount" class="form-control"
+                                   name="addParticularAmount"
+                                   placeholder="Enter amount"
+                                   ng-model="particular.addParticularAmt"
+                                   min="100"
+                                   max="5000000"
+                            >
+                            <div ng-show="additionalParticular.addParticularAmount.$invalid && additionalParticular.addParticularAmount.$dirty">
+                                <p ng-show="additionalParticular.addParticularAmount.$error.min" class="help-block">
+                                    Amount should not be less than Rs.100
+                                </p>
+                                <p ng-show="additionalParticular.addParticularAmount.$error.max" class="help-block">
+                                    Amount cannot be greater than 50 Lakh
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control"
+                                    name="addParticularCycle"
+                                    ng-model="particular.addParticularCycle">
+                                <option value=''>----Select Cycle--</option>
+                                <option value='annually'>Annually</option>
+                                <option value='monthly'>Monthly</option>
+                            </select>
+                        </div>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-show="additionalParticularList.length >1"
+                              ng-click="delParticularExpenses($index)">
+                            <i class="fa fa-minus"></i></span>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-hide="additionalParticularList.length > 3"
+                              ng-click="addParticularExpenses(particular)">
+                            <i class="fa fa-plus"></i></span>
+                    </ng-form>
+                </div>
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="householdUtilities.$invalid "
+                            ng-click="submitHouseHoldUtilities()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="Lifestyle Expenses">
+        <div ng-controller="finGpsLifeStyleExpensesCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="lifeStyleExpenses" id="lifeStyleExpensesForm"
+                  novalidate>
+                <div class="form-group">
+                    <label class="control-label col-sm-4"><h3>Expenses</h3></label>
+                    <label class="control-label col-sm-2"><h3>Amount</h3></label>
+                    <label class="control-label col-sm-4"><h3>Cycle</h3></label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="shoppingAmount">Shopping</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':lifeStyleExpenses.shoppingAmount.$invalid && lifeStyleExpenses.shoppingAmount.$dirty}">
+                        <input type="number" id="shoppingAmount" class="form-control"
+                               name="shoppingAmount"
+                               placeholder="Enter amount"
+                               ng-model="lifeStyleExpensesForm.shoppingAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="lifeStyleExpenses.shoppingAmount.$invalid && lifeStyleExpenses.shoppingAmount.$dirty">
+                            <p ng-show="lifeStyleExpenses.shoppingAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="lifeStyleExpenses.shoppingAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="shoppingCycle"
+                                ng-model="lifeStyleExpensesForm.shoppingCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Dining out /Entertainment-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="entertainment">Dining out / Entertainment</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':lifeStyleExpenses.entertainmentAmount.$invalid && lifeStyleExpenses.entertainmentAmount.$dirty}">
+                        <input type="number" id="entertainment" class="form-control"
+                               name="entertainmentAmount"
+                               placeholder="Enter amount"
+                               ng-model="lifeStyleExpensesForm.entertainmentAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="lifeStyleExpenses.entertainmentAmount.$invalid && lifeStyleExpenses.entertainmentAmount.$dirty">
+                            <p ng-show="lifeStyleExpenses.entertainmentAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="lifeStyleExpenses.entertainmentAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="entertainmentCycle"
+                                ng-model="lifeStyleExpensesForm.entertainmentCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Travel-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="travel">Travel</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':lifeStyleExpenses.travelAmount.$invalid && lifeStyleExpenses.travelAmount.$dirty}">
+                        <input type="number" id="travel" class="form-control"
+                               name="travelAmount"
+                               placeholder="Enter amount"
+                               ng-model="lifeStyleExpensesForm.travelAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="lifeStyleExpenses.travelAmount.$invalid && lifeStyleExpenses.travelAmount.$dirty">
+                            <p ng-show="lifeStyleExpenses.travelAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="lifeStyleExpenses.travelAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="travelCycle"
+                                ng-model="lifeStyleExpensesForm.travelCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Additional particular-->
+                <div class="form-group" ng-repeat="lifeStyle in lifeStyleList track by $index">
+                    <ng-form class="form-horizontal" role="form" id="additionalLifeStyle" name="additionalLifeStyle">
+                        <div class="col-sm-3 expenseCashFlow">
+                            <input type="text" class="form-control"
+                                   name="additionalParticular"
+                                   placeholder="Add any other Expenses"
+                                   ng-model="lifeStyle.addParticular"
+                            >
+                        </div>
+                        <div class="col-sm-4"
+                             ng-class="{'has-error':additionalLifeStyle.addParticularAmount.$invalid && additionalLifeStyle.addParticularAmount.$dirty}">
+                            <input type="number" id="lifeStyle" class="form-control"
+                                   name="addParticularAmount"
+                                   placeholder="Enter amount"
+                                   ng-model="lifeStyle.addParticularAmt"
+                                   min="100"
+                                   max="5000000"
+                            >
+                            <div ng-show="additionalLifeStyle.addParticularAmount.$invalid && additionalLifeStyle.addParticularAmount.$dirty">
+                                <p ng-show="additionalLifeStyle.addParticularAmount.$error.min" class="help-block">
+                                    Amount should not be less than Rs.100
+                                </p>
+                                <p ng-show="additionalLifeStyle.addParticularAmount.$error.max" class="help-block">
+                                    Amount cannot be greater than 50 Lakh
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control"
+                                    name="addParticularCycle"
+                                    ng-model="lifeStyle.addParticularCycle">
+                                <option value=''>----Select Cycle--</option>
+                                <option value='annually'>Annually</option>
+                                <option value='monthly'>Monthly</option>
+                            </select>
+                        </div>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-show="lifeStyleList.length >1"
+                              ng-click="delLifeStyleExpenses($index)">
+                            <i class="fa fa-minus"></i></span>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-hide="lifeStyleList.length > 4"
+                              ng-click="addLifeStyleExpenses(lifeStyle)">
+                            <i class="fa fa-plus"></i></span>
+                    </ng-form>
+                </div>
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="lifeStyleExpenses.$invalid "
+                            ng-click="submitLifeStyleExpenses()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="Loan Servicing">
+        <div ng-controller="finGpsLoanExpensesCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="loanServicing" id="loanServicingForm"
+                  novalidate>
+                <div class="form-group">
+                    <label class="control-label col-sm-4"><h3>Expenses</h3></label>
+                    <label class="control-label col-sm-2"><h3>Amount</h3></label>
+                    <label class="control-label col-sm-4"><h3>Cycle</h3></label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="homeEMI">Home Loan EMI</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':loanServicing.homeEMIAmount.$invalid && loanServicing.homeEMIAmount.$dirty}">
+                        <input type="number" id="homeEMI" class="form-control"
+                               name="homeEMIAmount"
+                               placeholder="Enter amount"
+                               ng-model="loanServicingForm.homeEMIAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="loanServicing.homeEMIAmount.$invalid && loanServicing.homeEMIAmount.$dirty">
+                            <p ng-show="loanServicing.homeEMIAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="loanServicing.homeEMIAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="homeEMICycle"
+                                ng-model="loanServicingForm.homeEMICycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Vehicle Loan EMI-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="vehicleLoanEMI">Vehicle Loan EMI</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':loanServicing.vehicleLoanEMIAmount.$invalid && loanServicing.vehicleLoanEMIAmount.$dirty}">
+                        <input type="number" id="vehicleLoanEMI" class="form-control"
+                               name="vehicleLoanEMIAmount"
+                               placeholder="Enter amount"
+                               ng-model="loanServicingForm.vehicleLoanEMIAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="loanServicing.vehicleLoanEMIAmount.$invalid && loanServicing.vehicleLoanEMIAmount.$dirty">
+                            <p ng-show="loanServicing.vehicleLoanEMIAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="loanServicing.vehicleLoanEMIAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="vehicleLoanEMICycle"
+                                ng-model="loanServicingForm.vehicleLoanEMICycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Travel-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="educationLoanEMI">Education Loan EMI</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':loanServicing.educationLoanEMIAmount.$invalid && loanServicing.educationLoanEMIAmount.$dirty}">
+                        <input type="number" id="educationLoanEMI" class="form-control"
+                               name="educationLoanEMIAmount"
+                               placeholder="Enter amount"
+                               ng-model="loanServicingForm.educationLoanEMIAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="loanServicing.educationLoanEMIAmount.$invalid && loanServicing.educationLoanEMIAmount.$dirty">
+                            <p ng-show="loanServicing.educationLoanEMIAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="loanServicing.educationLoanEMIAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="educationLoanEMICycle"
+                                ng-model="loanServicingForm.educationLoanEMICycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Personal Loan EMI-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="personalLoanEMI">Personal Loan EMI</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':loanServicing.personalLoanEMIAmount.$invalid && loanServicing.personalLoanEMIAmount.$dirty}">
+                        <input type="number" id="personalLoanEMI" class="form-control"
+                               name="personalLoanEMIAmount"
+                               placeholder="Enter amount"
+                               ng-model="loanServicingForm.personalLoanEMIAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="loanServicing.personalLoanEMIAmount.$invalid && loanServicing.personalLoanEMIAmount.$dirty">
+                            <p ng-show="loanServicing.personalLoanEMIAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="loanServicing.personalLoanEMIAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="personalLoanEMIAmountCycle"
+                                ng-model="loanServicingForm.personalLoanEMICycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Additional particular-->
+                <div class="form-group" ng-repeat="loanService in loanServicingList track by $index">
+                    <ng-form class="form-horizontal" role="form" id="additionalLoanService"
+                             name="additionalLoanService">
+                        <div class="col-sm-3 expenseCashFlow">
+                            <input type="text" class="form-control"
+                                   name="additionalParticular"
+                                   placeholder="Add any other Expenses"
+                                   ng-model="loanService.addParticular"
+                            >
+                        </div>
+                        <div class="col-sm-4"
+                             ng-class="{'has-error':additionalLoanService.addParticularAmount.$invalid && additionalLoanService.addParticularAmount.$dirty}">
+                            <input type="number" id="loanService" class="form-control"
+                                   name="addParticularAmount"
+                                   placeholder="Enter amount"
+                                   ng-model="loanService.addParticularAmt"
+                                   min="100"
+                                   max="5000000"
+                            >
+                            <div ng-show="additionalLoanService.addParticularAmount.$invalid && additionalLoanService.addParticularAmount.$dirty">
+                                <p ng-show="additionalLoanService.addParticularAmount.$error.min" class="help-block">
+                                    Amount should not be less than Rs.100
+                                </p>
+                                <p ng-show="additionalLoanService.addParticularAmount.$error.max" class="help-block">
+                                    Amount cannot be greater than 50 Lakh
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control"
+                                    name="addParticularCycle"
+                                    ng-model="loanService.addParticularCycle">
+                                <option value=''>----Select Cycle--</option>
+                                <option value='annually'>Annually</option>
+                                <option value='monthly'>Monthly</option>
+                            </select>
+                        </div>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-show="loanServicingList.length >1"
+                              ng-click="delLoanServiceExpenses($index)">
+                            <i class="fa fa-minus"></i></span>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-hide="loanServicingList.length > 4"
+                              ng-click="addLoanServiceExpenses(loanService)">
+                            <i class="fa fa-plus"></i></span>
+                    </ng-form>
+                </div>
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="lifeStyleExpenses.$invalid "
+                            ng-click="submitHouseLoanServicesExpenses()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="Dependent Expenses">
+        <div ng-controller="finGpsDependentExpensesCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="dependentExpenses" id="dependentExpensesForm"
+                  novalidate>
+                <div class="form-group">
+                    <label class="control-label col-sm-4"><h3>Expenses</h3></label>
+                    <label class="control-label col-sm-2"><h3>Amount</h3></label>
+                    <label class="control-label col-sm-4"><h3>Cycle</h3></label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="offSpringExpenses">Children-related Expenses</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':dependentExpenses.offSpringExpensesAmount.$invalid && dependentExpenses.offSpringExpensesAmount.$dirty}">
+                        <input type="number" id="offSpringExpenses" class="form-control"
+                               name="offSpringExpensesAmount"
+                               placeholder="Enter amount"
+                               ng-model="dependentExpensesForm.childRelatedExpenses"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="dependentExpenses.offSpringExpensesAmount.$invalid && dependentExpenses.offSpringExpensesAmount.$dirty">
+                            <p ng-show="dependentExpenses.offSpringExpensesAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="dependentExpenses.offSpringExpensesAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="offSpringExpensesCycle"
+                                ng-model="dependentExpensesForm.childRelatedExpensesCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Contribution to Parents/Siblings-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="contributionExpenses">Contribution to
+                        Parents/Siblings</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':dependentExpenses.contributionExpensesAmount.$invalid && dependentExpenses.contributionExpensesAmount.$dirty}">
+                        <input type="number" id="contributionExpenses" class="form-control"
+                               name="contributionExpensesAmount"
+                               placeholder="Enter amount"
+                               ng-model="dependentExpensesForm.parentContributionExpensesAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="dependentExpenses.contributionExpensesAmount.$invalid && dependentExpenses.contributionExpensesAmount.$dirty">
+                            <p ng-show="dependentExpenses.contributionExpensesAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="dependentExpenses.contributionExpensesAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="parentContributionExpensesCycle"
+                                ng-model="dependentExpensesForm.parentContributionCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Additional particular-->
+                <div class="form-group" ng-repeat="dependentExpenses in dependentExpensesList track by $index">
+                    <ng-form class="form-horizontal" role="form" name="additionalDependentExpenses">
+                        <div class="col-sm-3 expenseCashFlow">
+                            <input type="text" class="form-control"
+                                   name="additionalParticular"
+                                   placeholder="Add any other Expenses"
+                                   ng-model="dependentExpenses.addParticular"
+                            >
+                        </div>
+                        <div class="col-sm-4"
+                             ng-class="{'has-error':additionalDependentExpenses.addParticularAmount.$invalid && additionalDependentExpenses.addParticularAmount.$dirty}">
+                            <input type="number" class="form-control"
+                                   name="addParticularAmount"
+                                   placeholder="Enter amount"
+                                   ng-model="dependentExpenses.addParticularAmt"
+                                   min="100"
+                                   max="5000000"
+                            >
+                            <div ng-show="additionalDependentExpenses.addParticularAmount.$invalid && additionalDependentExpenses.addParticularAmount.$dirty">
+                                <p ng-show="additionalDependentExpenses.addParticularAmount.$error.min"
+                                   class="help-block">
+                                    Amount should not be less than Rs.100
+                                </p>
+                                <p ng-show="additionalDependentExpenses.addParticularAmount.$error.max"
+                                   class="help-block">
+                                    Amount cannot be greater than 50 Lakh
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control"
+                                    name="addParticularCycle"
+                                    ng-model="dependentExpenses.addParticularCycle">
+                                <option value=''>----Select Cycle--</option>
+                                <option value='annually'>Annually</option>
+                                <option value='monthly'>Monthly</option>
+                            </select>
+                        </div>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-show="dependentExpensesList.length >1"
+                              ng-click="delDependentExpensesList($index)">
+                            <i class="fa fa-minus"></i></span>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-hide="dependentExpensesList.length > 4"
+                              ng-click="addDependentExpensesList(dependentExpenses)">
+                            <i class="fa fa-plus"></i></span>
+                    </ng-form>
+                </div>
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="lifeStyleExpenses.$invalid "
+                            ng-click="submitDependentExpenses()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group heading="Insurance Premiums">
+        <div ng-controller="finGpsInsurancePremiumCtrl" data-ng-init="init()">
+            <form class="form-horizontal" role="form" name="insurancePremium" id="insurancePremiumForm"
+                  novalidate>
+                <div class="form-group">
+                    <label class="control-label col-sm-4"><h3>Expenses</h3></label>
+                    <label class="control-label col-sm-2"><h3>Amount</h3></label>
+                    <label class="control-label col-sm-4"><h3>Cycle</h3></label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="pureTermInsurance">Pure term insurance premiums</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':insurancePremium.pureTermInsuranceAmount.$invalid && insurancePremium.pureTermInsuranceAmount.$dirty}">
+                        <input type="number" id="pureTermInsurance" class="form-control"
+                               name="pureTermInsuranceAmount"
+                               placeholder="Enter amount"
+                               ng-model="insurancePremiumForm.pureTermInsuranceAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="insurancePremium.pureTermInsuranceAmount.$invalid && insurancePremium.pureTermInsuranceAmount.$dirty">
+                            <p ng-show="insurancePremium.pureTermInsuranceAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="insurancePremium.pureTermInsuranceAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="pureTermInsuranceCycle"
+                                ng-model="insurancePremiumForm.pureTermInsuranceCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- General Insurance premiums-->
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="generalInsurance">General Insurance premiums</label>
+                    <div class="col-sm-4"
+                         ng-class="{'has-error':insurancePremium.generalInsuranceAmount.$invalid && insurancePremium.generalInsuranceAmount.$dirty}">
+                        <input type="number" id="generalInsurance" class="form-control"
+                               name="generalInsuranceAmount"
+                               placeholder="Enter amount"
+                               ng-model="insurancePremiumForm.generalInsuranceAmt"
+                               min="100"
+                               max="5000000"
+                        >
+                        <div ng-show="insurancePremium.generalInsuranceAmount.$invalid && insurancePremium.generalInsuranceAmount.$dirty">
+                            <p ng-show="insurancePremium.generalInsuranceAmount.$error.min" class="help-block">
+                                Amount should not be less than Rs.100
+                            </p>
+                            <p ng-show="insurancePremium.generalInsuranceAmount.$error.max" class="help-block">
+                                Amount cannot be greater than 50 Lakh
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control"
+                                name="generalInsuranceCycle"
+                                ng-model="insurancePremiumForm.generalInsuranceCycle">
+                            <option value=''>----Select Cycle--</option>
+                            <option value='annually'>Annually</option>
+                            <option value='monthly'>Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Additional particular-->
+                <div class="form-group" ng-repeat="generalInsurance in generalInsuranceList track by $index">
+                    <ng-form class="form-horizontal" role="form" name="additionalDependentExpenses">
+                        <div class="col-sm-3 expenseCashFlow">
+                            <input type="text" class="form-control"
+                                   name="additionalParticular"
+                                   placeholder="Add any other Expenses"
+                                   ng-model="generalInsurance.addParticular"
+                            >
+                        </div>
+                        <div class="col-sm-4"
+                             ng-class="{'has-error':additionalDependentExpenses.addParticularAmount.$invalid && additionalDependentExpenses.addParticularAmount.$dirty}">
+                            <input type="number" class="form-control"
+                                   name="addParticularAmount"
+                                   placeholder="Enter amount"
+                                   ng-model="generalInsurance.addParticularAmt"
+                                   min="100"
+                                   max="5000000"
+                            >
+                            <div ng-show="additionalDependentExpenses.addParticularAmount.$invalid && additionalDependentExpenses.addParticularAmount.$dirty">
+                                <p ng-show="additionalDependentExpenses.addParticularAmount.$error.min"
+                                   class="help-block">
+                                    Amount should not be less than Rs.100
+                                </p>
+                                <p ng-show="additionalDependentExpenses.addParticularAmount.$error.max"
+                                   class="help-block">
+                                    Amount cannot be greater than 50 Lakh
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control"
+                                    name="addParticularCycle"
+                                    ng-model="generalInsurance.addParticularCycle">
+                                <option value=''>----Select Cycle--</option>
+                                <option value='annually'>Annually</option>
+                                <option value='monthly'>Monthly</option>
+                            </select>
+                        </div>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-show="generalInsuranceList.length >1"
+                              ng-click="delGeneralInsurance($index)">
+                            <i class="fa fa-minus"></i></span>
+                        <span class="btn btn-default" style="padding:2px 7px"
+                              ng-hide="generalInsuranceList.length > 4"
+                              ng-click="addGeneralInsurance(generalInsurance)">
+                            <i class="fa fa-plus"></i></span>
+                    </ng-form>
+                </div>
+                <div class="form-group" style="text-align: center;">
+                    <button class="btn btn-sm btn-primary" ng-disabled="lifeStyleExpenses.$invalid "
+                            ng-click="submitGeneralInsurance()"><strong>Save</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </uib-accordion-group>
+    <div ng-controller="finGpsExpensesCtrl" data-ng-init="init()">
+        <form class="form-horizontal" role="form" name="expensesCashFlow" id="expensesCashFlowForm"
+              ng-submit="submitExpensesCashFlow()">
+            <div class="form-group"
+                 ng-class="{ 'has-error' : expensesCashFlow.userComment.$invalid && expensesCashFlow.userComment.$dirty }">
+                <label class="control-label col-sm-3" for="UserComment">Any Additional comments</label>
+                <div class="col-sm-7">
+                                <textarea rows="4" cols="48" name="userComment" id="userComment"
+                                          ng-minlength="1" ng-maxlength="1000"
+                                          ng-model="expensesCashFlowForm.comment"
+                                          placeholder="More to tell? We would like to hear from you!"
+                                >
+                                </textarea>
+                    <div ng-show="expensesCashFlow.userComment.$invalid && expensesCashFlow.userComment.$dirty">
+                        <p ng-show="expensesCashFlow.userComment.$error.maxlength" class="help-block">
+                            Comments cannot exceed 250 characters
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="text-align: center;">
+                <button class="btn btn-sm btn-primary" ng-disabled="expensesCashFlow.$invalid "
+                        type="submit"><strong>Save</strong>
+                </button>
+            </div>
+        </form>
+    </div>
+</uib-accordion>
+
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>
